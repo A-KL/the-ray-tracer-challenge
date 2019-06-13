@@ -2,3 +2,4 @@ src/RenderEngine.Core/bin/
 src/RenderEngine.Core/obj/
 test/RenderEngine.Core.Tests/bin/
 test/RenderEngine.Core.Tests/obj/
+.vs/
