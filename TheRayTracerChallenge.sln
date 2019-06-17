@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.Core", "src\RenderEngine.Core\RenderEngine.Core.csproj", "{8B58479D-DE0F-4EB2-9908-43EE9B2671A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.Core", "src\RenderEngine.Core\RenderEngine.Core.csproj", "{8B58479D-DE0F-4EB2-9908-43EE9B2671A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".test", ".test", "{A5CC9699-82D9-480B-A83C-F1814F75FE4A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.Core.Tests", "test\RenderEngine.Core.Tests\RenderEngine.Core.Tests.csproj", "{0BD91051-2DAD-4E2A-B0ED-73915E8BBA58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenderEngine.Core.Tests", "test\RenderEngine.Core.Tests\RenderEngine.Core.Tests.csproj", "{0BD91051-2DAD-4E2A-B0ED-73915E8BBA58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderEngine.App", "src\RenderEngine.App\RenderEngine.App.csproj", "{5AE56A15-4A48-4731-AA4A-AD8A9FA8C886}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,6 +25,10 @@ Global
 		{0BD91051-2DAD-4E2A-B0ED-73915E8BBA58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BD91051-2DAD-4E2A-B0ED-73915E8BBA58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BD91051-2DAD-4E2A-B0ED-73915E8BBA58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5AE56A15-4A48-4731-AA4A-AD8A9FA8C886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5AE56A15-4A48-4731-AA4A-AD8A9FA8C886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5AE56A15-4A48-4731-AA4A-AD8A9FA8C886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5AE56A15-4A48-4731-AA4A-AD8A9FA8C886}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
