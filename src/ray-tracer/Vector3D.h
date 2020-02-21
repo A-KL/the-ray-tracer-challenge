@@ -11,19 +11,20 @@ class Vector3D :
 {
 public:
 	Vector3D(float x, float y, float z)
-		: _x(x), _y(y), _z(z)
+		: Vector3D(x, y, z, 1)
 	{ }
 
-	Vector3D(const Vector3D& vector)
-		: _x(vector._x), _y(vector._y), _z(vector._z)
+	Vector3D(const Vector3D& point)
+		: Vector3D(point._x, point._y, point._z)
 	{ }
 
+	float Magniture();
 
-	inline float X() const { return _x; };
+	Vector3D Normalize();
 
-	inline float Y() const { return _y; };
+	float Dot(const Vector3D&);
 
-	inline float Z() const { return _z; };
+	Vector3D Cross(const Vector3D&);
 
 	bool operator==(const Vector3D&);
 
@@ -35,8 +36,9 @@ public:
 
 	friend ostream& operator << (ostream& out, const Vector3D& p);
 
-private:
-	float _x, _y, _z;
-
+protected:
+	Vector3D(float x, float y, float z, float w)
+		: Primitive3D(x, y, z, w)
+	{ }
 };
 

@@ -11,18 +11,12 @@ class Point3D :
 {
 public:
 	Point3D(float x, float y, float z)
-		: _x(x), _y(y), _z(z)
+		: Primitive3D(x, y, z, 0) 
 	{ }
 
 	Point3D(const Point3D& point)
-		: _x(point._x), _y(point._y), _z(point._z)
+		: Point3D(point._x, point._y, point._z)
 	{ }
-
-	inline float X() const { return _x; };
-
-	inline float Y() const { return _y; };
-
-	inline float Z() const { return _z; };
 
 	bool operator==(const Point3D&);
 
@@ -33,8 +27,5 @@ public:
 	Point3D operator+(const Vector3D&);
 
 	friend ostream& operator << (ostream& out, const Point3D& p);
-
-private:
-	float _x, _y, _z;
 };
 

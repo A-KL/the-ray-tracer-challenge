@@ -8,6 +8,7 @@
 
 #include "ray-tracer/Vector3D.h"
 #include "ray-tracer/Point3D.h"
+#include "ray-tracer/Projectile.h"
 
 using namespace std;
 
@@ -21,6 +22,12 @@ struct Line
 
 int main()
 {
+    Projectile proj(Point3D(0, 1, 0), Vector3D(1, 1, 0).Normalize());
+
+    Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
+
+
+
     Point3D p0(1, 1, 0);
 
     Vector3D v1(1,0,0);
