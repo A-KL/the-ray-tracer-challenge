@@ -33,6 +33,9 @@
     <ClCompile Include="ray-tracer\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ray-tracer\Projectile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ray-tracer\Mathf.h">
@@ -48,6 +51,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ray-tracer\Vector3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ray-tracer\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
