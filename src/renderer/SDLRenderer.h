@@ -2,7 +2,9 @@
 class SDLRenderer
 {
 public:
-	SDLRenderer(int, int, int, SDL_Window*);
+	SDLRenderer( SDL_Window*, int);
+
+	SDLRenderer(SDL_Window*);
 
 	//const char& BeginDrawing();
 

@@ -1,21 +1,26 @@
 #include <SDL.h>
 
 #include "SDLRenderer.h"
+#include "Color.h"
 
-SDLRenderer::SDLRenderer(int w, int h, int bpp, SDL_Window* window)
+SDLRenderer::SDLRenderer(SDL_Window* window, int bpp)
 {
-	_w = w;
-	_h = h;
+	SDL_GetWindowSize(window, &_w, &_h);
+
 	_bpp = bpp;
 
-	_sdl = SDL_CreateRenderer(window, -1, 0);;
+	_sdl = SDL_CreateRenderer(window, -1, 0);
 }
+
+SDLRenderer::SDLRenderer(SDL_Window* window) 
+	: SDLRenderer(window, Color::Bpp32)
+{ }
 
 void SDLRenderer::DrawPoint(int x, int y, int color)
 {
-	SDL_SetRenderDrawColor(_sdl, 0, 0, 128, 255);
+	SDL_SetRenderDrawColor(_sdl, 0, 255, 0, 255);
 
-	SDL_RenderDrawPointF(_sdl, x, x);
+	SDL_RenderDrawPointF(_sdl, x, y);
 }
 
 void SDLRenderer::DrawLine(int x0, int y0, int x1, int y1, int color)
@@ -43,7 +48,7 @@ int SDLRenderer::Bpp()
 
 void SDLRenderer::Clear()
 {
-	SDL_SetRenderDrawColor(_sdl, 242, 242, 242, 255);
+	SDL_SetRenderDrawColor(_sdl, 0, 0, 0, 255);
 
 	SDL_RenderClear(_sdl);
 }
