@@ -154,11 +154,14 @@
     <ClCompile Include="ray-tracer\Projectile.cpp" />
     <ClCompile Include="SDL2Demo.cpp" />
     <ClCompile Include="renderer\SDLRenderer.cpp" />
+	<ClCompile Include="renderer\Color.cpp" />
     <ClCompile Include="ray-tracer\Vector3D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ray-tracer\Environment.h" />
     <ClInclude Include="ray-tracer\Mathf.h" />
     <ClInclude Include="ray-tracer\Point3D.h" />
+	<ClCompile Include="renderer\Color.h" />
     <ClInclude Include="ray-tracer\Primitive3D.h" />
     <ClInclude Include="ray-tracer\Projectile.h" />
     <ClInclude Include="renderer\SDLRenderer.h" />

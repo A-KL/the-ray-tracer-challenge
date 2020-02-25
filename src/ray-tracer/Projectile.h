@@ -3,18 +3,8 @@
 #include "Vector3D.h"
 #include "Point3D.h"
 
-class Environment
-{
-public:
-	Environment(const Vector3D& gravity, const Vector3D& wind)
-		: Gravity(gravity), Wind(wind)
-	{ }
+#include "Environment.h"
 
-	
-	Vector3D Gravity;
-
-	Vector3D Wind;
-};
 
 class Projectile
 {
@@ -24,6 +14,8 @@ public:
 	{ }
 
 	Projectile Tick(const Environment&);
+
+	Point3D Position();
 
 private:
 	Vector3D _velocity;
