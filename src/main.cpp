@@ -5,7 +5,7 @@
 
 #include <SDL.h>
 
-#include "renderer/ColorRgba.h"
+#include "renderer/Color.h"
 #include "renderer/SDLRenderer.h"
 
 #include "ray-tracer/Vector3D.h"
@@ -22,6 +22,7 @@ int main()
     Projectile proj(start, velocity.Normalize() * 11.25);
     Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
+    Color<Rgba> c = Rgba::Blue;
 
     // init SDL
     SDL_Init(SDL_INIT_VIDEO);
@@ -29,7 +30,7 @@ int main()
     const int h = 550;
     const int w = 900;
 
-    ColorRgba<int> background(255, 255, 255, 255);
+    //ColorRgba<int> background(255, 255, 255, 255);
 
    // int bpp = background.Bpp();
 
@@ -52,7 +53,7 @@ int main()
 
         Point3D p = proj.Position();
 
-        renderer.DrawPoint(p.X(), h - p.Y(), 0);
+        renderer.DrawPoint(p.X(), h - p.Y(), c.Raw);
 
         // render window
         renderer.Update();
