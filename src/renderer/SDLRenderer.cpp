@@ -1,9 +1,6 @@
 #include <SDL.h>
 
-#include "Color.h"
-
 #include "SDLRenderer.h"
-
 
 SDLRenderer::SDLRenderer(SDL_Window* window, int bpp)
 {
@@ -15,19 +12,27 @@ SDLRenderer::SDLRenderer(SDL_Window* window, int bpp)
 }
 
 SDLRenderer::SDLRenderer(SDL_Window* window) 
-	: SDLRenderer(window, Color::Bpp32)
+	: SDLRenderer(window, 32)
 { }
 
 void SDLRenderer::DrawPoint(int x, int y, int color)
 {
-	SDL_SetRenderDrawColor(_sdl, 0, 255, 0, 255);
+	Color<Rgba> rgba = Rgba::Black;
+
+	rgba.Raw = color;
+
+	SDL_SetRenderDrawColor(_sdl, rgba.Color.R, rgba.Color.G, rgba.Color.B, rgba.Color.A);
 
 	SDL_RenderDrawPointF(_sdl, x, y);
 }
 
 void SDLRenderer::DrawLine(int x0, int y0, int x1, int y1, int color)
 {
-	SDL_SetRenderDrawColor(_sdl, 256, 0, 0, 255);
+	Color<Rgba> rgba = Rgba::Black;
+
+	rgba.Raw = color;
+
+	SDL_SetRenderDrawColor(_sdl, rgba.Color.R, rgba.Color.G, rgba.Color.B, rgba.Color.A);
 
 	SDL_RenderDrawLine(_sdl, x0, y0, x1, y1);
 }
@@ -50,7 +55,7 @@ int SDLRenderer::Bpp()
 
 void SDLRenderer::Clear()
 {
-	SDL_SetRenderDrawColor(_sdl, 0, 0, 0, 255);
+	SDL_SetRenderDrawColor(_sdl, _background.Color.R, _background.Color.G, _background.Color.B, _background.Color.A);
 
 	SDL_RenderClear(_sdl);
 }

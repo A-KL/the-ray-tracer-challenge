@@ -1,9 +1,11 @@
 #pragma once
 
+#include "Color.h"
+
 class SDLRenderer
 {
 public:
-	SDLRenderer( SDL_Window*, int);
+	SDLRenderer(SDL_Window*, int);
 
 	SDLRenderer(SDL_Window*);
 
@@ -29,5 +31,7 @@ private:
 	int _w, _h, _bpp;
 
 	SDL_Renderer* _sdl;
+
+	const Color<Rgba> _background = Rgba::Black;
 };
 
