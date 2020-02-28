@@ -5,7 +5,7 @@
 
 #include <SDL.h>
 
-#include "renderer/Color.h"
+#include "renderer/ColorRgba.h"
 #include "renderer/SDLRenderer.h"
 
 #include "ray-tracer/Vector3D.h"
@@ -28,6 +28,11 @@ int main()
 
     const int h = 550;
     const int w = 900;
+
+    ColorRgba<int> background(255, 255, 255, 255);
+
+   // int bpp = background.Bpp();
+
 
     SDL_Window* window = SDL_CreateWindow(
         "The Ray Tracer Challenge", 

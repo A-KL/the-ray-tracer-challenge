@@ -1,11 +1,14 @@
 #include "Color.h"
 
-Color::Color(int bpp)
-{
+//const int Color::Bpp24 = 24;
+//
+//const int Color::Bpp32 = 32;
+//
+//const int Color::Bpp8 = 8;
+//
+//const int Color::Bpp1 = 1;
 
-}
-
-Color Color::Green()
+int Color::Bpp()
 {
-	return Color(24);
+	return sizeof(this);
 }

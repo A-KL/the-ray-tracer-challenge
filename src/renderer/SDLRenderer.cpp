@@ -1,7 +1,9 @@
 #include <SDL.h>
 
-#include "SDLRenderer.h"
 #include "Color.h"
+
+#include "SDLRenderer.h"
+
 
 SDLRenderer::SDLRenderer(SDL_Window* window, int bpp)
 {
