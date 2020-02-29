@@ -5,7 +5,6 @@
 
 #include <SDL.h>
 
-#include "renderer/Color.h"
 #include "renderer/SDLRenderer.h"
 
 #include "ray-tracer/Vector3D.h"
@@ -13,6 +12,31 @@
 #include "ray-tracer/Projectile.h"
 
 using namespace std;
+
+template<int TDimentionX, int TDimentionY, class T>
+union Matrix
+{
+    T Data[TDimentionX][TDimentionY];
+
+    bool operator==(const Matrix<TDimentionX, TDimentionY, T>& other)
+    {
+        int x, y;
+
+        for (x = 0; x < TDimentionX; x++)
+        {
+            for (y = 0; y < TDimentionY; y++)
+            {
+                if (Data[x][y] != other[x][y])
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+};
+
 
 int main()
 {
@@ -29,6 +53,10 @@ int main()
 
     const int h = 550;
     const int w = 900;
+
+    Matrix<3, 3, int> m0 = {1,2,3, 4,5,6, 7,8,9};
+
+    int d = m0.Data[1][2];
 
     //ColorRgba<int> background(255, 255, 255, 255);
 
