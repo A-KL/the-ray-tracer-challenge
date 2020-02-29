@@ -13,20 +13,20 @@
 
 using namespace std;
 
-template<int TDimentionX, int TDimentionY, class T>
+template<int Tx, int Ty, class T>
 union Matrix
 {
-    T Data[TDimentionX][TDimentionY];
+    T Data[Tx][Ty];
 
-    bool operator==(const Matrix<TDimentionX, TDimentionY, T>& other)
+    bool operator==(const Matrix<Tx, Ty, T>& other)
     {
         int x, y;
 
-        for (x = 0; x < TDimentionX; x++)
+        for (x = 0; x < Tx; x++)
         {
-            for (y = 0; y < TDimentionY; y++)
+            for (y = 0; y < Ty; y++)
             {
-                if (Data[x][y] != other[x][y])
+                if (Data[x][y] != other.Data[x][y])
                 {
                     return false;
                 }
@@ -35,6 +35,70 @@ union Matrix
 
         return true;
     }
+
+    bool operator!=(const Matrix<Tx, Ty, T>& other)
+    {
+        return !(other == this);
+    }
+
+    const Matrix<Ty, Tx, T>& Transpose(const Matrix<Tx, Ty, T>& other)
+    {
+        Matrix<Ty, Tx, T> result;
+
+        for (x = 0; x < Tx; x++)
+        {
+            for (y = 0; y < Ty; y++)
+            {
+                T tmp = Data[x][y];
+
+                Data[x][y] = Data[y][x];
+
+                Data[y][x] = tmp;
+            }
+        }
+
+        return result;
+    }
+
+    const Matrix<Tx, Ty, T>& operator*(const Matrix<Tx, Ty, T>& other)
+    {
+        Matrix<Tx, Ty, T> result;
+        int x, y, j;
+
+        for (x = 0; x < Tx; x++)
+        {
+            for (y = 0; y < Ty; y++)
+            {
+                result.Data[x][y] = 0;
+
+                for (j = 0; j < Ty; j++)
+                {
+                    result.Data[x][y] += Data[x][j] * other.Data[j][y];
+                }
+            }
+        }
+
+        return result;
+    }
+
+    //T[Tx] operator*(const T other[Ty])
+    //{
+    //    T result[Tx];
+
+    //    int x, y, j;
+
+    //    for (x = 0; x < Tx; x++)
+    //    {
+    //        result[x] = 0;
+
+    //        for (y = 0; y < Ty; y++)
+    //        {
+    //            result[x] += Data[x][y] * other[y];
+    //        }
+    //    }
+
+    //    return &result;
+    //}
 };
 
 
@@ -54,13 +118,27 @@ int main()
     const int h = 550;
     const int w = 900;
 
-    Matrix<3, 3, int> m0 = {1,2,3, 4,5,6, 7,8,9};
+    Matrix<3, 3, int> m0 = { 
+        1,2,3, 
+        4,5,6, 
+        7,8,9
+    };
 
-    int d = m0.Data[1][2];
+    Matrix<3, 3, int> m1 = { 
+        1,2,3,
+        4,5,6, 
+        7,8,9 
+    };
 
-    //ColorRgba<int> background(255, 255, 255, 255);
+    bool same = m0 == m1;
 
-   // int bpp = background.Bpp();
+    Matrix<3, 3, int> mux = m0 * m1;
+
+    int tuple[3] = { 2, 2, 2 };
+
+   // int mul[3] = { 0,0,0 };
+
+   // auto mul = m0 * tuple;
 
 
     SDL_Window* window = SDL_CreateWindow(
