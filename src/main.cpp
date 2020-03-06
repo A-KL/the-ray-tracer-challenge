@@ -44,7 +44,6 @@ int main()
     };
 
     bool same = m0 == m1;
-
    
     Matrix<3, 3, int> mux = m0 * m1;
 
@@ -52,12 +51,13 @@ int main()
 
     int tuple[3] = { 2, 2, 2 };
 
-     int* mul = m0 * tuple;
+    int* mul = m0 * tuple;
 
-     int i0 = mul[0];
-     int i1 = mul[1];
-     int i2 = mul[2];
+    int i0 = mul[0];
+    int i1 = mul[1];
+    int i2 = mul[2];
 
+    Matrix<2, 2, int> sub = m0.Sub(2, 2);
 
     SDL_Window* window = SDL_CreateWindow(
         "The Ray Tracer Challenge", 
