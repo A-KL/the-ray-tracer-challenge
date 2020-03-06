@@ -117,6 +117,19 @@ public:
         return result;
     }
 
+    const int Determinant()
+    {
+        return Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
+    }
+
+    const int Minor(int row, int col)
+    {        
+        Matrix<Ty - 1, Tx - 1, T> result = Sub(row, col);
+
+        return result.Determinant();
+    }
+
+
 private:
     const static Matrix<Tx, Ty, T>& GetIdentity()
     {
