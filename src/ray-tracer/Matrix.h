@@ -90,21 +90,28 @@ public:
         return result;
     }
 
-    template<int Tx, int Ty, class T>
-    const  Matrix<Ty, Tx, T>& Matrix<Tx, Ty, T>::Sub(const Matrix<Tx, Ty, T>& other)
+    const  Matrix<Ty-1, Tx-1, T>& Matrix<Tx, Ty, T>::Sub(int row, int col)
     {
-        Matrix<Ty, Tx, T> result;
+        Matrix<Ty-1, Tx-1, T> result;
+        int x, y, x1, y1;
 
-        for (x = 0; x < Tx; x++)
+        for (x = 0, x1 = 0; x < Tx; x++)
         {
-            for (y = 0; y < Ty; y++)
+            if (x == col)
+                continue;
+            
+            for (y = 0, y1 = 0; y < Ty; y++)
             {
-                T tmp = Data[x][y];
+                if (y == row)
+                    continue;
 
-                Data[x][y] = Data[y][x];
+                result.Data[x1][y1] = Data[x][y];
 
-                Data[y][x] = tmp;
+                y1++;
             }
+            
+
+            x1++;
         }
 
         return result;
