@@ -6,100 +6,13 @@
 #include <SDL.h>
 
 #include "renderer/SDLRenderer.h"
-
 #include "ray-tracer/Vector3D.h"
 #include "ray-tracer/Point3D.h"
 #include "ray-tracer/Projectile.h"
 
+#include "ray-tracer/Matrix.h"
+
 using namespace std;
-
-template<int Tx, int Ty, class T>
-union Matrix
-{
-    T Data[Tx][Ty];
-
-    bool operator==(const Matrix<Tx, Ty, T>& other)
-    {
-        int x, y;
-
-        for (x = 0; x < Tx; x++)
-        {
-            for (y = 0; y < Ty; y++)
-            {
-                if (Data[x][y] != other.Data[x][y])
-                {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
-
-    bool operator!=(const Matrix<Tx, Ty, T>& other)
-    {
-        return !(other == this);
-    }
-
-    const Matrix<Ty, Tx, T>& Transpose(const Matrix<Tx, Ty, T>& other)
-    {
-        Matrix<Ty, Tx, T> result;
-
-        for (x = 0; x < Tx; x++)
-        {
-            for (y = 0; y < Ty; y++)
-            {
-                T tmp = Data[x][y];
-
-                Data[x][y] = Data[y][x];
-
-                Data[y][x] = tmp;
-            }
-        }
-
-        return result;
-    }
-
-    const Matrix<Tx, Ty, T>& operator*(const Matrix<Tx, Ty, T>& other)
-    {
-        Matrix<Tx, Ty, T> result;
-        int x, y, j;
-
-        for (x = 0; x < Tx; x++)
-        {
-            for (y = 0; y < Ty; y++)
-            {
-                result.Data[x][y] = 0;
-
-                for (j = 0; j < Ty; j++)
-                {
-                    result.Data[x][y] += Data[x][j] * other.Data[j][y];
-                }
-            }
-        }
-
-        return result;
-    }
-
-    //T[Tx] operator*(const T other[Ty])
-    //{
-    //    T result[Tx];
-
-    //    int x, y, j;
-
-    //    for (x = 0; x < Tx; x++)
-    //    {
-    //        result[x] = 0;
-
-    //        for (y = 0; y < Ty; y++)
-    //        {
-    //            result[x] += Data[x][y] * other[y];
-    //        }
-    //    }
-
-    //    return &result;
-    //}
-};
 
 
 int main()
@@ -123,7 +36,7 @@ int main()
         4,5,6, 
         7,8,9
     };
-
+    
     Matrix<3, 3, int> m1 = { 
         1,2,3,
         4,5,6, 
@@ -132,13 +45,18 @@ int main()
 
     bool same = m0 == m1;
 
+   
     Matrix<3, 3, int> mux = m0 * m1;
+
+    Matrix<3, 3, int> mux2 = mux * Matrix<3, 3, int>::Identity;
 
     int tuple[3] = { 2, 2, 2 };
 
-   // int mul[3] = { 0,0,0 };
+     int* mul = m0 * tuple;
 
-   // auto mul = m0 * tuple;
+     int i0 = mul[0];
+     int i1 = mul[1];
+     int i2 = mul[2];
 
 
     SDL_Window* window = SDL_CreateWindow(

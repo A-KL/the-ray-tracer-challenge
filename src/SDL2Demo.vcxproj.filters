@@ -71,5 +71,8 @@
     <ClInclude Include="renderer\ColorRgba.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ray-tracer\Matrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
