@@ -59,6 +59,10 @@ int main()
 
     Matrix<2, 2, int> sub = m0.Sub(2, 2);
 
+    int d0 = sub.Determinant();
+
+    int d = sub.Minor(2,2);
+
     SDL_Window* window = SDL_CreateWindow(
         "The Ray Tracer Challenge", 
         SDL_WINDOWPOS_UNDEFINED, 
