@@ -1,32 +1,52 @@
 #pragma once
 
+
 template<int Tx, int Ty, class T>
-union Matrix
+struct Matrix
 {
 public:
     T Data[Tx][Ty];
 
     const static Matrix<Tx, Ty, T>& Identity;
 
-    bool operator==(const Matrix<Tx, Ty, T>& other)
+    inline Matrix<Tx, Ty, T>& operator+=(const Matrix<Tx, Ty, T>& other)
     {
-        int x, y;
-
-        for (x = 0; x < Tx; x++)
+        for (int i = 0; i < Tx * Ty; i++)
         {
-            for (y = 0; y < Ty; y++)
+            this->Data[i] += other.Data[i];
+        }
+        return *this;
+    }
+
+    inline Matrix<Tx, Ty, T>& operator-=(const Matrix<Tx, Ty, T>& other)
+    {
+        for (int i = 0; i < Tx * Ty; i++)
+        {
+            this->Data[i][0] -= other.Data[i][0];
+        }
+        return *this;
+    }
+
+    inline bool operator==(const Matrix<Tx, Ty, T>& other)
+    {
+        int x;
+
+        T* item0 = &Data[0][0];
+        const T* item1 = &other.Data[0][0];
+
+        for (x = 0; x < Tx * Ty; x++)
+        {
+            if (item1[x] != item1[x])
             {
-                if (Data[x][y] != other.Data[x][y])
-                {
-                    return false;
-                }
+                return false;
             }
+
         }
 
         return true;
     }
 
-    bool  operator!=(const Matrix<Tx, Ty, T>& other)
+    inline bool  operator!=(const Matrix<Tx, Ty, T>& other)
     {
         return !(other == this);
     }
@@ -117,17 +137,17 @@ public:
         return result;
     }
 
-    const int Determinant()
-    {
-        return Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
-    }
+    //const int Determinant()
+    //{
+    //    return Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
+    //}
 
-    const int Minor(int row, int col)
-    {        
-        Matrix<Ty - 1, Tx - 1, T> result = Sub(row, col);
+    //const int Minor(int row, int col)
+    //{        
+    //    Matrix<Ty - 1, Tx - 1, T> result = Sub(row, col);
 
-        return result.Determinant();
-    }
+    //    return result.Determinant();
+    //}
 
 
 private:
