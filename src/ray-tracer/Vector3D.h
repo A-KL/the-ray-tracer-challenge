@@ -18,6 +18,9 @@ public:
 		: Vector3D(point._x, point._y, point._z)
 	{ }
 
+	~Vector3D() 
+	{}
+
 	float Magniture();
 
 	Vector3D Normalize();
