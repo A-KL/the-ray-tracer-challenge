@@ -1,10 +1,5 @@
 #pragma once
 
-#include "Color.h"
-
-
-
-
 
 //template <class T> 
 //class ColorRgba 
