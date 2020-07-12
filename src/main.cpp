@@ -18,6 +18,22 @@
 
 using namespace std;
 
+void test_matrix_translation()
+{
+	Matrix<int, 4, 4> transform;
+
+	matrix_identity(transform);
+	matrix_translate(5, -3, 2, transform);
+
+	int point[4] = { -3, 4, 5, 1 };
+	int result[4];
+
+	matrix_mul(transform, point, result);
+
+	assert(2 == result[0]);
+	assert(1 == result[1]);
+	assert(7 == result[2]);
+}
 
 void run_tests()
 {
@@ -35,8 +51,8 @@ void run_tests()
 		7,8,9
 	};
 
-	Matrix<int, 3, 3> identity = Matrix<int, 3, 3>::Identity;
-
+	Matrix<int, 3, 3> identity;
+	matrix_identity(identity);
 
 	Matrix<int, 3, 3> mux;
 	matrix_mul(m0, m1, mux);
@@ -65,12 +81,14 @@ void run_tests()
 
 	matrix_mul(m0, tuple, tuple_mul);
 
-	int i0 = tuple_mul[0];
-	int i1 = tuple_mul[1];
-	int i2 = tuple_mul[2];
+	assert(24 == tuple_mul[0]);
+	assert(30 == tuple_mul[1]);
+	assert(36 == tuple_mul[2]);
 
 	// int d0 = sub.Determinant();
 	// int d = sub.Minor(2,2);
+
+	test_matrix_translation();
 }
 
 int main()

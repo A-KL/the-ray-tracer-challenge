@@ -68,26 +68,50 @@ public:
     //}
 
 
-private:
-    const static Matrix<TItem, TSizeX, TSizeY>& GetIdentity()
-    {
-        Matrix<TItem, TSizeX, TSizeY> result;
-        int x, y;
-
-        for (x = 0; x < TSizeX; x++)
-        {
-            for (y = 0; y < TSizeY; y++)
-            {
-                result.Data[x][y] = (x == y);
-            }
-        }
-
-        return result;
-    }
+//private:
+//    const static Matrix<TItem, TSizeX, TSizeY>& GetIdentity()
+//    {
+//        Matrix<TItem, TSizeX, TSizeY> result;
+//        int x, y;
+//
+//        for (x = 0; x < TSizeX; x++)
+//        {
+//            for (y = 0; y < TSizeY; y++)
+//            {
+//                result.Data[x][y] = (x == y);
+//            }
+//        }
+//
+//        return result;
+//    }
 };
 
+//template<class TItem, int TSizeX, int TSizeY>
+//const Matrix<TItem, TSizeX, TSizeY>& Matrix<TItem, TSizeX, TSizeY>::Identity = Matrix<TItem, TSizeX, TSizeY>::GetIdentity();
+
+// New
+
 template<class TItem, int TSizeX, int TSizeY>
-const Matrix<TItem, TSizeX, TSizeY>& Matrix<TItem, TSizeX, TSizeY>::Identity = Matrix<TItem, TSizeX, TSizeY>::GetIdentity();
+void matrix_identity(
+    Matrix<TItem, TSizeX, TSizeY>& matrix)
+{
+    int x, y;
+
+    for (x = 0; x < TSizeX; x++)
+    {
+        for (y = 0; y < TSizeY; y++)
+        {
+            matrix.Data[x][y] = (x == y);
+        }
+    }
+}
+
+template<class TItem, int TSizeX, int TSizeY>
+void matrix_invert(
+    Matrix<TItem, TSizeX, TSizeY>& matrix)
+{
+
+}
 
 template<class TItem, int TSizeX, int TSizeY>
 void matrix_mul(
@@ -136,7 +160,7 @@ void matrix_mul(
 
         for (x = 0; x < TSize; x++)
         {
-            result[index] += other[x] * matrix.Data[x][index];
+            result[index] += (other[x] * matrix.Data[x][index]);
         }
     }
 }
@@ -179,4 +203,28 @@ void matrix_sub(
         }
         x1++;
     }
+}
+
+template<class TItem>
+void matrix_translate(
+    TItem x,
+    TItem y,
+    TItem z,
+    Matrix<TItem, 4, 4>& result)
+{
+    result.Data[3][0] = x;
+    result.Data[3][1] = y;
+    result.Data[3][2] = z;
+}
+
+template<class TItem>
+void matrix_scaling(
+    TItem x,
+    TItem y,
+    TItem z,
+    Matrix<TItem, 4, 4>& result)
+{
+    result.Data[3][0] = x;
+    result.Data[3][1] = y;
+    result.Data[3][2] = z;
 }
