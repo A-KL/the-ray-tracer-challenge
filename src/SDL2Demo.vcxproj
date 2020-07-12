@@ -157,6 +157,7 @@
     <ClCompile Include="renderer\ColorRgba.cpp" />
     <ClCompile Include="renderer\Color.cpp" />
     <ClCompile Include="ray-tracer\Vector3D.cpp" />
+    <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ray-tracer\Matrix.h" />
@@ -169,6 +170,7 @@
     <ClInclude Include="ray-tracer\Projectile.h" />
     <ClInclude Include="renderer\SDLRenderer.h" />
     <ClInclude Include="ray-tracer\Vector3D.h" />
+    <ClInclude Include="tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
