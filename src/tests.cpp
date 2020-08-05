@@ -78,7 +78,7 @@ void test_matrix_mul()
 	matrix_mul(mux, identity, mux2);
 
 	Matrix<int, 2, 2> sub;
-	matrix_sub(m0, sub);
+	matrix_remove(m0, 2, 2, sub);
 
 	// Assert
 
@@ -91,11 +91,98 @@ void test_matrix_mul()
 	assert(5 == sub.Data[1][1]);
 }
 
+void test_matrix_remove()
+{
+	// Set up
+
+	Matrix<int, 3, 3> m0 = {
+		1,5,0,
+		-3,2,7,
+		0,6,-3
+	};
+
+	Matrix<int, 2, 2> sub;
+
+	matrix_remove(m0, 0, 2, sub);
+
+	// Assert
+
+	assert(-3 == sub.Data[0][0]);
+	assert(2 == sub.Data[0][1]);
+	assert(0 == sub.Data[1][0]);
+	assert(6 == sub.Data[1][1]);
+}
+
+void test_matrix_determinant()
+{
+	// Set up
+
+	Matrix<int, 2, 2> m0 = {
+		1,5,
+		-3,2
+	};
+
+	// Assert
+
+	assert(17 == m0.Determinant());
+}
+
+void test_matrix_minor()
+{
+	// Set up
+
+	Matrix<int, 3, 3> m0 = {
+		3,5,0,
+		2,-1,-7,
+		6,-1,5
+	};
+
+	Matrix<int, 2, 2> sub;
+
+	matrix_remove(m0, 1, 0, sub);
+
+	int d_sub = sub.Determinant();
+
+	int minor = m0.Minor(1, 0);
+
+	// Assert
+
+	assert(25 == d_sub);
+	assert(25 == minor);
+}
+
+void test_matrix_cofactor()
+{
+	// Set up
+
+	Matrix<int, 3, 3> m0 = {
+		3,5,0,
+		2,-1,-7,
+		6,-1,5
+	};
+
+	// Assert
+
+	assert(-12 == m0.Minor(0, 0));
+	assert(-12 == m0.Cofactor(0,0));
+
+	assert(25 == m0.Minor(1, 0));
+	assert(-25 == m0.Cofactor(1, 0));
+}
+
 void run_tests()
 {
 	test_matrix_mul();
 
 	test_matrix_mul_tuple();
 
+	test_matrix_remove();
+
 	test_matrix_translation();
+
+	test_matrix_determinant();
+
+	test_matrix_minor();
+
+	test_matrix_cofactor();
 }
