@@ -52,46 +52,56 @@ struct Matrix
 		return !(other == this);
 	}
 
-	inline const int Cofactor(int row, int col)
+	inline const TItem Determinant()
 	{
-		return matrix_cofactor((*this), row, col);
-	}
-};
+		TItem determinant = 0;
 
-template<class TItem>
-struct Matrix2 : Matrix<TItem, 2, 2>
-{
-	inline const int Determinant()
-	{
-		return Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
-	}
-};
+		if (TSizeX == 2 && TSizeY == 2)
+		{
+			determinant = Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
+		}
+		else
+		{
+			for (int col = 0; col < (TSizeY - 1); ++col)
+			{
+				TItem d = Data[0][col];
 
-template<class TItem>
-struct Matrix3 : public Matrix<TItem, 3, 3>
-{
-	inline const int Determinant()
-	{
-		return Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
+				determinant += d;// *Cofactor(0, col);
+			}
+		}
+
+		return determinant;
 	}
 
-	inline const int Minor(int row, int col)
+	inline const TItem Minor(int row, int col)
 	{
-		Matrix2<TItem> result;
+		Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
 
 		matrix_remove(*this, row, col, result);
 
 		return result.Determinant();
 	}
 
-	inline const int Cofactor(int row, int col)
+	inline const TItem Cofactor(int row, int col)
 	{
-		int minor = this->Minor(row, col);
+		int minor = Minor(row, col);
 
 		// if odd return -minor otherwise minor
 		return ((row + col) % 2) ? -minor : minor;
 	}
 };
+
+template<class TItem>
+struct Matrix2 : Matrix<TItem, 2, 2>
+{ };
+
+template<class TItem>
+struct Matrix3 : Matrix<TItem, 3, 3>
+{ };
+
+template<class TItem>
+struct Matrix4 : Matrix<TItem, 4, 4>
+{ };
 
 template<class TItem, int TSizeX, int TSizeY>
 void matrix_remove(
@@ -117,8 +127,6 @@ void matrix_remove(
 		x1++;
 	}
 }
-
-
 
 template<class TItem, int TSizeX, int TSizeY>
 void matrix_identity(

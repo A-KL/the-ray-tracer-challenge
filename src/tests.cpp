@@ -116,13 +116,37 @@ void test_matrix_remove()
 void test_matrix_determinant()
 {
 	// Set up
-	Matrix2<int> m0{
+	Matrix2<int> m2{
 		 1, 5,
 		-3, 2	
 	};
 
+	Matrix3<int> m3{
+		 1, 2, 6,
+		-5, 8,-4,
+		 2, 6, 4
+	};
+
+	Matrix4<int> m4{
+		-2,-8, 3, 5,
+		-3, 1, 7, 3,
+		 1, 2,-9, 6,
+		-6, 7, 7,-9
+	};
+
 	// Assert
-	assert(17 == m0.Determinant());
+	assert(17 == m2.Determinant());
+
+	assert(56 == m3.Cofactor(0, 0));
+	assert(12 == m3.Cofactor(0, 1));
+	assert(-46 == m3.Cofactor(0, 2));
+	assert(-196 == m3.Determinant());
+
+	assert(690 == m4.Cofactor(0, 0));
+	assert(447 == m4.Cofactor(0, 1));
+	assert(210 == m4.Cofactor(0, 2));
+	assert(51 == m4.Cofactor(0, 3));
+	//assert(-4071 == m4.Determinant());
 }
 
 void test_matrix_minor()
