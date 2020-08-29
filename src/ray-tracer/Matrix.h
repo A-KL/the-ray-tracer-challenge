@@ -3,10 +3,7 @@
 template<class TItem, int TSizeX, int TSizeY>
 struct Matrix
 {
-public:
 	TItem Data[TSizeX][TSizeY];
-
-	const static Matrix<TItem, TSizeX, TSizeY>& Identity;
 
 	inline const TItem& operator[](int Index) const
 	{
@@ -55,6 +52,24 @@ public:
 		return !(other == this);
 	}
 
+	inline const int Cofactor(int row, int col)
+	{
+		return matrix_cofactor((*this), row, col);
+	}
+};
+
+template<class TItem>
+struct Matrix2 : Matrix<TItem, 2, 2>
+{
+	inline const int Determinant()
+	{
+		return Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
+	}
+};
+
+template<class TItem>
+struct Matrix3 : public Matrix<TItem, 3, 3>
+{
 	inline const int Determinant()
 	{
 		return Data[0][0] * Data[1][1] - Data[0][1] * Data[1][0];
@@ -62,12 +77,19 @@ public:
 
 	inline const int Minor(int row, int col)
 	{
-		return matrix_minor((*this), row, col);
+		Matrix2<TItem> result;
+
+		matrix_remove(*this, row, col, result);
+
+		return result.Determinant();
 	}
 
 	inline const int Cofactor(int row, int col)
 	{
-		return matrix_cofactor((*this), row, col);
+		int minor = this->Minor(row, col);
+
+		// if odd return -minor otherwise minor
+		return ((row + col) % 2) ? -minor : minor;
 	}
 };
 
@@ -96,28 +118,7 @@ void matrix_remove(
 	}
 }
 
-template<class TItem, int TSizeX, int TSizeY>
-int matrix_minor(
-	const Matrix<TItem, TSizeX, TSizeY>& matrix, 
-	int row, int col)
-{
-	Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
 
-	matrix_remove(matrix, row, col, result);
-
-	return result.Determinant();
-}
-
-template<class TItem, int TSizeX, int TSizeY>
-int matrix_cofactor(
-	const Matrix<TItem, TSizeX, TSizeY>& matrix,
-	int row, int col)
-{
-	int minor = matrix_minor(matrix, row, col);
-
-	// if odd return -minor otherwise minor
-	return ((row + col) % 2) ? -minor : minor;
-}
 
 template<class TItem, int TSizeX, int TSizeY>
 void matrix_identity(

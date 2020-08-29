@@ -116,28 +116,25 @@ void test_matrix_remove()
 void test_matrix_determinant()
 {
 	// Set up
-
-	Matrix<int, 2, 2> m0 = {
-		1,5,
-		-3,2
+	Matrix2<int> m0{
+		 1, 5,
+		-3, 2	
 	};
 
 	// Assert
-
 	assert(17 == m0.Determinant());
 }
 
 void test_matrix_minor()
 {
 	// Set up
-
-	Matrix<int, 3, 3> m0 = {
-		3,5,0,
+	Matrix3<int> m0 {
+		3, 5, 0,
 		2,-1,-7,
-		6,-1,5
+		6,-1, 5
 	};
 
-	Matrix<int, 2, 2> sub;
+	Matrix2<int> sub;
 
 	matrix_remove(m0, 1, 0, sub);
 
@@ -146,7 +143,6 @@ void test_matrix_minor()
 	int minor = m0.Minor(1, 0);
 
 	// Assert
-
 	assert(25 == d_sub);
 	assert(25 == minor);
 }
@@ -154,17 +150,15 @@ void test_matrix_minor()
 void test_matrix_cofactor()
 {
 	// Set up
-
-	Matrix<int, 3, 3> m0 = {
-		3,5,0,
+	Matrix3<int> m0 {
+		3, 5, 0,
 		2,-1,-7,
-		6,-1,5
+		6,-1, 5
 	};
 
 	// Assert
-
 	assert(-12 == m0.Minor(0, 0));
-	assert(-12 == m0.Cofactor(0,0));
+	assert(-12 == m0.Cofactor(0, 0));
 
 	assert(25 == m0.Minor(1, 0));
 	assert(-25 == m0.Cofactor(1, 0));
