@@ -14,7 +14,6 @@
 #include "ray-tracer/Vector3D.h"
 #include "ray-tracer/Point3D.h"
 #include "ray-tracer/Projectile.h"
-#include "ray-tracer/Matrix.h"
 
 #include "tests.h"
 
