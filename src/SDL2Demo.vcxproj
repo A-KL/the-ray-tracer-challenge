@@ -149,7 +149,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ray-tracer\Mathf.cpp" />
+	<ClCompile Include="ray-tracer\Matrix.cpp" />
+    <ClCompile Include="ray-tracer\Mathf.cpp" />    
     <ClCompile Include="ray-tracer\Point3D.cpp" />
     <ClCompile Include="ray-tracer\Primitive3D.cpp" />
     <ClCompile Include="ray-tracer\Projectile.cpp" />
@@ -164,8 +165,9 @@
     <ClInclude Include="ray-tracer\Matrix.h" />
     <ClInclude Include="ray-tracer\Environment.h" />
     <ClInclude Include="ray-tracer\Mathf.h" />
+    <ClInclude Include="ray-tracer\matrix_basic.h" />
     <ClInclude Include="ray-tracer\Point3D.h" />
-    <ClCompile Include="renderer\Color.h" />
+    <ClInclude Include="renderer\Color.h" />
     <ClInclude Include="renderer\ColorRgba.h" />
     <ClInclude Include="ray-tracer\Primitive3D.h" />
     <ClInclude Include="ray-tracer\Projectile.h" />
