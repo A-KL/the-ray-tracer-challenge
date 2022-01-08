@@ -14,16 +14,19 @@ using namespace std;
 
 void test_matrix_translation()
 {
-	Matrix<int, 4, 4> transform;
+	// Set up
+	Matrix<int, 4, 4> m0;
 
-	matrix_identity(transform);
-	matrix_translate(5, -3, 2, transform);
+	// Act
+	matrix_identity(m0);
+	matrix_translate(5, -3, 2, m0);
 
 	int point[4] = { -3, 4, 5, 1 };
 	int result[4];
 
-	matrix_mul(transform, point, result);
+	matrix_mul(m0, point, result);
 
+	// Assert
 	assert(2 == result[0]);
 	assert(1 == result[1]);
 	assert(7 == result[2]);
@@ -31,6 +34,7 @@ void test_matrix_translation()
 
 void test_matrix_mul_tuple()
 {
+	// Set up
 	Matrix<int, 3, 3> m0 {
 		1,2,3,
 		4,5,6,
@@ -38,11 +42,12 @@ void test_matrix_mul_tuple()
 	};
 
 	int tuple[3] = { 2, 2, 2 };
-
 	int tuple_mul[3];
 
+	// Act
 	matrix_mul(m0, tuple, tuple_mul);
 
+	// Assert
 	assert(24 == tuple_mul[0]);
 	assert(30 == tuple_mul[1]);
 	assert(36 == tuple_mul[2]);
@@ -63,6 +68,7 @@ void test_matrix_mul()
 		7,8,9
 	};
 
+	// Act
 	Matrix<int, 3, 3> identity;
 	matrix_identity(identity);
 
@@ -96,6 +102,7 @@ void test_matrix_remove()
 
 	Matrix<int, 2, 2> sub;
 
+	// Act
 	matrix_remove(m0, 0, 2, sub);
 
 	// Assert
@@ -152,10 +159,10 @@ void test_matrix_minor()
 
 	Matrix2 sub;
 
+	// Act
 	matrix_remove(m0, 1, 0, sub);
 
 	int d_sub = matrix_determinant(sub);
-
 	int minor = matrix_minor(m0, 1, 0);
 
 	// Assert
@@ -183,21 +190,21 @@ void test_matrix_cofactor()
 void test_matrix_inverse()
 {
 	// Set up
-	Matrix<float, 4, 4> invertable {
+	Matrix<float, 4, 4> m0 {
 		-8,-5, 9, 2,
 		 7, 5, 6, 1,
 		-6, 0, 9, 6,
 		-3, 0,-9,-4
 	};
 
-	Matrix<float, 4, 4> inverted_result{
+	Matrix<float, 4, 4> m0_inverted{
 		-0.15385, -0.15385, -0.28205, -0.53846,
 		-0.07692,  0.12308,  0.02564,  0.03077,
 		 0.35897,  0.35897,  0.43590,  0.92308,
 		 0.69231, -0.69231, -0.76923, -1.92308
 	};
 
-	Matrix<float, 4, 4> noninvertable{
+	Matrix<float, 4, 4> m1_error{
 		 -4, 2,-2,-3,
 		  9, 6, 2, 6,
 		  0,-5, 1,-5,
@@ -219,19 +226,17 @@ void test_matrix_inverse()
 		 6, -2, 0, 5
 	};
 
-	Matrix<float, 4, 4> inverted, c, b_inverted, a_result;
-
-	//Act
-	matrix_mul(a, b, c);
-	matrix_inverse(b, b_inverted);
-	matrix_mul(c, b_inverted, a_result);
+	Matrix<float, 4, 4> result, c, inverse_b, mul_a;
 
 	// Assert
-	assert(!matrix_inverse(noninvertable, inverted));
-	assert(matrix_inverse(invertable, inverted));
-	assert(inverted_result == inverted);
+	assert(!matrix_inverse(m1_error, result));
+	assert(matrix_inverse(m0, result));
 
-	assert(a_result == a);
+	matrix_mul(a, b, c);
+	assert(matrix_inverse(b, inverse_b));
+	matrix_mul(c, inverse_b, mul_a);
+
+	assert(mul_a == a);
 }
 
 void run_tests()
