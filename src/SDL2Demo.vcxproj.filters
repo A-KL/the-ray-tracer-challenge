@@ -83,5 +83,11 @@
     <ClInclude Include="ray-tracer\MatrixOps.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ray-tracer\MatrixTransform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ray-tracer\MatrixBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

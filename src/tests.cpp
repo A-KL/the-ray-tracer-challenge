@@ -7,29 +7,76 @@
 
 #include "ray-tracer/Matrix.h"
 #include "ray-tracer/MatrixOps.hpp"
+#include "ray-tracer/MatrixTransform.hpp"
 
 #include "tests.h"
 
 using namespace std;
 
+void test_matrix_scaling()
+{	
+	// Set up
+	Matrix<int, 4, 4> m0;
+
+	int point[4] = { -4, 6, 8, 1 };
+	int result[4];
+
+	// Act
+	matrix_scale(2, 3, 4, m0);
+	matrix_mul(m0, point, result);
+
+	// Assert
+	assert(-8 == result[0]);
+	assert(18 == result[1]);
+	assert(32 == result[2]);
+}
+
 void test_matrix_translation()
 {
 	// Set up
 	Matrix<int, 4, 4> m0;
-
-	// Act
-	matrix_identity(m0);
-	matrix_translate(5, -3, 2, m0);
-
 	int point[4] = { -3, 4, 5, 1 };
 	int result[4];
 
+	matrix_translate(5, -3, 2, m0);
+
+	// Act
 	matrix_mul(m0, point, result);
 
 	// Assert
 	assert(2 == result[0]);
 	assert(1 == result[1]);
 	assert(7 == result[2]);
+
+
+	// Set up
+	Matrix<int, 4, 4> m1, m1_inverse;
+
+	matrix_translate(5, -3, 2, m1);
+
+	// Act
+	matrix_inverse(m1, m1_inverse);
+	matrix_mul(m1_inverse, point, result);
+
+	// Assert
+	assert(-8 == result[0]);
+	assert(7 == result[1]);
+	assert(3 == result[2]);
+
+
+	// Set up
+	Matrix<int, 4, 4> m2;
+	matrix_translate(5, -3, 2, m2);
+
+	int vector[4] = { -3, 4, 5, 0 };
+
+	// Act
+	matrix_mul(m2, vector, result);
+
+	// Assert
+	assert(vector[0] == result[0]);
+	assert(vector[1] == result[1]);
+	assert(vector[2] == result[2]);
 }
 
 void test_matrix_mul_tuple()
@@ -256,4 +303,6 @@ void run_tests()
 	test_matrix_cofactor();
 
 	test_matrix_inverse();
+
+	test_matrix_scaling();
 }
