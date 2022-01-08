@@ -5,15 +5,51 @@ struct Matrix
 {
 	TItem Data[TSizeX][TSizeY];
 
-	inline const TItem& operator[](int index) const;
+	const TItem& operator[](int index) const
+	{
+		return Data[index];
+	}
 
-	Matrix<TItem, TSizeX, TSizeY>& operator+=(const Matrix<TItem, TSizeX, TSizeY>& other);
+	Matrix<TItem, TSizeX, TSizeY>& operator+=(const Matrix<TItem, TSizeX, TSizeY>& other)
+	{
+		for (int i = 0; i < TSizeX * TSizeY; i++)
+		{
+			this->Data[i] += other.Data[i];
+		}
+		return *this;
+	}
 
-	Matrix<TItem, TSizeX, TSizeY>& operator-=(const Matrix<TItem, TSizeX, TSizeY>& other);
+	Matrix<TItem, TSizeX, TSizeY>& operator-=(const Matrix<TItem, TSizeX, TSizeY>& other)
+	{
+		for (int i = 0; i < TSizeX * TSizeY; i++)
+		{
+			this->Data[i][0] -= other.Data[i][0];
+		}
+		return *this;
+	}
 
-	bool operator==(const Matrix<TItem, TSizeX, TSizeY>& other);
+	bool operator==(const Matrix<TItem, TSizeX, TSizeY>& other)
+	{
+		int x;
 
-	bool operator!=(const Matrix<TItem, TSizeX, TSizeY>& other);
+		TItem* item0 = &Data[0][0];
+		const TItem* item1 = &other.Data[0][0];
+
+		for (x = 0; x < TSizeX * TSizeY; x++)
+		{
+			if (item1[x] != item1[x])
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	bool operator!=(const Matrix<TItem, TSizeX, TSizeY>& other)
+	{
+		return !(other == this);
+	}
 };
 
 typedef Matrix<int, 2, 2> Matrix2;
