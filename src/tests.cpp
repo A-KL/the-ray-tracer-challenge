@@ -1,5 +1,3 @@
-#include "tests.h"
-
 #include <iostream>
 #include <list>
 #include <cassert>
@@ -10,9 +8,57 @@
 #include "ray-tracer/Matrix.h"
 #include "ray-tracer/Matrix.cpp"
 
+#include "tests.h"
+
 //#include "ray-tracer/matrix_basic.h"
 
-#pragma once
+template<class TItem, int TSizeX, int TSizeY>
+const TItem matrix_cofactor(
+	const Matrix<TItem, TSizeX, TSizeY>& matrix, int row, int col)
+{
+	TItem minor = matrix_minor(matrix, row, col);
+	
+	return ((row + col) % 2) ? -minor : minor;
+}
+
+template<class TItem, int TSizeX, int TSizeY>
+const TItem matrix_minor(
+	const Matrix<TItem, TSizeX, TSizeY>& matrix, int row, int col)
+{
+	Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
+
+	matrix_remove(matrix, row, col, result);
+
+	return matrix_determinant(result);
+}
+
+template<class TItem, int TSizeX, int TSizeY>
+const TItem matrix_determinant(
+	const Matrix<TItem, TSizeX, TSizeY>& matrix)
+{
+	TItem determinant = 0;
+	
+	for (int col = 0; col < TSizeY; col++)
+	{
+		determinant += matrix.Data[0][col] * matrix_cofactor(matrix, 0, col);
+	}
+	
+	return determinant;
+}
+
+template<class TItem>
+const TItem matrix_determinant(
+	const Matrix<TItem, 2, 2>& matrix)
+{
+	return matrix.Data[0][0] * matrix.Data[1][1] - matrix.Data[0][1] * matrix.Data[1][0];
+}
+
+template<class TItem>
+const TItem matrix_determinant(
+	const Matrix<TItem, 1, 1>& matrix)
+{
+	return matrix.Data[0][0];
+}
 
 template<class TItem, int TSizeX, int TSizeY>
 void matrix_remove(
@@ -174,7 +220,7 @@ void test_matrix_translation()
 
 void test_matrix_mul_tuple()
 {
-	Matrix<int, 3, 3> m0 = {
+	Matrix<int, 3, 3> m0 {
 		1,2,3,
 		4,5,6,
 		7,8,9
@@ -194,14 +240,13 @@ void test_matrix_mul_tuple()
 void test_matrix_mul()
 {
 	// Set up
-
-	Matrix<int, 3, 3> m0 = {
+	Matrix<int, 3, 3> m0 {
 		1,2,3,
 		4,5,6,
 		7,8,9
 	};
 
-	Matrix<int, 3, 3> m1 = {
+	Matrix<int, 3, 3> m1 {
 		1,2,3,
 		4,5,6,
 		7,8,9
@@ -220,7 +265,6 @@ void test_matrix_mul()
 	matrix_remove(m0, 2, 2, sub);
 
 	// Assert
-
 	assert(m0 == m1);
 	assert(mux == mux);
 
@@ -233,8 +277,7 @@ void test_matrix_mul()
 void test_matrix_remove()
 {
 	// Set up
-
-	Matrix<int, 3, 3> m0 = {
+	Matrix<int, 3, 3> m0 {
 		1,5,0,
 		-3,2,7,
 		0,6,-3
@@ -245,7 +288,6 @@ void test_matrix_remove()
 	matrix_remove(m0, 0, 2, sub);
 
 	// Assert
-
 	assert(-3 == sub.Data[0][0]);
 	assert(2 == sub.Data[0][1]);
 	assert(0 == sub.Data[1][0]);
@@ -255,18 +297,18 @@ void test_matrix_remove()
 void test_matrix_determinant()
 {
 	// Set up
-	Matrix2<int> m2{
+	Matrix<int, 2, 2> m2 {
 		 1, 5,
 		-3, 2	
 	};
 
-	Matrix3<int> m3{
+	Matrix<int, 3, 3> m3 {
 		 1, 2, 6,
 		-5, 8,-4,
 		 2, 6, 4
 	};
 
-	Matrix4<int> m4{
+	Matrix<int, 4, 4> m4 {
 		-2,-8, 3, 5,
 		-3, 1, 7, 3,
 		 1, 2,-9, 6,
@@ -274,36 +316,36 @@ void test_matrix_determinant()
 	};
 
 	// Assert
-	assert(17 == m2.Determinant());
+	assert(17 == matrix_determinant(m2));
 
-	assert(56 == m3.Cofactor(0, 0));
-	assert(12 == m3.Cofactor(0, 1));
-	assert(-46 == m3.Cofactor(0, 2));
-	assert(-196 == m3.Determinant());
+	assert(56 == matrix_cofactor(m3, 0, 0));
+	assert(12 == matrix_cofactor(m3, 0, 1));
+	assert(-46 == matrix_cofactor(m3, 0, 2));
+    assert(-196 == matrix_determinant(m3));
 
-	assert(690 == m4.Cofactor(0, 0));
-	assert(447 == m4.Cofactor(0, 1));
-	assert(210 == m4.Cofactor(0, 2));
-	assert(51 == m4.Cofactor(0, 3));
-	//assert(-4071 == m4.Determinant());
+	assert(690 == matrix_cofactor(m4, 0, 0));
+	assert(447 == matrix_cofactor(m4, 0, 1));
+	assert(210 == matrix_cofactor(m4, 0, 2));
+	assert(51 == matrix_cofactor(m4, 0, 3));
+	assert(-4071 == matrix_determinant(m4));
 }
 
 void test_matrix_minor()
 {
 	// Set up
-	Matrix3<int> m0 {
+	Matrix3 m0 {
 		3, 5, 0,
 		2,-1,-7,
 		6,-1, 5
 	};
 
-	Matrix2<int> sub;
+	Matrix2 sub;
 
 	matrix_remove(m0, 1, 0, sub);
 
-	int d_sub = sub.Determinant();
+	int d_sub = matrix_determinant(sub);
 
-	int minor = m0.Minor(1, 0);
+	int minor = matrix_minor(m0, 1, 0);
 
 	// Assert
 	assert(25 == d_sub);
@@ -313,18 +355,18 @@ void test_matrix_minor()
 void test_matrix_cofactor()
 {
 	// Set up
-	Matrix3<int> m0 {
+	Matrix<int, 3, 3> m0 {
 		3, 5, 0,
 		2,-1,-7,
 		6,-1, 5
 	};
 
 	// Assert
-	assert(-12 == m0.Minor(0, 0));
-	assert(-12 == m0.Cofactor(0, 0));
+	assert(-12 == matrix_minor(m0, 0, 0));
+	assert(-12 == matrix_cofactor(m0, 0, 0));
 
-	assert(25 == m0.Minor(1, 0));
-	assert(-25 == m0.Cofactor(1, 0));
+	assert(25 == matrix_minor(m0, 1, 0));
+	assert(-25 == matrix_cofactor(m0, 1, 0));
 }
 
 void run_tests()
