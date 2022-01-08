@@ -2,8 +2,6 @@
 
 #include <iostream>
 
-#include "Primitive3D.h"
-
 using namespace std;
 
 class Point3D :

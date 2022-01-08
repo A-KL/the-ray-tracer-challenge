@@ -45,9 +45,6 @@
     <ClCompile Include="tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ray-tracer\Matrix.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ray-tracer\Mathf.h">
@@ -80,10 +77,10 @@
     <ClInclude Include="tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\matrix_basic.h">
+    <ClInclude Include="renderer\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderer\Color.h">
+    <ClInclude Include="ray-tracer\MatrixOps.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
