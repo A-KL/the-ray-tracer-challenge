@@ -5,6 +5,32 @@
 #include "Matrix.h"
 
 template<typename  TItem, int TSizeX, int TSizeY>
+bool matrix_inverse(
+	Matrix<TItem, TSizeX, TSizeY>& matrix,
+	Matrix<TItem, TSizeX, TSizeX>& result)
+{
+	TItem d = matrix_determinant(matrix);
+
+	if (d == 0) 
+	{
+		return false;
+	}
+
+	int x, y;
+
+	for (x = 0; x < TSizeX; x++)
+	{
+		for (y = 0; y < TSizeY; y++)
+		{
+			TItem c = matrix_cofactor(matrix, x, y);
+			result.Data[y][x] = c / d;
+		}
+	}
+
+	return true;
+}
+
+template<typename  TItem, int TSizeX, int TSizeY>
 void matrix_identity(
 	Matrix<TItem, TSizeX, TSizeY>& matrix)
 {
@@ -90,13 +116,6 @@ void matrix_remove(
 		}
 		x1++;
 	}
-}
-
-template<class TItem, int TSizeX, int TSizeY>
-void matrix_inverse(
-	Matrix<TItem, TSizeX, TSizeY>& matrix)
-{
-	//???
 }
 
 template<class TItem, int TSizeX, int TSizeY>

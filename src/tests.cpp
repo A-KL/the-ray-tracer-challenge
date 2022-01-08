@@ -180,6 +180,60 @@ void test_matrix_cofactor()
 	assert(-25 == matrix_cofactor(m0, 1, 0));
 }
 
+void test_matrix_inverse()
+{
+	// Set up
+	Matrix<float, 4, 4> invertable {
+		-8,-5, 9, 2,
+		 7, 5, 6, 1,
+		-6, 0, 9, 6,
+		-3, 0,-9,-4
+	};
+
+	Matrix<float, 4, 4> inverted_result{
+		-0.15385, -0.15385, -0.28205, -0.53846,
+		-0.07692,  0.12308,  0.02564,  0.03077,
+		 0.35897,  0.35897,  0.43590,  0.92308,
+		 0.69231, -0.69231, -0.76923, -1.92308
+	};
+
+	Matrix<float, 4, 4> noninvertable{
+		 -4, 2,-2,-3,
+		  9, 6, 2, 6,
+		  0,-5, 1,-5,
+		  0, 0, 0, 0
+	};
+
+	Matrix<float, 4, 4> a {
+		 3, -9,  7,  3,
+		 3, -8,  2, -9,
+		-4,  4,  4,  1,
+		-6,  5, -1,  1
+	};
+
+
+	Matrix<float, 4, 4> b {
+		 8,  2, 2, 2,
+		 3, -1, 7, 0,
+		 7,  0, 5, 4,
+		 6, -2, 0, 5
+	};
+
+	Matrix<float, 4, 4> inverted, c, b_inverted, a_result;
+
+	//Act
+	matrix_mul(a, b, c);
+	matrix_inverse(b, b_inverted);
+	matrix_mul(c, b_inverted, a_result);
+
+	// Assert
+	assert(!matrix_inverse(noninvertable, inverted));
+	assert(matrix_inverse(invertable, inverted));
+	assert(inverted_result == inverted);
+
+	assert(a_result == a);
+}
+
 void run_tests()
 {
 	test_matrix_mul();
@@ -195,4 +249,6 @@ void run_tests()
 	test_matrix_minor();
 
 	test_matrix_cofactor();
+
+	test_matrix_inverse();
 }
