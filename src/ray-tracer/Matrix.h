@@ -5,7 +5,7 @@ struct Matrix
 {
 	TItem Data[TSizeX][TSizeY];
 
-	inline const TItem& operator[](int Index) const;
+	inline const TItem& operator[](int index) const;
 
 	Matrix<TItem, TSizeX, TSizeY>& operator+=(const Matrix<TItem, TSizeX, TSizeY>& other);
 
@@ -14,22 +14,16 @@ struct Matrix
 	bool operator==(const Matrix<TItem, TSizeX, TSizeY>& other);
 
 	bool operator!=(const Matrix<TItem, TSizeX, TSizeY>& other);
-
-	inline const TItem Determinant();
-
-	inline const TItem Minor(int row, int col);
-
-	inline const TItem Cofactor(int row, int col);
 };
 
-template<class TItem>
-struct Matrix2 :  Matrix<TItem, 2, 2>
-{ };
+typedef Matrix<int, 2, 2> Matrix2;
+typedef Matrix<float, 2, 2> Matrix2f;
+typedef Matrix<double, 2, 2> Matrix2d;
 
-template<class TItem>
-struct Matrix3 : Matrix<TItem, 3, 3>
-{ };
+typedef Matrix<int, 3, 3> Matrix3;
+typedef Matrix<float, 3, 3> Matrix3f;
+typedef Matrix<double, 3, 3> Matrix3d;
 
-template<class TItem>
-struct Matrix4 : Matrix<TItem, 4, 4>
-{ };
+typedef Matrix<int, 4, 4> Matrix4;
+typedef Matrix<float, 4, 4> Matrix4f;
+typedef Matrix<double, 4, 4> Matrix4d;
