@@ -31,6 +31,26 @@ void test_matrix_scaling()
 	assert(32 == result[2]);
 }
 
+void test_matrix_rotate()
+{
+	// Set up
+	Matrix<int, 4, 4> half_quarter, full_quarter;
+
+	int point[4] = { 0, 1, 0, 1 };
+	int result[4];
+
+	// Act
+	matrix_rotate_x(PI / 4, half_quarter);
+	matrix_rotate_x(PI / 2, full_quarter);
+
+	matrix_mul(full_quarter, point, result);
+
+	// Assert
+	assert(0 == result[0]);
+	assert(0 == result[1]);
+	assert(1 == result[2]);
+}
+
 void test_matrix_translation()
 {
 	// Set up
@@ -305,4 +325,6 @@ void run_tests()
 	test_matrix_inverse();
 
 	test_matrix_scaling();
+
+	test_matrix_rotate();
 }
