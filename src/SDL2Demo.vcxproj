@@ -164,7 +164,9 @@
     <ClInclude Include="ray-tracer\Matrix.h" />
     <ClInclude Include="ray-tracer\Environment.h" />
     <ClInclude Include="ray-tracer\Mathf.h" />
+    <ClInclude Include="ray-tracer\MatrixBase.hpp" />
     <ClInclude Include="ray-tracer\MatrixOps.hpp" />
+    <ClInclude Include="ray-tracer\MatrixTransform.hpp" />
     <ClInclude Include="ray-tracer\Point3D.h" />
     <ClInclude Include="renderer\Color.h" />
     <ClInclude Include="renderer\ColorRgba.h" />
