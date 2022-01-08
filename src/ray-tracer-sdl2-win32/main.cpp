@@ -8,12 +8,12 @@
 
 #include <SDL.h>
 
-#include "renderer/Color.h"
-#include "renderer/SDLRenderer.h"
+#include "../graphics/Color.h"
+#include "../graphics/SDLRenderer.h"
 
-#include "ray-tracer/Vector3D.h"
-#include "ray-tracer/Point3D.h"
-#include "ray-tracer/Projectile.h"
+#include "../ray-tracer-core/Vector3D.h"
+#include "../ray-tracer-core/Point3D.h"
+#include "../ray-tracer-core/Projectile.h"
 
 #include "tests.h"
 

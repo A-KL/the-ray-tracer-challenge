@@ -2,12 +2,12 @@
 #include <list>
 #include <cassert>
 
-#include "ray-tracer/Vector3D.h"
-#include "ray-tracer/Point3D.h"
+#include "../ray-tracer-core/Vector3D.h"
+#include "../ray-tracer-core/Point3D.h"
 
-#include "ray-tracer/Matrix.h"
-#include "ray-tracer/MatrixOps.hpp"
-#include "ray-tracer/MatrixTransform.hpp"
+#include "../ray-tracer-core/Matrix.h"
+#include "../ray-tracer-core/MatrixOps.hpp"
+#include "../ray-tracer-core/MatrixTransform.hpp"
 
 #include "tests.h"
 
