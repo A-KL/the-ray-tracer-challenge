@@ -15,28 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ray-tracer\Mathf.cpp">
+    <ClCompile Include="..\ray-tracer-core\Mathf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ray-tracer\Point3D.cpp">
+    <ClCompile Include="..\ray-tracer-core\Point3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ray-tracer\Primitive3D.cpp">
+    <ClCompile Include="..\ray-tracer-core\Primitive3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="renderer\SDLRenderer.cpp">
+    <ClCompile Include="..\graphics\SDLRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ray-tracer\Vector3D.cpp">
+    <ClCompile Include="..\ray-tracer-core\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ray-tracer\Projectile.cpp">
+    <ClCompile Include="..\ray-tracer-core\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="renderer\Color.cpp">
+    <ClCompile Include="..\graphics\Color.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="renderer\ColorRgba.cpp">
+    <ClCompile Include="..\graphics\ColorRgba.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
@@ -47,46 +47,46 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ray-tracer\Mathf.h">
+    <ClInclude Include="..\ray-tracer-core\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\Point3D.h">
+    <ClInclude Include="..\ray-tracer-core\Point3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\Primitive3D.h">
+    <ClInclude Include="..\ray-tracer-core\Primitive3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderer\SDLRenderer.h">
+    <ClInclude Include="..\renderer\SDLRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\Vector3D.h">
+    <ClInclude Include="..\ray-tracer-core\Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\Projectile.h">
+    <ClInclude Include="..\ray-tracer-core\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\Environment.h">
+    <ClInclude Include="..\ray-tracer-core\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderer\ColorRgba.h">
+    <ClInclude Include="..\renderer\ColorRgba.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\Matrix.h">
+    <ClInclude Include="..\ray-tracer-core\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="renderer\Color.h">
+    <ClInclude Include="..\graphics\Color.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\MatrixOps.hpp">
+    <ClInclude Include="..\ray-tracer-core\MatrixOps.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\MatrixTransform.hpp">
+    <ClInclude Include="..\ray-tracer-core\MatrixTransform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ray-tracer\MatrixBase.hpp">
+    <ClInclude Include="..\ray-tracer-core\MatrixBase.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
