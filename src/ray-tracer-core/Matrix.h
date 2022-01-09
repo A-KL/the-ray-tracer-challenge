@@ -1,13 +1,25 @@
 #pragma once
 
-template<class TItem, int TSizeX, int TSizeY>
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 struct Matrix
 {
 	TItem Data[TSizeX][TSizeY];
 
-	const TItem& operator[](int index) const
+	const TItem& operator[](const unsigned index) const
 	{
 		return Data[index];
+	}
+
+	const TItem& operator()(const unsigned row, const unsigned column)
+	{
+		assert((row < ROWS) && (column < COLS));
+		return Data[TSizeX][TSizeY];
+	}
+
+	const TItem& operator()(const unsigned row, const unsigned column) const
+	{
+		assert((row < ROWS) && (column < COLS));
+		return Data[TSizeX][TSizeY];
 	}
 
 	Matrix<TItem, TSizeX, TSizeY>& operator+=(const Matrix<TItem, TSizeX, TSizeY>& other)
@@ -35,7 +47,50 @@ struct Matrix
 
 	bool operator!=(const Matrix<TItem, TSizeX, TSizeY>& other)
 	{
-		return !(other == this);
+		return !(*this == other);
+	}
+
+	Matrix<TItem, TSizeX, TSizeY> operator*(const Matrix<TItem, TSizeX, TSizeY>& other)
+	{
+		Matrix<TItem, TSizeX, TSizeY> result;
+
+		matrix_mul(*this, other, result);
+
+		return result;
+	}
+
+	inline Matrix<TItem, TSizeX - 1, TSizeY - 1> remove(int row, int col)
+	{
+		Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
+
+		matrix_remove(*this, row, col, result);
+
+		return result;
+	}
+
+	inline TItem determinant()
+	{
+		return matrix_determinant(*this);
+	}
+
+	inline TItem minor(int row, int col)
+	{
+		return matrix_minor(*this, row, col);
+	}
+
+	inline TItem cofactor(int row, int col)
+	{
+		return matrix_cofactor(*this, row, col);
+	}
+
+	inline Matrix<TItem, TSizeX, TSizeY> inverse()
+	{
+		Matrix<TItem, TSizeX, TSizeY> result;
+
+		matrix_zero(result);
+		matrix_inverse(*this, result);
+
+		return result;
 	}
 };
 
@@ -50,3 +105,40 @@ typedef Matrix<double, 3, 3> Matrix3d;
 typedef Matrix<int, 4, 4> Matrix4;
 typedef Matrix<float, 4, 4> Matrix4f;
 typedef Matrix<double, 4, 4> Matrix4d;
+
+const Matrix2 matrix_identity_2
+{ 
+	1, 0,
+	0, 1 
+};
+
+const Matrix3 matrix_identity_3
+{
+	1, 0, 0,
+	0, 1, 0,
+	0, 0, 1
+};
+
+const Matrix4 matrix_identity_4
+{
+	1, 0, 0, 0,
+	0, 1, 0, 0,
+	0, 0, 1, 0,
+	0, 0, 0, 1
+};
+
+const Matrix4d matrix_identity_4d
+{
+	1, 0, 0, 0,
+	0, 1, 0, 0,
+	0, 0, 1, 0,
+	0, 0, 0, 1
+};
+
+const Matrix4d matrix_zero_4d
+{
+	0, 0, 0, 0,
+	0, 0, 0, 0,
+	0, 0, 0, 0,
+	0, 0, 0, 0
+};

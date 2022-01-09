@@ -37,7 +37,7 @@ void matrix_scale(
 
 template<class TItem>
 void matrix_rotate_x(
-	float r,
+	double r,
 	Matrix<TItem, 4, 4>& result)
 {
 	matrix_identity(result);
