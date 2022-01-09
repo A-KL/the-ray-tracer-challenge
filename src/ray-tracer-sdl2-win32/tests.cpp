@@ -139,14 +139,10 @@ void test_matrix_mul()
 	Matrix<int, 3, 3> identity;
 	matrix_identity(identity);
 
-	Matrix<int, 3, 3> mux;
-	matrix_mul(m0, m1, mux);
+	Matrix<int, 3, 3> mux = m0 * m1;
+	Matrix<int, 3, 3> mux2 = mux * identity;
 
-	Matrix<int, 3, 3> mux2;
-	matrix_mul(mux, identity, mux2);
-
-	Matrix<int, 2, 2> sub;
-	matrix_remove(m0, 2, 2, sub);
+	Matrix<int, 2, 2> sub = m0.remove(2, 2);
 
 	// Assert
 	assert(m0 == m1);
@@ -167,10 +163,8 @@ void test_matrix_remove()
 		0,6,-3
 	};
 
-	Matrix<int, 2, 2> sub;
-
 	// Act
-	matrix_remove(m0, 0, 2, sub);
+	Matrix<int, 2, 2> sub = m0.remove(0, 2);
 
 	// Assert
 	assert(-3 == sub.Data[0][0]);
@@ -201,18 +195,18 @@ void test_matrix_determinant()
 	};
 
 	// Assert
-	assert(17 == matrix_determinant(m2));
+	assert(17 == m2.determinant());
 
-	assert(56 == matrix_cofactor(m3, 0, 0));
-	assert(12 == matrix_cofactor(m3, 0, 1));
-	assert(-46 == matrix_cofactor(m3, 0, 2));
-    assert(-196 == matrix_determinant(m3));
+	assert( 56 == m3.cofactor(0, 0));
+	assert( 12 == m3.cofactor(0, 1));
+	assert(-46 == m3.cofactor(0, 2));
+    assert(-196 == m3.determinant());
 
-	assert(690 == matrix_cofactor(m4, 0, 0));
-	assert(447 == matrix_cofactor(m4, 0, 1));
-	assert(210 == matrix_cofactor(m4, 0, 2));
-	assert(51 == matrix_cofactor(m4, 0, 3));
-	assert(-4071 == matrix_determinant(m4));
+	assert(690 == m4.cofactor(0, 0));
+	assert(447 == m4.cofactor(0, 1));
+	assert(210 == m4.cofactor(0, 2));
+	assert(51 == m4.cofactor(0, 3));
+	assert(-4071 == m4.determinant());
 }
 
 void test_matrix_minor()
@@ -224,17 +218,12 @@ void test_matrix_minor()
 		6,-1, 5
 	};
 
-	Matrix2 sub;
-
 	// Act
-	matrix_remove(m0, 1, 0, sub);
-
-	int d_sub = matrix_determinant(sub);
-	int minor = matrix_minor(m0, 1, 0);
+	Matrix2 sub = m0.remove(1, 0);
 
 	// Assert
-	assert(25 == d_sub);
-	assert(25 == minor);
+	assert(25 == sub.determinant());
+	assert(25 == m0.minor(1, 0));
 }
 
 void test_matrix_cofactor()
@@ -247,62 +236,55 @@ void test_matrix_cofactor()
 	};
 
 	// Assert
-	assert(-12 == matrix_minor(m0, 0, 0));
-	assert(-12 == matrix_cofactor(m0, 0, 0));
+	assert(-12 == m0.minor(0, 0));
+	assert(-12 == m0.cofactor(0, 0));
 
-	assert(25 == matrix_minor(m0, 1, 0));
-	assert(-25 == matrix_cofactor(m0, 1, 0));
+	assert(25 == m0.minor(1, 0));
+	assert(-25 == m0.cofactor(1, 0));
 }
 
 void test_matrix_inverse()
 {
 	// Set up
-	Matrix<double, 4, 4> m0 {
+	Matrix4d m0 {
 		-8,-5, 9, 2,
 		 7, 5, 6, 1,
 		-6, 0, 9, 6,
 		-3, 0,-9,-4
 	};
 
-	Matrix<double, 4, 4> m0_inverted{
-		-0.15385, -0.15385, -0.28205, -0.53846,
-		-0.07692,  0.12308,  0.02564,  0.03077,
-		 0.35897,  0.35897,  0.43590,  0.92308,
-		 0.69231, -0.69231, -0.76923, -1.92308
+	Matrix4d m0_inverted {
+	   -0.15385, -0.15385, -0.28205, -0.53846,
+	   -0.07692,  0.12308,  0.02564,  0.03077,
+		0.35897,  0.35897,  0.43590,  0.92308,
+		0.69231, -0.69231, -0.76923, -1.92308
 	};
 
-	Matrix<double, 4, 4> m1_error{
-		 -4, 2,-2,-3,
-		  9, 6, 2, 6,
-		  0,-5, 1,-5,
-		  0, 0, 0, 0
+	Matrix4d m1_error {
+		-4, 2,-2,-3,
+		 9, 6, 2, 6,
+		 0,-5, 1,-5,
+		 0, 0, 0, 0
 	};
 
-	Matrix<double, 4, 4> a {
-		 3, -9,  7,  3,
-		 3, -8,  2, -9,
-		-4,  4,  4,  1,
-		-6,  5, -1,  1
+	Matrix4d a {
+		 3,-9, 7, 3,
+		 3,-8, 2,-9,
+		-4, 4, 4, 1,
+		-6, 5,-1, 1
 	};
 
-	Matrix<double, 4, 4> b {
-		 8,  2, 2, 2,
-		 3, -1, 7, 0,
-		 7,  0, 5, 4,
-		 6, -2, 0, 5
+	Matrix4d b {
+		 8, 2, 2, 2,
+		 3,-1, 7, 0,
+		 7, 0, 5, 4,
+		 6,-2, 0, 5
 	};
-
-	Matrix<double, 4, 4> result, c, inverse_b, mul_a;
 
 	// Assert
-	assert(!matrix_inverse(m1_error, result));
-	assert(matrix_inverse(m0, result));
-
-	matrix_mul(a, b, c);
-	assert(matrix_inverse(b, inverse_b));
-	matrix_mul(c, inverse_b, mul_a);
-
-	assert(mul_a == a);
+	assert(m1_error.inverse() == matrix_zero_4d);
+	assert(m0.inverse() != matrix_zero_4d);
+	assert((a * b * b.inverse()) == a);
 }
 
 void run_tests()

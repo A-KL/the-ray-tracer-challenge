@@ -39,10 +39,10 @@ namespace ray_tracer_testing
 		TEST_METHOD(matrix_rotation)
 		{
 			// Set up
-			Matrix<int, 4, 4> half_quarter, full_quarter;
+			Matrix<double, 4, 4> half_quarter, full_quarter;
 
-			int point[4] = { 0, 1, 0, 1 };
-			int result[4];
+			double point[4] = { 0, 1, 0, 1 };
+			double result[4];
 
 			// Act
 			matrix_rotate_x(PI / 4, half_quarter);
