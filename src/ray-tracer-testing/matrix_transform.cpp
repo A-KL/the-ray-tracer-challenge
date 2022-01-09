@@ -21,7 +21,7 @@ namespace ray_tracer_testing
 		TEST_METHOD(matrix_scaling)
 		{	
 			// Set up
-			Matrix<int, 4, 4> m0;
+			Matrix4 m0;
 
 			int point[4] = { -4, 6, 8, 1 };
 			int result[4];
@@ -31,18 +31,18 @@ namespace ray_tracer_testing
 			matrix_mul(m0, point, result);
 
 			// Assert
-			assert(-8 == result[0]);
-			assert(18 == result[1]);
-			assert(32 == result[2]);
+			Assert::AreEqual(-8, result[0]);
+			Assert::AreEqual(18, result[1]);
+			Assert::AreEqual(32, result[2]);
 		}
 
 		TEST_METHOD(matrix_rotation)
 		{
 			// Set up
-			Matrix<double, 4, 4> half_quarter, full_quarter;
+			Matrix<int, 4, 4> half_quarter, full_quarter;
 
-			double point[4] = { 0, 1, 0, 1 };
-			double result[4];
+			int point[4] = { 0, 1, 0, 1 };
+			int result[4];
 
 			// Act
 			matrix_rotate_x(PI / 4, half_quarter);
@@ -51,9 +51,9 @@ namespace ray_tracer_testing
 			matrix_mul(full_quarter, point, result);
 
 			// Assert
-			assert(0 == result[0]);
-			assert(0 == result[1]);
-			assert(1 == result[2]);
+			Assert::AreEqual(0, result[0]);
+			Assert::AreEqual(0, result[1]);
+			Assert::AreEqual(1, result[2]);
 		}
 
 		TEST_METHOD(matrix_translation_with_point)
@@ -69,34 +69,33 @@ namespace ray_tracer_testing
 			matrix_mul(m0, point, result);
 
 			// Assert
-			assert(2 == result[0]);
-			assert(1 == result[1]);
-			assert(7 == result[2]);
+			Assert::AreEqual(2, result[0]);
+			Assert::AreEqual(1, result[1]);
+			Assert::AreEqual(7, result[2]);
 		}
 
 		TEST_METHOD(matrix_translation_with_inverse)
 		{
 			// Set up
-			Matrix<int, 4, 4> m0, inverted_m0;
+			Matrix4 m0;
 			int point[4] = { -3, 4, 5, 1 };
 			int result[4];
 
 			matrix_translate(5, -3, 2, m0);
 
 			// Act
-			matrix_inverse(m0, inverted_m0);
-			matrix_mul(inverted_m0, point, result);
+			matrix_mul(m0.inverse(), point, result);
 
 			// Assert
-			assert(-8 == result[0]);
-			assert(7 == result[1]);
-			assert(3 == result[2]);
+			Assert::AreEqual(-8, result[0]);
+			Assert::AreEqual(7, result[1]);
+			Assert::AreEqual(3, result[2]);
 		}
 
 		TEST_METHOD(matrix_translation_with_vector)
 		{
 			// Set up
-			Matrix<int, 4, 4> m0;
+			Matrix4 m0;
 
 			int vector[4] = { -3, 4, 5, 0 };
 			int result[4];
@@ -107,9 +106,9 @@ namespace ray_tracer_testing
 			matrix_mul(m0, vector, result);
 
 			// Assert
-			assert(vector[0] == result[0]);
-			assert(vector[1] == result[1]);
-			assert(vector[2] == result[2]);
+			Assert::AreEqual(vector[0], result[0]);
+			Assert::AreEqual(vector[1], result[1]);
+			Assert::AreEqual(vector[2], result[2]);
 		}
 	};
 }
