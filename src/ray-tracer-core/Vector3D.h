@@ -1,7 +1,9 @@
 #pragma once
 
+#include <math.h>
 #include <iostream>
 
+#include "Mathf.h"
 #include "Primitive3D.h"
 
 using namespace std;
@@ -37,7 +39,7 @@ public:
 
 	Vector3D operator*(float);
 
-	friend ostream& operator << (ostream& out, const Vector3D& p);
+	friend ostream& operator<<(ostream& out, const Vector3D& p);
 
 protected:
 	Vector3D(float x, float y, float z, float w)
