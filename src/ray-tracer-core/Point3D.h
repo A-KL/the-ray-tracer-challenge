@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+#include "Mathf.h"
+#include "Vector3D.h"
+#include "Primitive3D.h"
+
 using namespace std;
 
 class Point3D :
@@ -24,6 +28,6 @@ public:
 
 	Point3D operator+(const Vector3D&);
 
-	friend ostream& operator << (ostream& out, const Point3D& p);
+	friend ostream& operator<<(ostream& out, const Point3D& p);
 };
 

@@ -56,9 +56,6 @@
     <ClInclude Include="..\ray-tracer-core\Primitive3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\renderer\SDLRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\ray-tracer-core\Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -66,9 +63,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\ray-tracer-core\Environment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\renderer\ColorRgba.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\ray-tracer-core\Matrix.h">
@@ -87,6 +81,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\ray-tracer-core\MatrixBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\graphics\ColorRgba.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\graphics\SDLRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

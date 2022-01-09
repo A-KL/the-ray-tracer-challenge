@@ -30,20 +30,7 @@ struct Matrix
 
 	bool operator==(const Matrix<TItem, TSizeX, TSizeY>& other)
 	{
-		int x;
-
-		TItem* item0 = &Data[0][0];
-		const TItem* item1 = &other.Data[0][0];
-
-		for (x = 0; x < TSizeX * TSizeY; x++)
-		{
-			if (item1[x] != item1[x])
-			{
-				return false;
-			}
-		}
-
-		return true;
+		return memcmp(Data, other.Data, (TSizeX * TSizeY)) == 0;
 	}
 
 	bool operator!=(const Matrix<TItem, TSizeX, TSizeY>& other)

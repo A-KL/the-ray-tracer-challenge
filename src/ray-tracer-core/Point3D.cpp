@@ -1,7 +1,3 @@
-#include "Mathf.h"
-
-#include "Vector3D.h"
-
 #include "Point3D.h"
 
 bool Point3D::operator==(const Point3D& b)

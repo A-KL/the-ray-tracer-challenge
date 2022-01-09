@@ -1,5 +1,3 @@
-#include "Mathf.h"
-
 #include "Vector3D.h"
 
 bool Vector3D::operator==(const Vector3D& other)
