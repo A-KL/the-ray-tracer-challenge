@@ -162,7 +162,7 @@
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\ray-tracer-core\Matrix.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\Environment.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Mathf.h" />
     <ClInclude Include="..\lib\ray-tracer-core\MatrixBase.hpp" />

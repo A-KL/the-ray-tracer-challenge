@@ -1,10 +1,6 @@
 #pragma once
 
-#include "Vector3D.h"
-#include "Point3D.h"
-#include "Matrix.h"
-
-template<typename  TItem, int TSizeX, int TSizeY>
+template<typename  TItem, unsigned TSizeX, unsigned TSizeY>
 bool matrix_inverse(
 	Matrix<TItem, TSizeX, TSizeY>& matrix,
 	Matrix<TItem, TSizeX, TSizeX>& result)
@@ -16,7 +12,7 @@ bool matrix_inverse(
 		return false;
 	}
 
-	int x, y;
+	unsigned x, y;
 
 	for (x = 0; x < TSizeX; x++)
 	{
@@ -30,18 +26,18 @@ bool matrix_inverse(
 	return true;
 }
 
-template<class TItem, int TSizeX, int TSizeY>
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 const TItem matrix_cofactor(
-	const Matrix<TItem, TSizeX, TSizeY>& matrix, int row, int col)
+	const Matrix<TItem, TSizeX, TSizeY>& matrix, unsigned row, unsigned col)
 {
 	TItem minor = matrix_minor(matrix, row, col);
 
 	return ((row + col) % 2) ? -minor : minor;
 }
 
-template<class TItem, int TSizeX, int TSizeY>
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 const TItem matrix_minor(
-	const Matrix<TItem, TSizeX, TSizeY>& matrix, int row, int col)
+	const Matrix<TItem, TSizeX, TSizeY>& matrix, unsigned row, unsigned col)
 {
 	Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
 
@@ -50,7 +46,7 @@ const TItem matrix_minor(
 	return matrix_determinant(result);
 }
 
-template<class TItem, int TSizeX, int TSizeY>
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 const TItem matrix_determinant(
 	const Matrix<TItem, TSizeX, TSizeY>& matrix)
 {
@@ -64,27 +60,27 @@ const TItem matrix_determinant(
 	return determinant;
 }
 
-template<class TItem>
+template<typename TItem>
 const TItem matrix_determinant(
 	const Matrix<TItem, 2, 2>& matrix)
 {
 	return matrix.Data[0][0] * matrix.Data[1][1] - matrix.Data[0][1] * matrix.Data[1][0];
 }
 
-template<class TItem>
+template<typename TItem>
 const TItem matrix_determinant(
 	const Matrix<TItem, 1, 1>& matrix)
 {
 	return matrix.Data[0][0];
 }
 
-template<class TItem, int TSizeX, int TSizeY>
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 void matrix_remove(
 	const Matrix<TItem, TSizeX, TSizeY>& matrix,
 	int row, int col,
 	Matrix<TItem, TSizeX - 1, TSizeX - 1>& result)
 {
-	int x, y, x1, y1;
+	unsigned x, y, x1, y1;
 
 	for (x = 0, x1 = 0; x < TSizeX; x++)
 	{
@@ -103,13 +99,13 @@ void matrix_remove(
 	}
 }
 
-template<class TItem, int TSizeX, int TSizeY>
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 void matrix_mul(
 	const Matrix<TItem, TSizeX, TSizeY>& matrix1,
 	const Matrix<TItem, TSizeX, TSizeY>& matrix2,
 	Matrix<TItem, TSizeX, TSizeY>& result)
 {
-	int x, y, j;
+	unsigned x, y, j;
 
 	for (x = 0; x < TSizeX; x++)
 	{
@@ -125,7 +121,7 @@ void matrix_mul(
 	}
 }
 
-template<class TItem>
+template<typename TItem>
 void matrix_mul(
 	const Matrix<TItem, 3, 3>& matrix,
 	const Vector3D& other,
@@ -136,13 +132,13 @@ void matrix_mul(
 	result.Z = matrix.Data[0][2] * other.X + matrix.Data[1][2] * other.Y + matrix.Data[2][2] * other.Z;
 }
 
-template<class TItem, int TSize>
+template<typename TItem, unsigned TSize>
 void matrix_mul(
 	const Matrix<TItem, TSize, TSize>& matrix,
 	const TItem other[],
 	TItem result[])
 {
-	int x, index;
+	unsigned x, index;
 
 	for (index = 0; index < TSize; index++)
 	{
@@ -155,12 +151,12 @@ void matrix_mul(
 	}
 }
 
-template<class TItem, int TSizeX, int TSizeY>
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 void matrix_transpose(
 	const Matrix<TItem, TSizeX, TSizeY>& matrix,
 	Matrix<TItem, TSizeX, TSizeY>& result)
 {
-	int x, y;
+	unsigned x, y;
 
 	for (x = 0; x < TSizeX; x++)
 	{
