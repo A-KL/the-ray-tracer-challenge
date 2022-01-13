@@ -18,51 +18,51 @@
     <ClCompile Include="matrix_transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ray-tracer-core\Mathf.cpp">
+    <ClCompile Include="..\..\lib\ray-tracer-core\Mathf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ray-tracer-core\Point3D.cpp">
+    <ClCompile Include="..\..\lib\ray-tracer-core\Point3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ray-tracer-core\Primitive3D.cpp">
+    <ClCompile Include="..\..\lib\ray-tracer-core\Primitive3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ray-tracer-core\Projectile.cpp">
+    <ClCompile Include="..\..\lib\ray-tracer-core\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\ray-tracer-core\Vector3D.cpp">
+    <ClCompile Include="..\..\lib\ray-tracer-core\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\ray-tracer-core\Environment.h">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\Mathf.h">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\Matrix.h">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Matrix.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\MatrixBase.hpp">
+    <ClInclude Include="..\lib\ray-tracer-core\MatrixBase.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\MatrixOps.hpp">
+    <ClInclude Include="..\..\lib\ray-tracer-core\MatrixOps.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\MatrixTransform.hpp">
+    <ClInclude Include="..\..\lib\ray-tracer-core\MatrixTransform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\Point3D.h">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Point3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\Primitive3D.h">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Primitive3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\Projectile.h">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\ray-tracer-core\Vector3D.h">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
