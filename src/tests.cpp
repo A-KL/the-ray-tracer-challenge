@@ -5,7 +5,8 @@
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
 
-#include "../lib/ray-tracer-core/Matrix.h"
+#include "../lib/ray-tracer-core/Matrix.hpp"
+#include "../lib/ray-tracer-core/MatrixBase.hpp"
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 

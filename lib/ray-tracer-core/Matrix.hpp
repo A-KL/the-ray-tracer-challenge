@@ -12,13 +12,13 @@ struct Matrix
 
 	const TItem& operator()(const unsigned row, const unsigned column)
 	{
-		assert((row < ROWS) && (column < COLS));
+		assert((row < TSizeX) && (column < TSizeY));
 		return Data[TSizeX][TSizeY];
 	}
 
 	const TItem& operator()(const unsigned row, const unsigned column) const
 	{
-		assert((row < ROWS) && (column < COLS));
+		assert((row < TSizeX) && (column < TSizeY));
 		return Data[TSizeX][TSizeY];
 	}
 
@@ -59,7 +59,7 @@ struct Matrix
 		return result;
 	}
 
-	inline Matrix<TItem, TSizeX - 1, TSizeY - 1> remove(int row, int col)
+	Matrix<TItem, TSizeX - 1, TSizeY - 1> remove(int row, int col)
 	{
 		Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
 
@@ -83,7 +83,7 @@ struct Matrix
 		return matrix_cofactor(*this, row, col);
 	}
 
-	inline Matrix<TItem, TSizeX, TSizeY> inverse()
+	Matrix<TItem, TSizeX, TSizeY> inverse()
 	{
 		Matrix<TItem, TSizeX, TSizeY> result;
 

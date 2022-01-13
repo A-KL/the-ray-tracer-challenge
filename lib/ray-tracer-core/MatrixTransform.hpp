@@ -2,12 +2,9 @@
 
 #include <math.h> 
 
-#include "Matrix.h"
-#include "MatrixBase.hpp"
-
 #define PI 3.14159265
 
-template<class TItem>
+template<typename TItem>
 void matrix_translate(
 	TItem x,
 	TItem y,
@@ -21,7 +18,7 @@ void matrix_translate(
 	result.Data[3][2] = z;
 }
 
-template<class TItem>
+template<typename TItem>
 void matrix_scale(
 	TItem x,
 	TItem y,
@@ -35,7 +32,7 @@ void matrix_scale(
 	result.Data[2][2] = z;
 }
 
-template<class TItem>
+template<typename TItem>
 void matrix_rotate_x(
 	double r,
 	Matrix<TItem, 4, 4>& result)
@@ -48,7 +45,7 @@ void matrix_rotate_x(
 	result.Data[2][2] = cos(r);
 }
 
-template<class TItem>
+template<typename TItem>
 void matrix_rotate_y(
 	float r,
 	Matrix<TItem, 4, 4>& result)
@@ -61,7 +58,7 @@ void matrix_rotate_y(
 	result.Data[2][2] = cos(r);
 }
 
-template<class TItem>
+template<typename TItem>
 void matrix_rotate_z(
 	float r,
 	Matrix<TItem, 4, 4>& result)
