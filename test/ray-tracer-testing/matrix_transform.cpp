@@ -4,12 +4,12 @@
 #include <list>
 #include <cassert>
 
-#include "../ray-tracer-core/Vector3D.h"
-#include "../ray-tracer-core/Point3D.h"
+#include "../../lib/ray-tracer-core/Vector3D.h"
+#include "../../lib/ray-tracer-core/Point3D.h"
 
-#include "../ray-tracer-core/Matrix.h"
-#include "../ray-tracer-core/MatrixOps.hpp"
-#include "../ray-tracer-core/MatrixTransform.hpp"
+#include "../../lib/ray-tracer-core/Matrix.h"
+#include "../../lib/ray-tracer-core/MatrixOps.hpp"
+#include "../../lib/ray-tracer-core/MatrixTransform.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
