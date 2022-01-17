@@ -92,6 +92,25 @@ struct Matrix
 
 		return result;
 	}
+
+	static Matrix<TItem, TSizeX, TSizeY> zero()
+	{
+		Matrix<TItem, TSizeX, TSizeY> result;
+
+		matrix_zero(result);
+
+		return result;
+	}
+
+	static Matrix<TItem, TSizeX, TSizeX> identity()
+	{
+		Matrix<TItem, TSizeX, TSizeX> result;
+
+		matrix_zero(result);
+		matrix_identity(result);
+
+		return result;
+	}
 };
 
 typedef Matrix<int, 2, 2> Matrix2;
