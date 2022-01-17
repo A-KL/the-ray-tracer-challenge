@@ -10,6 +10,7 @@
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
+
 #include "tests.h"
 
 using namespace std;
@@ -137,8 +138,7 @@ void test_matrix_mul()
 	};
 
 	// Act
-	Matrix<int, 3, 3> identity;
-	matrix_identity(identity);
+	Matrix<int, 3, 3> identity = Matrix<int, 3, 3>::identity();
 
 	Matrix<int, 3, 3> mux = m0 * m1;
 	Matrix<int, 3, 3> mux2 = mux * identity;

@@ -41,10 +41,7 @@
     <ClInclude Include="..\..\lib\ray-tracer-core\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\lib\ray-tracer-core\Matrix.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\MatrixBase.hpp">
+    <ClInclude Include="..\..\lib\ray-tracer-core\Matrix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lib\ray-tracer-core\MatrixOps.hpp">
@@ -63,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\lib\ray-tracer-core\Vector3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\lib\ray-tracer-core\MatrixBase.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
