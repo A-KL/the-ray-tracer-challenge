@@ -18,13 +18,12 @@ using namespace std;
 void test_matrix_scaling()
 {	
 	// Set up
-	Matrix<int, 4, 4> m0;
+	Matrix<int, 4, 4> m0 = Matrix<int, 4, 4>::scale(2, 3, 4);
 
 	int point[4] = { -4, 6, 8, 1 };
 	int result[4];
 
 	// Act
-	matrix_scale(2, 3, 4, m0);
 	matrix_mul(m0, point, result);
 
 	// Assert

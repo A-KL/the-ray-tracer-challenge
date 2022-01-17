@@ -111,6 +111,33 @@ struct Matrix
 
 		return result;
 	}
+
+	static Matrix<TItem, 4, 4> scale(TItem x, TItem y, TItem z)
+	{
+		Matrix<TItem, 4, 4> result;
+
+		matrix_scale(x, y, z, result);
+
+		return result;
+	}
+
+	static Matrix<TItem, 4, 4> translate(TItem x, TItem y, TItem z)
+	{
+		Matrix<TItem, 4, 4> result;
+
+		matrix_translate(x, y, z, result);
+
+		return result;
+	}
+
+	static Matrix<TItem, 4, 4> rotate_x(double r)
+	{
+		Matrix<TItem, 4, 4> result;
+
+		matrix_rotate_x(r, result);
+
+		return result;
+	}
 };
 
 typedef Matrix<int, 2, 2> Matrix2;
