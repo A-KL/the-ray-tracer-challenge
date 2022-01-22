@@ -287,6 +287,43 @@ void test_matrix_inverse()
 	assert((a * b * b.inverse()) == a);
 }
 
+void test_matrix_shearing()
+{
+	// Set up
+	Matrix4 m0, m1, m2;
+
+	matrix_shearing(1, 0, 0, 0, 0, 0, m0);
+	matrix_shearing(0, 1, 0, 0, 0, 0, m1);
+	matrix_shearing(0, 0, 0, 1, 0, 0, m2);
+
+	int point[4] = { 2, 3, 4, 1 };
+	int result[4];
+
+	// Act
+	matrix_mul(m0, point, result);
+
+	// Assert
+	assert(5 == result[0]);
+	assert(3 == result[1]);
+	assert(4 == result[2]);
+
+	// Act
+	matrix_mul(m1, point, result);
+
+	// Assert
+	assert(6 == result[0]);
+	assert(3 == result[1]);
+	assert(4 == result[2]);
+
+	// Act
+	matrix_mul(m2, point, result);
+
+	// Assert
+	assert(2 == result[0]);
+	assert(7 == result[1]);
+	assert(4 == result[2]);
+}
+
 void run_tests()
 {
 	test_matrix_mul();
@@ -308,4 +345,6 @@ void run_tests()
 	test_matrix_scaling();
 
 	test_matrix_rotate();
+
+	test_matrix_shearing();
 }

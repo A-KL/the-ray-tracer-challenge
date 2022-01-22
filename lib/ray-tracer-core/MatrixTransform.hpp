@@ -70,3 +70,33 @@ void matrix_rotate_z(
 	result.Data[0][2] = sin(r);
 	result.Data[1][1] = cos(r);
 }
+
+template<typename TItem>
+void matrix_rotate_z(
+	int d,
+	Matrix<TItem, 4, 4>& result)
+{
+	matrix_rotate_z((d / 180.0 * PI), result)
+}
+
+template<typename TItem>
+void matrix_shearing(
+	TItem xy,
+	TItem xz,
+	TItem yx,
+	TItem yz,
+	TItem zx,
+	TItem zy,
+	Matrix<TItem, 4, 4>& result)
+{
+	matrix_identity(result);
+
+	result.Data[1][0] = xy;
+	result.Data[2][0] = xz;
+
+	result.Data[0][1] = yx;
+	result.Data[2][1] = yz;
+
+	result.Data[0][2] = zx;
+	result.Data[1][2] = zy;
+}
