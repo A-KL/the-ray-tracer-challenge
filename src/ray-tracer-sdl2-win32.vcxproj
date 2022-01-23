@@ -152,7 +152,6 @@
   <ItemGroup>
     <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
-    <ClCompile Include="..\lib\ray-tracer-core\Primitive3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\lib\graphics\SDLRenderer.cpp" />

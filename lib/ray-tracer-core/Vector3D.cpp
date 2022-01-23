@@ -50,12 +50,8 @@ Vector3D Vector3D::Cross(const Vector3D& other)
 
 ostream& operator<<(ostream& out, const Vector3D& p)
 {
-	out << "vector(";
-	out << p._x << ",";
-	out << p._y << ",";
-	out << p._z;
-	out << ")";
-	out << endl;
+	out << "Vector3D";
+	out << (Primitive3D<double>)p;
 
 	return out;
 }
