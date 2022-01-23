@@ -138,6 +138,38 @@ struct Matrix
 
 		return result;
 	}
+
+	static Matrix<TItem, 4, 4> rotate_y(double r)
+	{
+		Matrix<TItem, 4, 4> result;
+
+		matrix_rotate_y(r, result);
+
+		return result;
+	}
+
+	static Matrix<TItem, 4, 4> rotate_z(double r)
+	{
+		Matrix<TItem, 4, 4> result;
+
+		matrix_rotate_z(r, result);
+
+		return result;
+	}
+
+	static Matrix<TItem, 4, 4> shearing(TItem xy,
+		TItem xz,
+		TItem yx,
+		TItem yz,
+		TItem zx,
+		TItem zy)
+	{
+		Matrix<TItem, 4, 4> result;
+
+		matrix_shearing(xy, xz, yx, yz, zx, zy, result);
+
+		return result;
+	}
 };
 
 typedef Matrix<int, 2, 2> Matrix2;
