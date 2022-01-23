@@ -25,12 +25,8 @@ Point3D Point3D::operator-(const Vector3D& b)
 
 ostream& operator<<(ostream& out, const Point3D& p)
 {
-	out << "point(" ;
-	out << p._x << ",";
-	out << p._y << ",";
-	out << p._z;
-	out << ")";
-	out << endl;
+	out << "Point3D";
+	out << (Primitive3D<double>)p;
 
 	return out;
 }

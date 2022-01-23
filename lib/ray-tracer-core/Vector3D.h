@@ -9,15 +9,15 @@
 using namespace std;
 
 class Vector3D :
-	public Primitive3D
+	public Primitive3D<double>
 {
 public:
-	Vector3D(float x, float y, float z)
-		: Vector3D(x, y, z, 1)
-	{ }
-
 	Vector3D(const Vector3D& point)
 		: Vector3D(point._x, point._y, point._z)
+	{ }
+
+	Vector3D(double x, double y, double z)
+		: Vector3D(x, y, z, 1)
 	{ }
 
 	~Vector3D() 
@@ -42,7 +42,7 @@ public:
 	friend ostream& operator<<(ostream& out, const Vector3D& p);
 
 protected:
-	Vector3D(float x, float y, float z, float w)
+	Vector3D(double x, double y, double z, double w)
 		: Primitive3D(x, y, z, w)
 	{ }
 };

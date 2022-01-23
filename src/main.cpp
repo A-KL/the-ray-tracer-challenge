@@ -28,6 +28,9 @@ int main()
 	Point3D start(0, 1, 0);
 	Vector3D velocity(1, 1.8, 0);
 
+	cout << start << endl;
+	cout << velocity << endl;
+
 	Projectile proj(start, velocity.Normalize() * 11.25);
 	Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
