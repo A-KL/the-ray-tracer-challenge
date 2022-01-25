@@ -17,6 +17,28 @@ public:
 
 	inline TItem Z() const { return _z; };
 
+	//inline const TItem& operator[](const unsigned index) const
+	//{
+	//	switch (index)
+	//	{
+	//		0: return _x;
+	//		1: return _y;
+	//		2: return _z;
+	//		3: return _w;
+
+	//		default:
+	//			break;
+	//	}
+	//}
+
+	void ToArray(TItem result[]) const
+	{
+		result[0] = _x;
+		result[1] = _y;
+		result[2] = _z;
+		result[3] = _w;
+	}
+
 	inline Primitive3D operator-()
 	{
 		return Primitive3D(-_x, -_y, -_z, -_w);
