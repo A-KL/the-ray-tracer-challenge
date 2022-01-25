@@ -5,21 +5,21 @@ struct Matrix
 {
 	TItem Data[TSizeX][TSizeY];
 
-	const TItem& operator[](const unsigned index) const
-	{
-		return Data[index];
-	}
+	//const TItem& operator[](const unsigned index) const
+	//{
+	//	return Data[index];
+	//}
 
 	const TItem& operator()(const unsigned row, const unsigned column)
 	{
 		assert((row < TSizeX) && (column < TSizeY));
-		return Data[TSizeX][TSizeY];
+		return Data[column][row];
 	}
 
 	const TItem& operator()(const unsigned row, const unsigned column) const
 	{
 		assert((row < TSizeX) && (column < TSizeY));
-		return Data[TSizeX][TSizeY];
+		return Data[column][row];
 	}
 
 	Matrix<TItem, TSizeX, TSizeY>& operator+=(const Matrix<TItem, TSizeX, TSizeY>& other)
@@ -57,6 +57,32 @@ struct Matrix
 		matrix_mul(*this, other, result);
 
 		return result;
+	}
+
+	Point3D operator*(const Point3D& other)
+	{
+		TItem converted[4] { 0, 0, 0, 0};
+		TItem result[4]{ 0, 0, 0, 0 };
+
+		// TODO: optimize
+		other.ToArray(converted);
+
+		matrix_mul(*this, converted, result);
+
+		return Point3D(result[0], result[1], result[2]);
+	}
+
+	Vector3D operator*(const Vector3D& other)
+	{
+		TItem converted[4] { 0, 0, 0, 0 };
+		TItem result[4] { 0, 0, 0, 0 };
+
+		// TODO: optimize
+		other.ToArray(converted);
+
+		matrix_mul(*this, converted, result);
+
+		return Vector3D(result[0], result[1], result[2]);
 	}
 
 	Matrix<TItem, TSizeX - 1, TSizeY - 1> remove(int row, int col)
@@ -112,7 +138,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> scale(TItem x, TItem y, TItem z)
+	static Matrix<TItem, 4, 4> Scale(TItem x, TItem y, TItem z)
 	{
 		Matrix<TItem, 4, 4> result;
 
@@ -121,7 +147,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> translate(TItem x, TItem y, TItem z)
+	static Matrix<TItem, 4, 4> Translate(TItem x, TItem y, TItem z)
 	{
 		Matrix<TItem, 4, 4> result;
 

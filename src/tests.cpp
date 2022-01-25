@@ -10,7 +10,6 @@
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
-
 #include "tests.h"
 
 using namespace std;
@@ -18,18 +17,13 @@ using namespace std;
 void test_matrix_scaling()
 {	
 	// Set up
-	Matrix<int, 4, 4> m0 = Matrix<int, 4, 4>::scale(2, 3, 4);
-
-	int point[4] = { -4, 6, 8, 1 };
-	int result[4];
-
+	Matrix4d m0 = Matrix4d::Scale(2, 3, 4);
+	
 	// Act
-	matrix_mul(m0, point, result);
+	Point3D result0 = m0 * Point3D(-4, 6, 8);
 
 	// Assert
-	assert(-8 == result[0]);
-	assert(18 == result[1]);
-	assert(32 == result[2]);
+	assert(Point3D(-8, 18, 32) == result0);
 }
 
 void test_matrix_rotate()
@@ -55,23 +49,19 @@ void test_matrix_rotate()
 void test_matrix_translation()
 {
 	// Set up
-	Matrix<int, 4, 4> m0;
-	int point[4] = { -3, 4, 5, 1 };
-	int result[4];
-
-	matrix_translate(5, -3, 2, m0);
+	Matrix4d m0 = Matrix4d::Translate(5, -3, 2);
 
 	// Act
-	matrix_mul(m0, point, result);
+	Vector3D result0 = m0 * Vector3D(-3, 4, 5);
 
 	// Assert
-	assert(2 == result[0]);
-	assert(1 == result[1]);
-	assert(7 == result[2]);
-
+	assert(Vector3D(2, 1, 7) == result0);
 
 	// Set up
 	Matrix<int, 4, 4> m1, m1_inverse;
+
+	int point[4] = { -3, 4, 5, 1 };
+	int result[4];
 
 	matrix_translate(5, -3, 2, m1);
 

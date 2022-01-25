@@ -12,12 +12,16 @@ class Point3D :
 	public Primitive3D<double>
 {
 public:
-	Point3D(double x, double y, double z)
-		: Primitive3D<double>(x, y, z, 0)
+	Point3D()
+		: Point3D(0, 0, 0)
 	{ }
 
 	Point3D(const Point3D& point)
 		: Point3D(point._x, point._y, point._z)
+	{ }
+
+	Point3D(double x, double y, double z)
+		: Primitive3D<double>(x, y, z, 0)
 	{ }
 
 	bool operator==(const Point3D& b);
