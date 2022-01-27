@@ -20,7 +20,7 @@ void test_matrix_scaling()
 	Matrix4d m0 = Matrix4d::Scale(2, 3, 4);
 	
 	// Act
-	Point3D result0 = m0 * Point3D(-4, 6, 8);
+	Primitive3D<double> result0 = m0 * Point3D(-4, 6, 8);
 
 	// Assert
 	assert(Point3D(-8, 18, 32) == result0);
@@ -52,7 +52,7 @@ void test_matrix_translation()
 	Matrix4d m0 = Matrix4d::Translate(5, -3, 2);
 
 	// Act
-	Vector3D result0 = m0 * Vector3D(-3, 4, 5);
+	Primitive3D<double> result0 = m0 * Vector3D(-3, 4, 5);
 
 	// Assert
 	assert(Vector3D(2, 1, 7) == result0);

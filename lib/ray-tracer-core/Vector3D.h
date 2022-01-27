@@ -13,7 +13,7 @@ class Vector3D :
 {
 public:
 	Vector3D(const Vector3D& point)
-		: Vector3D(point._x, point._y, point._z)
+		: Vector3D(point.X(), point.Y(), point.Z())
 	{ }
 
 	Vector3D(double x, double y, double z)
@@ -30,8 +30,6 @@ public:
 	float Dot(const Vector3D&);
 
 	Vector3D Cross(const Vector3D&);
-
-	bool operator==(const Vector3D&);
 
 	Vector3D operator+(const Vector3D&);
 
