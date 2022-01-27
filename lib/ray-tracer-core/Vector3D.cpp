@@ -1,51 +1,51 @@
 #include "Vector3D.h"
 
-bool Vector3D::operator==(const Vector3D& other)
-{
-	return 
-		Mathf::Approximately(_x, other._x) &&
-		Mathf::Approximately(_y, other._y) &&
-		Mathf::Approximately(_z, other._z);
-}
+//bool Vector3D::operator==(const Vector3D& other)
+//{
+//	return 
+//		Mathf::Approximately(X(), other.X()) &&
+//		Mathf::Approximately(Y(), other.Y()) &&
+//		Mathf::Approximately(Z(), other.Z());
+//}
 
 Vector3D Vector3D::operator+(const Vector3D& other)
 {
-	return Vector3D(_x + other._x, _y + other._y, _z + other._z);
+	return Vector3D(X() + other.X(), Y() + other.Y(), Z() + other.Z());
 }
 
 Vector3D Vector3D::operator-(const Vector3D& other)
 {
-	return Vector3D(_x - other._x, _y - other._y, _z - other._z);
+	return Vector3D(X() - other.X(), Y() - other.Y(), Z() - other.Z());
 }
 
 Vector3D Vector3D::operator*(float value)
 {
-	return Vector3D(_x * value, _y * value, _z * value);
+	return Vector3D(X() * value, Y() * value, Z() * value);
 }
 
 float Vector3D::Magniture()
 {
-	return sqrtf(powf(_x, 2) + powf(_y, 2) + powf(_z, 2) + powf(_w, 2));
+	return sqrtf(powf(X(), 2) + powf(Y(), 2) + powf(Z(), 2) + powf(W(), 2));
 }
 
 Vector3D Vector3D::Normalize()
 {
 	float m = Magniture();
 
-	return Vector3D(_x / m, _y / m, _z / m, _w / m);
+	return Vector3D(X() / m, Y() / m, Z() / m, W() / m);
 }
 
 float Vector3D::Dot(const Vector3D& other)
 {
-	return (_x * other._x) + (_y * other._y) + (_z * other._z) + (_w * other._w);
+	return (X() * other.X()) + (Y() * other.Y()) + (Z() * other.Z()) + (W() * other.W());
 }
 
 Vector3D Vector3D::Cross(const Vector3D& other)
 {
 	return Vector3D(
-		_x * other._z - _z * other._y,
-		_z * other._x - _x * other._z,
-		_x * other._y - _y * other._x);
+		X() * other.Z() - Z() * other.Y(),
+		Z() * other.X() - X() * other.Z(),
+		X() * other.Y() - Y() * other.X());
 }
 
 ostream& operator<<(ostream& out, const Vector3D& p)

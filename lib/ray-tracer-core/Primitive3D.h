@@ -7,55 +7,58 @@ template<typename TItem>
 class Primitive3D
 {
 public:
+
+	Primitive3D(const TItem data[])
+	//	: _data(data)
+		: Primitive3D(0, 0, 0, 0)
+	{ 
+		memcpy(_data, data, sizeof(_data));
+	}
+
 	Primitive3D(TItem x, TItem y, TItem z, TItem w)
-		: _x(x), _y(y), _z(z), _w(w)
+		: _data { x, y, z, w }
 	{ }
 
-	inline TItem X() const { return _x; };
+	inline TItem X() const { return _data[0]; };
 
-	inline TItem Y() const { return _y; };
+	inline TItem Y() const { return _data[1]; };
 
-	inline TItem Z() const { return _z; };
+	inline TItem Z() const { return _data[2]; };
 
-	//inline const TItem& operator[](const unsigned index) const
-	//{
-	//	switch (index)
-	//	{
-	//		0: return _x;
-	//		1: return _y;
-	//		2: return _z;
-	//		3: return _w;
+	inline TItem W() const { return _data[3]; };
 
-	//		default:
-	//			break;
-	//	}
-	//}
+	inline const TItem& operator[](const unsigned index) const
+	{
+		return _data[index];
+	}
 
 	void ToArray(TItem result[]) const
 	{
-		result[0] = _x;
-		result[1] = _y;
-		result[2] = _z;
-		result[3] = _w;
+		memcpy(result, _data, sizeof(_data));
 	}
 
-	inline Primitive3D operator-()
+	inline Primitive3D<TItem> operator-()
 	{
-		return Primitive3D(-_x, -_y, -_z, -_w);
+		return Primitive3D<TItem>(-X(), -Y(), -Z(), -W());
+	}
+
+	bool Primitive3D<TItem>::operator==(const Primitive3D<TItem>& other)
+	{
+		return memcmp(_data, other._data, sizeof(_data)) == 0;
 	}
 
 	friend ostream& operator<<(ostream& out, const Primitive3D<TItem>& p)
 	{
 		out << "(";
-		out << p._x << ",";
-		out << p._y << ",";
-		out << p._z;
+		out << p.X() << ",";
+		out << p.Y() << ",";
+		out << p.Z();
 		out << ")";
 
 		return out;
 	}
 
-protected:
-	TItem _x, _y, _z, _w;
+private:
+	TItem _data[4];
 };
 

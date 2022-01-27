@@ -17,14 +17,12 @@ public:
 	{ }
 
 	Point3D(const Point3D& point)
-		: Point3D(point._x, point._y, point._z)
+		: Point3D(point.X(), point.Y(), point.Z())
 	{ }
 
 	Point3D(double x, double y, double z)
 		: Primitive3D<double>(x, y, z, 0)
 	{ }
-
-	bool operator==(const Point3D& b);
 
 	Vector3D operator-(const Point3D&);
 
