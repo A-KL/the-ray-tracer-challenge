@@ -5,6 +5,8 @@
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
 
+#include "../lib/ray-tracer-core/Mathf.h"
+
 #include "../lib/ray-tracer-core/Matrix.hpp"
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
@@ -51,6 +53,20 @@ void test_matrix_rotate_pi()
 
 	// Assert
 	assert(Point3D(0, -1, 0) == result);
+}
+
+void test_matrix_rotate_half_quarter()
+{
+	// Set up
+	Matrix4d quarter = Matrix4d::RotateX(M_PI / 4);
+
+	Point3D point(0, 1, 0);
+
+	// Act
+	Primitive3D<double> result = quarter * point;
+
+	// Assert
+	assert(Point3D(0, sqrt(2) / 2.0, sqrt(2) / 2.0) == result);
 }
 
 void test_matrix_translation()
@@ -335,6 +351,8 @@ void run_tests()
 	test_matrix_rotate_quarter();
 
 	test_matrix_rotate_pi();
+
+	test_matrix_rotate_half_quarter();
 
 	test_matrix_shearing();
 }

@@ -44,7 +44,13 @@ public:
 
 	bool Primitive3D<TItem>::operator==(const Primitive3D<TItem>& other)
 	{
-		return memcmp(_data, other._data, sizeof(_data)) == 0;
+		return 
+			Mathf::Approximately(X(), other.X()) &&
+			Mathf::Approximately(Y(), other.Y()) &&
+			Mathf::Approximately(Z(), other.Z()) &&
+			W() == other.W();
+
+		//return memcmp(_data, other._data, sizeof(_data)) == 0;
 	}
 
 	friend ostream& operator<<(ostream& out, const Primitive3D<TItem>& p)
