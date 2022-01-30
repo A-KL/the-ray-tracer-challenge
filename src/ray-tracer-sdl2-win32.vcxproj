@@ -150,6 +150,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />
@@ -161,10 +162,10 @@
     <ClCompile Include="tests.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\Environment.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Mathf.h" />
-    <ClInclude Include="..\lib\ray-tracer-core\MatrixBase.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\MatrixOps.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\MatrixTransform.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\Point3D.h" />

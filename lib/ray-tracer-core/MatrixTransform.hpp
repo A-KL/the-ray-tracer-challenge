@@ -1,8 +1,30 @@
 #pragma once
 
+#define _USE_MATH_DEFINES
 #include <math.h> 
 
-#define PI 3.14159265
+//#define PI 3.14159265
+
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
+void matrix_zero(
+	Matrix<TItem, TSizeX, TSizeY>& matrix)
+{
+	memset(matrix.Data, 0, (TSizeX * TSizeY * sizeof(TItem)));
+}
+
+template<typename TItem, unsigned TSizeX, unsigned TSizeY>
+void matrix_identity(
+	Matrix<TItem, TSizeX, TSizeY>& matrix)
+{
+	assert(TSizeX == TSizeY);
+
+	matrix_zero(matrix);
+
+	for (unsigned x = 0; x < TSizeX; x++)
+	{
+		matrix.Data[x][x] = true;
+	}
+}
 
 template<typename TItem>
 void matrix_translate(
@@ -13,9 +35,9 @@ void matrix_translate(
 {
 	matrix_identity(result);
 
-	result.Data[3][0] = x;
-	result.Data[3][1] = y;
-	result.Data[3][2] = z;
+	result.Data[0][3] = x;
+	result.Data[1][3] = y;
+	result.Data[2][3] = z;
 }
 
 template<typename TItem>
@@ -39,10 +61,10 @@ void matrix_rotate_x(
 {
 	matrix_identity(result);
 	//r * PI / 180
-	result.Data[1][1] = cos(r);
-	result.Data[2][1] = -sin(r);
-	result.Data[1][2] = sin(r);
-	result.Data[2][2] = cos(r);
+	result.Data[1][1] = round(cos(r));
+	result.Data[1][2] = -round(sin(r));
+	result.Data[2][1] = round(sin(r));
+	result.Data[2][2] = round(cos(r));
 }
 
 template<typename TItem>
@@ -52,10 +74,10 @@ void matrix_rotate_y(
 {
 	matrix_identity(result);
 
-	result.Data[0][0] = cos(r);
-	result.Data[2][0] = sin(r);
-	result.Data[0][2] =-sin(r);
-	result.Data[2][2] = cos(r);
+	result.Data[0][0] = round(cos(r));
+	result.Data[0][2] = round(sin(r));
+	result.Data[2][0] =-round(sin(r));
+	result.Data[2][2] = round(cos(r));
 }
 
 template<typename TItem>
@@ -65,19 +87,19 @@ void matrix_rotate_z(
 {
 	matrix_identity(result);
 
-	result.Data[0][0] = cos(r);
-	result.Data[1][0] =-sin(r);
-	result.Data[0][2] = sin(r);
-	result.Data[1][1] = cos(r);
+	result.Data[0][0] = round(cos(r));
+	result.Data[0][1] =-round(sin(r));
+	result.Data[2][0] = round(sin(r));
+	result.Data[1][1] = round(cos(r));
 }
 
-template<typename TItem>
-void matrix_rotate_z(
-	int d,
-	Matrix<TItem, 4, 4>& result)
-{
-	matrix_rotate_z((d / 180.0 * PI), result)
-}
+//template<typename TItem>
+//void matrix_rotate_z(
+//	int d,
+//	Matrix<TItem, 4, 4>& result)
+//{
+//	matrix_rotate_z((d / 180.0 * PI), result)
+//}
 
 template<typename TItem>
 void matrix_shearing(
@@ -91,12 +113,12 @@ void matrix_shearing(
 {
 	matrix_identity(result);
 
-	result.Data[1][0] = xy;
-	result.Data[2][0] = xz;
+	result.Data[0][1] = xy;
+	result.Data[0][2] = xz;
 
-	result.Data[0][1] = yx;
-	result.Data[2][1] = yz;
+	result.Data[1][0] = yx;
+	result.Data[1][2] = yz;
 
-	result.Data[0][2] = zx;
-	result.Data[1][2] = zy;
+	result.Data[2][0] = zx;
+	result.Data[2][1] = zy;
 }
