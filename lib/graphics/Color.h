@@ -25,7 +25,7 @@ struct Rgba
 //};
 
 
-template <class T> 
+template <class T>
 union Color
 {
 	T Color;

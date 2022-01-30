@@ -56,8 +56,8 @@ struct Matrix
 
 	Primitive3D<TItem> operator*(const Primitive3D<TItem>& other)
 	{
-		TItem converted[4] { 0, 0, 0, 0 };
-		TItem result[4] { 0, 0, 0, 0 };
+		TItem converted[4]{ 0, 0, 0, 0 };
+		TItem result[4]{ 0, 0, 0, 0 };
 
 		// TODO: optimize
 		other.ToArray(converted);
@@ -193,9 +193,9 @@ typedef Matrix<float, 4, 4> Matrix4f;
 typedef Matrix<double, 4, 4> Matrix4d;
 
 const Matrix2 matrix_identity_2
-{ 
+{
 	1, 0,
-	0, 1 
+	0, 1
 };
 
 const Matrix3 matrix_identity_3

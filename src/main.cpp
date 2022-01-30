@@ -100,7 +100,7 @@ void run_clock_demo(SDLRenderer& renderer)
 			offset_y + location.Y() * size,
 			c.Raw);
 
-		location = rotate * location;	
+		location = rotate * location;
 	}
 
 	renderer.Update();
@@ -109,8 +109,7 @@ void run_clock_demo(SDLRenderer& renderer)
 	{
 		SDL_Delay(10);
 		SDL_PollEvent(&event);
-	} 
-	while (event.type != SDL_QUIT);
+	} while (event.type != SDL_QUIT);
 }
 
 int main()

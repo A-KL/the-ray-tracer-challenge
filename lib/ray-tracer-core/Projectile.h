@@ -9,7 +9,7 @@
 class Projectile
 {
 public:
-	Projectile(const Point3D&  position, const Vector3D& velocity)
+	Projectile(const Point3D& position, const Vector3D& velocity)
 		: _position(position), _velocity(velocity)
 	{ }
 

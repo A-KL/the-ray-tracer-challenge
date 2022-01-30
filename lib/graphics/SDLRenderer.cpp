@@ -11,7 +11,7 @@ SDLRenderer::SDLRenderer(SDL_Window* window, int bpp)
 	_sdl = SDL_CreateRenderer(window, -1, 0);
 }
 
-SDLRenderer::SDLRenderer(SDL_Window* window) 
+SDLRenderer::SDLRenderer(SDL_Window* window)
 	: SDLRenderer(window, 32)
 { }
 

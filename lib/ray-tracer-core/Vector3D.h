@@ -20,7 +20,7 @@ public:
 		: Vector3D(x, y, z, 0)
 	{ }
 
-	~Vector3D() 
+	~Vector3D()
 	{}
 
 	float Magniture();

@@ -1,13 +1,5 @@
 #include "Vector3D.h"
 
-//bool Vector3D::operator==(const Vector3D& other)
-//{
-//	return 
-//		Mathf::Approximately(X(), other.X()) &&
-//		Mathf::Approximately(Y(), other.Y()) &&
-//		Mathf::Approximately(Z(), other.Z());
-//}
-
 Vector3D Vector3D::operator+(const Vector3D& other)
 {
 	return Vector3D(X() + other.X(), Y() + other.Y(), Z() + other.Z());

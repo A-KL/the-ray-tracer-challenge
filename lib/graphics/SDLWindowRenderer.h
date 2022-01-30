@@ -1,13 +1,13 @@
 class SDLWindowRenderer :
-    public SDLRenderer
+	public SDLRenderer
 {
 public:
-    SDLWindowRenderer(unsigned int, unsigned int, int);
+	SDLWindowRenderer(unsigned int, unsigned int, int);
 
-    SDLWindowRenderer(SDL_Window*, int);
+	SDLWindowRenderer(SDL_Window*, int);
 
-    virtual ~SDLWindowRenderer();
+	virtual ~SDLWindowRenderer();
 
-private: 
-    SDL_Window* _window;
+private:
+	SDL_Window* _window;
 };

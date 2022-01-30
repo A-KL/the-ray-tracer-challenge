@@ -8,7 +8,7 @@ SDLWindowRenderer::SDLWindowRenderer(unsigned int width, unsigned int height, in
 		"The Ray Tracer Challenge",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		width, height, 0), 
+		width, height, 0),
 		bpp)
 { }
 

@@ -16,10 +16,10 @@
 using namespace std;
 
 void test_matrix_scaling()
-{	
+{
 	// Set up
 	Matrix4d m0 = Matrix4d::Scale(2, 3, 4);
-	
+
 	// Act
 	Primitive3D<double> result0 = m0 * Point3D(-4, 6, 8);
 
@@ -105,7 +105,7 @@ void test_matrix_translation()
 void test_matrix_mul_tuple()
 {
 	// Set up
-	Matrix4 m0 {
+	Matrix4 m0{
 		1, 2, 3, 4,
 		2, 4, 4, 2,
 		8, 6, 4, 1,
@@ -128,13 +128,13 @@ void test_matrix_mul_tuple()
 void test_matrix_mul()
 {
 	// Set up
-	Matrix<int, 3, 3> m0 {
+	Matrix<int, 3, 3> m0{
 		1,2,3,
 		4,5,6,
 		7,8,9
 	};
 
-	Matrix<int, 3, 3> m1 {
+	Matrix<int, 3, 3> m1{
 		1,2,3,
 		4,5,6,
 		7,8,9
@@ -161,7 +161,7 @@ void test_matrix_mul()
 void test_matrix_remove()
 {
 	// Set up
-	Matrix<int, 3, 3> m0 {
+	Matrix<int, 3, 3> m0{
 		1,5,0,
 		-3,2,7,
 		0,6,-3
@@ -180,18 +180,18 @@ void test_matrix_remove()
 void test_matrix_determinant()
 {
 	// Set up
-	Matrix<int, 2, 2> m2 {
+	Matrix<int, 2, 2> m2{
 		 1, 5,
-		-3, 2	
+		-3, 2
 	};
 
-	Matrix<int, 3, 3> m3 {
+	Matrix<int, 3, 3> m3{
 		 1, 2, 6,
 		-5, 8,-4,
 		 2, 6, 4
 	};
 
-	Matrix<int, 4, 4> m4 {
+	Matrix<int, 4, 4> m4{
 		-2,-8, 3, 5,
 		-3, 1, 7, 3,
 		 1, 2,-9, 6,
@@ -201,10 +201,10 @@ void test_matrix_determinant()
 	// Assert
 	assert(17 == m2.determinant());
 
-	assert( 56 == m3.cofactor(0, 0));
-	assert( 12 == m3.cofactor(0, 1));
+	assert(56 == m3.cofactor(0, 0));
+	assert(12 == m3.cofactor(0, 1));
 	assert(-46 == m3.cofactor(0, 2));
-    assert(-196 == m3.determinant());
+	assert(-196 == m3.determinant());
 
 	assert(690 == m4.cofactor(0, 0));
 	assert(447 == m4.cofactor(0, 1));
@@ -216,7 +216,7 @@ void test_matrix_determinant()
 void test_matrix_minor()
 {
 	// Set up
-	Matrix3 m0 {
+	Matrix3 m0{
 		3, 5, 0,
 		2,-1,-7,
 		6,-1, 5
@@ -233,7 +233,7 @@ void test_matrix_minor()
 void test_matrix_cofactor()
 {
 	// Set up
-	Matrix<int, 3, 3> m0 {
+	Matrix<int, 3, 3> m0{
 		3, 5, 0,
 		2,-1,-7,
 		6,-1, 5
@@ -250,35 +250,35 @@ void test_matrix_cofactor()
 void test_matrix_inverse()
 {
 	// Set up
-	Matrix4d m0 {
+	Matrix4d m0{
 		-8,-5, 9, 2,
 		 7, 5, 6, 1,
 		-6, 0, 9, 6,
 		-3, 0,-9,-4
 	};
 
-	Matrix4d m0_inverted {
+	Matrix4d m0_inverted{
 	   -0.15385, -0.15385, -0.28205, -0.53846,
 	   -0.07692,  0.12308,  0.02564,  0.03077,
 		0.35897,  0.35897,  0.43590,  0.92308,
 		0.69231, -0.69231, -0.76923, -1.92308
 	};
 
-	Matrix4d m1_error {
+	Matrix4d m1_error{
 		-4, 2,-2,-3,
 		 9, 6, 2, 6,
 		 0,-5, 1,-5,
 		 0, 0, 0, 0
 	};
 
-	Matrix4d a {
+	Matrix4d a{
 		 3,-9, 7, 3,
 		 3,-8, 2,-9,
 		-4, 4, 4, 1,
 		-6, 5,-1, 1
 	};
 
-	Matrix4d b {
+	Matrix4d b{
 		 8, 2, 2, 2,
 		 3,-1, 7, 0,
 		 7, 0, 5, 4,

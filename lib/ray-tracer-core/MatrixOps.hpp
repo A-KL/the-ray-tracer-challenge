@@ -7,7 +7,7 @@ bool matrix_inverse(
 {
 	TItem d = matrix_determinant(matrix);
 
-	if (d == 0) 
+	if (d == 0)
 	{
 		return false;
 	}

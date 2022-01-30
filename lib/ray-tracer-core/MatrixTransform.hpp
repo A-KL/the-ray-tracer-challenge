@@ -75,7 +75,7 @@ void matrix_rotate_y(
 
 	result.Data[0][0] = Mathf::ToZeroIfClose(cos(r));
 	result.Data[0][2] = Mathf::ToZeroIfClose(sin(r));
-	result.Data[2][0] =-Mathf::ToZeroIfClose(sin(r));
+	result.Data[2][0] = -Mathf::ToZeroIfClose(sin(r));
 	result.Data[2][2] = Mathf::ToZeroIfClose(cos(r));
 }
 
@@ -87,7 +87,7 @@ void matrix_rotate_z(
 	matrix_identity(result);
 
 	result.Data[0][0] = Mathf::ToZeroIfClose(cos(r));
-	result.Data[0][1] =-Mathf::ToZeroIfClose(sin(r));
+	result.Data[0][1] = -Mathf::ToZeroIfClose(sin(r));
 	result.Data[1][0] = Mathf::ToZeroIfClose(sin(r));
 	result.Data[1][1] = Mathf::ToZeroIfClose(cos(r));
 }
