@@ -154,6 +154,7 @@
     <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />
+    <ClCompile Include="..\lib\ray-tracer-core\Ray3D.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\lib\graphics\SDLRenderer.cpp" />
     <ClCompile Include="..\lib\graphics\ColorRgba.cpp" />
@@ -174,6 +175,7 @@
     <ClInclude Include="..\lib\ray-tracer-core\Primitive3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Projectile.h" />
     <ClInclude Include="..\lib\graphics\SDLRenderer.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Ray3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h" />
     <ClInclude Include="tests.h" />
   </ItemGroup>
