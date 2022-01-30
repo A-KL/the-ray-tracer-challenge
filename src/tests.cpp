@@ -6,7 +6,6 @@
 #include "../lib/ray-tracer-core/Point3D.h"
 
 #include "../lib/ray-tracer-core/Matrix.hpp"
-#include "../lib/ray-tracer-core/MatrixBase.hpp"
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
@@ -26,24 +25,32 @@ void test_matrix_scaling()
 	assert(Point3D(-8, 18, 32) == result0);
 }
 
-void test_matrix_rotate()
+void test_matrix_rotate_quarter()
 {
 	// Set up
-	Matrix<int, 4, 4> half_quarter, full_quarter;
+	Matrix4d quarter = Matrix4d::RotateX(M_PI / 2);
 
-	int point[4] = { 0, 1, 0, 1 };
-	int result[4];
+	Point3D point(0, 1, 0);
 
 	// Act
-	matrix_rotate_x(PI / 4, half_quarter);
-	matrix_rotate_x(PI / 2, full_quarter);
-
-	matrix_mul(full_quarter, point, result);
+	Primitive3D<double> result = quarter * point;
 
 	// Assert
-	assert(0 == result[0]);
-	assert(0 == result[1]);
-	assert(1 == result[2]);
+	assert(Point3D(0, 0, 1) == result);
+}
+
+void test_matrix_rotate_pi()
+{
+	// Set up
+	Matrix4d quarter = Matrix4d::RotateX(M_PI);
+
+	Point3D point(0, 1, 0);
+
+	// Act
+	Primitive3D<double> result = quarter * point;
+
+	// Assert
+	assert(Point3D(0, -1, 0) == result);
 }
 
 void test_matrix_translation()
@@ -52,63 +59,54 @@ void test_matrix_translation()
 	Matrix4d m0 = Matrix4d::Translate(5, -3, 2);
 
 	// Act
-	Primitive3D<double> result0 = m0 * Vector3D(-3, 4, 5);
+	Primitive3D<double> result0 = m0 * Point3D(-3, 4, 5);
 
 	// Assert
-	assert(Vector3D(2, 1, 7) == result0);
-
-	// Set up
-	Matrix<int, 4, 4> m1, m1_inverse;
-
-	int point[4] = { -3, 4, 5, 1 };
-	int result[4];
-
-	matrix_translate(5, -3, 2, m1);
-
-	// Act
-	matrix_inverse(m1, m1_inverse);
-	matrix_mul(m1_inverse, point, result);
-
-	// Assert
-	assert(-8 == result[0]);
-	assert(7 == result[1]);
-	assert(3 == result[2]);
+	assert(Point3D(2, 1, 7) == result0);
 
 
 	// Set up
-	Matrix<int, 4, 4> m2;
-	matrix_translate(5, -3, 2, m2);
-
-	int vector[4] = { -3, 4, 5, 0 };
+	Matrix4d m1 = Matrix4d::Translate(5, -3, 2);
+	Matrix4d m1_inverse = m1.inverse();
 
 	// Act
-	matrix_mul(m2, vector, result);
+	Primitive3D<double> result1 = m1_inverse * Point3D(-3, 4, 5);
 
 	// Assert
-	assert(vector[0] == result[0]);
-	assert(vector[1] == result[1]);
-	assert(vector[2] == result[2]);
+	assert(Point3D(-8, 7, 3) == result1);
+
+
+	// Set up
+	Matrix4d m2 = Matrix4d::Translate(5, -3, 2);
+
+	// Act
+	Primitive3D<double> result2 = m0 * Vector3D(-3, 4, 5);
+
+	// Assert
+	assert(Vector3D(-3, 4, 5) == result2);
 }
 
 void test_matrix_mul_tuple()
 {
 	// Set up
-	Matrix<int, 3, 3> m0 {
-		1,2,3,
-		4,5,6,
-		7,8,9
+	Matrix4 m0 {
+		1, 2, 3, 4,
+		2, 4, 4, 2,
+		8, 6, 4, 1,
+		0, 0, 0, 1
 	};
 
-	int tuple[3] = { 2, 2, 2 };
-	int tuple_mul[3];
+	int tuple[4] = { 1, 2, 3, 1 };
+	int tuple_mul[4];
 
 	// Act
 	matrix_mul(m0, tuple, tuple_mul);
 
 	// Assert
-	assert(24 == tuple_mul[0]);
-	assert(30 == tuple_mul[1]);
-	assert(36 == tuple_mul[2]);
+	assert(18 == tuple_mul[0]);
+	assert(24 == tuple_mul[1]);
+	assert(33 == tuple_mul[2]);
+	assert(1 == tuple_mul[3]);
 }
 
 void test_matrix_mul()
@@ -334,7 +332,9 @@ void run_tests()
 
 	test_matrix_scaling();
 
-	test_matrix_rotate();
+	test_matrix_rotate_quarter();
+
+	test_matrix_rotate_pi();
 
 	test_matrix_shearing();
 }

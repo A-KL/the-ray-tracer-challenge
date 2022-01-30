@@ -143,7 +143,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> rotate_x(double r)
+	static Matrix<TItem, 4, 4> RotateX(double r)
 	{
 		Matrix<TItem, 4, 4> result;
 
@@ -152,7 +152,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> rotate_y(double r)
+	static Matrix<TItem, 4, 4> RotateY(double r)
 	{
 		Matrix<TItem, 4, 4> result;
 
@@ -161,7 +161,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> rotate_z(double r)
+	static Matrix<TItem, 4, 4> RotateZ(double r)
 	{
 		Matrix<TItem, 4, 4> result;
 

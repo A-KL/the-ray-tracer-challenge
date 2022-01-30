@@ -42,6 +42,9 @@
     <ClCompile Include="tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\ray-tracer-core\Mathf.h">
@@ -77,13 +80,13 @@
     <ClInclude Include="..\lib\ray-tracer-core\MatrixTransform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\MatrixBase.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\graphics\ColorRgba.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\graphics\SDLRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

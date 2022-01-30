@@ -146,7 +146,7 @@ void matrix_mul(
 
 		for (x = 0; x < TSize; x++)
 		{
-			result[index] += (other[x] * matrix.Data[x][index]);
+			result[index] += (other[x] * matrix.Data[index][x]);
 		}
 	}
 }

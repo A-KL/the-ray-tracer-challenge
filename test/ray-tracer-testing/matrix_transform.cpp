@@ -8,7 +8,6 @@
 #include "../../lib/ray-tracer-core/Point3D.h"
 
 #include "../../lib/ray-tracer-core/Matrix.hpp"
-#include "../../lib/ray-tracer-core/MatrixBase.hpp"
 #include "../../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../../lib/ray-tracer-core/MatrixTransform.hpp"
 
@@ -46,8 +45,8 @@ namespace ray_tracer_testing
 			int result[4];
 
 			// Act
-			matrix_rotate_x(PI / 4, half_quarter);
-			matrix_rotate_x(PI / 2, full_quarter);
+			matrix_rotate_x(M_PI / 4, half_quarter);
+			matrix_rotate_x(M_PI / 2, full_quarter);
 
 			matrix_mul(full_quarter, point, result);
 

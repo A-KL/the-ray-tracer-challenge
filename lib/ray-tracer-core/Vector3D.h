@@ -17,7 +17,7 @@ public:
 	{ }
 
 	Vector3D(double x, double y, double z)
-		: Vector3D(x, y, z, 1)
+		: Vector3D(x, y, z, 0)
 	{ }
 
 	~Vector3D() 

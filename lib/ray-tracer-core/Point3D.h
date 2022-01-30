@@ -21,7 +21,7 @@ public:
 	{ }
 
 	Point3D(double x, double y, double z)
-		: Primitive3D<double>(x, y, z, 0)
+		: Primitive3D<double>(x, y, z, 1)
 	{ }
 
 	Vector3D operator-(const Point3D&);
