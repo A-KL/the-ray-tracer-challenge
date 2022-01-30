@@ -11,6 +11,8 @@
 #include "../lib/graphics/Color.h"
 #include "../lib/graphics/SDLRenderer.h"
 
+#include "../lib/ray-tracer-core/Mathf.h"
+
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
 #include "../lib/ray-tracer-core/Projectile.h"
@@ -62,38 +64,53 @@ void run_clock_demo(SDLRenderer& renderer)
 {
 	SDL_Event event;
 
+	const double offset_x = renderer.Witdth() / 2;
+	const double offset_y = renderer.Height() / 2;
+	const double size = 100;
+	const double count = 12;
+
 	Color<Rgba> c = Rgba::Red;
+	Color<Rgba> green = Rgba::Green;
 
 	Point3D origin(0, 0, 0);
 
 	Matrix4d translate = Matrix4d::Translate(0, 1, 0);
-
-	Matrix4d rotate = Matrix4d::RotateZ(M_PI / 6);
+	Matrix4d rotate = Matrix4d::RotateZ(M_PI / (count / 2));
 
 	Primitive3D<double> location = translate * origin;
 
-	const double N = 10;
+	//renderer.DrawLine(
+	//	offset_x + -size,
+	//	offset_y + 0, 
+	//	offset_x + size,
+	//	offset_y + 0, 
+	//	green.Raw);
 
-	for (char i = 0; i < 12; i++)
+	//renderer.DrawLine(
+	//	offset_x + 0, 
+	//	offset_y  + -size,
+	//	offset_x + 0, 
+	//	offset_y + size,
+	//	green.Raw);
+
+	for (char i = 0; i < count; i++)
 	{
-		SDL_Delay(10);
-
 		renderer.DrawPoint(
-			w / 2 + location.X() * N,
-			h / 2 - location.Y() * N, c.Raw);
+			offset_x + location.X() * size,
+			offset_y + location.Y() * size,
+			c.Raw);
 
-		location = rotate * location;
-
-		renderer.Update();
+		location = rotate * location;	
 	}
+
+	renderer.Update();
 
 	do
 	{
 		SDL_Delay(10);
-
 		SDL_PollEvent(&event);
-
-	} while (event.type != SDL_QUIT);
+	} 
+	while (event.type != SDL_QUIT);
 }
 
 int main()

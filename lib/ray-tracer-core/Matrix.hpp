@@ -5,11 +5,6 @@ struct Matrix
 {
 	TItem Data[TSizeX][TSizeY];
 
-	//const TItem& operator[](const unsigned index) const
-	//{
-	//	return Data[index];
-	//}
-
 	const TItem& operator()(const unsigned row, const unsigned column)
 	{
 		assert((row < TSizeX) && (column < TSizeY));
