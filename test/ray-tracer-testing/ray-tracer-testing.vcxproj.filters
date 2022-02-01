@@ -30,6 +30,9 @@
     <ClCompile Include="..\..\lib\ray-tracer-core\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\lib\ray-tracer-core\Ray3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\lib\ray-tracer-core\Environment.h">

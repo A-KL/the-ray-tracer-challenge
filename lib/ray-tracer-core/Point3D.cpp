@@ -1,3 +1,6 @@
+#include "Mathf.h"
+#include "Primitive3D.h"
+#include "Vector3D.h"
 #include "Point3D.h"
 
 Vector3D Point3D::operator-(const Point3D& b)

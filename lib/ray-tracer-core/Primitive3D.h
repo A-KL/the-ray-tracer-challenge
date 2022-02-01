@@ -1,6 +1,9 @@
 #pragma once
 
+#include "Mathf.h"
+
 #include <iostream>
+
 using namespace std;
 
 template<typename TItem>
@@ -9,8 +12,6 @@ class Primitive3D
 public:
 
 	Primitive3D(const TItem data[])
-	//	: _data(data)
-		: Primitive3D(0, 0, 0, 0)
 	{ 
 		memcpy(_data, data, sizeof(_data));
 	}
@@ -42,7 +43,7 @@ public:
 		return Primitive3D<TItem>(-X(), -Y(), -Z(), -W());
 	}
 
-	bool Primitive3D<TItem>::operator==(const Primitive3D<TItem>& other)
+	bool operator==(const Primitive3D<TItem>& other)
 	{
 		return 
 			Mathf::Approximately(X(), other.X()) &&

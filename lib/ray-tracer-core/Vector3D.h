@@ -3,9 +3,6 @@
 #include <math.h>
 #include <iostream>
 
-#include "Mathf.h"
-#include "Primitive3D.h"
-
 using namespace std;
 
 class Vector3D :

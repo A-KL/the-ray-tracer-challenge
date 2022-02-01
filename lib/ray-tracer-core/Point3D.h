@@ -2,10 +2,6 @@
 
 #include <iostream>
 
-#include "Mathf.h"
-#include "Vector3D.h"
-#include "Primitive3D.h"
-
 using namespace std;
 
 class Point3D :

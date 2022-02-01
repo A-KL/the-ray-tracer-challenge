@@ -13,8 +13,11 @@
 
 #include "../lib/ray-tracer-core/Mathf.h"
 
+#include "../lib/ray-tracer-core/Primitive3D.h"
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
+
+#include "../lib/ray-tracer-core/Environment.h"
 #include "../lib/ray-tracer-core/Projectile.h"
 
 #include "../lib/ray-tracer-core/Matrix.hpp"

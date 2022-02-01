@@ -4,6 +4,7 @@
 #include <list>
 #include <cassert>
 
+#include "../../lib/ray-tracer-core/Primitive3D.h"
 #include "../../lib/ray-tracer-core/Vector3D.h"
 #include "../../lib/ray-tracer-core/Point3D.h"
 
