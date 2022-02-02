@@ -9,6 +9,16 @@ public:
 
 	const Point3D Position(double value);
 
+	inline Point3D Location() const
+	{
+		return _position;
+	}
+
+	inline Vector3D Direction() const
+	{
+		return _direction;
+	}
+
 private:
 	Vector3D _direction;
 	Point3D _position;

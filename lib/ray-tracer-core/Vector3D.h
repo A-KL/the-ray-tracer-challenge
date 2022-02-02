@@ -26,6 +26,8 @@ public:
 
 	float Dot(const Vector3D&);
 
+	static float Dot(const Vector3D& v1, const Vector3D& v2);
+
 	Vector3D Cross(const Vector3D&);
 
 	Vector3D operator+(const Vector3D&);

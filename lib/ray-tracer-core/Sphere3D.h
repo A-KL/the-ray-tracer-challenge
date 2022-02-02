@@ -1,6 +1,66 @@
 #pragma once
 
-class Sphere3D 
+#include <cassert>
+#include<stdarg.h>
+#include <initializer_list>
+
+class Intersection
+{
+public:
+
+private:
+};
+
+template<unsigned Size>
+class Intersections
+{
+public:
+	Intersections(std::initializer_list<Intersection> list)
+	{
+		assert(list.size() > 0);
+
+
+		for (auto elem : list)
+		{
+			//std::cout << elem << std::endl;
+		}
+	}
+
+	Intersections(int count, ...)
+	{
+		va_list ap;
+		va_start(ap, count);
+
+		for (int i = 0; i < count; i++) 
+		{
+			_intersections[i] = va_arg(ap, Intersection);
+		}
+
+		va_end(ap);
+	}
+
+private:
+	Intersection _intersections[Size];
+};
+
+class Object3D
+{
+	public:
+		Object3D(const Point3D& position) :
+			_position(position)
+		{ }
+
+		inline Point3D Location() const
+		{
+			return _position;
+		}
+
+	private:
+		Point3D _position;
+};
+
+class Sphere3D : 
+	public Object3D
 {
 	public:
 		Sphere3D() :
@@ -8,7 +68,7 @@ class Sphere3D
 		{ }
 
 		Sphere3D(const Point3D& position, double size) :
-			_position(position), 
+			Object3D(position),
 			_size(size)
 		{ }
 
@@ -19,6 +79,5 @@ class Sphere3D
 
 	private:
 		double _size;
-		Point3D _position;
 };
 

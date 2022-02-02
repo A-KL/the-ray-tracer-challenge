@@ -330,6 +330,40 @@ void test_sphere()
 	assert(1, sphere.R());
 }
 
+int ray_intersect(const Object3D& object, const Ray3D& ray)
+{
+	Vector3D object_to_ray = ray.Location() - object.Location();
+
+	float a = Vector3D::Dot(ray.Direction(), ray.Direction());
+
+	float b = 2 * Vector3D::Dot(ray.Direction(), object_to_ray);
+
+	float c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
+
+	float d = powf(b, 2) - 4 * a * c;
+
+	if (d < 0)
+	{
+		return 0;
+	}
+
+	float t1 = (-b - sqrtf(d)) / (2 * a);
+	float t2 = (-b + sqrtf(d)) / (2 * a);
+	//Intersections<2> result();
+
+	return 2;
+}
+
+void test_ray_intersect()
+{
+	Ray3D ray(Point3D(0, 1, -5), Vector3D(0, 0, 1));
+	Sphere3D sphere;
+
+	int res = ray_intersect(sphere, ray);
+
+	assert(2, res);
+}
+
 void run_tests()
 {
 	test_matrix_mul();
@@ -359,4 +393,6 @@ void run_tests()
 	test_matrix_shearing();
 
 	test_sphere();
+
+	test_ray_intersect();
 }

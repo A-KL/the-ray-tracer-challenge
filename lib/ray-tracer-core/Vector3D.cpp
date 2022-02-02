@@ -30,9 +30,15 @@ Vector3D Vector3D::Normalize()
 	return Vector3D(X() / m, Y() / m, Z() / m, W() / m);
 }
 
+float Vector3D::Dot(const Vector3D& v1, const Vector3D& v2)
+{
+	return (v1.X() * v2.X()) + (v1.Y() * v2.Y()) + (v1.Z() * v2.Z()) + (v1.W() * v2.W());
+}
+
 float Vector3D::Dot(const Vector3D& other)
 {
-	return (X() * other.X()) + (Y() * other.Y()) + (Z() * other.Z()) + (W() * other.W());
+	return Vector3D::Dot(*this, other);
+	//return (X() * other.X()) + (Y() * other.Y()) + (Z() * other.Z()) + (W() * other.W());
 }
 
 Vector3D Vector3D::Cross(const Vector3D& other)
