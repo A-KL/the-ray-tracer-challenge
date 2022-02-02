@@ -12,6 +12,9 @@
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
+#include "../lib/ray-tracer-core/Ray3D.h"
+#include "../lib/ray-tracer-core/Sphere3D.h"
+
 #include "tests.h"
 
 using namespace std;
@@ -295,38 +298,36 @@ void test_matrix_inverse()
 void test_matrix_shearing()
 {
 	// Set up
-	Matrix4 m0, m1, m2;
+	Matrix4d m0 = Matrix4d::shearing(1, 0, 0, 0, 0, 0);
+	Matrix4d m1 = Matrix4d::shearing(0, 1, 0, 0, 0, 0);
+	Matrix4d m2 = Matrix4d::shearing(0, 0, 0, 1, 0, 0);
 
-	matrix_shearing(1, 0, 0, 0, 0, 0, m0);
-	matrix_shearing(0, 1, 0, 0, 0, 0, m1);
-	matrix_shearing(0, 0, 0, 1, 0, 0, m2);
-
-	int point[4] = { 2, 3, 4, 1 };
-	int result[4];
+	Point3D point(2, 3, 4);
 
 	// Act
-	matrix_mul(m0, point, result);
+	Primitive3D<double> result = m0 * point;
 
 	// Assert
-	assert(5 == result[0]);
-	assert(3 == result[1]);
-	assert(4 == result[2]);
+	assert(Point3D(5, 3, 4) == result);
 
 	// Act
-	matrix_mul(m1, point, result);
+	result = m1 * point;
 
 	// Assert
-	assert(6 == result[0]);
-	assert(3 == result[1]);
-	assert(4 == result[2]);
+	assert(Point3D(6, 3, 4) == result);
 
 	// Act
-	matrix_mul(m2, point, result);
+	result = m2 * point;
 
 	// Assert
-	assert(2 == result[0]);
-	assert(7 == result[1]);
-	assert(4 == result[2]);
+	assert(Point3D(2, 7, 4) == result);
+}
+
+void test_sphere()
+{
+	Sphere3D sphere;
+
+	assert(1, sphere.R());
 }
 
 void run_tests()
@@ -356,4 +357,6 @@ void run_tests()
 	test_matrix_rotate_half_quarter();
 
 	test_matrix_shearing();
+
+	test_sphere();
 }

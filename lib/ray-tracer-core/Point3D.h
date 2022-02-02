@@ -20,11 +20,11 @@ public:
 		: Primitive3D<double>(x, y, z, 1)
 	{ }
 
-	Vector3D operator-(const Point3D&);
+	Vector3D operator-(const Point3D& point);
 
-	Point3D operator-(const Vector3D&);
+	Point3D operator-(const Vector3D& v);
 
-	Point3D operator+(const Vector3D&);
+	Point3D operator+(const Vector3D& v);
 
 	friend ostream& operator<<(ostream& out, const Point3D& p);
 };
