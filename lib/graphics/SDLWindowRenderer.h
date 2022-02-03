@@ -1,5 +1,5 @@
 class SDLWindowRenderer :
-	public SDLRenderer
+	public SDLCanvas
 {
 public:
 	SDLWindowRenderer(unsigned int, unsigned int, int);

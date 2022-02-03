@@ -21,7 +21,7 @@
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\graphics\SDLRenderer.cpp">
+    <ClCompile Include="..\lib\graphics\SDLCanvas.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp">
@@ -89,7 +89,7 @@
     <ClInclude Include="..\lib\graphics\ColorRgba.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\graphics\SDLRenderer.h">
+    <ClInclude Include="..\lib\graphics\SDLCanvas.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h">

@@ -29,26 +29,26 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -103,7 +103,6 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -156,7 +155,7 @@
     <ClCompile Include="..\lib\ray-tracer-core\Ray3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Sphere3D.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="..\lib\graphics\SDLRenderer.cpp" />
+    <ClCompile Include="..\lib\graphics\SDLCanvas.cpp" />
     <ClCompile Include="..\lib\graphics\ColorRgba.cpp" />
     <ClCompile Include="..\lib\graphics\Color.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp" />
@@ -174,7 +173,7 @@
     <ClInclude Include="..\lib\graphics\ColorRgba.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Primitive3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Projectile.h" />
-    <ClInclude Include="..\lib\graphics\SDLRenderer.h" />
+    <ClInclude Include="..\lib\graphics\SDLCanvas.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Ray3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Sphere3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h" />

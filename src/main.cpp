@@ -9,7 +9,7 @@
 #include <SDL.h>
 
 #include "../lib/graphics/Color.h"
-#include "../lib/graphics/SDLRenderer.h"
+#include "../lib/graphics/SDLCanvas.h"
 
 #include "../lib/ray-tracer-core/Mathf.h"
 
@@ -31,15 +31,12 @@ using namespace std;
 const int h = 550;
 const int w = 900;
 
-void run_projectile_demo(SDLRenderer& renderer)
+void run_projectile_demo(Canvas& canvas)
 {
 	SDL_Event event;
 
 	Point3D start(0, 1, 0);
 	Vector3D velocity(1, 1.8, 0);
-
-	cout << start << endl;
-	cout << velocity << endl;
 
 	Projectile proj(start, velocity.Normalize() * 11.25);
 	Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
@@ -53,22 +50,22 @@ void run_projectile_demo(SDLRenderer& renderer)
 
 		Point3D p = proj.Position();
 
-		renderer.DrawPoint(p.X(), h - p.Y(), c.Raw);
+		canvas.DrawPoint(p.X(), h - p.Y(), c.Raw);
 
 		// render window
-		renderer.Update();
+		canvas.Update();
 
 		proj = proj.Tick(env);
 
 	} while (event.type != SDL_QUIT);
 }
 
-void run_clock_demo(SDLRenderer& renderer)
+void run_clock_demo(Canvas& canvas)
 {
 	SDL_Event event;
 
-	const double offset_x = renderer.Witdth() / 2;
-	const double offset_y = renderer.Height() / 2;
+	const double offset_x = canvas.Witdth() / 2;
+	const double offset_y = canvas.Height() / 2;
 	const double size = 100;
 	const double count = 12;
 
@@ -98,7 +95,7 @@ void run_clock_demo(SDLRenderer& renderer)
 
 	for (char i = 0; i < count; i++)
 	{
-		renderer.DrawPoint(
+		canvas.DrawPoint(
 			offset_x + location.X() * size,
 			offset_y + location.Y() * size,
 			c.Raw);
@@ -106,7 +103,7 @@ void run_clock_demo(SDLRenderer& renderer)
 		location = rotate * location;
 	}
 
-	renderer.Update();
+	canvas.Update();
 
 	do
 	{
@@ -129,12 +126,12 @@ int main()
 		SDL_WINDOWPOS_UNDEFINED,
 		w, h, 0);
 
-	SDLRenderer renderer(window);
-	renderer.Clear();
+	SDLCanvas canvas(window);
+	canvas.Clear();
 
-	//run_projectile_demo(renderer);
+	//run_projectile_demo(canvas);
 
-	run_clock_demo(renderer);
+	run_clock_demo(canvas);
 
 	SDL_DestroyWindow(window);
 	SDL_Quit();

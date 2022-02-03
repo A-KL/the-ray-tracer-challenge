@@ -1,15 +1,15 @@
 #pragma once
 
-class Renderer
+class Canvas
 {
 public:
 	virtual void DrawPoint(int x, int y, int color) = 0;
 
 	virtual void DrawLine(int x0, int y0, int x1, int y1, int color) = 0;
 
-	virtual unsigned int Height() = 0;
+	virtual int Height() = 0;
 
-	virtual unsigned int Witdth() = 0;
+	virtual int Witdth() = 0;
 
 	virtual unsigned int Bpp() = 0;
 
@@ -18,13 +18,13 @@ public:
 	virtual void Update() = 0;
 };
 
-class SDLRenderer :
-	public Renderer
+class SDLCanvas :
+	public Canvas
 {
 public:
-	SDLRenderer(SDL_Window*, int);
+	SDLCanvas(SDL_Window*, int);
 
-	SDLRenderer(SDL_Window*);
+	SDLCanvas(SDL_Window*);
 
 	//const char& BeginDrawing();
 
@@ -32,20 +32,29 @@ public:
 
 	void DrawLine(int x0, int y0, int x1, int y1, int color);
 
-	unsigned int Height();
+	inline int Height()
+	{
+		return _h;
+	}
 
-	unsigned int Witdth();
+	inline int Witdth()
+	{
+		return _w;
+	}
 
-	unsigned int Bpp();
+	inline unsigned int Bpp()
+	{
+		return _bpp;
+	}
 
 	void Clear();
 
 	void Update();
 
-	virtual ~SDLRenderer();
+	virtual ~SDLCanvas();
 
 private:
-	unsigned int _w, _h, _bpp;
+	int _w, _h, _bpp;
 
 	SDL_Renderer* _sdl;
 

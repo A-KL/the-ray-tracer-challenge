@@ -1,8 +1,8 @@
-#include "Color.h"
 #include <SDL.h>
-#include "SDLRenderer.h"
+#include "Color.h"
+#include "SDLCanvas.h"
 
-SDLRenderer::SDLRenderer(SDL_Window* window, int bpp)
+SDLCanvas::SDLCanvas(SDL_Window* window, int bpp)
 {
 	SDL_GetWindowSize(window, &_w, &_h);
 
@@ -11,11 +11,11 @@ SDLRenderer::SDLRenderer(SDL_Window* window, int bpp)
 	_sdl = SDL_CreateRenderer(window, -1, 0);
 }
 
-SDLRenderer::SDLRenderer(SDL_Window* window)
-	: SDLRenderer(window, 32)
+SDLCanvas::SDLCanvas(SDL_Window* window)
+	: SDLCanvas(window, 32)
 { }
 
-void SDLRenderer::DrawPoint(int x, int y, int color)
+void SDLCanvas::DrawPoint(int x, int y, int color)
 {
 	Color<Rgba> rgba = Rgba::Black;
 
@@ -26,7 +26,7 @@ void SDLRenderer::DrawPoint(int x, int y, int color)
 	SDL_RenderDrawPointF(_sdl, x, y);
 }
 
-void SDLRenderer::DrawLine(int x0, int y0, int x1, int y1, int color)
+void SDLCanvas::DrawLine(int x0, int y0, int x1, int y1, int color)
 {
 	Color<Rgba> rgba = Rgba::Black;
 
@@ -37,35 +37,19 @@ void SDLRenderer::DrawLine(int x0, int y0, int x1, int y1, int color)
 	SDL_RenderDrawLine(_sdl, x0, y0, x1, y1);
 }
 
-
-int SDLRenderer::Height()
-{
-	return _h;
-}
-
-int SDLRenderer::Witdth()
-{
-	return _w;
-}
-
-int SDLRenderer::Bpp()
-{
-	return _bpp;
-}
-
-void SDLRenderer::Clear()
+void SDLCanvas::Clear()
 {
 	SDL_SetRenderDrawColor(_sdl, _background.Color.R, _background.Color.G, _background.Color.B, _background.Color.A);
 
 	SDL_RenderClear(_sdl);
 }
 
-void SDLRenderer::Update()
+void SDLCanvas::Update()
 {
 	SDL_RenderPresent(_sdl);
 }
 
-SDLRenderer::~SDLRenderer()
+SDLCanvas::~SDLCanvas()
 {
 	SDL_DestroyRenderer(_sdl);
 }

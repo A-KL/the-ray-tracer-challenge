@@ -1,6 +1,6 @@
 #include "Color.h"
 #include <SDL.h>
-#include "SDLRenderer.h"
+#include "SDLCanvas.h"
 #include "SDLWindowRenderer.h"
 
 SDLWindowRenderer::SDLWindowRenderer(unsigned int width, unsigned int height, int bpp)
@@ -13,7 +13,7 @@ SDLWindowRenderer::SDLWindowRenderer(unsigned int width, unsigned int height, in
 { }
 
 SDLWindowRenderer::SDLWindowRenderer(SDL_Window* window, int bpp)
-	: SDLRenderer(window, bpp), _window(window)
+	: SDLCanvas(window, bpp), _window(window)
 { }
 
 SDLWindowRenderer::~SDLWindowRenderer()
