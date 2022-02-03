@@ -77,8 +77,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Sources\SDL2-devel-2.0.10-VC\SDL2-2.0.10\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Sources\SDL2-devel-2.0.10-VC\SDL2-2.0.10\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Sources\SDL2-devel-2.0.10-VC\SDL2-2.0.10\include;C:\Sources\SDL2-devel-2.0.20-VC\SDL2-2.0.20\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Sources\SDL2-devel-2.0.10-VC\SDL2-2.0.10\lib\x64;C:\Sources\SDL2-devel-2.0.20-VC\SDL2-2.0.20\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -103,8 +103,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>

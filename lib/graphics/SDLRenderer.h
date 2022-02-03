@@ -1,6 +1,25 @@
 #pragma once
 
-class SDLRenderer
+class Renderer
+{
+public:
+	virtual void DrawPoint(int x, int y, int color) = 0;
+
+	virtual void DrawLine(int x0, int y0, int x1, int y1, int color) = 0;
+
+	virtual unsigned int Height() = 0;
+
+	virtual unsigned int Witdth() = 0;
+
+	virtual unsigned int Bpp() = 0;
+
+	virtual void Clear() = 0;
+
+	virtual void Update() = 0;
+};
+
+class SDLRenderer :
+	public Renderer
 {
 public:
 	SDLRenderer(SDL_Window*, int);
@@ -13,11 +32,11 @@ public:
 
 	void DrawLine(int x0, int y0, int x1, int y1, int color);
 
-	int Height();
+	unsigned int Height();
 
-	int Witdth();
+	unsigned int Witdth();
 
-	int Bpp();
+	unsigned int Bpp();
 
 	void Clear();
 
@@ -26,7 +45,7 @@ public:
 	virtual ~SDLRenderer();
 
 private:
-	int _w, _h, _bpp;
+	unsigned int _w, _h, _bpp;
 
 	SDL_Renderer* _sdl;
 
