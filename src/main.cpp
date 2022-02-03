@@ -58,14 +58,12 @@ void run_projectile_demo(Canvas& canvas)
 		canvas.Update();
 
 		proj = proj.Tick(env);
-
-	} while (event.type != SDL_QUIT);
+	} 
+	while (event.type != SDL_QUIT);
 }
 
 void run_clock_demo(Canvas& canvas)
 {
-	SDL_Event event;
-
 	const double offset_x = canvas.Witdth() / 2;
 	const double offset_y = canvas.Height() / 2;
 	const double size = 100;
@@ -108,12 +106,6 @@ void run_clock_demo(Canvas& canvas)
 	}
 
 	canvas.Update();
-
-	do
-	{
-		SDL_Delay(10);
-		SDL_PollEvent(&event);
-	} while (event.type != SDL_QUIT);
 }
 
 int main()
@@ -121,15 +113,22 @@ int main()
 #ifdef _DEBUG
 	run_tests();
 #endif
-
+	
 	SDL_Init(SDL_INIT_VIDEO);
-
+	SDL_Event event;
 	SDLWindowRenderer canvas("The Ray Tracer Challenge", w, h, 32);
 
 	//run_projectile_demo(canvas);
 
 	run_clock_demo(canvas);
 	
+	do
+	{
+		SDL_Delay(10);
+		SDL_PollEvent(&event);
+	} 
+	while (event.type != SDL_QUIT);
+
 	SDL_Quit();
 
 	return 0;
