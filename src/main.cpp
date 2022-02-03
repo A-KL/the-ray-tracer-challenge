@@ -10,6 +10,7 @@
 
 #include "../lib/graphics/Color.h"
 #include "../lib/graphics/SDLCanvas.h"
+#include "../lib/graphics/SDLWindowRenderer.h"
 
 #include "../lib/ray-tracer-core/Mathf.h"
 
@@ -25,6 +26,7 @@
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
 #include "tests.h"
+
 
 using namespace std;
 
@@ -43,6 +45,8 @@ void run_projectile_demo(Canvas& canvas)
 
 	Color<Rgba> c = Rgba::Blue;
 
+	canvas.Clear();
+
 	do
 	{
 		SDL_Delay(10);
@@ -51,8 +55,6 @@ void run_projectile_demo(Canvas& canvas)
 		Point3D p = proj.Position();
 
 		canvas.DrawPoint(p.X(), h - p.Y(), c.Raw);
-
-		// render window
 		canvas.Update();
 
 		proj = proj.Tick(env);
@@ -93,6 +95,8 @@ void run_clock_demo(Canvas& canvas)
 	//	offset_y + size,
 	//	green.Raw);
 
+	canvas.Clear();
+
 	for (char i = 0; i < count; i++)
 	{
 		canvas.DrawPoint(
@@ -120,20 +124,12 @@ int main()
 
 	SDL_Init(SDL_INIT_VIDEO);
 
-	SDL_Window* window = SDL_CreateWindow(
-		"The Ray Tracer Challenge",
-		SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED,
-		w, h, 0);
-
-	SDLCanvas canvas(window);
-	canvas.Clear();
+	SDLWindowRenderer canvas("The Ray Tracer Challenge", w, h, 32);
 
 	//run_projectile_demo(canvas);
 
 	run_clock_demo(canvas);
-
-	SDL_DestroyWindow(window);
+	
 	SDL_Quit();
 
 	return 0;

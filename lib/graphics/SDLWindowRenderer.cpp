@@ -3,9 +3,9 @@
 #include "SDLCanvas.h"
 #include "SDLWindowRenderer.h"
 
-SDLWindowRenderer::SDLWindowRenderer(unsigned int width, unsigned int height, int bpp)
+SDLWindowRenderer::SDLWindowRenderer(const char* title, int width, int height, int bpp)
 	: SDLWindowRenderer(SDL_CreateWindow(
-		"The Ray Tracer Challenge",
+		title,
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		width, height, 0),

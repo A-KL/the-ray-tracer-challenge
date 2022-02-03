@@ -2,7 +2,7 @@ class SDLWindowRenderer :
 	public SDLCanvas
 {
 public:
-	SDLWindowRenderer(unsigned int, unsigned int, int);
+	SDLWindowRenderer(const char*, int, int, int);
 
 	SDLWindowRenderer(SDL_Window*, int);
 
