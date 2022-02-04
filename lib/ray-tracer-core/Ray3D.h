@@ -19,6 +19,8 @@ public:
 		return _direction;
 	}
 
+	const Ray3D Transform(const Matrix4d& transformation) const;
+
 private:
 	Vector3D _direction;
 	Point3D _position;

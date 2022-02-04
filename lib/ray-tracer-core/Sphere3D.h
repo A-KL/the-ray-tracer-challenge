@@ -47,7 +47,8 @@ class Object3D
 {
 	public:
 		Object3D(const Point3D& position) :
-			_position(position)
+			_position(position),
+			_transformation(matrix_identity_4d)
 		{ }
 
 		inline Point3D Location() const
@@ -55,8 +56,19 @@ class Object3D
 			return _position;
 		}
 
+		inline const Matrix4d Transformation() const
+		{
+			return _transformation;
+		}
+
+		inline void SetTransformation(const Matrix4d& transformation)
+		{
+			_transformation = transformation;
+		}
+
 	private:
 		Point3D _position;
+		Matrix4d _transformation;
 };
 
 class Sphere3D : 
@@ -69,7 +81,7 @@ class Sphere3D :
 
 		Sphere3D(const Point3D& position, double size) :
 			Object3D(position),
-			_size(size)
+			_size(size)	
 		{ }
 
 		inline double R() const
@@ -79,5 +91,6 @@ class Sphere3D :
 
 	private:
 		double _size;
+		
 };
 

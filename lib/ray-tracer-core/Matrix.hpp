@@ -35,7 +35,7 @@ struct Matrix
 		return *this;
 	}
 
-	bool operator==(const Matrix<TItem, TSizeX, TSizeY>& other)
+	bool operator==(const Matrix<TItem, TSizeX, TSizeY>& other) const
 	{
 		return memcmp(Data, other.Data, (TSizeX * TSizeY)) == 0;
 	}
@@ -45,7 +45,7 @@ struct Matrix
 		return !(*this == other);
 	}
 
-	Matrix<TItem, TSizeX, TSizeY> operator*(const Matrix<TItem, TSizeX, TSizeY>& other)
+	Matrix<TItem, TSizeX, TSizeY> operator*(const Matrix<TItem, TSizeX, TSizeY>& other) const
 	{
 		Matrix<TItem, TSizeX, TSizeY> result;
 
@@ -54,7 +54,7 @@ struct Matrix
 		return result;
 	}
 
-	Primitive3D<TItem> operator*(const Primitive3D<TItem>& other)
+	Primitive3D<TItem> operator*(const Primitive3D<TItem>& other) const
 	{
 		TItem converted[4]{ 0, 0, 0, 0 };
 		TItem result[4]{ 0, 0, 0, 0 };
@@ -67,7 +67,7 @@ struct Matrix
 		return Primitive3D<TItem>(result);
 	}
 
-	Matrix<TItem, TSizeX - 1, TSizeY - 1> remove(int row, int col)
+	Matrix<TItem, TSizeX - 1, TSizeY - 1> remove(int row, int col) const
 	{
 		Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
 
@@ -199,6 +199,13 @@ const Matrix2 matrix_identity_2
 };
 
 const Matrix3 matrix_identity_3
+{
+	1, 0, 0,
+	0, 1, 0,
+	0, 0, 1
+};
+
+const Matrix3d matrix_identity_3d
 {
 	1, 0, 0,
 	0, 1, 0,
