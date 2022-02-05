@@ -21,17 +21,20 @@
 #include "../lib/ray-tracer-core/Environment.h"
 #include "../lib/ray-tracer-core/Projectile.h"
 
+#include "../lib/ray-tracer-core/Sphere3D.h"
+
 #include "../lib/ray-tracer-core/Matrix.hpp"
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
 #include "tests.h"
+#include "../lib/ray-tracer-core/Ray3D.h"
 
 
 using namespace std;
 
 const int h = 550;
-const int w = 900;
+const int w = 550;
 
 void run_projectile_demo(Canvas& canvas)
 {
@@ -103,6 +106,43 @@ void run_clock_demo(Canvas& canvas)
 			c.Raw);
 
 		location = rotate * location;
+	}
+
+	canvas.Update();
+}
+
+void run_shadow_demo(Canvas& canvas)
+{
+	const double wall_size = 7.0;
+	const double wall_position_z = 10.0;
+	const double pixel_size = wall_size / w;
+	const double half = wall_size / 2;
+
+	Sphere3D sphere;
+	Point3D ray_origin(0, 0, -5);
+
+	Color<Rgba> shadow = Rgba::Red;
+	Color<Rgba> background = Rgba::Black;
+
+	canvas.Clear();
+
+	for (int y = 0; y < h; y++)
+	{
+		double world_y = half - pixel_size * y;
+
+		for (int x = 0; x < w; x++)
+		{
+			double world_y =  - half + pixel_size * x;
+
+			Point3D point_to_render(world_y, world_y, wall_position_z);
+			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
+		}
+
+		//canvas.DrawPoint(
+		//	offset_x + location.X() * size,
+		//	offset_y + location.Y() * size,
+		//	shadow.Raw);
+
 	}
 
 	canvas.Update();
