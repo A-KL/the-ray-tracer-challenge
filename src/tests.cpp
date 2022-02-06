@@ -14,6 +14,9 @@
 
 #include "../lib/ray-tracer-core/Ray3D.h"
 #include "../lib/ray-tracer-core/Sphere3D.h"
+#include "../lib/ray-tracer-core/Intersection.h"
+
+#include "../lib/ray-tracer-core/RayTracer.h"
 
 #include "tests.h"
 
@@ -305,7 +308,7 @@ void test_matrix_shearing()
 	Point3D point(2, 3, 4);
 
 	// Act
-	Primitive3D<double> result = m0 * point;
+	auto result = m0 * point;
 
 	// Assert
 	assert(Point3D(5, 3, 4) == result);
@@ -327,41 +330,51 @@ void test_sphere()
 {
 	Sphere3D sphere;
 
+	// Assert
 	assert(1, sphere.R());
 }
 
-int ray_intersect(const Object3D& object, const Ray3D& ray)
-{
-	Vector3D object_to_ray = ray.Location() - object.Location();
-
-	float a = Vector3D::Dot(ray.Direction(), ray.Direction());
-
-	float b = 2 * Vector3D::Dot(ray.Direction(), object_to_ray);
-
-	float c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
-
-	float d = powf(b, 2) - 4 * a * c;
-
-	if (d < 0)
-	{
-		return 0;
-	}
-
-	float t1 = (-b - sqrtf(d)) / (2 * a);
-	float t2 = (-b + sqrtf(d)) / (2 * a);
-	//Intersections<2> result();
-
-	return 2;
-}
-
 void test_ray_intersect()
-{
+{	
+	// Set up
 	Ray3D ray(Point3D(0, 1, -5), Vector3D(0, 0, 1));
 	Sphere3D sphere;
 
-	int res = ray_intersect(sphere, ray);
+	// Act
+	auto res  = ray_intersect(sphere, ray);
 
-	assert(2, res);
+	// Assert
+	assert(2 == res.size());
+
+	auto first = res.begin();
+
+	assert(5.0 == (*first).T());
+	assert(5.0 == (*first++).T());
+}
+
+void test_ray_hits()
+{
+	// Set up
+	Sphere3D sphere;
+
+	Intersection 
+		intersection1(5, sphere),
+		intersection2(7, sphere),
+		intersection3(-3, sphere),
+		intersection4(2, sphere);
+
+	std::list<Intersection> intersections1 = {
+		intersection1,
+		intersection2,
+		intersection3,
+		intersection4
+	};
+
+	// Act
+	auto result = ray_hit(intersections1);
+
+	// Assert
+	assert(intersection4 == result);
 }
 
 void run_tests()
@@ -395,4 +408,6 @@ void run_tests()
 	test_sphere();
 
 	test_ray_intersect();
+
+	test_ray_hits();
 }

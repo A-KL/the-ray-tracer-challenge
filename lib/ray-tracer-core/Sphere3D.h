@@ -1,48 +1,5 @@
 #pragma once
 
-#include <cassert>
-#include<stdarg.h>
-#include <initializer_list>
-
-class Intersection
-{
-public:
-
-private:
-};
-
-template<unsigned Size>
-class Intersections
-{
-public:
-	Intersections(std::initializer_list<Intersection> list)
-	{
-		assert(list.size() > 0);
-
-
-		for (auto elem : list)
-		{
-			//std::cout << elem << std::endl;
-		}
-	}
-
-	Intersections(int count, ...)
-	{
-		va_list ap;
-		va_start(ap, count);
-
-		for (int i = 0; i < count; i++) 
-		{
-			_intersections[i] = va_arg(ap, Intersection);
-		}
-
-		va_end(ap);
-	}
-
-private:
-	Intersection _intersections[Size];
-};
-
 class Object3D
 {
 	public:
@@ -64,6 +21,15 @@ class Object3D
 		inline void SetTransformation(const Matrix4d& transformation)
 		{
 			_transformation = transformation;
+		}
+
+		bool virtual operator==(const Object3D& other) const
+		{
+			return 
+				_position.X() == other._position.X() &&
+				_position.Y() == other._position.Y() &&
+				_position.Z() == other._position.Z() &&
+				_transformation == other._transformation;
 		}
 
 	private:
@@ -89,8 +55,17 @@ class Sphere3D :
 			return _size;
 		}
 
+		bool operator==(const Object3D& other) const
+		{
+			return false;
+		}
+
+		bool operator==(const Sphere3D& other) const
+		{
+			return (Object3D)*this == (Object3D)other && _size == other._size;
+		}
+
 	private:
 		double _size;
 		
 };
-

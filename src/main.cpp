@@ -21,15 +21,15 @@
 #include "../lib/ray-tracer-core/Environment.h"
 #include "../lib/ray-tracer-core/Projectile.h"
 
-#include "../lib/ray-tracer-core/Sphere3D.h"
-
 #include "../lib/ray-tracer-core/Matrix.hpp"
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
-#include "tests.h"
 #include "../lib/ray-tracer-core/Ray3D.h"
+#include "../lib/ray-tracer-core/Sphere3D.h"
+#include "../lib/ray-tracer-core/Intersection.h"
 
+#include "tests.h"
 
 using namespace std;
 

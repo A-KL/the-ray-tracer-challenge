@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp" />
+    <ClCompile Include="..\lib\ray-tracer-core\Intersection.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Intersection.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\Environment.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Mathf.h" />
@@ -176,6 +178,7 @@
     <ClInclude Include="..\lib\ray-tracer-core\Projectile.h" />
     <ClInclude Include="..\lib\graphics\SDLCanvas.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Ray3D.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\RayTracer.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Sphere3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h" />
     <ClInclude Include="tests.h" />

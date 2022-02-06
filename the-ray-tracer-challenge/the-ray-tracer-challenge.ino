@@ -1,6 +1,6 @@
 
 #include <M5GFX.h>
-
+#include <list>
 #include "Primitive3D.h"
 #include "Vector3D.h"
 #include "Point3D.h"
@@ -29,6 +29,8 @@ Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
 void setup(void)
 { 
+std::list<int> l = { 7, 5, 16, 8 };
+
   display.init();
   display.startWrite();
   display.fillScreen(TFT_BLACK);
