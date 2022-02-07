@@ -8,4 +8,4 @@
 #include "Sphere3D.h"
 #include "Intersection.h"
 
-const Intersection Intersection::Empty = Intersection(0, Sphere3D());
+const Intersection Intersection::Empty = Intersection(0, 0);

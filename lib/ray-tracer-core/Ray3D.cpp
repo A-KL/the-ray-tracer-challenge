@@ -18,5 +18,5 @@ const Ray3D Ray3D::Transform(const Matrix4d& transformation) const
 
 	auto dir = transformation * _direction;
 
-	return Ray3D(Point3D(1,1,1), Vector3D(2,2,2));
+	return Ray3D(pos, dir);
 }

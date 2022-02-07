@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Mathf.h"
-
 #include <iostream>
 
 using namespace std;
@@ -50,8 +48,6 @@ public:
 			Mathf::Approximately(Y(), other.Y()) &&
 			Mathf::Approximately(Z(), other.Z()) &&
 			W() == other.W();
-
-		//return memcmp(_data, other._data, sizeof(_data)) == 0;
 	}
 
 	friend ostream& operator<<(ostream& out, const Primitive3D<TItem>& p)

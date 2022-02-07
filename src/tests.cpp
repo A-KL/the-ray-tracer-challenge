@@ -2,11 +2,11 @@
 #include <list>
 #include <cassert>
 
+#include "../lib/ray-tracer-core/Mathf.h"
+
 #include "../lib/ray-tracer-core/Primitive3D.h"
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
-
-#include "../lib/ray-tracer-core/Mathf.h"
 
 #include "../lib/ray-tracer-core/Matrix.hpp"
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
@@ -377,6 +377,21 @@ void test_ray_hits()
 	assert(intersection4 == result);
 }
 
+void test_ray_transform()
+{
+	// Set up
+	Ray3D ray(Point3D(1, 2, 3), Vector3D(0, 1, 0));
+
+	auto transform = Matrix4d::Translate(3, 4, 5);
+
+	// Act
+	auto result = ray.Transform(transform);
+
+	// Assert
+	assert(Point3D(4, 6, 8) == result.Location());
+	assert(Vector3D(0, 1, 0) == result.Direction());
+}
+
 void run_tests()
 {
 	test_matrix_mul();
@@ -410,4 +425,6 @@ void run_tests()
 	test_ray_intersect();
 
 	test_ray_hits();
+
+	test_ray_transform();
 }

@@ -54,6 +54,9 @@
     <ClCompile Include="..\lib\ray-tracer-core\Intersection.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\RayTracer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\ray-tracer-core\Mathf.h">

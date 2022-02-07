@@ -155,6 +155,7 @@
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Ray3D.cpp" />
+    <ClCompile Include="..\lib\ray-tracer-core\RayTracer.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Sphere3D.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="..\lib\graphics\SDLCanvas.cpp" />

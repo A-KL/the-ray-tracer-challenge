@@ -54,6 +54,32 @@ struct Matrix
 		return result;
 	}
 
+	Point3D operator*(const Point3D& other) const
+	{
+		TItem converted[4]{ 0, 0, 0, 0 };
+		TItem result[4]{ 0, 0, 0, 0 };
+
+		// TODO: optimize
+		other.ToArray(converted);
+
+		matrix_mul(*this, converted, result);
+
+		return Point3D(result[0], result[1], result[2]);
+	}
+
+	Vector3D operator*(const Vector3D& other) const
+	{
+		TItem converted[4]{ 0, 0, 0, 0 };
+		TItem result[4]{ 0, 0, 0, 0 };
+
+		// TODO: optimize
+		other.ToArray(converted);
+
+		matrix_mul(*this, converted, result);
+
+		return Vector3D(result[0], result[1], result[2]);
+	}
+
 	Primitive3D<TItem> operator*(const Primitive3D<TItem>& other) const
 	{
 		TItem converted[4]{ 0, 0, 0, 0 };

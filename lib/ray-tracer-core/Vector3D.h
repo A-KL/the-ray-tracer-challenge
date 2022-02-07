@@ -36,6 +36,11 @@ public:
 
 	Vector3D operator*(float);
 
+	//Vector3D operator*(const Matrix4d& other) const
+	//{
+	//	return Vector3D(1, 1, 1);
+	//}
+
 	friend ostream& operator<<(ostream& out, const Vector3D& p);
 
 protected:

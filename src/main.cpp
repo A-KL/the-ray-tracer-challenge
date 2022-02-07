@@ -18,18 +18,20 @@
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
 
-#include "../lib/ray-tracer-core/Environment.h"
-#include "../lib/ray-tracer-core/Projectile.h"
-
 #include "../lib/ray-tracer-core/Matrix.hpp"
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
+
+#include "../lib/ray-tracer-core/Environment.h"
+#include "../lib/ray-tracer-core/Projectile.h"
 
 #include "../lib/ray-tracer-core/Ray3D.h"
 #include "../lib/ray-tracer-core/Sphere3D.h"
 #include "../lib/ray-tracer-core/Intersection.h"
 
 #include "tests.h"
+
+#include "../lib/ray-tracer-core/RayTracer.h"
 
 using namespace std;
 
@@ -136,13 +138,14 @@ void run_shadow_demo(Canvas& canvas)
 
 			Point3D point_to_render(world_y, world_y, wall_position_z);
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
+
+			auto intersects = ray_intersect(sphere, ray);
+
+			if (ray_hit(intersects) != Intersection::Empty)
+			{
+				canvas.DrawPoint(x, y, shadow.Raw);
+			}
 		}
-
-		//canvas.DrawPoint(
-		//	offset_x + location.X() * size,
-		//	offset_y + location.Y() * size,
-		//	shadow.Raw);
-
 	}
 
 	canvas.Update();
@@ -160,7 +163,9 @@ int main()
 
 	//run_projectile_demo(canvas);
 
-	run_clock_demo(canvas);
+	//run_clock_demo(canvas);
+
+	run_shadow_demo(canvas);
 	
 	do
 	{
