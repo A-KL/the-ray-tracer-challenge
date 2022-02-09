@@ -29,11 +29,13 @@ struct IntersectionComparator
 
 std::list<Intersection> ray_intersect(const Object3D& object, const Ray3D& ray)
 {
-	Vector3D object_to_ray = ray.Location() - object.Location();
+	Ray3D final_ray = ray.Transform(object.Transformation().Inverse());
 
-	float a = Vector3D::Dot(ray.Direction(), ray.Direction());
+	Vector3D object_to_ray = final_ray.Location() - object.Location();
 
-	float b = 2 * Vector3D::Dot(ray.Direction(), object_to_ray);
+	float a = Vector3D::Dot(final_ray.Direction(), final_ray.Direction());
+
+	float b = 2 * Vector3D::Dot(final_ray.Direction(), object_to_ray);
 
 	float c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
 

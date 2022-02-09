@@ -85,7 +85,7 @@ namespace ray_tracer_testing
 			matrix_translate(5, -3, 2, m0);
 
 			// Act
-			matrix_mul(m0.inverse(), point, result);
+			matrix_mul(m0.Inverse(), point, result);
 
 			// Assert
 			Assert::AreEqual(-8, result[0]);

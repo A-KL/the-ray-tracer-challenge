@@ -2,7 +2,7 @@
 
 template<typename  TItem, unsigned TSizeX, unsigned TSizeY>
 bool matrix_inverse(
-	Matrix<TItem, TSizeX, TSizeY>& matrix,
+	const Matrix<TItem, TSizeX, TSizeY>& matrix,
 	Matrix<TItem, TSizeX, TSizeX>& result)
 {
 	TItem d = matrix_determinant(matrix);

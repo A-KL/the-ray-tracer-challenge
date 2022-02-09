@@ -102,7 +102,7 @@ struct Matrix
 		return result;
 	}
 
-	inline TItem determinant()
+	inline TItem determinant() const
 	{
 		return matrix_determinant(*this);
 	}
@@ -112,12 +112,12 @@ struct Matrix
 		return matrix_minor(*this, row, col);
 	}
 
-	inline TItem cofactor(int row, int col)
+	inline TItem cofactor(int row, int col) const
 	{
 		return matrix_cofactor(*this, row, col);
 	}
 
-	Matrix<TItem, TSizeX, TSizeY> inverse()
+	Matrix<TItem, TSizeX, TSizeY> Inverse() const
 	{
 		Matrix<TItem, TSizeX, TSizeY> result;
 
@@ -127,7 +127,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, TSizeX, TSizeY> zero()
+	static Matrix<TItem, TSizeX, TSizeY> Zero()
 	{
 		Matrix<TItem, TSizeX, TSizeY> result;
 
@@ -136,7 +136,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, TSizeX, TSizeX> identity()
+	static Matrix<TItem, TSizeX, TSizeX> Identity()
 	{
 		Matrix<TItem, TSizeX, TSizeX> result;
 
@@ -191,7 +191,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> shearing(TItem xy,
+	static Matrix<TItem, 4, 4> Shearing(TItem xy,
 		TItem xz,
 		TItem yx,
 		TItem yz,
