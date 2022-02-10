@@ -9,7 +9,7 @@ struct Rgba
 {
 	const unsigned char R, G, B, A;
 
-	unsigned char Rgba::operator[](int index)
+	unsigned char operator[](int index)
 	{
 		assert(index < 4);
 

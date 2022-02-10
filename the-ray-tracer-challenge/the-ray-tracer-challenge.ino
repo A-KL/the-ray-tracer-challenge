@@ -2,6 +2,8 @@
 #include <M5GFX.h>
 #include <list>
 
+#include "Color.h"
+
 #include "Mathf.h"
 
 #include "Primitive3D.h"
@@ -39,8 +41,6 @@ Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
 void setup(void)
 { 
-std::list<int> l = { 7, 5, 16, 8 };
-
   display.init();
   display.startWrite();
   display.fillScreen(TFT_BLACK);
@@ -53,6 +53,45 @@ std::list<int> l = { 7, 5, 16, 8 };
   {
     display.setRotation(display.getRotation() ^ 1);
   }
+}
+
+void run_shadow_demo(int w, int h) //Canvas& canvas
+{
+	const double wall_size = 7.0;
+	const double wall_position_z = 10.0;
+	const double pixel_size = wall_size / w;
+	const double half = wall_size / 2;
+
+	Sphere3D sphere;
+	Point3D ray_origin(0, 0, -5);
+
+	Color<Rgba> opaque = Rgba::Black;
+	Color<Rgba> background = Rgba::Red;
+	Color<Rgba> shadow = { opaque.Channels * background.Channels };
+
+	//canvas.Clear(background.Raw);
+
+	for (int y = 0; y < h; y++)
+	{
+		double world_y = half - pixel_size * y;
+
+		for (int x = 0; x < w; x++)
+		{
+			double world_x =  - half + pixel_size * x;
+
+			Point3D point_to_render(world_x, world_y, wall_position_z);
+			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
+
+			auto intersects = ray_intersect(sphere, ray);
+
+			if (ray_hit(intersects) != Intersection::Empty)
+			{
+			//	canvas.DrawPoint(x, y, shadow.Raw);
+			}
+		}
+	}
+
+	//canvas.Update();
 }
 
 void loop(void)
