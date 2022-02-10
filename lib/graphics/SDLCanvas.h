@@ -3,9 +3,9 @@
 class Canvas
 {
 public:
-	virtual void DrawPoint(int x, int y, int color) = 0;
+	virtual void DrawPoint(int x, int y, unsigned int color) = 0;
 
-	virtual void DrawLine(int x0, int y0, int x1, int y1, int color) = 0;
+	virtual void DrawLine(int x0, int y0, int x1, int y1, unsigned int color) = 0;
 
 	virtual int Height() = 0;
 
@@ -14,6 +14,8 @@ public:
 	virtual unsigned int Bpp() = 0;
 
 	virtual void Clear() = 0;
+
+	virtual void Clear(unsigned int color) = 0;
 
 	virtual void Update() = 0;
 };
@@ -26,11 +28,9 @@ public:
 
 	SDLCanvas(SDL_Window*);
 
-	//const char& BeginDrawing();
+	void DrawPoint(int x, int y, unsigned int color);
 
-	void DrawPoint(int x, int y, int color);
-
-	void DrawLine(int x0, int y0, int x1, int y1, int color);
+	void DrawLine(int x0, int y0, int x1, int y1, unsigned int color);
 
 	inline int Height()
 	{
@@ -48,6 +48,8 @@ public:
 	}
 
 	void Clear();
+
+	void Clear(unsigned int color);
 
 	void Update();
 

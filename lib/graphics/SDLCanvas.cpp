@@ -15,33 +15,30 @@ SDLCanvas::SDLCanvas(SDL_Window* window)
 	: SDLCanvas(window, 32)
 { }
 
-void SDLCanvas::DrawPoint(int x, int y, int color)
+void SDLCanvas::DrawPoint(int x, int y, unsigned int color)
 {
-	Color<Rgba> rgba = Rgba::Black;
-
-	rgba.Raw = color;
-
-	SDL_SetRenderDrawColor(_sdl, rgba.Color.R, rgba.Color.G, rgba.Color.B, rgba.Color.A);
+	SDL_SetRenderDrawColor(_sdl, (uint8_t)color, (uint8_t)(color >> 8), (uint8_t)(color >> 16), (uint8_t)(color >> 24));
 
 	SDL_RenderDrawPointF(_sdl, x, y);
 }
 
-void SDLCanvas::DrawLine(int x0, int y0, int x1, int y1, int color)
+void SDLCanvas::DrawLine(int x0, int y0, int x1, int y1, unsigned int color)
 {
-	Color<Rgba> rgba = Rgba::Black;
-
-	rgba.Raw = color;
-
-	SDL_SetRenderDrawColor(_sdl, rgba.Color.R, rgba.Color.G, rgba.Color.B, rgba.Color.A);
+	SDL_SetRenderDrawColor(_sdl, (uint8_t)color, (uint8_t)(color >> 8), (uint8_t)(color >> 16), (uint8_t)(color >> 24));
 
 	SDL_RenderDrawLine(_sdl, x0, y0, x1, y1);
 }
 
-void SDLCanvas::Clear()
+void SDLCanvas::Clear(unsigned int color)
 {
-	SDL_SetRenderDrawColor(_sdl, _background.Color.R, _background.Color.G, _background.Color.B, _background.Color.A);
+	SDL_SetRenderDrawColor(_sdl, (uint8_t)color, (uint8_t)(color>>8), (uint8_t)(color >> 16), (uint8_t)(color >> 24));
 
 	SDL_RenderClear(_sdl);
+}
+
+void SDLCanvas::Clear()
+{
+	Clear(_background.Raw);
 }
 
 void SDLCanvas::Update()

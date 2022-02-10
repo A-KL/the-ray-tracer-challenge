@@ -123,10 +123,11 @@ void run_shadow_demo(Canvas& canvas)
 	Sphere3D sphere;
 	Point3D ray_origin(0, 0, -5);
 
-	Color<Rgba> shadow = Rgba::Red;
-	Color<Rgba> background = Rgba::Black;
+	Color<Rgba> opaque = Rgba::Black;
+	Color<Rgba> background = Rgba::Red;
+	Color<Rgba> shadow = { opaque.Channels * background.Channels };
 
-	canvas.Clear();
+	canvas.Clear(background.Raw);
 
 	for (int y = 0; y < h; y++)
 	{
@@ -134,9 +135,9 @@ void run_shadow_demo(Canvas& canvas)
 
 		for (int x = 0; x < w; x++)
 		{
-			double world_y =  - half + pixel_size * x;
+			double world_x =  - half + pixel_size * x;
 
-			Point3D point_to_render(world_y, world_y, wall_position_z);
+			Point3D point_to_render(world_x, world_y, wall_position_z);
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
 
 			auto intersects = ray_intersect(sphere, ray);
