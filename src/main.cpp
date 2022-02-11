@@ -9,6 +9,7 @@
 #include <SDL.h>
 
 #include "../lib/graphics/Color.h"
+#include "../lib/graphics/Canvas.h"
 #include "../lib/graphics/SDLCanvas.h"
 #include "../lib/graphics/SDLWindowRenderer.h"
 

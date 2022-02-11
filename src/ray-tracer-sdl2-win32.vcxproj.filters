@@ -113,5 +113,8 @@
     <ClInclude Include="..\lib\ray-tracer-core\Intersection.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\lib\graphics\Canvas.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

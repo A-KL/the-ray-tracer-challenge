@@ -3,6 +3,7 @@
 #include <list>
 
 #include "Color.h"
+#include "Canvas.h"
 
 #include "Mathf.h"
 

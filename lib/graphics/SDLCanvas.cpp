@@ -1,5 +1,6 @@
 #include <SDL.h>
 #include "Color.h"
+#include "Canvas.h"
 #include "SDLCanvas.h"
 
 SDLCanvas::SDLCanvas(SDL_Window* window, int bpp)
@@ -19,7 +20,7 @@ void SDLCanvas::DrawPoint(int x, int y, unsigned int color)
 {
 	SDL_SetRenderDrawColor(_sdl, (uint8_t)color, (uint8_t)(color >> 8), (uint8_t)(color >> 16), (uint8_t)(color >> 24));
 
-	SDL_RenderDrawPointF(_sdl, x, y);
+	SDL_RenderDrawPoint(_sdl, x, y);
 }
 
 void SDLCanvas::DrawLine(int x0, int y0, int x1, int y1, unsigned int color)
