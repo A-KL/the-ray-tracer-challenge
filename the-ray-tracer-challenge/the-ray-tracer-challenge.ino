@@ -88,23 +88,26 @@ void run_shadow_demo(int w, int h) //Canvas& canvas
 			if (ray_hit(intersects) != Intersection::Empty)
 			{
 			//	canvas.DrawPoint(x, y, shadow.Raw);
+				display.drawPixel(x, y, TFT_RED);
 			}
 		}
 	}
 
 	//canvas.Update();
+	display.display();
 }
 
 void loop(void)
 { 
-	Point3D p = proj.Position();
+	run_shadow_demo(display.width(), display.height());
+// 	Point3D p = proj.Position();
 
-  display.waitDisplay();
-  display.drawPixel(p.X(), display.height() - p.Y(), TFT_RED);
+//   display.waitDisplay();
+//   display.drawPixel(p.X(), display.height() - p.Y(), TFT_RED);
 
-	proj = proj.Tick(env);
+// 	proj = proj.Tick(env);
 
-  display.display();
+//   display.display();
 
   delay(1);
 }
