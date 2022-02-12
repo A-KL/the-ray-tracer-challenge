@@ -19,6 +19,7 @@
 #include "../lib/ray-tracer-core/RayTracer.h"
 
 #include "tests.h"
+#include "../lib/graphics/Color.h"
 
 using namespace std;
 
@@ -573,6 +574,24 @@ void test_ray_sphere_translate_intersect()
 	assert(0 == res.size());
 }
 
+void test_color_rgb565()
+{
+	// Set up
+	Color<Rgba> red = Rgba::Red;
+	Color<Rgba> purple{ 128, 0, 128, 0 };
+	Color<Rgba> gray { 128, 128, 128, 0 };
+
+	// Act
+	auto red565 = red.Channels.ToRgb565();
+	auto purple565 = purple.Channels.ToRgb565();
+	auto gray565 = gray.Channels.ToRgb565();
+
+	// Assert
+	assert(0xF800 == red565);
+	assert(0x780F == purple565);
+	assert(0x7BEF == gray565);
+}
+
 void run_tests()
 {
 	test_matrix_mul();
@@ -614,4 +633,6 @@ void run_tests()
 	test_ray_sphere_scale_intersect();
 
 	test_ray_sphere_translate_intersect();
+
+	test_color_rgb565();
 }

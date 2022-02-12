@@ -3,7 +3,11 @@
 #include <cassert>
 
 template <class T>
-union Color;
+union Color
+{
+	T Channels;
+	unsigned int Raw;
+};
 
 struct Rgba
 {
@@ -37,6 +41,19 @@ struct Rgba
 		return result;
 	}
 
+	inline unsigned short ToRgb565()
+	{
+		double prop_r = R / 255.0;
+		double prop_g = G / 255.0;
+		double prop_b = B / 255.0;
+
+		char r = (char)(prop_r * 31);
+		char g = (char)(prop_g * 62);
+		char b = (char)(prop_b * 31);
+
+		return (r << 11) | (g << 5) | (b << 0);
+	}
+
 	static Color<Rgba> Red, Green, Blue, Black;
 
 };
@@ -56,12 +73,7 @@ struct Rgba
 //};
 
 
-template <class T>
-union Color
-{
-	T Channels;
-	unsigned int Raw;
-};
+
 
 
 

@@ -2,17 +2,17 @@
 
 #include "Canvas.h"
 
-class SDLCanvas :
+class M5StackCanvas :
 	public Canvas
 {
 public:
-	SDLCanvas(SDL_Window*, int);
+	M5StackCanvas(M5GFX&, int);
 
-	SDLCanvas(SDL_Window*);
+	void Init(int color = 0);
 
-	void DrawPoint(int x, int y, unsigned int color);
+	void DrawPoint(int x, int y, int color);
 
-	void DrawLine(int x0, int y0, int x1, int y1, unsigned int color);
+	void DrawLine(int x0, int y0, int x1, int y1, int color);
 
 	inline int Height()
 	{
@@ -33,12 +33,12 @@ public:
 
 	void Update();
 
-	virtual ~SDLCanvas();
+	virtual ~M5StackCanvas();
 
 private:
 	int _w, _h, _bpp;
 
-	SDL_Renderer* _sdl;
+	M5GFX* _display;
 
 	const Color<Rgba> _background = Rgba::Black;
 };

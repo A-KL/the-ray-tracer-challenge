@@ -4,6 +4,7 @@
 
 #include "Color.h"
 #include "Canvas.h"
+#include "M5StackCanvas.h"
 
 #include "Mathf.h"
 
@@ -25,7 +26,7 @@
 #include "RayTracer.h"
 
 M5GFX display;
-
+M5StackCanvas canvas(display, 16);
 //#include <M5UnitOLED.h>
 //M5UnitOLED display; // default setting
 //M5UnitOLED display ( 21, 22, 400000 ); // SDA, SCL, FREQ
@@ -34,30 +35,22 @@ M5GFX display;
 //M5UnitLCD display;  // default setting
 //M5UnitLCD display  ( 21, 22, 400000 ); // SDA, SCL, FREQ
 
-Point3D start(0, 1, 0);
-Vector3D velocity(1, 1.8, 0);
+// Point3D start(0, 1, 0);
+// Vector3D velocity(1, 1.8, 0);
 
-Projectile proj(start, velocity.Normalize() * 6.25);
-Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
+// Projectile proj(start, velocity.Normalize() * 6.25);
+// Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
 void setup(void)
 { 
-  display.init();
-  display.startWrite();
-  display.fillScreen(TFT_BLACK);
-
-  if (display.isEPD())
-  {
-    display.setEpdMode(epd_mode_t::epd_fastest);
-  }
-  if (display.width() < display.height())
-  {
-    display.setRotation(display.getRotation() ^ 1);
-  }
+    canvas.Init();
+	//display.fillScreen(TFT_RED);
 }
 
-void run_shadow_demo(int w, int h) //Canvas& canvas
+void run_shadow_demo(Canvas& canvas)
 {
+	int w = display.height();
+	int h = display.height();
 	const double wall_size = 7.0;
 	const double wall_position_z = 10.0;
 	const double pixel_size = wall_size / w;
@@ -66,11 +59,14 @@ void run_shadow_demo(int w, int h) //Canvas& canvas
 	Sphere3D sphere;
 	Point3D ray_origin(0, 0, -5);
 
-	Color<Rgba> opaque = Rgba::Black;
 	Color<Rgba> background = Rgba::Red;
+	Color<Rgba> opaque = Rgba::Black;
 	Color<Rgba> shadow = { opaque.Channels * background.Channels };
 
-	//canvas.Clear(background.Raw);
+	int back = background.Channels.ToRgb565();
+	int shd = shadow.Channels.ToRgb565();
+
+	canvas.Clear(back);
 
 	for (int y = 0; y < h; y++)
 	{
@@ -87,19 +83,16 @@ void run_shadow_demo(int w, int h) //Canvas& canvas
 
 			if (ray_hit(intersects) != Intersection::Empty)
 			{
-			//	canvas.DrawPoint(x, y, shadow.Raw);
-				display.drawPixel(x, y, TFT_RED);
+				canvas.DrawPoint(x, y, shd);
 			}
 		}
+		canvas.Update();
 	}
-
-	//canvas.Update();
-	display.display();
 }
 
 void loop(void)
 { 
-	run_shadow_demo(display.width(), display.height());
+	run_shadow_demo(canvas);
 // 	Point3D p = proj.Position();
 
 //   display.waitDisplay();
@@ -109,5 +102,5 @@ void loop(void)
 
 //   display.display();
 
-  delay(1);
+  delay(10);
 }
