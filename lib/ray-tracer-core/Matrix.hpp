@@ -1,5 +1,7 @@
 #pragma once
 
+#include <cassert>
+
 template<typename TItem, unsigned TSizeX, unsigned TSizeY>
 struct Matrix
 {
@@ -122,7 +124,7 @@ struct Matrix
 		Matrix<TItem, TSizeX, TSizeY> result;
 
 		matrix_zero(result);
-		matrix_inverse(*this, result);
+		assert(matrix_inverse(*this, result));
 
 		return result;
 	}

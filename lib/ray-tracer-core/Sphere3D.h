@@ -40,7 +40,7 @@ class Object3D
 		Vector3D NormalAt(const Point3D& point) const
 		{
 			auto object_point = _transformation.Inverse() * point;
-			auto object_normal = object_point - _position;
+			auto object_normal = object_point - Point3D(0, 0, 0); //_position;
 			auto world_normal = _transformation.Inverse().Transpose() * object_normal;
 			//world_normal.W();
 
