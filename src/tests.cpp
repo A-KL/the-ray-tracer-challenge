@@ -39,7 +39,7 @@ void test_color_rgb565()
 	// Set up
 	Color<Rgba> red = Rgba::Red;
 	Color<Rgba> purple{ 128, 0, 128, 0 };
-	Color<Rgba> gray { 128, 128, 128, 0 };
+	Color<Rgba> gray{ 128, 128, 128, 0 };
 
 	// Act
 	auto red565 = red.Channels.ToRgb565();
@@ -74,7 +74,7 @@ void test_normal_at_rotate()
 	auto res = sphere.NormalAt(Point3D(1, 0, 0));
 
 	// Assert
-	assert(Vector3D(-1, 0, 0) == res);
+	assert(Vector3D(1, 0, 0) == res);
 }
 
 void test_normal_at_origin()
@@ -83,7 +83,7 @@ void test_normal_at_origin()
 	Sphere3D sphere;
 
 	// Act
-	auto normal = sphere.NormalAt(Point3D(sqrt(3)/3, sqrt(3) / 3, sqrt(3) / 3));
+	auto normal = sphere.NormalAt(Point3D(sqrt(3) / 3, sqrt(3) / 3, sqrt(3) / 3));
 
 	// Assert
 	assert(normal == normal.Normalize());
@@ -115,7 +115,20 @@ void test_normal_at_scale_rotate()
 	auto res = sphere.NormalAt(Point3D(0, sqrt(2.0) * 0.5, sqrt(2.0) * -0.5));
 
 	// Assert
- 	assert(Vector3D(0.0, 0.97014, -0.24254) == res);
+	assert(Vector3D(0.0, 0.97014, -0.24254) == res);
+}
+
+void test_vector_reflect()
+{
+	// Set up
+	Vector3D v1(0, -1, 0);
+	Vector3D normal(sqrt(2) / 2, sqrt(2) / 2, 0);
+
+	// Act
+	auto result = Vector3D::Reflect(v1, normal);
+
+	// Assert
+	assert(Vector3D(1, 0, 0) == result);
 }
 
 void run_tests()
@@ -129,13 +142,15 @@ void run_tests()
 
 	test_color_rgb565();
 
-	//test_normal_at_origin();
+	test_normal_at_origin();
 
-	//test_normal_at_translate();
+	test_normal_at_translate();
 
-	//test_normal_at_scale();
+	test_normal_at_scale();
 
-	//test_normal_at_rotate();
+	test_normal_at_rotate();
 
 	test_normal_at_scale_rotate();
+
+	test_vector_reflect();
 }

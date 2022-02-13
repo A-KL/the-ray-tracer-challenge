@@ -24,22 +24,19 @@ public:
 
 	Vector3D Normalize();
 
-	double Dot(const Vector3D&);
+	double Dot(const Vector3D&) const;
 
 	static double Dot(const Vector3D& v1, const Vector3D& v2);
 
-	Vector3D Cross(const Vector3D&);
+	static Vector3D Reflect(const Vector3D& v1, const Vector3D& v2);
 
-	Vector3D operator+(const Vector3D&);
+	Vector3D Cross(const Vector3D&) const;
 
-	Vector3D operator-(const Vector3D&);
+	Vector3D operator+(const Vector3D&) const;
 
-	Vector3D operator*(float);
+	Vector3D operator-(const Vector3D&) const;
 
-	//Vector3D operator*(const Matrix4d& other) const
-	//{
-	//	return Vector3D(1, 1, 1);
-	//}
+	Vector3D operator*(double) const;
 
 	friend ostream& operator<<(ostream& out, const Vector3D& p);
 

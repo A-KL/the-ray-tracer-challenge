@@ -3,17 +3,17 @@
 
 #include "Vector3D.h"
 
-Vector3D Vector3D::operator+(const Vector3D& other)
+Vector3D Vector3D::operator+(const Vector3D& other) const
 {
 	return Vector3D(X() + other.X(), Y() + other.Y(), Z() + other.Z());
 }
 
-Vector3D Vector3D::operator-(const Vector3D& other)
+Vector3D Vector3D::operator-(const Vector3D& other) const
 {
 	return Vector3D(X() - other.X(), Y() - other.Y(), Z() - other.Z());
 }
 
-Vector3D Vector3D::operator*(float value)
+Vector3D Vector3D::operator*(double value) const
 {
 	return Vector3D(X() * value, Y() * value, Z() * value);
 }
@@ -35,12 +35,17 @@ double Vector3D::Dot(const Vector3D& v1, const Vector3D& v2)
 	return v1.X() * v2.X() + v1.Y() * v2.Y() + v1.Z() * v2.Z() + v1.W() * v2.W();
 }
 
-double Vector3D::Dot(const Vector3D& other)
+Vector3D Vector3D::Reflect(const Vector3D& in, const Vector3D& normal)
+{
+	return in - normal * 2.0 * Dot(in, normal);
+}
+
+double Vector3D::Dot(const Vector3D& other) const
 {
 	return Vector3D::Dot(*this, other);
 }
 
-Vector3D Vector3D::Cross(const Vector3D& other)
+Vector3D Vector3D::Cross(const Vector3D& other) const
 {
 	return Vector3D(
 		X() * other.Z() - Z() * other.Y(),
