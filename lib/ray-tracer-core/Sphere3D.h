@@ -8,6 +8,11 @@ class Object3D
 			_transformation(matrix_identity_4d)
 		{ }
 
+		Object3D(const Point3D& position, const Matrix4d& transform) :
+			_position(position),
+			_transformation(transform)
+		{ }
+
 		inline Point3D Location() const
 		{
 			return _position;
@@ -32,6 +37,16 @@ class Object3D
 				_transformation == other._transformation;
 		}
 
+		Vector3D NormalAt(const Point3D& point) const
+		{
+			auto object_point = _transformation.Inverse() * point;
+			auto object_normal = object_point - _position;
+			auto world_normal = _transformation.Inverse().Transpose() * object_normal;
+			//world_normal.W();
+
+			return world_normal.Normalize();
+		}
+
 	private:
 		Point3D _position;
 		Matrix4d _transformation;
@@ -48,6 +63,12 @@ class Sphere3D :
 		Sphere3D(const Point3D& position, double size) :
 			Object3D(position),
 			_size(size)	
+		{ }
+
+
+		Sphere3D(const Matrix4d& translate, double size = 1) :
+			Object3D(Point3D(0, 0, 0), translate),
+			_size(size)
 		{ }
 
 		inline double R() const

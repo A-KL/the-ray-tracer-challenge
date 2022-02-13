@@ -163,6 +163,8 @@
     <ClCompile Include="..\lib\graphics\Color.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp" />
     <ClCompile Include="tests.cpp" />
+    <ClCompile Include="tests_ray.cpp" />
+    <ClCompile Include="tests_matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\graphics\Canvas.h" />

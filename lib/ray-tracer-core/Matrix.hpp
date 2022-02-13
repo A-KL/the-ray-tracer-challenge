@@ -93,7 +93,7 @@ struct Matrix
 		return Primitive3D<TItem>(result);
 	}
 
-	Matrix<TItem, TSizeX - 1, TSizeY - 1> remove(int row, int col) const
+	Matrix<TItem, TSizeX - 1, TSizeY - 1> Remove(int row, int col) const
 	{
 		Matrix<TItem, TSizeX - 1, TSizeY - 1> result;
 
@@ -102,17 +102,17 @@ struct Matrix
 		return result;
 	}
 
-	inline TItem determinant() const
+	inline TItem Determinant() const
 	{
 		return matrix_determinant(*this);
 	}
 
-	inline TItem minor(int row, int col)
+	inline TItem Minor(int row, int col)
 	{
 		return matrix_minor(*this, row, col);
 	}
 
-	inline TItem cofactor(int row, int col) const
+	inline TItem Cofactor(int row, int col) const
 	{
 		return matrix_cofactor(*this, row, col);
 	}
@@ -123,6 +123,16 @@ struct Matrix
 
 		matrix_zero(result);
 		matrix_inverse(*this, result);
+
+		return result;
+	}
+
+	Matrix<TItem, TSizeX, TSizeY> Transpose() const
+	{
+		Matrix<TItem, TSizeX, TSizeY> result;
+
+		matrix_zero(result);
+		matrix_transpose(*this, result);
 
 		return result;
 	}
@@ -155,7 +165,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> Translate(TItem x, TItem y, TItem z)
+	static Matrix<TItem, 4, 4> Translate(const TItem x, const TItem y, const TItem z)
 	{
 		Matrix<TItem, 4, 4> result;
 
@@ -164,7 +174,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> RotateX(double r)
+	static Matrix<TItem, 4, 4> RotateX(const double r)
 	{
 		Matrix<TItem, 4, 4> result;
 
@@ -173,7 +183,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> RotateY(double r)
+	static Matrix<TItem, 4, 4> RotateY(const double r)
 	{
 		Matrix<TItem, 4, 4> result;
 
@@ -182,7 +192,7 @@ struct Matrix
 		return result;
 	}
 
-	static Matrix<TItem, 4, 4> RotateZ(double r)
+	static Matrix<TItem, 4, 4> RotateZ(const double r)
 	{
 		Matrix<TItem, 4, 4> result;
 
