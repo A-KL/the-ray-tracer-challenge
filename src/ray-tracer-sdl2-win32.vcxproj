@@ -170,11 +170,13 @@
     <ClInclude Include="..\lib\graphics\Canvas.h" />
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Intersection.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Light3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\Environment.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Mathf.h" />
     <ClInclude Include="..\lib\ray-tracer-core\MatrixOps.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\MatrixTransform.hpp" />
+    <ClInclude Include="..\lib\ray-tracer-core\Object3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Point3D.h" />
     <ClInclude Include="..\lib\graphics\Color.h" />
     <ClInclude Include="..\lib\graphics\ColorRgba.h" />

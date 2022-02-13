@@ -14,6 +14,7 @@
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
 #include "../lib/ray-tracer-core/Ray3D.h"
+#include "../lib/ray-tracer-core/Light3D.h"
 #include "../lib/ray-tracer-core/Sphere3D.h"
 #include "../lib/ray-tracer-core/Intersection.h"
 
