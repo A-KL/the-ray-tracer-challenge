@@ -18,6 +18,9 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Tests\Header Files">
+      <UniqueIdentifier>{d39863fc-d2de-4b20-a17c-516da4e68ef1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -70,9 +73,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="tests.h">
-      <Filter>Tests</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\graphics\SDLCanvas.h">
       <Filter>Graphics</Filter>
     </ClInclude>
@@ -132,6 +132,9 @@
     </ClInclude>
     <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h">
       <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tests.h">
+      <Filter>Tests\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
