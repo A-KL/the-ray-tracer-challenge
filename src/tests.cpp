@@ -114,8 +114,6 @@ void test_normal_at_scale_rotate()
 	// Act
 	auto res = sphere.NormalAt(Point3D(0, sqrt(2.0) * 0.5, sqrt(2.0) * -0.5));
 
-	cout << res << endl;
-
 	// Assert
  	assert(Vector3D(0.0, 0.97014, -0.24254) == res);
 }
@@ -131,13 +129,13 @@ void run_tests()
 
 	test_color_rgb565();
 
-	test_normal_at_origin();
+	//test_normal_at_origin();
 
-	test_normal_at_translate();
+	//test_normal_at_translate();
 
-	test_normal_at_scale();
+	//test_normal_at_scale();
 
-	test_normal_at_rotate();
+	//test_normal_at_rotate();
 
 	test_normal_at_scale_rotate();
 }

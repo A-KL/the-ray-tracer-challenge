@@ -20,13 +20,13 @@ public:
 	~Vector3D()
 	{}
 
-	float Magniture();
+	double Magniture();
 
 	Vector3D Normalize();
 
-	float Dot(const Vector3D&);
+	double Dot(const Vector3D&);
 
-	static float Dot(const Vector3D& v1, const Vector3D& v2);
+	static double Dot(const Vector3D& v1, const Vector3D& v2);
 
 	Vector3D Cross(const Vector3D&);
 

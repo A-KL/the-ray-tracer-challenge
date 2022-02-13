@@ -18,24 +18,24 @@ Vector3D Vector3D::operator*(float value)
 	return Vector3D(X() * value, Y() * value, Z() * value);
 }
 
-float Vector3D::Magniture()
+double Vector3D::Magniture()
 {
-	return sqrtf(powf(X(), 2) + powf(Y(), 2) + powf(Z(), 2) + powf(W(), 2));
+	return sqrt(pow(X(), 2) + pow(Y(), 2) + pow(Z(), 2) + pow(W(), 2));
 }
 
 Vector3D Vector3D::Normalize()
 {
-	float m = Magniture();
+	double m = Magniture();
 
 	return Vector3D(X() / m, Y() / m, Z() / m, W() / m);
 }
 
-float Vector3D::Dot(const Vector3D& v1, const Vector3D& v2)
+double Vector3D::Dot(const Vector3D& v1, const Vector3D& v2)
 {
 	return v1.X() * v2.X() + v1.Y() * v2.Y() + v1.Z() * v2.Z() + v1.W() * v2.W();
 }
 
-float Vector3D::Dot(const Vector3D& other)
+double Vector3D::Dot(const Vector3D& other)
 {
 	return Vector3D::Dot(*this, other);
 }

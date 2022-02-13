@@ -35,22 +35,23 @@ M5StackCanvas canvas(display, 16);
 //M5UnitLCD display;  // default setting
 //M5UnitLCD display  ( 21, 22, 400000 ); // SDA, SCL, FREQ
 
-// Point3D start(0, 1, 0);
-// Vector3D velocity(1, 1.8, 0);
+Point3D start(0, 1, 0);
+Vector3D velocity(1, 1.8, 0);
 
-// Projectile proj(start, velocity.Normalize() * 6.25);
-// Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
+Projectile proj(start, velocity.Normalize() * 6.25);
+Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
 void setup(void)
 { 
     canvas.Init();
-	//display.fillScreen(TFT_RED);
+	display.waitDisplay();
 }
 
 void run_shadow_demo(Canvas& canvas)
 {
-	int w = display.height();
-	int h = display.height();
+	const int w = canvas.Height();
+	const int h = canvas.Height();
+
 	const double wall_size = 7.0;
 	const double wall_position_z = 10.0;
 	const double pixel_size = wall_size / w;
@@ -90,17 +91,22 @@ void run_shadow_demo(Canvas& canvas)
 	}
 }
 
+void run_gravity_demo(Canvas& canvas)
+{
+
+  Point3D p = proj.Position();
+
+  canvas.DrawPoint(p.X(), canvas.Height() - p.Y(), TFT_RED);
+
+  proj = proj.Tick(env);
+
+  canvas.Update();
+}
+
 void loop(void)
 { 
-	run_shadow_demo(canvas);
-// 	Point3D p = proj.Position();
-
-//   display.waitDisplay();
-//   display.drawPixel(p.X(), display.height() - p.Y(), TFT_RED);
-
-// 	proj = proj.Tick(env);
-
-//   display.display();
+	//run_shadow_demo(canvas);
+	run_gravity_demo(canvas);
 
   delay(10);
 }

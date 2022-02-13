@@ -162,7 +162,7 @@ void matrix_transpose(
 	{
 		for (y = 0; y < TSizeY; y++)
 		{
-			result.Data[y][x] = matrix.Data[y][x];
+			result.Data[x][y] = matrix.Data[y][x];
 		}
 	}
 }
