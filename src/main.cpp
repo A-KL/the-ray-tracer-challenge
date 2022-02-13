@@ -86,20 +86,6 @@ void run_clock_demo(Canvas& canvas)
 
 	Primitive3D<double> location = translate * origin;
 
-	//renderer.DrawLine(
-	//	offset_x + -size,
-	//	offset_y + 0, 
-	//	offset_x + size,
-	//	offset_y + 0, 
-	//	green.Raw);
-
-	//renderer.DrawLine(
-	//	offset_x + 0, 
-	//	offset_y  + -size,
-	//	offset_x + 0, 
-	//	offset_y + size,
-	//	green.Raw);
-
 	canvas.Clear();
 
 	for (char i = 0; i < count; i++)

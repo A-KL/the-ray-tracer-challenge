@@ -5,128 +5,133 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Tests">
+      <UniqueIdentifier>{7e9dd8ac-85c2-4927-b6d1-f38dd3713658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{c0526495-7746-4218-8c3c-5530ce08b614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{78b5f97e-34b6-45ed-92ed-0fbdbdbba700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\graphics\SDLCanvas.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\graphics\Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\graphics\ColorRgba.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Ray3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Sphere3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Intersection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\RayTracer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="tests_matrix.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="tests_ray.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Ray3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\RayTracer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\graphics\Color.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\graphics\ColorRgba.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Intersection.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Sphere3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\graphics\SDLCanvas.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\ray-tracer-core\Mathf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Point3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Primitive3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Projectile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Environment.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="tests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\graphics\Color.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\MatrixOps.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\MatrixTransform.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\graphics\ColorRgba.h">
-      <Filter>Header Files</Filter>
+      <Filter>Tests</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\graphics\SDLCanvas.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Ray3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Sphere3D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\RayTracer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Intersection.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\graphics\Canvas.h">
-      <Filter>Header Files</Filter>
+      <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Object3D.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\graphics\Color.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\graphics\ColorRgba.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Environment.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Intersection.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\ray-tracer-core\Light3D.h">
-      <Filter>Header Files</Filter>
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Mathf.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Object3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\MatrixTransform.hpp">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\MatrixOps.hpp">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Point3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Primitive3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Projectile.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Ray3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\RayTracer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Sphere3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
