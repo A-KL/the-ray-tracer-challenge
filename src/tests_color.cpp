@@ -12,12 +12,12 @@ void test_color_rgb565()
 	Color gray { 127, 127, 127 };
 
 	// Act
-	auto red565 = red.ToRgb565();
-	unsigned short purple565 = purple.ToRgb565();
-	unsigned short gray565 = gray.ToRgb565();
+	auto red565 = (unsigned short)red;
+	auto purple565 = (unsigned short)purple;
+	auto gray565 = (unsigned short)gray;
 
 	// Assert
-	assert(0xF800 == (unsigned short)red565);
+	assert(0xF800 == red565);
 	assert(0x780F == purple565);
 	assert(0x7BEF == gray565);
 }
@@ -28,12 +28,11 @@ void test_color_rgb16()
 	Color orange { 255, 180, 0 };
 
 	// Act
-	auto orange565 = orange.ToRgb565();
+	auto orange565 = (unsigned short)orange;
 
-	auto result = (unsigned short)orange565;
 
 	// Assert
-	assert(0xFDA0 == result);
+	assert(0xFDA0 == orange565);
 }
 
 void test_color_rgb24()
@@ -45,7 +44,7 @@ void test_color_rgb24()
 	auto result = (unsigned int)orange;
 
 	// Assert
-	assert(0xFFB400 == result);
+	assert(0x00B4FF == result);
 }
 
 void test_color_mul()
