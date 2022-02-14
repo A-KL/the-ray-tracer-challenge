@@ -71,6 +71,9 @@
     <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="tests_color.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\graphics\SDLCanvas.h">
@@ -135,6 +138,9 @@
     </ClInclude>
     <ClInclude Include="tests.h">
       <Filter>Tests\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Material.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -35,24 +35,6 @@ void test_vector_dot()
 	assert(20 == result);
 }
 
-void test_color_rgb565()
-{
-	// Set up
-	Color<Rgba> red = Rgba::Red;
-	Color<Rgba> purple{ 128, 0, 128, 0 };
-	Color<Rgba> gray{ 128, 128, 128, 0 };
-
-	// Act
-	auto red565 = red.Channels.ToRgb565();
-	auto purple565 = purple.Channels.ToRgb565();
-	auto gray565 = gray.Channels.ToRgb565();
-
-	// Assert
-	assert(0xF800 == red565);
-	assert(0x780F == purple565);
-	assert(0x7BEF == gray565);
-}
-
 void test_normal_at_translate()
 {
 	// Set up
@@ -138,10 +120,10 @@ void run_tests()
 
 	run_ray_tests();
 
+	run_color_tests();
+
 
 	test_vector_dot();
-
-	test_color_rgb565();
 
 	test_normal_at_origin();
 

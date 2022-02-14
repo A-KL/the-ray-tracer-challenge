@@ -163,6 +163,7 @@
     <ClCompile Include="..\lib\graphics\Color.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp" />
     <ClCompile Include="tests.cpp" />
+    <ClCompile Include="tests_color.cpp" />
     <ClCompile Include="tests_ray.cpp" />
     <ClCompile Include="tests_matrix.cpp" />
   </ItemGroup>
@@ -171,6 +172,7 @@
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Intersection.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Light3D.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Material.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp" />
     <ClInclude Include="..\lib\ray-tracer-core\Environment.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Mathf.h" />
