@@ -150,7 +150,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp" />
+    <ClCompile Include="..\lib\ray-tracer-core\Color3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Intersection.cpp" />
+    <ClCompile Include="..\lib\ray-tracer-core\Light3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />
@@ -164,12 +166,14 @@
     <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp" />
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="tests_color.cpp" />
+    <ClCompile Include="tests_light.cpp" />
     <ClCompile Include="tests_ray.cpp" />
     <ClCompile Include="tests_matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\graphics\Canvas.h" />
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Color3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Intersection.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Light3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Material.h" />

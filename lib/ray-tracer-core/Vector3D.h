@@ -20,9 +20,9 @@ public:
 	~Vector3D()
 	{}
 
-	double Magniture();
+	double Magniture() const;
 
-	Vector3D Normalize();
+	Vector3D Normalize() const;
 
 	double Dot(const Vector3D&) const;
 
@@ -30,11 +30,15 @@ public:
 
 	static Vector3D Reflect(const Vector3D& v1, const Vector3D& v2);
 
+	static Vector3D Normalize(const Vector3D& v1);
+
 	Vector3D Cross(const Vector3D&) const;
 
 	Vector3D operator+(const Vector3D&) const;
 
 	Vector3D operator-(const Vector3D&) const;
+
+	Vector3D operator-() const;
 
 	Vector3D operator*(double) const;
 

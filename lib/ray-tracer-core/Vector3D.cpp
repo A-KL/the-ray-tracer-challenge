@@ -13,21 +13,33 @@ Vector3D Vector3D::operator-(const Vector3D& other) const
 	return Vector3D(X() - other.X(), Y() - other.Y(), Z() - other.Z());
 }
 
+Vector3D Vector3D::operator-() const
+{
+	return Vector3D(-X(), -Y(), -Z());
+}
+
 Vector3D Vector3D::operator*(double value) const
 {
 	return Vector3D(X() * value, Y() * value, Z() * value);
 }
 
-double Vector3D::Magniture()
+double Vector3D::Magniture() const
 {
 	return sqrt(pow(X(), 2) + pow(Y(), 2) + pow(Z(), 2) + pow(W(), 2));
 }
 
-Vector3D Vector3D::Normalize()
+Vector3D Vector3D::Normalize() const
 {
 	double m = Magniture();
 
 	return Vector3D(X() / m, Y() / m, Z() / m, W() / m);
+}
+
+Vector3D Vector3D::Normalize(const Vector3D& v1)
+{
+	double m = v1.Magniture();
+
+	return Vector3D(v1.X() / m, v1.Y() / m, v1.Z() / m, v1.W() / m);
 }
 
 double Vector3D::Dot(const Vector3D& v1, const Vector3D& v2)

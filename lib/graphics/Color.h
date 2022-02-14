@@ -17,13 +17,26 @@ struct Channels
 		return Data[index];
 	}
 
-	virtual Channels<TChannel, TChannels> operator*(const Channels<TChannel, TChannels>& other) const
+	const Channels<TChannel, TChannels> operator*(const Channels<TChannel, TChannels>& other) const
 	{
 		Channels<TChannel, TChannels> result;
 
 		for (unsigned i = 0; i < sizeof(TChannels); i++)
 		{
 			result.Data[i] = (Data[i] + other.Data[i]) / 2;
+		}
+
+		return result;
+	}
+
+
+	const Channels<TChannel, TChannels> operator*(double other) const
+	{
+		Channels<TChannel, TChannels> result;
+
+		for (unsigned i = 0; i < sizeof(TChannels); i++)
+		{
+			result.Data[i] = Data[i] * other;
 		}
 
 		return result;
@@ -94,7 +107,7 @@ struct Channels
 
 union Rgb565
 {
-	struct 
+	struct
 	{
 		unsigned char R : 5;
 		unsigned char G : 6;
@@ -150,17 +163,9 @@ public:
 		return ((Data[0] >> 3) << 11 | (Data[1] >> 2) << 5 | Data[2] >> 3);
 	}
 
-	//operator unsigned int() const
-	//{
-	//	return Raw;
-	//}
-	
-	const Rgb24 operator*(const Rgb24& other) const
-	{
-		auto color = ((Channels<unsigned char, unsigned int>)*this) * (Channels<unsigned char, unsigned int>)other;
+	const Rgb24 operator*(const Rgb24& other) const;
 
-		return Rgb24(color.Raw);
-	}
+	const Rgb24 operator*(double other) const;
 
 	const static Rgb24 Red;
 
@@ -169,6 +174,8 @@ public:
 	const static Rgb24 Blue;
 
 	const static Rgb24 Black;
+
+	const static Rgb24 White;
 };
 
 class Rgba32 :

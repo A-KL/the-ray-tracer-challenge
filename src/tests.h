@@ -7,3 +7,5 @@ void run_matrix_tests();
 void run_ray_tests();
 
 void run_color_tests();
+
+void run_light_tests();

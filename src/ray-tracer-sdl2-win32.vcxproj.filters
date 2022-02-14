@@ -74,6 +74,15 @@
     <ClCompile Include="tests_color.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Light3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="tests_light.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Color3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\graphics\SDLCanvas.h">
@@ -140,6 +149,9 @@
       <Filter>Tests\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\ray-tracer-core\Material.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Color3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

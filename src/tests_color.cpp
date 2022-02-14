@@ -30,7 +30,6 @@ void test_color_rgb16()
 	// Act
 	auto orange565 = (unsigned short)orange;
 
-
 	// Assert
 	assert(0xFDA0 == orange565);
 }
@@ -62,6 +61,18 @@ void test_color_mul()
 	assert(expected == result);
 }
 
+void test_color_mul_scalar()
+{
+	// Set up
+	Color color{ 100, 127, 0 };
+
+	// Act
+	auto result = color * 2.0;
+
+	// Assert
+	assert(Color(200, 254, 0) == result);
+}
+
 void run_color_tests()
 {
 	test_color_rgb565();
@@ -71,4 +82,6 @@ void run_color_tests()
 	test_color_rgb24();
 
 	test_color_mul();
+
+	test_color_mul_scalar();
 }

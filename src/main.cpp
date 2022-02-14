@@ -14,7 +14,7 @@
 #include "../lib/graphics/SDLWindowRenderer.h"
 
 #include "../lib/ray-tracer-core/Mathf.h"
-
+#include "../lib/ray-tracer-core/Color3D.h"
 #include "../lib/ray-tracer-core/Primitive3D.h"
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
@@ -27,10 +27,10 @@
 #include "../lib/ray-tracer-core/Projectile.h"
 
 #include "../lib/ray-tracer-core/Ray3D.h"
-#include "../lib/ray-tracer-core/Light3D.h"
 #include "../lib/ray-tracer-core/Sphere3D.h"
 #include "../lib/ray-tracer-core/Intersection.h"
 #include "../lib/ray-tracer-core/Material.h"
+#include "../lib/ray-tracer-core/Light3D.h"
 
 #include "tests.h"
 

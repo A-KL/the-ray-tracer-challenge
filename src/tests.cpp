@@ -3,8 +3,9 @@
 #include <cassert>
 
 #include "../lib/graphics/Color.h"
-#include "../lib/ray-tracer-core/Mathf.h"
 
+#include "../lib/ray-tracer-core/Mathf.h"
+#include "../lib/ray-tracer-core/Color3D.h"
 #include "../lib/ray-tracer-core/Primitive3D.h"
 #include "../lib/ray-tracer-core/Vector3D.h"
 #include "../lib/ray-tracer-core/Point3D.h"
@@ -14,10 +15,10 @@
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
 #include "../lib/ray-tracer-core/Ray3D.h"
-#include "../lib/ray-tracer-core/Light3D.h"
 #include "../lib/ray-tracer-core/Sphere3D.h"
 #include "../lib/ray-tracer-core/Intersection.h"
-
+#include "../lib/ray-tracer-core/Material.h"
+#include "../lib/ray-tracer-core/Light3D.h"
 #include "../lib/ray-tracer-core/RayTracer.h"
 
 #include "tests.h"
@@ -122,6 +123,7 @@ void run_tests()
 
 	run_color_tests();
 
+	run_light_tests();
 
 	test_vector_dot();
 
