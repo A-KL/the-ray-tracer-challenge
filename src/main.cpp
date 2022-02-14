@@ -30,6 +30,7 @@
 #include "../lib/ray-tracer-core/Light3D.h"
 #include "../lib/ray-tracer-core/Sphere3D.h"
 #include "../lib/ray-tracer-core/Intersection.h"
+#include "../lib/ray-tracer-core/Material.h"
 
 #include "tests.h"
 
@@ -50,7 +51,7 @@ void run_projectile_demo(Canvas& canvas)
 	Projectile proj(start, velocity.Normalize() * 11.25);
 	Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
-	Color<Rgba> c = Rgba::Blue;
+	Color c = Color::Blue;
 
 	canvas.Clear();
 
@@ -61,7 +62,7 @@ void run_projectile_demo(Canvas& canvas)
 
 		Point3D p = proj.Position();
 
-		canvas.DrawPoint(p.X(), h - p.Y(), c.Raw);
+		canvas.DrawPoint(p.X(), h - p.Y(), c);
 		canvas.Update();
 
 		proj = proj.Tick(env);
@@ -76,8 +77,8 @@ void run_clock_demo(Canvas& canvas)
 	const double size = 100;
 	const double count = 12;
 
-	Color<Rgba> c = Rgba::Red;
-	Color<Rgba> green = Rgba::Green;
+	Color c = Color::Red;
+	Color green = Color::Green;
 
 	Point3D origin(0, 0, 0);
 
@@ -93,7 +94,7 @@ void run_clock_demo(Canvas& canvas)
 		canvas.DrawPoint(
 			offset_x + location.X() * size,
 			offset_y + location.Y() * size,
-			c.Raw);
+			c);
 
 		location = rotate * location;
 	}
@@ -111,11 +112,11 @@ void run_shadow_demo(Canvas& canvas)
 	Sphere3D sphere;
 	Point3D ray_origin(0, 0, -5);
 
-	Color<Rgba> opaque = Rgba::Black;
-	Color<Rgba> background = Rgba::Red;
-	Color<Rgba> shadow = { opaque.Channels * background.Channels };
+	Color opaque = Color::Black;
+	Color background = Color::Red;
+	Color shadow = opaque * background;
 
-	canvas.Clear(background.Raw);
+	canvas.Clear(background);
 
 	for (int y = 0; y < h; y++)
 	{
@@ -132,7 +133,7 @@ void run_shadow_demo(Canvas& canvas)
 
 			if (ray_hit(intersects) != Intersection::Empty)
 			{
-				canvas.DrawPoint(x, y, shadow.Raw);
+				canvas.DrawPoint(x, y, shadow);
 			}
 		}
 	}

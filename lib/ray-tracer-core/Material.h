@@ -1,20 +1,21 @@
 #pragma once
 
+
 class Material
 {
 public:
 	Material(const Material& material)
-		: Material(material.ambient, material.ambient, material.ambient)
+		: Material(material.Color, material.ambient, material.ambient, material.ambient)
 	{ }
 
-	Material(double ambient = 0.1, double diffuse = 0.9, double specular = 0.9, double shininess = 200)
-		: ambient(ambient), diffuse(diffuse), specular(specular), shininess(shininess)
+	Material(const Color& color, double ambient = 0.1, double diffuse = 0.9, double specular = 0.9, double shininess = 200)
+		: Color(color), ambient(ambient), diffuse(diffuse), specular(specular), shininess(shininess)
 	{  }
 
 	~Material()
 	{}
 
-	unsigned int color;
+	const Color Color;
 
 	double ambient = 0.1;
 	double diffuse = 0.9;

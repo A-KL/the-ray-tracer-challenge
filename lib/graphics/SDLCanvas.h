@@ -40,6 +40,6 @@ private:
 
 	SDL_Renderer* _sdl;
 
-	const Color<Rgba> _background = Rgba::Black;
+	const Color _background = Color::Black;
 };
 

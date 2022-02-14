@@ -4,7 +4,7 @@
 #include <iostream>
 
 template <typename TItem, unsigned TSize>
-struct ColorChannels
+struct Channels
 {
 	TItem Data[TSize];
 
@@ -15,9 +15,9 @@ struct ColorChannels
 	//	return Data[index];
 	//}
 
-	ColorChannels<TItem, TSize> operator*(const ColorChannels<TItem, TSize>& other) const
+	Channels<TItem, TSize> operator*(const Channels<TItem, TSize>& other) const
 	{
-		ColorChannels<TItem, TSize> result;
+		Channels<TItem, TSize> result;
 
 		for (unsigned i = 0; i < TSize; i++)
 		{
@@ -27,12 +27,12 @@ struct ColorChannels
 		return result;
 	}
 
-	bool operator==(const ColorChannels<TItem, TSize>& other) const
+	bool operator==(const Channels<TItem, TSize>& other) const
 	{
 		return memcmp(Data, other.Data, TSize) == 0;
 	}
 
-	friend std::ostream& operator<<(std::ostream& out, const ColorChannels<TItem, TSize>& channels)
+	friend std::ostream& operator<<(std::ostream& out, const Channels<TItem, TSize>& channels)
 	{
 		out << "Color";
 		out << "(";
@@ -49,14 +49,53 @@ struct ColorChannels
 
 		return out;
 	}
-
-	
 };
 
-class Rgb16 :
-	public ColorChannels<unsigned char, 3>
+class Bpp16
 {
 public:
+	virtual operator unsigned short() const = 0;
+};
+
+class Bpp24
+{
+public:
+	virtual operator unsigned int() const = 0;
+};
+
+class Bpp32
+{
+public:
+	virtual operator unsigned int() const = 0;
+};
+
+//class Rgb
+//{
+//public:
+//	virtual unsigned char R() const = 0;
+//
+//	virtual unsigned char G() const = 0;
+//
+//	virtual unsigned char B() const = 0;
+//};
+//
+//class Rgba : public Rgb
+//{
+//public:
+//	virtual unsigned char A() const = 0;
+//};
+
+class Rgb16 :
+	public Channels<unsigned char, 3>, Bpp16
+{
+public:
+
+	Rgb16(unsigned char r, unsigned char g, unsigned char b)
+	{
+		Data[0] = r;
+		Data[1] = g;
+		Data[2] = b;
+	}
 
 	inline unsigned char R() const
 	{
@@ -73,92 +112,71 @@ public:
 		return Data[2];
 	}
 
-	operator unsigned short()
+	operator unsigned short() const
 	{
-		return (R() >> 3) << 11 | (G() >> 2) << 5 | B() >> 3;
+		return ((R() >> 3) << 11 | (G() >> 2) << 5 | B() >> 3);
 	}
 };
 
 class Rgb24 :
-	public Rgb16
+	public Rgb16, Bpp24
 {
 public:
 
+	Rgb24(unsigned char r, unsigned char g, unsigned char b)
+		: Rgb16(r, g, b)
+	{ }
+
 	const Rgb16 ToRgb565() const
 	{
-		Rgb16 result { *this };
-
-		return result;
+		return *this;
 	}
 	
-	operator unsigned int()
+	operator unsigned int() const
 	{
 		return R() << 16 | G() << 8 | B();
 	}
-};
 
-template <class T>
-union Color
-{
-	T Channels;
-	unsigned int Raw;
-};
-
-struct Rgba
-{
-	const unsigned char R, G, B, A;
-
-	unsigned char operator[](int index)
+	Rgb24 operator*(const Rgb24& other) const
 	{
-		assert(index < 4);
+		auto color = ((Channels<unsigned char, 3>)*this) * (Channels<unsigned char, 3>)other;
 
-		switch (index)
-		{
-		case 0: return R;
-
-		case 1: return G;
-
-		case 2: return B;
-
-		case 3: return A;
-		}
+		return Rgb24(color.Data[0], color.Data[1], color.Data[2]);
 	}
 
-	Rgba operator*(const Rgba& other) const
-	{
-		Rgba result
-		{
-			(R + other.R) / 2,
-			(G + other.G) / 2,
-			(B + other.B) / 2,
-			(A + other.A) / 2
-		};
-		return result;
-	}
+	const static Rgb24 Red;
 
-	inline unsigned short ToRgb565()
-	{
-		double prop_r = R / 255.0;
-		double prop_g = G / 255.0;
-		double prop_b = B / 255.0;
+	const static Rgb24 Green;
 
-		char r = (char)(prop_r * 31);
-		char g = (char)(prop_g * 62);
-		char b = (char)(prop_b * 31);
+	const static Rgb24 Blue;
 
-		return (r << 11) | (g << 5) | (b << 0);
-	}
-
-	static Color<Rgba> Red, Green, Blue, Black;
-
+	const static Rgb24 Black;
 };
 
-//struct Rgb
+//class Rgba32 :
+//	public Rgb24
 //{
-//	const unsigned char R, G, B;
+//public:
 //
-//	static Color<Rgb> Red, Green, Blue;
+//	inline unsigned char A() const
+//	{
+//		return Data[3];
+//	}
+//
+//	const Rgb16 ToRgb565() const
+//	{
+//		Rgb16 result{ *this };
+//
+//		return result;
+//	}
+//
+//	operator unsigned int()
+//	{
+//		return A() << 24 | R() << 16 | G() << 8 | B();
+//	}
 //};
+
+typedef Rgb24 Color;
 
 //struct ColorMono
 //{
@@ -166,10 +184,6 @@ struct Rgba
 //
 //	static Color<ColorMono> On, Off;
 //};
-
-
-
-
 
 
 //class Color

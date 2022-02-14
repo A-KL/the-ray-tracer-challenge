@@ -7,17 +7,17 @@
 void test_color_rgb565()
 {
 	// Set up
-	Color<Rgba> red = Rgba::Red;
-	Color<Rgba> purple{ 128, 0, 128, 0 };
-	Color<Rgba> gray{ 128, 128, 128, 0 };
+	Color red = Color::Red;
+	Color purple { 127, 0, 127 };
+	Color gray { 127, 127, 127 };
 
 	// Act
-	auto red565 = red.Channels.ToRgb565();
-	auto purple565 = purple.Channels.ToRgb565();
-	auto gray565 = gray.Channels.ToRgb565();
+	auto red565 = red.ToRgb565();
+	unsigned short purple565 = purple.ToRgb565();
+	unsigned short gray565 = gray.ToRgb565();
 
 	// Assert
-	assert(0xF800 == red565);
+	assert(0xF800 == (unsigned short)red565);
 	assert(0x780F == purple565);
 	assert(0x7BEF == gray565);
 }
@@ -25,10 +25,10 @@ void test_color_rgb565()
 void test_color_rgb16()
 {
 	// Set up
-	Rgb24 orange { 255, 180, 0 };
+	Color orange { 255, 180, 0 };
 
 	// Act
-	Rgb16 orange565 = orange.ToRgb565();
+	auto orange565 = orange.ToRgb565();
 
 	auto result = (unsigned short)orange565;
 
@@ -39,7 +39,7 @@ void test_color_rgb16()
 void test_color_rgb24()
 {
 	// Set up
-	Rgb24 orange{ 255, 180, 0 };
+	Color orange { 255, 180, 0 };
 
 	// Act
 	auto result = (unsigned int)orange;
@@ -51,9 +51,9 @@ void test_color_rgb24()
 void test_color_mul()
 {
 	// Set up
-	Rgb24 color1 { 255, 0, 0 };
-	Rgb24 color2 { 0, 255, 0 };
-	Rgb24 expected { 127, 127, 0 };
+	Color color1 { 255, 0, 0 };
+	Color color2 { 0, 255, 0 };
+	Color expected { 127, 127, 0 };
 
 	// Act
 	auto result = color1 * color2;
