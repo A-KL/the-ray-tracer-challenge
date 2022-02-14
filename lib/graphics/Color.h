@@ -29,12 +29,12 @@ struct Channels
 		return result;
 	}
 
-	virtual bool operator==(const Channels<TChannel, TChannels>& other) const
+	bool operator==(const Channels<TChannel, TChannels>& other) const
 	{
 		return Raw == other.Raw;
 	}
 
-	virtual operator TChannels() const
+	operator TChannels() const
 	{
 		return Raw;
 	}

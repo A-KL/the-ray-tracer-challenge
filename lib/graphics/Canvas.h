@@ -13,7 +13,7 @@ public:
 
 	virtual unsigned int Bpp() = 0;
 
-	virtual void Clear(int color = 0) = 0;
+	virtual void Clear(unsigned int color = 0) = 0;
 
 	virtual void Update() = 0;
 };

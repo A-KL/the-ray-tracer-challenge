@@ -29,7 +29,7 @@ public:
 		return _bpp;
 	}
 
-	void Clear(int color = 0);
+	void Clear(unsigned int color = 0);
 
 	void Update();
 

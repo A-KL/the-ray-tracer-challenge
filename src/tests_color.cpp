@@ -44,6 +44,7 @@ void test_color_rgb24()
 	auto result = (unsigned int)orange;
 
 	// Assert
+	// 0xBBGGRR
 	assert(0x00B4FF == result);
 }
 
