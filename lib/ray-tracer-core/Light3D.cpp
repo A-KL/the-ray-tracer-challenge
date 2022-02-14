@@ -45,5 +45,5 @@ Color3D Light3D::Compute(const Material& material, const Point3D& position, cons
 		}
 	}
 
-	return ambient * diffuse * specular;
+	return ambient + diffuse + specular;
 }

@@ -27,12 +27,17 @@ struct Color3D
 
 	const Color3D operator*(const Color3D& other) const
 	{
-		return Color3D{ R * other.R, G * other.G, B * other.B };
+		return Color3D { R * other.R, G * other.G, B * other.B };
+	}
+
+	const Color3D operator+(const Color3D& other) const
+	{
+		return Color3D { R + other.R, G + other.G, B + other.B };
 	}
 
 	const Color3D operator*(double other) const
 	{
-		return Color3D{ R * other, G * other, B * other };
+		return Color3D { R * other, G * other, B * other };
 	}
 
 	bool operator==(const Color3D& other) const

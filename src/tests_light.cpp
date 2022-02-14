@@ -19,7 +19,7 @@
 
 #include "tests.h"
 
-void run_light_tests()
+void test_light_behind_camera()
 {
 	// Set up
 	Material material(Color3D(1, 1, 1));
@@ -33,4 +33,45 @@ void run_light_tests()
 
 	// Assert
 	assert(Color3D(1.9, 1.9, 1.9) == result);
+}
+
+void test_light_45_camera()
+{
+	// Set up
+	Material material(Color3D(1, 1, 1));
+	Vector3D camera(0, sqrt(2) * 0.5, - sqrt(2) * 0.5);
+	Vector3D normal(0, 0, -1);
+
+	Light3D light(Point3D(0, 0, -10), Color3D(1, 1, 1));
+
+	// Act
+	auto result = light.Compute(material, Point3D(0, 0, 0), camera, normal);
+
+	// Assert
+	assert(Color3D(1.0, 1.0, 1.0) == result);
+}
+
+void test_light_45_camera_reverse()
+{
+	// Set up
+	Material material(Color3D(1, 1, 1));
+	Vector3D camera(0, 0, -1);
+	Vector3D normal(0, 0, -1);
+
+	Light3D light(Point3D(0, 10, -10), Color3D(1, 1, 1));
+
+	// Act
+	auto result = light.Compute(material, Point3D(0, 0, 0), camera, normal);
+
+	// Assert
+	assert(Color3D(0.7364, 0.7364, 0.7364) == result);
+}
+
+void run_light_tests()
+{
+	test_light_behind_camera();
+
+	test_light_45_camera();
+
+	test_light_45_camera_reverse();
 }
