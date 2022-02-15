@@ -12,15 +12,16 @@ class Sphere3D :
 			Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material::Default, 1)
 		{ }
 
-		Sphere3D(Matrix4d& translate, double size = 1) :
-			Object3D(Point3D::Origin),
-			_material(Material::Default),
-			_size(size)
+		Sphere3D(Matrix4d& transform, double size = 1) :
+			Sphere3D(Point3D::Origin, transform, Material::Default, size)
 		{ }
 
+		Sphere3D(const Material& material, double size = 1) :
+			Sphere3D(Point3D::Origin, Matrix4d::Identity(), material, size)
+		{ }
 
-		Sphere3D(const Point3D& position, const Matrix4d& translate, const Material& material, double size = 1) :
-			Object3D(position, translate),
+		Sphere3D(const Point3D& position, const Matrix4d& transform, const Material& material, double size) :
+			Object3D(position, transform),
 			_material(material),
 			_size(size)
 		{ }

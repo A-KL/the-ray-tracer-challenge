@@ -148,7 +148,9 @@ void run_light_demo(Canvas& canvas)
 	const double pixel_size = wall_size / w;
 	const double half = wall_size / 2;
 
-	Sphere3D sphere;
+	Sphere3D sphere(Material(1, 0.2, 1));
+	Light3D light(Point3D(-10, -10, -10), Color3D::White);
+
 	Point3D ray_origin(0, 0, -5);
 
 	Color opaque = Color::Black;
@@ -169,9 +171,15 @@ void run_light_demo(Canvas& canvas)
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
 
 			auto intersects = ray_intersect(sphere, ray);
+			auto intersection = ray_hit(intersects);
 
-			if (ray_hit(intersects) != Intersection::Empty)
+			if (intersection != Intersection::Empty)
 			{
+				auto point = ray.Position(intersection.T());
+				auto normal = intersection.Object.NormalAt(point);
+				auto camera = -ray.Direction();
+				auto color = light.Compute(intersection.Object.GetMaterial(), point, camera, normal);
+
 				canvas.DrawPoint(x, y, shadow);
 			}
 		}
