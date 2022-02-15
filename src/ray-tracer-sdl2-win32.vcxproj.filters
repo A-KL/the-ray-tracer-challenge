@@ -94,9 +94,6 @@
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\graphics\Canvas.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\graphics\Color.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
@@ -155,6 +152,9 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\ray-tracer-core\Color3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Canvas.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -1,7 +1,8 @@
 #include <SDL.h>
+
 #include "../ray-tracer-core/Color3D.h"
-#include "Color.h"
-#include "Canvas.h"
+#include "../ray-tracer-core/Canvas.h"
+
 #include "SDLCanvas.h"
 
 SDLCanvas::SDLCanvas(SDL_Window* window, int bpp)

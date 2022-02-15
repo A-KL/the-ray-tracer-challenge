@@ -172,8 +172,8 @@
     <ClCompile Include="tests_matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\graphics\Canvas.h" />
     <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Canvas.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Color3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Intersection.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Light3D.h" />

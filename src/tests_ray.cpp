@@ -2,7 +2,6 @@
 #include <list>
 #include <cassert>
 
-#include "../lib/graphics/Color.h"
 #include "../lib/ray-tracer-core/Mathf.h"
 
 #include "../lib/ray-tracer-core/Primitive3D.h"

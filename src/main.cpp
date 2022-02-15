@@ -8,8 +8,6 @@
 
 #include <SDL.h>
 
-#include "../lib/graphics/Color.h"
-#include "../lib/graphics/Canvas.h"
 #include "../lib/graphics/SDLCanvas.h"
 #include "../lib/graphics/SDLWindowRenderer.h"
 
@@ -31,10 +29,10 @@
 #include "../lib/ray-tracer-core/Intersection.h"
 #include "../lib/ray-tracer-core/Material.h"
 #include "../lib/ray-tracer-core/Light3D.h"
+#include "../lib/ray-tracer-core/RayTracer.h"
+#include "../lib/ray-tracer-core/Canvas.h"
 
 #include "tests.h"
-
-#include "../lib/ray-tracer-core/RayTracer.h"
 
 using namespace std;
 
