@@ -3,6 +3,8 @@
 #include "Vector3D.h"
 #include "Point3D.h"
 
+const Point3D Point3D::Origin(0, 0, 0);
+
 Vector3D Point3D::operator-(const Point3D& other)
 {
 	return Vector3D(X() - other.X(), Y() - other.Y(), Z() - other.Z());

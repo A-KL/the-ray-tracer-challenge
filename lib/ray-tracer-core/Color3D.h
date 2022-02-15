@@ -61,4 +61,6 @@ struct Color3D
 	}
 
 	const static Color3D Black;
+
+	const static Color3D White;
 };

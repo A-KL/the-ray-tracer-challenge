@@ -83,6 +83,9 @@
     <ClCompile Include="..\lib\ray-tracer-core\Color3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\ray-tracer-core\Material.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\graphics\SDLCanvas.h">

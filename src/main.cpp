@@ -141,6 +141,45 @@ void run_shadow_demo(Canvas& canvas)
 	canvas.Update();
 }
 
+void run_light_demo(Canvas& canvas)
+{
+	const double wall_size = 7.0;
+	const double wall_position_z = 10.0;
+	const double pixel_size = wall_size / w;
+	const double half = wall_size / 2;
+
+	Sphere3D sphere;
+	Point3D ray_origin(0, 0, -5);
+
+	Color opaque = Color::Black;
+	Color background = Color::Red;
+	Color shadow = opaque * background;
+
+	canvas.Clear(background);
+
+	for (int y = 0; y < h; y++)
+	{
+		double world_y = half - pixel_size * y;
+
+		for (int x = 0; x < w; x++)
+		{
+			double world_x = -half + pixel_size * x;
+
+			Point3D point_to_render(world_x, world_y, wall_position_z);
+			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
+
+			auto intersects = ray_intersect(sphere, ray);
+
+			if (ray_hit(intersects) != Intersection::Empty)
+			{
+				canvas.DrawPoint(x, y, shadow);
+			}
+		}
+	}
+
+	canvas.Update();
+}
+
 int main()
 {
 #ifdef _DEBUG
@@ -155,7 +194,9 @@ int main()
 
 	//run_clock_demo(canvas);
 
-	run_shadow_demo(canvas);
+	//run_shadow_demo(canvas);
+
+	run_light_demo(canvas);
 	
 	do
 	{

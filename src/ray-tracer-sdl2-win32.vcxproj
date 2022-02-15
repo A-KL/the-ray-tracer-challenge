@@ -153,6 +153,7 @@
     <ClCompile Include="..\lib\ray-tracer-core\Color3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Intersection.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Light3D.cpp" />
+    <ClCompile Include="..\lib\ray-tracer-core\Material.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />

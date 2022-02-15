@@ -31,6 +31,8 @@ public:
 	//	return Point3D(1,1,1);
 	//}
 
+	const static Point3D Origin;
+
 	friend ostream& operator<<(ostream& out, const Point3D& p);
 };
 
