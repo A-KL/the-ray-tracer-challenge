@@ -51,8 +51,6 @@ void run_projectile_demo(Canvas& canvas)
 	Projectile proj(start, velocity.Normalize() * 11.25);
 	Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
-	Color c = Color::Blue;
-
 	canvas.Clear();
 
 	do
@@ -62,7 +60,7 @@ void run_projectile_demo(Canvas& canvas)
 
 		Point3D p = proj.Position();
 
-		canvas.DrawPoint(p.X(), h - p.Y(), c);
+		canvas.DrawPoint(p.X(), h - p.Y(), Color3D::Blue);
 		canvas.Update();
 
 		proj = proj.Tick(env);
@@ -76,9 +74,6 @@ void run_clock_demo(Canvas& canvas)
 	const double offset_y = canvas.Height() / 2;
 	const double size = 100;
 	const double count = 12;
-
-	Color c = Color::Red;
-	Color green = Color::Green;
 
 	Point3D origin(0, 0, 0);
 
@@ -94,7 +89,7 @@ void run_clock_demo(Canvas& canvas)
 		canvas.DrawPoint(
 			offset_x + location.X() * size,
 			offset_y + location.Y() * size,
-			c);
+			Color3D::Green);
 
 		location = rotate * location;
 	}
@@ -112,9 +107,9 @@ void run_shadow_demo(Canvas& canvas)
 	Sphere3D sphere;
 	Point3D ray_origin(0, 0, -5);
 
-	Color opaque = Color::Black;
-	Color background = Color::Red;
-	Color shadow = opaque * background;
+	auto opaque = Color3D::Black;
+	auto background = Color3D::Red;
+	auto shadow = opaque * background;
 
 	canvas.Clear(background);
 
@@ -153,9 +148,9 @@ void run_light_demo(Canvas& canvas)
 
 	Point3D ray_origin(0, 0, -5);
 
-	Color opaque = Color::Black;
-	Color background = Color::Red;
-	Color shadow = opaque * background;
+	auto opaque = Color3D::Black;
+	auto background = Color3D::Red;
+	auto shadow = opaque * background;
 
 	canvas.Clear(background);
 
@@ -202,9 +197,9 @@ int main()
 
 	//run_clock_demo(canvas);
 
-	//run_shadow_demo(canvas);
+	run_shadow_demo(canvas);
 
-	run_light_demo(canvas);
+	//run_light_demo(canvas);
 	
 	do
 	{

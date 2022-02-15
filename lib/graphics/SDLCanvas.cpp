@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include "../ray-tracer-core/Color3D.h"
 #include "Color.h"
 #include "Canvas.h"
 #include "SDLCanvas.h"
@@ -16,31 +17,31 @@ SDLCanvas::SDLCanvas(SDL_Window* window)
 	: SDLCanvas(window, 32)
 { }
 
-void SDLCanvas::DrawPoint(int x, int y, unsigned int color)
+void SDLCanvas::DrawPoint(int x, int y, const Color3D& color)
 {
-	SDL_SetRenderDrawColor(_sdl, (uint8_t)color, (uint8_t)(color >> 8), (uint8_t)(color >> 16), (uint8_t)(color >> 24));
+	SDL_SetRenderDrawColor(_sdl, color.RToByte(), color.GToByte(), color.BToByte(), 0);
 
 	SDL_RenderDrawPoint(_sdl, x, y);
 }
 
-void SDLCanvas::DrawLine(int x0, int y0, int x1, int y1, unsigned int color)
+void SDLCanvas::DrawLine(int x0, int y0, int x1, int y1, const Color3D& color)
 {
-	SDL_SetRenderDrawColor(_sdl, (uint8_t)color, (uint8_t)(color >> 8), (uint8_t)(color >> 16), (uint8_t)(color >> 24));
+	SDL_SetRenderDrawColor(_sdl, color.RToByte(), color.GToByte(), color.BToByte(), 0);
 
 	SDL_RenderDrawLine(_sdl, x0, y0, x1, y1);
 }
 
-void SDLCanvas::Clear(unsigned int color)
+void SDLCanvas::Clear(const Color3D& color)
 {
-	SDL_SetRenderDrawColor(_sdl, (uint8_t)color, (uint8_t)(color>>8), (uint8_t)(color >> 16), (uint8_t)(color >> 24));
+	SDL_SetRenderDrawColor(_sdl, color.RToByte(), color.GToByte(), color.BToByte(), 0);
 
 	SDL_RenderClear(_sdl);
 }
 
-//void SDLCanvas::Clear()
-//{
-//	Clear(_background.Raw);
-//}
+void SDLCanvas::Clear()
+{
+	Clear(_background);
+}
 
 void SDLCanvas::Update()
 {

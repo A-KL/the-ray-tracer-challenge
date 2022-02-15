@@ -10,9 +10,9 @@ public:
 
 	SDLCanvas(SDL_Window*);
 
-	void DrawPoint(int x, int y, unsigned int color);
+	void DrawPoint(int x, int y, const Color3D& color);
 
-	void DrawLine(int x0, int y0, int x1, int y1, unsigned int color);
+	void DrawLine(int x0, int y0, int x1, int y1, const Color3D& color);
 
 	inline int Height()
 	{
@@ -29,7 +29,9 @@ public:
 		return _bpp;
 	}
 
-	void Clear(unsigned int color = 0);
+	void Clear(const Color3D& color);
+
+	void Clear();
 
 	void Update();
 
@@ -40,6 +42,6 @@ private:
 
 	SDL_Renderer* _sdl;
 
-	const Color _background = Color::Black;
+	Color3D _background = Color3D::Black;
 };
 

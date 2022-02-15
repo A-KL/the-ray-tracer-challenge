@@ -13,6 +13,21 @@ struct Color3D
 	double G;
 	double B;
 
+	inline unsigned char RToByte() const
+	{
+		return Bound(R);
+	}
+
+	inline unsigned char GToByte() const
+	{
+		return Bound(G);
+	}
+
+	inline unsigned char BToByte() const
+	{
+		return Bound(B);
+	}
+
 	inline double operator[](unsigned int index) const
 	{
 		assert(index < 2);
@@ -52,4 +67,16 @@ struct Color3D
 	const static Color3D Black;
 
 	const static Color3D White;
+
+	const static Color3D Red;
+
+	const static Color3D Green;
+
+	const static Color3D Blue;
+
+private:
+	inline unsigned char Bound(double val) const
+	{
+		return (val > 1 ? 1 : val < 0 ? 0 : val) * 255;
+	}
 };

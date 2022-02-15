@@ -6,19 +6,25 @@ const Color3D Color3D::Black(0, 0, 0);
 
 const Color3D Color3D::White(1, 1, 1);
 
+const Color3D Color3D::Red(1, 0, 0);
+
+const Color3D Color3D::Green(0, 1, 0);
+
+const Color3D Color3D::Blue(0, 0, 1);
+
 const Color3D Color3D::operator*(const Color3D& other) const
 {
-	return Color3D{ R * other.R, G * other.G, B * other.B };
+	return Color3D { (R + other.R) * 0.5, (G + other.G) * 0.5, (B + other.B) * 0.5 };
 }
 
 const Color3D Color3D::operator+(const Color3D& other) const
 {
-	return Color3D{ R + other.R, G + other.G, B + other.B };
+	return Color3D { R + other.R, G + other.G, B + other.B };
 }
 
 const Color3D Color3D::operator*(double other) const
 {
-	return Color3D{ R * other, G * other, B * other };
+	return Color3D { R * other, G * other, B * other };
 }
 
 bool Color3D::operator==(const Color3D& other) const
@@ -31,18 +37,10 @@ bool Color3D::operator==(const Color3D& other) const
 
 Color3D::operator unsigned int() const
 {
-	unsigned char r = (R > 1 ? 1 : R < 0 ? 0 : R) * 255;
-	unsigned char g = (G > 1 ? 1 : G < 0 ? 0 : G) * 255;
-	unsigned char b = (B > 1 ? 1 : B < 0 ? 0 : B) * 255;
-
-	return (r << 16) | (g << 8) | b;
+	return (RToByte() << 16) | (GToByte() << 8) | BToByte();
 }
 
 Color3D::operator unsigned short() const
 {
-	unsigned char r = (R > 1 ? 1 : R < 0 ? 0 : R) * 255;
-	unsigned char g = (G > 1 ? 1 : G < 0 ? 0 : G) * 255;
-	unsigned char b = (B > 1 ? 1 : B < 0 ? 0 : B) * 255;
-
-	return ((r >> 3) << 11 | (g >> 2) << 5 | b >> 3);
+	return ((RToByte() >> 3) << 11 | (GToByte() >> 2) << 5 | BToByte() >> 3);
 }

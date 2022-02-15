@@ -1,4 +1,5 @@
 #include "Color.h"
+#include "../ray-tracer-core/Color3D.h"
 #include <SDL.h>
 #include "SDLCanvas.h"
 #include "SDLWindowRenderer.h"
