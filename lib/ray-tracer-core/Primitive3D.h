@@ -27,6 +27,8 @@ public:
 
 	inline TItem W() const { return _data[3]; };
 
+	inline void SetW(TItem value) { _data[3] = value; };
+
 	inline const TItem& operator[](const unsigned index) const
 	{
 		return _data[index];

@@ -141,16 +141,12 @@ void run_light_demo(Canvas& canvas)
 	const double pixel_size = wall_size / w;
 	const double half = wall_size / 2;
 
-	Sphere3D sphere(Material(1, 0.2, 1));
+	Sphere3D sphere(Point3D(0, 0, 0), Matrix4d::Scale(1, 1, 1), Material(1, 0.2, 1), 1);
 	Light3D light(Point3D(-10, -10, -10), Color3D::White);
 
 	Point3D ray_origin(0, 0, -5);
 
-	auto opaque = Color3D::Black;
-	auto background = Color3D::Red;
-	auto shadow = opaque * background;
-
-	canvas.Clear(background);
+	canvas.Clear();
 
 	for (int y = 0; y < h; y++)
 	{
@@ -171,9 +167,9 @@ void run_light_demo(Canvas& canvas)
 				auto point = ray.Position(intersection.T());
 				auto normal = intersection.Object()->NormalAt(point);
 				auto camera = -ray.Direction();
-			//	auto color = light.Compute(intersection.Object()->GetMaterial(), point, camera, normal);
+				auto color = light.Compute(intersection.Object()->GetMaterial(), point, camera, normal);
 
-				canvas.DrawPoint(x, y, shadow);
+				canvas.DrawPoint(x, y, color);
 			}
 		}
 	}
@@ -195,9 +191,9 @@ int main()
 
 	//run_clock_demo(canvas);
 
-	run_shadow_demo(canvas);
+	//run_shadow_demo(canvas);
 
-	//run_light_demo(canvas);
+	run_light_demo(canvas);
 	
 	do
 	{

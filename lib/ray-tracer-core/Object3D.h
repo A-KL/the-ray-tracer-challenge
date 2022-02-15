@@ -37,12 +37,13 @@ public:
 			_transformation == other._transformation;
 	}
 
-	Vector3D NormalAt(const Point3D& point) const
+	Vector3D NormalAt(Point3D& point) const
 	{
 		auto inverse = _transformation.Inverse();
 		auto object_point = inverse * point;
 		auto object_normal = object_point - _position;
 		auto world_normal = inverse.Transpose() * object_normal;
+		world_normal.SetW(0);
 		//world_normal.W();
 
 		return world_normal.Normalize();

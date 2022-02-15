@@ -3,7 +3,7 @@
 class Intersection
 {
 public:
-	Intersection(double t, const Object3D& object)
+	Intersection(double t, const Sphere3D& object)
 		: _t(t), _object(&object)
 	{ }
 
@@ -24,17 +24,17 @@ public:
 		return !(*this == other);
 	}
 
-	inline const Object3D* Object() const
+	inline const Sphere3D* Object() const
 	{
 		return _object;
 	}
 
 private:
-	Intersection(double t, const Object3D* object)
+	Intersection(double t, const Sphere3D* object)
 		: _t(t), _object(object)
 	{ }
 
 
 	double _t;
-	const Object3D* _object;
+	const Sphere3D* _object;
 };
