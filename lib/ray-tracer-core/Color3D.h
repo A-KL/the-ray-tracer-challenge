@@ -48,6 +48,24 @@ struct Color3D
 			Mathf::Approximately(B, other.B);
 	}
 
+	inline operator unsigned int() const
+	{
+		unsigned char r = R * 255;
+		unsigned char g = G * 255;
+		unsigned char b = B * 255;
+
+		return (r << 16) | (g << 8) | b;
+	}
+
+	inline operator unsigned short() const
+	{
+		unsigned char r = R * 255;
+		unsigned char g = G * 255;
+		unsigned char b = B * 255;
+
+		return ((r >> 3) << 11 | (g >> 2) << 5 | b >> 3);
+	}
+
 	friend std::ostream& operator<<(std::ostream& out, const Color3D& color)
 	{
 		out << "Color3D";
