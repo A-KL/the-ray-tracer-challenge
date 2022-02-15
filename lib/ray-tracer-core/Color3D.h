@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cassert>
 
+#include "Mathf.h"
+
 struct Color3D
 {
 	Color3D(double r = 1, double g = 1, double b = 1)
@@ -50,18 +52,18 @@ struct Color3D
 
 	inline operator unsigned int() const
 	{
-		unsigned char r = R * 255;
-		unsigned char g = G * 255;
-		unsigned char b = B * 255;
+		unsigned char r = (R > 1 ? 1 : R < 0 ? 0 : R) * 255;
+		unsigned char g = (G > 1 ? 1 : G < 0 ? 0 : G) * 255;
+		unsigned char b = (B > 1 ? 1 : B < 0 ? 0 : B) * 255;
 
 		return (r << 16) | (g << 8) | b;
 	}
 
 	inline operator unsigned short() const
 	{
-		unsigned char r = R * 255;
-		unsigned char g = G * 255;
-		unsigned char b = B * 255;
+		unsigned char r = (R > 1 ? 1 : R < 0 ? 0 : R) * 255;
+		unsigned char g = (G > 1 ? 1 : G < 0 ? 0 : G) * 255;
+		unsigned char b = (B > 1 ? 1 : B < 0 ? 0 : B) * 255;
 
 		return ((r >> 3) << 11 | (g >> 2) << 5 | b >> 3);
 	}

@@ -24,6 +24,11 @@ public:
 		return !(*this == other);
 	}
 
+	inline const Object3D* Object() const
+	{
+		return _object;
+	}
+
 private:
 	Intersection(double t, const Object3D* object)
 		: _t(t), _object(object)

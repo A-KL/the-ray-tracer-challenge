@@ -176,9 +176,9 @@ void run_light_demo(Canvas& canvas)
 			if (intersection != Intersection::Empty)
 			{
 				auto point = ray.Position(intersection.T());
-				auto normal = intersection.Object.NormalAt(point);
+				auto normal = intersection.Object()->NormalAt(point);
 				auto camera = -ray.Direction();
-				auto color = light.Compute(intersection.Object.GetMaterial(), point, camera, normal);
+			//	auto color = light.Compute(intersection.Object()->GetMaterial(), point, camera, normal);
 
 				canvas.DrawPoint(x, y, shadow);
 			}
