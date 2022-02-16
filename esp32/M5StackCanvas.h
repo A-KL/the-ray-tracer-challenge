@@ -8,7 +8,7 @@ class M5StackCanvas :
 public:
 	M5StackCanvas(M5GFX&, int);
 
-	void Init(int color = 0);
+	void Init(const Color3D& color);
 
 	void DrawPoint(int x, int y, int color);
 
@@ -29,7 +29,9 @@ public:
 		return _bpp;
 	}
 
-	void Clear(int color = 0);
+	void Clear(const Color3D& color);
+
+	void Clear();
 
 	void Update();
 
@@ -40,6 +42,6 @@ private:
 
 	M5GFX* _display;
 
-	const Color<Rgba> _background = Rgba::Black;
+	const Color3D _background = Color3D::Black;
 };
 
