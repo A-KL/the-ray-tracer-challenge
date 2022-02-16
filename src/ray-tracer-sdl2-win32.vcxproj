@@ -188,7 +188,6 @@
     <ClInclude Include="ColorRgba.h" />
     <ClInclude Include="..\lib\Primitive3D.h" />
     <ClInclude Include="..\lib\Projectile.h" />
-    <ClInclude Include="DLCanvas.h" />
     <ClInclude Include="..\lib\Ray3D.h" />
     <ClInclude Include="..\lib\RayTracer.h" />
     <ClInclude Include="..\lib\Shape3D.h" />

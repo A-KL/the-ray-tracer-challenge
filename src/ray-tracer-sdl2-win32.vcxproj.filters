@@ -44,15 +44,6 @@
     <ClCompile Include="..\lib\Ray3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\RayTracer.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorRgba.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\lib\Intersection.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -83,18 +74,21 @@
     <ClCompile Include="..\lib\Material.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\RayTracer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorRgba.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SDLCanvas.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="SDLWindowRenderer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\lib\graphics\ColorRgba.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Environment.h">
@@ -156,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="..\lib\Shape3D.h">
       <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ColorRgba.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
