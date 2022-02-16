@@ -15,6 +15,6 @@ Cross-platform ray tracer based on the book: [The Ray Tracer Challenge - A Test-
 | Chapter | Windows  | ESP32 |
 | ------------- | ------------- | ------------- |
 | №2  | ![Chapter 2](/img/ray_trace_projectile.png)  | ![Chapter 2](/img/ray_trace_projectile_esp32.png)  |
-| №4  | ![Chapter 4](/img/ray_trace_transform.png)  | ![Chapter 4](/img/)  |
+| №4  | ![Chapter 4](/img/ray_trace_transform.png)  | ![Chapter 4](/img/ray_trace_transform_esp32.png)  |
 | №5  | ![Chapter 5](/img/ray_trace_shadow.png)  | ![Chapter 5](/img/ray_trace_shadow_esp32.png)  |
-| №6  | ![Chapter 6](/img/ray_trace_light_material.png)  | ![Chapter 6](/img/)  |
+| №6  | ![Chapter 6](/img/ray_trace_light_material.png)  | ![Chapter 6](/img/ray_trace_light_material_esp32.png)  |

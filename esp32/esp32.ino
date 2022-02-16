@@ -151,14 +151,45 @@ void run_light_demo(Canvas& canvas)
 	}
 }
 
+void run_clock_demo(Canvas& canvas)
+{
+	const double offset_x = canvas.Witdth() / 2;
+	const double offset_y = canvas.Height() / 2;
+	const double size = 100;
+	const double count = 12;
+
+	Point3D origin(0, 0, 0);
+
+	Matrix4d translate = Matrix4d::Translate(0, 1, 0);
+	Matrix4d rotate = Matrix4d::RotateZ(M_PI / (count / 2));
+
+	Primitive3D<double> location = translate * origin;
+
+	canvas.Clear();
+
+	for (char i = 0; i < count; i++)
+	{
+		canvas.DrawPoint(
+			offset_x + location.X() * size,
+			offset_y + location.Y() * size,
+			Color3D::Green);
+
+		location = rotate * location;
+	}
+
+	canvas.Update();
+}
+
 void setup(void)
 { 
     canvas.Init();
 	display.waitDisplay();
+
 	//run_gravity_demo(canvas);
+	run_clock_demo(canvas);
 	//run_shadow_demo(canvas);
 
-	run_light_demo(canvas);
+	//run_light_demo(canvas);
 }
 
 void loop(void)
