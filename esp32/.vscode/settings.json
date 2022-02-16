@@ -1,0 +1,21 @@
+{ 
+    "arduino.logLevel": "verbose",
+    "arduino.clearOutputOnBuild": true,
+    "files.autoSave": "afterDelay",
+    "files.associations": {
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp"
+    },
+    // "C_Cpp.default.browse.path": [
+    //     "C:\\Sources\\the-ray-tracer-challenge\\lib\\ray-tracer-core\\**",
+    //     "C:\\Sources\\the-ray-tracer-challenge\\lib\\graphics\\**",
+    //     "${workspaceFolder}"
+    // ],
+    // "C_Cpp.default.includePath": [
+    //     "C:\\Sources\\the-ray-tracer-challenge\\lib\\ray-tracer-core\\**",
+    //     "C:\\Sources\\the-ray-tracer-challenge\\lib\\graphics\\**"
+    // ],
+}
