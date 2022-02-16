@@ -5,89 +5,166 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
+    <Filter Include="Tests">
+      <UniqueIdentifier>{7e9dd8ac-85c2-4927-b6d1-f38dd3713658}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{c0526495-7746-4218-8c3c-5530ce08b614}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core">
+      <UniqueIdentifier>{78b5f97e-34b6-45ed-92ed-0fbdbdbba700}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Tests\Header Files">
+      <UniqueIdentifier>{d39863fc-d2de-4b20-a17c-516da4e68ef1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Header Files">
+      <UniqueIdentifier>{60c5fdd9-8725-4b78-9e13-9dde1f5127d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\graphics\SDLRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Vector3D.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\graphics\Color.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\lib\graphics\ColorRgba.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tests.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\graphics\SDLWindowRenderer.cpp">
+    <ClCompile Include="tests_matrix.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tests_ray.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Point3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Projectile.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Ray3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Intersection.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Sphere3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Vector3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLCanvas.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="SDLWindowRenderer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="tests_color.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Light3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="tests_light.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Color3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Material.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\RayTracer.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="ColorRgba.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="examples.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\ray-tracer-core\Mathf.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Environment.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Point3D.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Intersection.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Primitive3D.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Light3D.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Mathf.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Projectile.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Matrix.hpp">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Environment.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Object3D.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\Matrix.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\MatrixTransform.hpp">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\MatrixOps.hpp">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Point3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Primitive3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Projectile.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Ray3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\RayTracer.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Sphere3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Vector3D.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="tests.h">
-      <Filter>Header Files</Filter>
+      <Filter>Tests\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\graphics\Color.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Material.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\MatrixOps.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Color3D.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\ray-tracer-core\MatrixTransform.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Canvas.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\graphics\ColorRgba.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\lib\Shape3D.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\graphics\SDLRenderer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Color.h">
+      <Filter>Graphics\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\graphics\SDLWindowRenderer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ColorRgba.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLCanvas.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLWindowRenderer.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="examples.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
