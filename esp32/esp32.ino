@@ -2,11 +2,11 @@
 #include <M5GFX.h>
 #include <list>
 
-#include "Color.h"
+#include "Mathf.h"
+
+#include "Color3D.h"
 #include "Canvas.h"
 #include "M5StackCanvas.h"
-
-#include "Mathf.h"
 
 #include "Primitive3D.h"
 #include "Vector3D.h"
@@ -49,9 +49,8 @@ void setup(void)
 
 void run_shadow_demo(Canvas& canvas)
 {
-	const int w = canvas.Height();
-	const int h = canvas.Height();
-
+	const double w = canvas.Witdth();
+	const double h = canvas.Height();
 	const double wall_size = 7.0;
 	const double wall_position_z = 10.0;
 	const double pixel_size = wall_size / w;
@@ -60,14 +59,11 @@ void run_shadow_demo(Canvas& canvas)
 	Sphere3D sphere;
 	Point3D ray_origin(0, 0, -5);
 
-	Color<Rgba> background = Rgba::Red;
-	Color<Rgba> opaque = Rgba::Black;
-	Color<Rgba> shadow = { opaque.Channels * background.Channels };
+	auto opaque = Color3D::Black;
+	auto background = Color3D::Red;
+	auto shadow = opaque * background;
 
-	int back = background.Channels.ToRgb565();
-	int shd = shadow.Channels.ToRgb565();
-
-	canvas.Clear(back);
+	canvas.Clear(background);
 
 	for (int y = 0; y < h; y++)
 	{
@@ -75,7 +71,7 @@ void run_shadow_demo(Canvas& canvas)
 
 		for (int x = 0; x < w; x++)
 		{
-			double world_x =  - half + pixel_size * x;
+			double world_x = -half + pixel_size * x;
 
 			Point3D point_to_render(world_x, world_y, wall_position_z);
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
@@ -84,11 +80,12 @@ void run_shadow_demo(Canvas& canvas)
 
 			if (ray_hit(intersects) != Intersection::Empty)
 			{
-				canvas.DrawPoint(x, y, shd);
+				canvas.DrawPoint(x, y, shadow);
 			}
 		}
-		canvas.Update();
 	}
+
+	canvas.Update();
 }
 
 void run_gravity_demo(Canvas& canvas)
@@ -96,7 +93,7 @@ void run_gravity_demo(Canvas& canvas)
 
   Point3D p = proj.Position();
 
-  canvas.DrawPoint(p.X(), canvas.Height() - p.Y(), TFT_RED);
+  canvas.DrawPoint(p.X(), canvas.Height() - p.Y(), Color3D::Red);
 
   proj = proj.Tick(env);
 

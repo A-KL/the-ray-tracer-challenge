@@ -2,9 +2,8 @@
 #include "Color3D.h"
 #include "M5StackCanvas.h"
 
-M5StackCanvas::M5StackCanvas(M5GFX& display, int bpp)
+M5StackCanvas::M5StackCanvas(M5GFX& display)
 {
-	_bpp = bpp;
 	_display = &display;
 
 	_w = display.width();
@@ -27,19 +26,19 @@ void M5StackCanvas::Init(const Color3D& color)
   }
 }
 
-void M5StackCanvas::DrawPoint(int x, int y, int color)
+void M5StackCanvas::DrawPoint(int x, int y, const Color3D& color)
 {
-	_display->drawPixel(x, y, color);
+	_display->drawPixel(x, y, (unsigned short)color);
 }
 
-void M5StackCanvas::DrawLine(int x0, int y0, int x1, int y1, int color)
+void M5StackCanvas::DrawLine(int x0, int y0, int x1, int y1, const Color3D& color)
 {
-	_display->drawLine(x0, y0, x1, y1, color);
+	_display->drawLine(x0, y0, x1, y1, (unsigned short)color);
 }
 
 void M5StackCanvas::Clear(const Color3D& color)
 {
-	_display->fillScreen(color);
+	_display->fillScreen((unsigned short)color);
 }
 
 void M5StackCanvas::Clear(const Color3D& color)
