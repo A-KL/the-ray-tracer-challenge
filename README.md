@@ -1,6 +1,6 @@
 # The Ray Tracer Challenge [Work in progress..]
 
-Cross platform ray tracer based on the book: [The Ray Tracer Challenge - A Test-Driven Guide to Your First 3D Renderer](https://amzn.to/2Elaxkr).
+Cross-platform ray tracer based on the book: [The Ray Tracer Challenge - A Test-Driven Guide to Your First 3D Renderer](https://amzn.to/2Elaxkr).
 
 ## Goals
 
