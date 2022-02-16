@@ -86,6 +86,9 @@
     <ClCompile Include="ColorRgba.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="examples.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Environment.h">
@@ -159,6 +162,9 @@
     </ClInclude>
     <ClInclude Include="SDLWindowRenderer.h">
       <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="examples.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

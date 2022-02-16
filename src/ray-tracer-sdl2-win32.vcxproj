@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="examples.cpp" />
     <ClCompile Include="SDLWindowRenderer.cpp" />
     <ClCompile Include="..\lib\Color3D.cpp" />
     <ClCompile Include="..\lib\Intersection.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="tests_matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="examples.h" />
     <ClInclude Include="SDLCanvas.h" />
     <ClInclude Include="SDLWindowRenderer.h" />
     <ClInclude Include="..\lib\Canvas.h" />
