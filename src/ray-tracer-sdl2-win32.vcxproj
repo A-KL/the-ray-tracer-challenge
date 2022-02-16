@@ -171,6 +171,7 @@
     <ClCompile Include="tests_matrix.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SDLCanvas.h" />
     <ClInclude Include="SDLWindowRenderer.h" />
     <ClInclude Include="..\lib\Canvas.h" />
     <ClInclude Include="..\lib\Color3D.h" />

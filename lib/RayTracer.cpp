@@ -34,13 +34,13 @@ std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 
 	Vector3D object_to_ray = final_ray.Location() - object.Position();
 
-	float a = Vector3D::Dot(final_ray.Direction(), final_ray.Direction());
+	double a = Vector3D::Dot(final_ray.Direction(), final_ray.Direction());
 
-	float b = 2 * Vector3D::Dot(final_ray.Direction(), object_to_ray);
+	double b = 2 * Vector3D::Dot(final_ray.Direction(), object_to_ray);
 
-	float c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
+	double c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
 
-	float d = pow(b, 2) - 4 * a * c;
+	double d = pow(b, 2) - 4 * a * c;
 
 	std::list<Intersection> result;
 

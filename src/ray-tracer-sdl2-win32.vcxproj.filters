@@ -21,6 +21,9 @@
     <Filter Include="Tests\Header Files">
       <UniqueIdentifier>{d39863fc-d2de-4b20-a17c-516da4e68ef1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Header Files">
+      <UniqueIdentifier>{60c5fdd9-8725-4b78-9e13-9dde1f5127d0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -85,12 +88,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="SDLWindowRenderer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Core\Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\lib\Environment.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
@@ -151,8 +148,17 @@
     <ClInclude Include="..\lib\Shape3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ColorRgba.h">
-      <Filter>Graphics</Filter>
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLCanvas.h">
+      <Filter>Graphics\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLWindowRenderer.h">
+      <Filter>Graphics\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
