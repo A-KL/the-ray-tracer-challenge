@@ -2,19 +2,11 @@
 #include "Color3D.h"
 #include "M5StackCanvas.h"
 
-M5StackCanvas::M5StackCanvas(M5GFX& display)
-{
-	_display = &display;
-
-	_w = display.width();
-	_h = display.height();
-}
-
 void M5StackCanvas::Init(const Color3D& color)
 {
   _display->init();
   _display->startWrite();
-  _display->fillScreen(color);
+  _display->fillScreen((unsigned short)color);
 
   if (_display->isEPD())
   {
@@ -41,7 +33,7 @@ void M5StackCanvas::Clear(const Color3D& color)
 	_display->fillScreen((unsigned short)color);
 }
 
-void M5StackCanvas::Clear(const Color3D& color)
+void M5StackCanvas::Clear()
 {
   Clear(_background);
 }

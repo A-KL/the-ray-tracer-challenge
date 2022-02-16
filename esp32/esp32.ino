@@ -26,7 +26,7 @@
 #include "RayTracer.h"
 
 M5GFX display;
-M5StackCanvas canvas(display, 16);
+M5StackCanvas canvas(display);
 //#include <M5UnitOLED.h>
 //M5UnitOLED display; // default setting
 //M5UnitOLED display ( 21, 22, 400000 ); // SDA, SCL, FREQ
@@ -41,16 +41,10 @@ Vector3D velocity(1, 1.8, 0);
 Projectile proj(start, velocity.Normalize() * 6.25);
 Environment env(Vector3D(0, -0.1, 0), Vector3D(-0.01, 0, 0));
 
-void setup(void)
-{ 
-    canvas.Init();
-	display.waitDisplay();
-}
-
 void run_shadow_demo(Canvas& canvas)
 {
-	const double w = canvas.Witdth();
-	const double h = canvas.Height();
+	const int w = canvas.Height();
+	const int h = canvas.Height();
 	const double wall_size = 7.0;
 	const double wall_position_z = 10.0;
 	const double pixel_size = wall_size / w;
@@ -83,6 +77,7 @@ void run_shadow_demo(Canvas& canvas)
 				canvas.DrawPoint(x, y, shadow);
 			}
 		}
+		canvas.Update();
 	}
 
 	canvas.Update();
@@ -90,7 +85,6 @@ void run_shadow_demo(Canvas& canvas)
 
 void run_gravity_demo(Canvas& canvas)
 {
-
   Point3D p = proj.Position();
 
   canvas.DrawPoint(p.X(), canvas.Height() - p.Y(), Color3D::Red);
@@ -100,10 +94,15 @@ void run_gravity_demo(Canvas& canvas)
   canvas.Update();
 }
 
+void setup(void)
+{ 
+    canvas.Init();
+	display.waitDisplay();
+	//run_gravity_demo(canvas);
+	run_shadow_demo(canvas);
+}
+
 void loop(void)
 { 
-	//run_shadow_demo(canvas);
-	run_gravity_demo(canvas);
-
   delay(10);
 }

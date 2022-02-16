@@ -7,7 +7,9 @@
         "deque": "cpp",
         "list": "cpp",
         "vector": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "random": "cpp",
+        "iosfwd": "cpp"
     },
     // "C_Cpp.default.browse.path": [
     //     "C:\\Sources\\the-ray-tracer-challenge\\lib\\ray-tracer-core\\**",

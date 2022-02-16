@@ -6,9 +6,11 @@ class M5StackCanvas :
 	public Canvas
 {
 public:
-	M5StackCanvas(M5GFX&);
+	M5StackCanvas(M5GFX& display) :
+		_display(&display)
+	{}
 
-	void Init(const Color3D& color);
+	void Init(const Color3D& color = Color3D::Black);
 
 	void DrawPoint(int x, int y, const Color3D& color);
 
@@ -16,12 +18,12 @@ public:
 
 	inline int Height()
 	{
-		return _h;
+		return _display->height();
 	}
 
 	inline int Witdth()
 	{
-		return _w;
+		return _display->width();
 	}
 
 	void Clear(const Color3D& color);
@@ -33,8 +35,6 @@ public:
 	virtual ~M5StackCanvas();
 
 private:
-	int _w, _h;
-
 	M5GFX* _display;
 
 	const Color3D _background = Color3D::Black;
