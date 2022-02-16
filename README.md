@@ -2,7 +2,7 @@
 
 Cross platform ray tracer based on the book: [The Ray Tracer Challenge - A Test-Driven Guide to Your First 3D Renderer](https://amzn.to/2Elaxkr).
 
-## Goeals
+## Goals
 
 * Learn how ray tracing works
 * Get up to speed with C++ development
@@ -10,6 +10,11 @@ Cross platform ray tracer based on the book: [The Ray Tracer Challenge - A Test-
 * Support for embedded systems: ESP32, STM32.  M5Stack Fire (via Arduino framework) is already supported.
 * Testing donw with C++ `assert()` function and partually using [Microsoft Native Test Framework](https://docs.microsoft.com/en-us/visualstudio/test/microsoft-visualstudio-testtools-cppunittestframework-api-reference?view=vs-2022)
 
-## Examples
+## Results
 
-Windows ESP
+|      | Windows  | ESP32 |
+| ------------- | ------------- | ------------- |
+| Chapter 2  | ![Chapter 2](/img/ray_trace_projectile.png)  | ![Chapter 2](/img/ray_trace_projectile.png)  |
+| Chapter 4  | ![Chapter 4](/img/ray_trace_transform.png)  | ![Chapter 4](/img/ray_trace_transform.png)  |
+| Chapter 5  | ![Chapter 5](/img/ray_trace_shadow.png)  | ![Chapter 5](/img/ray_trace_shadow.png)  |
+| Chapter 6  | ![Chapter 6](/img/ray_trace_light_material.png)  | ![Chapter 6](/img/ray_trace_light_material.png)  |
