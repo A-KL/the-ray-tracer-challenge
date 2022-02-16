@@ -61,10 +61,10 @@ void matrix_rotate_x(
 {
 	matrix_identity(result);
 	//r * PI / 180
-	result.Data[1][1] = Mathf::ToZeroIfClose(cos(r));
-	result.Data[1][2] = -Mathf::ToZeroIfClose(sin(r));
-	result.Data[2][1] = Mathf::ToZeroIfClose(sin(r));
-	result.Data[2][2] = Mathf::ToZeroIfClose(cos(r));
+	result.Data[1][1] = Mathf<TItem>::ToZeroIfClose(cos(r));
+	result.Data[1][2] = -Mathf<TItem>::ToZeroIfClose(sin(r));
+	result.Data[2][1] = Mathf<TItem>::ToZeroIfClose(sin(r));
+	result.Data[2][2] = Mathf<TItem>::ToZeroIfClose(cos(r));
 }
 
 template<typename TItem>
@@ -74,10 +74,10 @@ void matrix_rotate_y(
 {
 	matrix_identity(result);
 
-	result.Data[0][0] = Mathf::ToZeroIfClose(cos(r));
-	result.Data[0][2] = Mathf::ToZeroIfClose(sin(r));
-	result.Data[2][0] = -Mathf::ToZeroIfClose(sin(r));
-	result.Data[2][2] = Mathf::ToZeroIfClose(cos(r));
+	result.Data[0][0] = Mathf<TItem>::ToZeroIfClose(cos(r));
+	result.Data[0][2] = Mathf<TItem>::ToZeroIfClose(sin(r));
+	result.Data[2][0] = -Mathf<TItem>::ToZeroIfClose(sin(r));
+	result.Data[2][2] = Mathf<TItem>::ToZeroIfClose(cos(r));
 }
 
 template<typename TItem>
@@ -87,10 +87,10 @@ void matrix_rotate_z(
 {
 	matrix_identity(result);
 
-	result.Data[0][0] = Mathf::ToZeroIfClose(cos(r));
-	result.Data[0][1] = -Mathf::ToZeroIfClose(sin(r));
-	result.Data[1][0] = Mathf::ToZeroIfClose(sin(r));
-	result.Data[1][1] = Mathf::ToZeroIfClose(cos(r));
+	result.Data[0][0] = Mathf<TItem>::ToZeroIfClose(cos(r));
+	result.Data[0][1] = -Mathf<TItem>::ToZeroIfClose(sin(r));
+	result.Data[1][0] = Mathf<TItem>::ToZeroIfClose(sin(r));
+	result.Data[1][1] = Mathf<TItem>::ToZeroIfClose(cos(r));
 }
 
 //template<typename TItem>

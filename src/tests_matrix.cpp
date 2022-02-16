@@ -3,6 +3,7 @@
 #include <cassert>
 
 #include "../lib/ray-tracer-core/Mathf.h"
+#include "../lib/ray-tracer-core/Color3D.h"
 
 #include "../lib/ray-tracer-core/Primitive3D.h"
 #include "../lib/ray-tracer-core/Vector3D.h"
@@ -12,8 +13,10 @@
 #include "../lib/ray-tracer-core/MatrixOps.hpp"
 #include "../lib/ray-tracer-core/MatrixTransform.hpp"
 
-#include "../lib/ray-tracer-core/Ray3D.h"
+#include "../lib/ray-tracer-core/Shape3D.h"
 #include "../lib/ray-tracer-core/Sphere3D.h"
+
+#include "../lib/ray-tracer-core/Ray3D.h"
 #include "../lib/ray-tracer-core/Intersection.h"
 
 #include "../lib/ray-tracer-core/RayTracer.h"

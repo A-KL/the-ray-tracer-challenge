@@ -35,9 +35,6 @@
     <ClCompile Include="tests_ray.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp">
-      <Filter>Core</Filter>
-    </ClCompile>
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
@@ -155,6 +152,9 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\ray-tracer-core\Canvas.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\ray-tracer-core\Shape3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

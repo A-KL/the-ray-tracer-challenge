@@ -1,6 +1,7 @@
 #include <list>
 
 #include "Mathf.h"
+#include "Color3D.h"
 
 #include "Primitive3D.h"
 #include "Vector3D.h"
@@ -10,10 +11,10 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
-#include "Ray3D.h"
-#include "Sphere3D.h"
-#include "Intersection.h"
+#include "Shape3D.h"
 
+#include "Ray3D.h"
+#include "Intersection.h"
 #include "RayTracer.h"
 
 struct IntersectionComparator
@@ -27,11 +28,11 @@ struct IntersectionComparator
 	}
 };
 
-std::list<Intersection> ray_intersect(const Sphere3D& object, const Ray3D& ray)
+std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 {
 	Ray3D final_ray = ray.Transform(object.Transformation().Inverse());
 
-	Vector3D object_to_ray = final_ray.Location() - object.Location();
+	Vector3D object_to_ray = final_ray.Location() - object.Position();
 
 	float a = Vector3D::Dot(final_ray.Direction(), final_ray.Direction());
 

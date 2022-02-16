@@ -26,11 +26,6 @@ public:
 
 	Point3D operator+(const Vector3D& v);
 
-	//Point3D operator*(const Matrix4d& other) const
-	//{
-	//	return Point3D(1,1,1);
-	//}
-
 	const static Point3D Origin;
 
 	friend ostream& operator<<(ostream& out, const Point3D& p);

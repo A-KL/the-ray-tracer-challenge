@@ -30,9 +30,9 @@ const Color3D Color3D::operator*(double other) const
 bool Color3D::operator==(const Color3D& other) const
 {
 	return
-		Mathf::Approximately(R, other.R) &&
-		Mathf::Approximately(G, other.G) &&
-		Mathf::Approximately(B, other.B);
+		Mathf<double>::Approximately(R, other.R) &&
+		Mathf<double>::Approximately(G, other.G) &&
+		Mathf<double>::Approximately(B, other.B);
 }
 
 Color3D::operator unsigned int() const

@@ -4,8 +4,7 @@ class Object3D
 {
 public:
 	Object3D(const Point3D& position) :
-		_position(position),
-		_transformation(matrix_identity_4d)
+		Object3D(position, matrix_identity_4d)
 	{ }
 
 	Object3D(const Point3D& position, const Matrix4d& transform) :
@@ -13,7 +12,7 @@ public:
 		_transformation(transform)
 	{ }
 
-	inline Point3D Location() const
+	inline Point3D Position() const
 	{
 		return _position;
 	}
@@ -30,6 +29,7 @@ public:
 
 	bool virtual operator==(const Object3D& other) const
 	{
+		// TODO: fix this
 		return
 			_position.X() == other._position.X() &&
 			_position.Y() == other._position.Y() &&
@@ -44,7 +44,6 @@ public:
 		auto object_normal = object_point - _position;
 		auto world_normal = inverse.Transpose() * object_normal;
 		world_normal.SetW(0);
-		//world_normal.W();
 
 		return world_normal.Normalize();
 	}

@@ -1,18 +1,19 @@
 #pragma once
 
-class Mathf
+template<typename TItem>
+struct Mathf
 {
-public:
-	static const double Epsilon;
+	static inline bool Approximately(TItem a, TItem b)
+	{
+		return fabs(a - b) < 0.00001f;
+	}
 
-	static bool Approximately(float, float);
-
-	static bool Approximately(double, double);
-
-	static double ToZeroIfClose(double);
+	static inline double ToZeroIfClose(TItem a)
+	{
+		return Approximately(a, 0) ? 0 : a;
+	}
 
 private:
 	Mathf()
 	{ }
 };
-

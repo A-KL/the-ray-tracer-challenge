@@ -154,7 +154,6 @@
     <ClCompile Include="..\lib\ray-tracer-core\Intersection.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Light3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Material.cpp" />
-    <ClCompile Include="..\lib\ray-tracer-core\Mathf.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Point3D.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Projectile.cpp" />
     <ClCompile Include="..\lib\ray-tracer-core\Ray3D.cpp" />
@@ -192,6 +191,7 @@
     <ClInclude Include="..\lib\graphics\SDLCanvas.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Ray3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\RayTracer.h" />
+    <ClInclude Include="..\lib\ray-tracer-core\Shape3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Sphere3D.h" />
     <ClInclude Include="..\lib\ray-tracer-core\Vector3D.h" />
     <ClInclude Include="tests.h" />

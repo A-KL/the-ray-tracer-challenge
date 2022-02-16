@@ -18,6 +18,8 @@ public:
 	~Material()
 	{}
 
+	bool operator==(const Material& other) const;
+
 	Color3D Color;
 
 	double Ambient = 0.1;
