@@ -2,20 +2,20 @@
 #include <list>
 #include <cassert>
 
-#include "../lib/ray-tracer-core/Mathf.h"
+#include "../lib/Mathf.h"
 
-#include "../lib/ray-tracer-core/Color3D.h"
+#include "../lib/Color3D.h"
 
-#include "../lib/ray-tracer-core/Primitive3D.h"
-#include "../lib/ray-tracer-core/Vector3D.h"
-#include "../lib/ray-tracer-core/Point3D.h"
+#include "../lib/Primitive3D.h"
+#include "../lib/Vector3D.h"
+#include "../lib/Point3D.h"
 
-#include "../lib/ray-tracer-core/Matrix.hpp"
-#include "../lib/ray-tracer-core/MatrixOps.hpp"
-#include "../lib/ray-tracer-core/MatrixTransform.hpp"
+#include "../lib/Matrix.hpp"
+#include "../lib/MatrixOps.hpp"
+#include "../lib/MatrixTransform.hpp"
 
-#include "../lib/ray-tracer-core/Material.h"
-#include "../lib/ray-tracer-core/Light3D.h"
+#include "../lib/Material.h"
+#include "../lib/Light3D.h"
 
 #include "tests.h"
 

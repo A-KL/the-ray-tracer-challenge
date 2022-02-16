@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../ray-tracer-core/Canvas.h"
+#include "../lib/Canvas.h"
 
 class SDLCanvas :
 	public Canvas

@@ -1,7 +1,7 @@
 #include <SDL.h>
 
-#include "../ray-tracer-core/Color3D.h"
-#include "../ray-tracer-core/Canvas.h"
+#include "../lib/Color3D.h"
+#include "../lib/Canvas.h"
 
 #include "SDLCanvas.h"
 

@@ -155,24 +155,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\lib\ray-tracer-core\Mathf.cpp" />
-    <ClCompile Include="..\..\lib\ray-tracer-core\Point3D.cpp" />
-    <ClCompile Include="..\..\lib\ray-tracer-core\Projectile.cpp" />
-    <ClCompile Include="..\..\lib\ray-tracer-core\Ray3D.cpp" />
-    <ClCompile Include="..\..\lib\ray-tracer-core\Vector3D.cpp" />
+    <ClCompile Include="..\lib\Point3D.cpp" />
+    <ClCompile Include="..\lib\Projectile.cpp" />
+    <ClCompile Include="..\lib\Ray3D.cpp" />
+    <ClCompile Include="..\lib\Vector3D.cpp" />
     <ClCompile Include="matrix_transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\lib\ray-tracer-core\Environment.h" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\Mathf.h" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\Matrix.hpp" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\MatrixBase.hpp" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\MatrixOps.hpp" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\MatrixTransform.hpp" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\Point3D.h" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\Primitive3D.h" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\Projectile.h" />
-    <ClInclude Include="..\..\lib\ray-tracer-core\Vector3D.h" />
+    <ClInclude Include="..\lib\Environment.h" />
+    <ClInclude Include="..\lib\Mathf.h" />
+    <ClInclude Include="..\lib\Matrix.hpp" />
+    <ClInclude Include="..\lib\MatrixOps.hpp" />
+    <ClInclude Include="..\lib\MatrixTransform.hpp" />
+    <ClInclude Include="..\lib\Point3D.h" />
+    <ClInclude Include="..\lib\Primitive3D.h" />
+    <ClInclude Include="..\lib\Projectile.h" />
+    <ClInclude Include="..\lib\Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

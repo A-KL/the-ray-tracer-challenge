@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../ray-tracer-core/Color3D.h"
+#include "Color3D.h"
 
 class Canvas
 {

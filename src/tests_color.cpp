@@ -1,7 +1,7 @@
 #include <cassert>
 
-#include "../lib/graphics/Color.h"
-#include "../lib/ray-tracer-core/Color3D.h"
+#include "Color.h"
+#include "../lib/Color3D.h"
 
 #include "tests.h"
 
