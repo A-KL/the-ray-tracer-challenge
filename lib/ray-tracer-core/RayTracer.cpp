@@ -40,14 +40,14 @@ std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 
 	float c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
 
-	float d = powf(b, 2) - 4 * a * c;
+	float d = pow(b, 2) - 4 * a * c;
 
 	std::list<Intersection> result;
 
 	if (d >= 0)
 	{
-		double t1 = (-b - sqrtf(d)) / (2 * a);
-		double t2 = (-b + sqrtf(d)) / (2 * a);
+		double t1 = (-b - sqrt(d)) / (2 * a);
+		double t2 = (-b + sqrt(d)) / (2 * a);
 
 		result = {
 			Intersection(t1, object),

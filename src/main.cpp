@@ -172,9 +172,9 @@ void run_light_demo(Canvas& canvas)
 				canvas.DrawPoint(x, y, color);
 			}
 		}
-	}
+		canvas.Update();
 
-	canvas.Update();
+	}
 }
 
 int main()
