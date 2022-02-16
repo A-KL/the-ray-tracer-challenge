@@ -168,10 +168,13 @@
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="tests_color.cpp" />
     <ClCompile Include="tests_light.cpp" />
+    <ClCompile Include="tests_normal.cpp" />
     <ClCompile Include="tests_ray.cpp" />
     <ClCompile Include="tests_matrix.cpp" />
+    <ClCompile Include="tests_world.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lib\World3D.h" />
     <ClInclude Include="examples.h" />
     <ClInclude Include="SDLCanvas.h" />
     <ClInclude Include="SDLWindowRenderer.h" />

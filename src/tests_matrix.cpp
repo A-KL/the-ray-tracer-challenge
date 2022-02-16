@@ -1,5 +1,3 @@
-#include <iostream>
-#include <list>
 #include <cassert>
 
 #include "../lib/Mathf.h"

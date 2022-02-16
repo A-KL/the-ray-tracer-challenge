@@ -89,6 +89,12 @@
     <ClCompile Include="examples.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="tests_world.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="tests_normal.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Environment.h">
@@ -165,6 +171,9 @@
     </ClInclude>
     <ClInclude Include="examples.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\World3D.h">
+      <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
