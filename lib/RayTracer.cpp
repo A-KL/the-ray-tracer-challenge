@@ -19,6 +19,8 @@
 #include "Intersection.h"
 #include "RayTracer.h"
 
+const static std::list<Intersection> EmptyList;
+
 struct IntersectionComparator
 {
 	bool operator ()(const Intersection& intersection1, const Intersection& intersection2)
@@ -77,8 +79,6 @@ std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 
 	return result;
 }
-
-const static std::list<Intersection> EmptyList;
 
 const std::list<Intersection> ray_hit(const std::list<Intersection>& intersections)
 {
