@@ -1,4 +1,6 @@
 #include <list>
+#include <algorithm>    // std::sort
+#include <vector>       // std::vector
 
 #include "Mathf.h"
 #include "Color3D.h"
@@ -21,10 +23,10 @@ struct IntersectionComparator
 {
 	bool operator ()(const Intersection& intersection1, const Intersection& intersection2)
 	{
-		if (intersection1.T() == intersection2.T())
-			return intersection1.T() < intersection2.T();
+		if (intersection1.Value == intersection2.Value)
+			return intersection1.Value < intersection2.Value;
 
-		return intersection1.T() < intersection2.T();
+		return intersection1.Value < intersection2.Value;
 	}
 };
 
@@ -51,11 +53,11 @@ std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 {
 	Ray3D final_ray = ray.Transform(object.Transformation().Inverse());
 
-	Vector3D object_to_ray = final_ray.Location() - object.Position();
+	Vector3D object_to_ray = final_ray.Location - object.Position();
 
-	double a = Vector3D::Dot(final_ray.Direction(), final_ray.Direction());
+	double a = Vector3D::Dot(final_ray.Direction, final_ray.Direction);
 
-	double b = 2 * Vector3D::Dot(final_ray.Direction(), object_to_ray);
+	double b = 2 * Vector3D::Dot(final_ray.Direction, object_to_ray);
 
 	double c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
 
@@ -68,30 +70,29 @@ std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 		double t1 = (-b - sqrt(d)) / (2 * a);
 		double t2 = (-b + sqrt(d)) / (2 * a);
 
-		result = {
-			Intersection(t1, object),
-			Intersection(t2, object)
-		};
-
+		result.push_back(Intersection(t1, object));
+		result.push_back(Intersection(t2, object));
 		result.sort(IntersectionComparator());
 	}
 
 	return result;
 }
 
-Intersection ray_hit(const std::list<Intersection>& intersections)
+const static std::list<Intersection> EmptyList;
+
+const std::list<Intersection> ray_hit(const std::list<Intersection>& intersections)
 {
-	std::list<Intersection> soreted(intersections);
+	std::list<Intersection> sorted(intersections);
 
-	soreted.sort(IntersectionComparator());
+	sorted.sort(IntersectionComparator());
 
-	for (auto& intersection : soreted)
+	for (auto& intersection : sorted)
 	{
-		if (intersection.T() >= 0)
+		if (intersection.Value >= 0)
 		{
-			return intersection;
+			return std::list<Intersection> { intersection };
 		}
 	}
 
-	return Intersection::Empty;
+	return EmptyList;
 }

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <vector>
 #include <cassert>
 
 #include "../lib/Mathf.h"
@@ -38,8 +39,8 @@ void test_ray_sphere_scale_intersect()
 
 	auto first = res.begin();
 
-	assert(3.0 == (*first++).T());
-	assert(7.0 == (*first).T());
+	assert(3.0 == (first++)->Value);
+	assert(7.0 == (first)->Value);
 }
 
 void test_ray_sphere_translate_intersect()
@@ -68,18 +69,18 @@ void test_ray_transform()
 	auto result = ray.Transform(transform);
 
 	// Assert
-	assert(Point3D(4, 6, 8) == result.Location());
-	assert(Vector3D(0, 1, 0) == result.Direction());
+	assert(Point3D(4, 6, 8) == result.Location);
+	assert(Vector3D(0, 1, 0) == result.Direction);
 
 	// Set up
 	transform = Matrix4d::Scale(2, 3, 4);
 
 	// Act
-	result = ray.Transform(transform);
+	auto result2 = ray.Transform(transform);
 
 	// Assert
-	assert(Point3D(2, 6, 12) == result.Location());
-	assert(Vector3D(0, 3, 0) == result.Direction());
+	assert(Point3D(2, 6, 12) == result2.Location);
+	assert(Vector3D(0, 3, 0) == result2.Direction);
 }
 
 void test_ray_positive_hits()
@@ -97,10 +98,10 @@ void test_ray_positive_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections);
+	auto results = ray_hit(intersections);
 
 	// Assert
-	assert(intersection1 == result);
+	assert(intersection1 == *results.begin());
 }
 
 void test_ray_some_negative_hits()
@@ -118,10 +119,10 @@ void test_ray_some_negative_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections);
+	auto results = ray_hit(intersections);
 
 	// Assert
-	assert(intersection2 == result);
+	assert(intersection2 == *results.begin());
 }
 
 void test_ray_some_all_negative_hits()
@@ -139,10 +140,10 @@ void test_ray_some_all_negative_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections);
+	auto results = ray_hit(intersections);
 
 	// Assert
-	assert(Intersection::Empty == result);
+	assert(results.empty());
 }
 
 void test_ray_mixed_hits()
@@ -164,10 +165,10 @@ void test_ray_mixed_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections1);
+	auto results = ray_hit(intersections1);
 
 	// Assert
-	assert(intersection4 == result);
+	assert(intersection4 == *results.begin());
 }
 
 void test_ray_intersect()
@@ -184,8 +185,8 @@ void test_ray_intersect()
 
 	auto first = res.begin();
 
-	assert(5.0 == (*first++).T());
-	assert(5.0 == (*first).T());
+	assert(5.0 == first->Value);
+	assert(5.0 == (first++)->Value);
 
 
 	// Set up
@@ -199,8 +200,8 @@ void test_ray_intersect()
 
 	first = res.begin();
 
-	assert(-1.0 == (*first++).T());
-	assert(1.0 == (*first).T());
+	assert(-1.0 == (first++)->Value);
+	assert(1.0 == (first)->Value);
 
 
 	// Set up

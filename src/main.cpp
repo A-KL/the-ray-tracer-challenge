@@ -19,13 +19,13 @@ int main()
 
 	SDLWindowRenderer canvas("The Ray Tracer Challenge", 550, 550, 32);
 
-	run_projectile_demo(canvas);
+	//run_projectile_demo(canvas);
 
 	//run_clock_demo(canvas);
 
 	//run_shadow_demo(canvas);
 
-	//run_light_demo(canvas);
+	run_light_demo(canvas);
 	
 	do
 	{

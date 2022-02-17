@@ -65,10 +65,10 @@ void test_world_intersection()
 
 	auto iter = intersections.begin();
 
-	assert(4 == (iter++)->T());
-	assert(4.5 == (iter++)->T());
-	assert(5.5 == (iter++)->T());
-	assert(6 == (iter)->T());
+	assert(4 == (iter++)->Value);
+	assert(4.5 == (iter++)->Value);
+	assert(5.5 == (iter++)->Value);
+	assert(6 == (iter)->Value);
 }
 
 void run_world_tests()

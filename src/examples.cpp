@@ -116,7 +116,7 @@ void run_shadow_demo(Canvas& canvas)
 
 			auto intersects = ray_intersect(sphere, ray);
 
-			if (ray_hit(intersects) != Intersection::Empty)
+			if (!ray_hit(intersects).empty())
 			{
 				canvas.DrawPoint(x, y, shadow);
 			}
@@ -154,14 +154,15 @@ void run_light_demo(Canvas& canvas)
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
 
 			auto intersects = ray_intersect(sphere, ray);
-			auto intersection = ray_hit(intersects);
+			auto intersections = ray_hit(intersects);
 
-			if (intersection != Intersection::Empty)
+			if (!intersections.empty())
 			{
-				auto point = ray.Position(intersection.T());
-				auto normal = intersection.Object()->NormalAt(point);
-				auto camera = -ray.Direction();
-				auto color = light.Compute(intersection.Object()->GetMaterial(), point, camera, normal);
+				auto intersection = intersections.begin();
+				auto point = ray.Position(intersection->Value);
+				auto normal = intersection->Shape->NormalAt(point);
+				auto camera = -ray.Direction;
+				auto color = light.Compute(intersection->Shape->GetMaterial(), point, camera, normal);
 
 				canvas.DrawPoint(x, y, color);
 			}

@@ -10,4 +10,22 @@
 #include "Shape3D.h"
 #include "Intersection.h"
 
-const Intersection Intersection::Empty = Intersection(0, 0);
+bool Intersection::operator==(const Intersection& other) const
+{
+	return Value == other.Value && Shape == other.Shape;
+}
+
+bool Intersection::operator!=(const Intersection& other) const
+{
+	return !(*this == other);
+}
+
+bool Intersection::operator>(const Intersection& other) const
+{
+	return Value > other.Value;
+}
+
+bool Intersection::operator<(const Intersection& other) const
+{
+	return Value < other.Value;
+}
