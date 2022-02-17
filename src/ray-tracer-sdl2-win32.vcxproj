@@ -151,7 +151,6 @@
   <ItemGroup>
     <ClCompile Include="..\lib\Computation.cpp" />
     <ClCompile Include="..\lib\Object3D.cpp" />
-    <ClCompile Include="..\lib\World3D.cpp" />
     <ClCompile Include="examples.cpp" />
     <ClCompile Include="SDLWindowRenderer.cpp" />
     <ClCompile Include="..\lib\Color3D.cpp" />
@@ -162,7 +161,6 @@
     <ClCompile Include="..\lib\Projectile.cpp" />
     <ClCompile Include="..\lib\Ray3D.cpp" />
     <ClCompile Include="..\lib\RayTracer.cpp" />
-    <ClCompile Include="..\lib\Sphere3D.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SDLCanvas.cpp" />
     <ClCompile Include="ColorRgba.cpp" />

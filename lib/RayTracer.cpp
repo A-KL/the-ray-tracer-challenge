@@ -1,6 +1,4 @@
 #include <list>
-#include <algorithm>    // std::sort
-#include <vector>       // std::vector
 
 #include "Mathf.h"
 #include "Color3D.h"
@@ -13,10 +11,15 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
+#include "Material.h"
+#include "Object3D.h"
 #include "Shape3D.h"
 
+#include "Light3D.h"
 #include "Ray3D.h"
 #include "Intersection.h"
+#include "Computation.h"
+
 #include "RayTracer.h"
 
 const static std::list<Intersection> EmptyList;
@@ -95,4 +98,17 @@ const std::list<Intersection> ray_hit(const std::list<Intersection>& intersectio
 	}
 
 	return EmptyList;
+}
+
+const Color3D shade_hit(const std::list<Light3D>& lights, const Computation& computation)
+{
+	Color3D result(0, 0, 0);
+
+	for (auto& light : lights)
+	{
+		result += light
+			.Compute(computation.Intersect.Shape->Mat, computation.Position, computation.Camera, computation.Normal);
+	}
+
+	return result;
 }

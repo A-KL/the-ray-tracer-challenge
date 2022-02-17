@@ -11,6 +11,7 @@
 #include "../lib/MatrixOps.hpp"
 #include "../lib/MatrixTransform.hpp"
 
+#include "../lib/Material.h"
 #include "../lib/Sphere3D.h"
 
 #include "tests.h"

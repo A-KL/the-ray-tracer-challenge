@@ -7,7 +7,7 @@ public:
 		: _position(position), _velocity(velocity)
 	{ }
 
-	Projectile Tick(const Environment&);
+	Projectile Tick(const Environment&) const;
 
 	inline Point3D Position()
 	{

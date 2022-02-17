@@ -19,9 +19,7 @@ public:
 
 	bool operator!=(const Intersection& other) const;
 
-	bool operator>(const Intersection& other) const;
+	//bool operator>(const Intersection& other) const;
 
-	bool operator<(const Intersection& other) const;
-
-	Intersection& operator =(const Intersection& other);
+	//bool operator<(const Intersection& other) const;
 };

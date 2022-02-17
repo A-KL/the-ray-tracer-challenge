@@ -9,6 +9,7 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
+#include "Material.h"
 #include "Shape3D.h"
 
 #include "Ray3D.h"

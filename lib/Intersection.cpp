@@ -7,6 +7,7 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
+#include "Material.h"
 #include "Shape3D.h"
 #include "Intersection.h"
 
@@ -20,12 +21,12 @@ bool Intersection::operator!=(const Intersection& other) const
 	return !(*this == other);
 }
 
-bool Intersection::operator>(const Intersection& other) const
-{
-	return Value > other.Value;
-}
-
-bool Intersection::operator<(const Intersection& other) const
-{
-	return Value < other.Value;
-}
+//bool Intersection::operator>(const Intersection& other) const
+//{
+//	return Value > other.Value;
+//}
+//
+//bool Intersection::operator<(const Intersection& other) const
+//{
+//	return Value < other.Value;
+//}

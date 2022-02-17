@@ -46,6 +46,8 @@ struct Color3D
 
 	const Color3D operator*(double other) const;
 
+	void operator+=(const Color3D& other);
+
 	bool operator==(const Color3D& other) const;
 
 	operator unsigned int() const;

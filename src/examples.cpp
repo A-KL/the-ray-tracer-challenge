@@ -19,10 +19,13 @@
 #include "../lib/Projectile.h"
 
 #include "../lib/Ray3D.h"
+#include "../lib/Material.h"
+#include "../lib/Object3D.h"
+#include "../lib/Shape3D.h"
 #include "../lib/Sphere3D.h"
 #include "../lib/Intersection.h"
-#include "../lib/Material.h"
 #include "../lib/Light3D.h"
+#include "../lib/Computation.h"
 #include "../lib/RayTracer.h"
 
 #include "examples.h"
@@ -162,7 +165,7 @@ void run_light_demo(Canvas& canvas)
 				auto point = ray.Position(intersection->Value);
 				auto normal = intersection->Shape->NormalAt(point);
 				auto camera = -ray.Direction;
-				auto color = light.Compute(intersection->Shape->GetMaterial(), point, camera, normal);
+				auto color = light.Compute(intersection->Shape->Mat, point, camera, normal);
 
 				canvas.DrawPoint(x, y, color);
 			}

@@ -34,6 +34,13 @@ bool Color3D::operator==(const Color3D& other) const
 		Mathf<double>::Approximately(B, other.B);
 }
 
+void Color3D::operator+=(const Color3D& other)
+{
+	this->R = this->R + other.R;
+	this->G = this->G + other.G;
+	this->B = this->B + other.B;
+}
+
 Color3D::operator unsigned int() const
 {
 	return (RToByte() << 16) | (GToByte() << 8) | BToByte();

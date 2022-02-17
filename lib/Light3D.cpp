@@ -1,8 +1,8 @@
 #include <math.h>
 
 #include "Mathf.h"
-
 #include "Color3D.h"
+
 #include "Primitive3D.h"
 #include "Vector3D.h"
 #include "Point3D.h"
@@ -17,7 +17,7 @@
 
 Color3D Light3D::Compute(const Material& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal) const
 {
-	auto effective_color = material.Color * _intensity;
+	auto effective_color = material.Color * Intensity;
 
 	auto light_direction = Vector3D::Normalize(Position - position);
 
@@ -41,7 +41,7 @@ Color3D Light3D::Compute(const Material& material, const Point3D& position, cons
 		{
 			auto factor = pow(reflect_dot_camera, material.Shininess);
 
-			specular = _intensity * material.Specular * factor;
+			specular = Intensity * material.Specular * factor;
 		}
 	}
 

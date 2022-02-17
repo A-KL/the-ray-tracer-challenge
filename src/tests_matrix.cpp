@@ -11,11 +11,15 @@
 #include "../lib/MatrixOps.hpp"
 #include "../lib/MatrixTransform.hpp"
 
+#include "../lib/Material.h"
+
 #include "../lib/Shape3D.h"
 #include "../lib/Sphere3D.h"
+#include "../lib/Light3D.h"
 
 #include "../lib/Ray3D.h"
 #include "../lib/Intersection.h"
+#include "../lib/Computation.h"
 
 #include "../lib/RayTracer.h"
 
