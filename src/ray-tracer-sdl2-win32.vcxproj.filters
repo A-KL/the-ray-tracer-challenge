@@ -95,6 +95,9 @@
     <ClCompile Include="tests_normal.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\World3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Environment.h">

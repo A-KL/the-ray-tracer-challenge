@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lib\World3D.cpp" />
     <ClCompile Include="examples.cpp" />
     <ClCompile Include="SDLWindowRenderer.cpp" />
     <ClCompile Include="..\lib\Color3D.cpp" />
