@@ -21,6 +21,8 @@
 
 #include "../lib/World3D.h"
 
+#include "../lib/Computation.h"
+
 #include "tests.h"
 
 void test_world_default()
@@ -71,9 +73,63 @@ void test_world_intersection()
 	assert(6 == (iter)->Value);
 }
 
+void test_computation_creation()
+{
+	// Setup
+	Sphere3D sphere;
+	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
+	Intersection intersection(4, sphere);
+
+	// Act
+	auto computation = Computation::Prepare(intersection, ray);
+
+	// Assert
+	assert((Shape3D)sphere == *computation.Intersect.Shape);
+	assert(Point3D(0, 0, -1) == computation.Position);
+	assert(Vector3D(0, 0, -1) == computation.Camera);
+	assert(Vector3D(0, 0, -1) == computation.Normal);
+}
+
+void test_computation_outside()
+{
+	// Setup
+	Sphere3D sphere;
+	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
+	Intersection intersection(4, sphere);
+
+	// Act
+	auto computation = Computation::Prepare(intersection, ray);
+
+	// Assert
+	assert(!computation.IsInside);
+}
+
+void test_computation_inside()
+{
+	// Setup
+	Sphere3D sphere;
+	Ray3D ray(Point3D(0, 0, 0), Vector3D(0, 0, 1));
+	Intersection intersection(1, sphere);
+
+	// Act
+	auto computation = Computation::Prepare(intersection, ray);
+
+	// Assert
+	assert(computation.IsInside);
+	assert(Point3D(0, 0, 1) == computation.Position);
+	assert(Vector3D(0, 0, -1) == computation.Camera);
+	assert(Vector3D(0, 0, -1) == computation.Normal);
+}
+
 void run_world_tests()
 {
 	test_world_default();
 
 	test_world_intersection();
+
+	test_computation_creation();
+
+	test_computation_inside();
+	
+	test_computation_outside();
 }

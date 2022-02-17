@@ -98,6 +98,12 @@
     <ClCompile Include="..\lib\World3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\Object3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Computation.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Environment.h">
@@ -176,6 +182,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\World3D.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Computation.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

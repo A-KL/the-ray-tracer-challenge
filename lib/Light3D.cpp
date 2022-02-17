@@ -19,7 +19,7 @@ Color3D Light3D::Compute(const Material& material, const Point3D& position, cons
 {
 	auto effective_color = material.Color * _intensity;
 
-	auto light_direction = Vector3D::Normalize(Position() - position);
+	auto light_direction = Vector3D::Normalize(Position - position);
 
 	auto ambient = effective_color * material.Ambient;
 

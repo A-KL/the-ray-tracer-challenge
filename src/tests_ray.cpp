@@ -27,11 +27,9 @@ void test_ray_sphere_scale_intersect()
 {
 	// Set up
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
-	Sphere3D sphere;
+	Sphere3D sphere(Matrix4d::Scale(2, 2, 2));
 
 	// Act
-	sphere.SetTransformation(Matrix4d::Scale(2, 2, 2));
-
 	auto res = ray_intersect(sphere, ray);
 
 	// Assert
@@ -47,11 +45,9 @@ void test_ray_sphere_translate_intersect()
 {
 	// Set up
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
-	Sphere3D sphere;
+	Sphere3D sphere(Matrix4d::Translate(5, 0, 0));
 
 	// Act
-	sphere.SetTransformation(Matrix4d::Translate(5, 0, 0));
-
 	auto res = ray_intersect(sphere, ray);
 
 	// Assert
@@ -220,20 +216,16 @@ void test_sphere_default_transform()
 	Sphere3D sphere;
 
 	// Assert
-	assert(Matrix4d::Identity() == sphere.Transformation());
+	assert(Matrix4d::Identity() == sphere.Transformation);
 }
 
 void test_sphere_set_transform()
 {
 	// Set up
-	Sphere3D sphere;
-	Matrix4d transform = Matrix4d::Translate(2, 3, 4);
-
-	// Act
-	sphere.SetTransformation(transform);
+	Sphere3D sphere(Matrix4d::Translate(2, 3, 4));
 
 	// Assert
-	assert(Matrix4d::Translate(2, 3, 4) == sphere.Transformation());
+	assert(Matrix4d::Translate(2, 3, 4) == sphere.Transformation);
 }
 
 void run_ray_tests()

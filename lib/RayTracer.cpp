@@ -53,9 +53,9 @@ std::list<Intersection> ray_intersect(const std::list<Shape3D>& objects, const R
 
 std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 {
-	Ray3D final_ray = ray.Transform(object.Transformation().Inverse());
+	Ray3D final_ray = ray.Transform(object.Transformation.Inverse());
 
-	Vector3D object_to_ray = final_ray.Location - object.Position();
+	Vector3D object_to_ray = final_ray.Location - object.Position;
 
 	double a = Vector3D::Dot(final_ray.Direction, final_ray.Direction);
 
