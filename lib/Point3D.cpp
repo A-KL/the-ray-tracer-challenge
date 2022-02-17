@@ -20,6 +20,11 @@ Point3D Point3D::operator-(const Vector3D& other) const
 	return Point3D(X() - other.X(), Y() - other.Y(), Z() - other.Z());
 }
 
+bool Point3D::operator==(const Point3D& other) const
+{
+	return (Primitive3D<double>) *this == (Primitive3D<double>)other;
+}
+
 ostream& operator<<(ostream& out, const Point3D& p)
 {
 	out << "Point3D";

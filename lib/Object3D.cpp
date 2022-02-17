@@ -10,11 +10,8 @@
 
 bool Object3D::operator==(const Object3D& other) const
 {
-	// TODO: fix this
 	return
-		Position.X() == other.Position.X() &&
-		Position.Y() == other.Position.Y() &&
-		Position.Z() == other.Position.Z() &&
+		Position == other.Position &&
 		Transformation == other.Transformation;
 }
 

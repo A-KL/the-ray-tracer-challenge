@@ -31,7 +31,7 @@ void test_matrix_scaling()
 	Matrix4d m0 = Matrix4d::Scale(2, 3, 4);
 
 	// Act
-	Primitive3D<double> result0 = m0 * Point3D(-4, 6, 8);
+	auto result0 = m0 * Point3D(-4, 6, 8);
 
 	// Assert
 	assert(Point3D(-8, 18, 32) == result0);
@@ -45,7 +45,7 @@ void test_matrix_rotate_quarter()
 	Point3D point(0, 1, 0);
 
 	// Act
-	Primitive3D<double> result = quarter * point;
+	auto result = quarter * point;
 
 	// Assert
 	assert(Point3D(0, 0, 1) == result);
@@ -59,7 +59,7 @@ void test_matrix_rotate_pi()
 	Point3D point(0, 1, 0);
 
 	// Act
-	Primitive3D<double> result = quarter * point;
+	auto result = quarter * point;
 
 	// Assert
 	assert(Point3D(0, -1, 0) == result);
@@ -73,7 +73,7 @@ void test_matrix_rotate_half_quarter()
 	Point3D point(0, 1, 0);
 
 	// Act
-	Primitive3D<double> result = quarter * point;
+	auto result = quarter * point;
 
 	// Assert
 	assert(Point3D(0, sqrt(2) / 2.0, sqrt(2) / 2.0) == result);
@@ -85,7 +85,7 @@ void test_matrix_translation()
 	Matrix4d m0 = Matrix4d::Translate(5, -3, 2);
 
 	// Act
-	Primitive3D<double> result0 = m0 * Point3D(-3, 4, 5);
+	auto result0 = m0 * Point3D(-3, 4, 5);
 
 	// Assert
 	assert(Point3D(2, 1, 7) == result0);
@@ -96,7 +96,7 @@ void test_matrix_translation()
 	Matrix4d m1_inverse = m1.Inverse();
 
 	// Act
-	Primitive3D<double> result1 = m1_inverse * Point3D(-3, 4, 5);
+	auto result1 = m1_inverse * Point3D(-3, 4, 5);
 
 	// Assert
 	assert(Point3D(-8, 7, 3) == result1);

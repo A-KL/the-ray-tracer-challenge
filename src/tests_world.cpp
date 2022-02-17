@@ -170,8 +170,6 @@ void test_computation_inside()
 	assert(Vector3D(0, 0, -1) == computation.Normal);
 }
 
-
-
 void run_world_tests()
 {
 	test_world_default();
