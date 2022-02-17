@@ -13,7 +13,7 @@ const Color3D Color3D::Blue(0, 0, 1);
 
 const Color3D Color3D::operator*(const Color3D& other) const
 {
-	return Color3D { (R + other.R) * 0.5, (G + other.G) * 0.5, (B + other.B) * 0.5 };
+	return Color3D { (R * other.R), (G * other.G), (B * other.B)};
 }
 
 const Color3D Color3D::operator+(const Color3D& other) const

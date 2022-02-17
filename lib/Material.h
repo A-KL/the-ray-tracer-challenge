@@ -1,8 +1,7 @@
 #pragma once
 
-class Material
+struct Material
 {
-public:
 	Material(const Material& material)
 		: Material(material.Color, material.Ambient, material.Diffuse, material.Specular, material.Shininess)
 	{ }
@@ -20,12 +19,12 @@ public:
 
 	bool operator==(const Material& other) const;
 
-	Color3D Color;
+	const Color3D Color;
 
-	double Ambient = 0.1;
-	double Diffuse = 0.9;
-	double Specular = 0.9;
-	double Shininess = 200;
+	const double Ambient = 0.1;
+	const double Diffuse = 0.9;
+	const double Specular = 0.9;
+	const double Shininess = 200;
 
 	const static Material Default;
 };

@@ -80,7 +80,7 @@ void test_world_shade()
 	World3D world;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	world.Lights.push_back(light);
@@ -104,7 +104,7 @@ void test_world_shade_inside()
 	World3D world;
 	Light3D light(Point3D(0, 0.25, 0), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	world.Lights.push_back(light);
@@ -112,7 +112,7 @@ void test_world_shade_inside()
 	world.Shapes.push_back(sphere2);
 
 	Ray3D ray(Point3D(0, 0, 0), Vector3D(0, 0, 1));
-	Intersection intersection(0.5, sphere1);
+	Intersection intersection(0.5, sphere2);
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray);
@@ -184,7 +184,7 @@ void run_world_tests()
 	
 	test_computation_outside();
 
-	test_world_shade_inside();
-
 	test_world_shade();
+
+	test_world_shade_inside();
 }
