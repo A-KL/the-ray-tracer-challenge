@@ -151,6 +151,8 @@
   <ItemGroup>
     <ClCompile Include="..\lib\Computation.cpp" />
     <ClCompile Include="..\lib\Object3D.cpp" />
+    <ClCompile Include="..\lib\Shape3D.cpp" />
+    <ClCompile Include="..\lib\Sphere3D.cpp" />
     <ClCompile Include="examples.cpp" />
     <ClCompile Include="SDLWindowRenderer.cpp" />
     <ClCompile Include="..\lib\Color3D.cpp" />

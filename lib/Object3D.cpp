@@ -14,14 +14,3 @@ bool Object3D::operator==(const Object3D& other) const
 		Position == other.Position &&
 		Transformation == other.Transformation;
 }
-
-const Vector3D Object3D::NormalAt(const Point3D& point) const
-{
-	auto inverse = Transformation.Inverse();
-	auto object_point = inverse * point;
-	auto object_normal = object_point - Position;
-	auto world_normal = inverse.Transpose() * object_normal;
-	world_normal.SetW(0);
-
-	return world_normal.Normalize();
-}

@@ -20,8 +20,10 @@ public:
 
 	const Material Mat;
 
-	bool operator==(const Shape3D& other) const
+	virtual const Vector3D NormalAt(const Point3D& point) const 
 	{
-		return ((Object3D)*this) == other && Mat == other.Mat;
-	}
+		return Vector3D(0, 0, 0);
+	};
+
+	bool operator==(const Shape3D& other) const;
 };

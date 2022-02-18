@@ -2,29 +2,25 @@
 
 #include "Shape3D.h"
 
-struct Sphere3D : public Shape3D
+struct Sphere3D : virtual public Shape3D
 {
 	Sphere3D() :
-		Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material::Default, 1)
+		Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material::Default)
 	{ }
 
-	Sphere3D(Matrix4d& transform, double size = 1) :
-		Sphere3D(Point3D::Origin, transform, Material::Default, size)
+	Sphere3D(Matrix4d& transform) :
+		Sphere3D(Point3D::Origin, transform, Material::Default)
 	{ }
 
-	Sphere3D(const Material& material, double size = 1) :
-		Sphere3D(Point3D::Origin, Matrix4d::Identity(), material, size)
+	Sphere3D(const Material& material) :
+		Sphere3D(Point3D::Origin, Matrix4d::Identity(), material)
 	{ }
 
-	Sphere3D(const Point3D& position, const Matrix4d& transform, const Material& material, double size) :
-		Shape3D(position, transform, material),
-		R(size)
+	Sphere3D(const Point3D& position, const Matrix4d& transform, const Material& material) :
+		Shape3D(position, transform, material)
 	{ }
 
-	const double R;
+	const Vector3D NormalAt(const Point3D& point) const;
 
-	bool operator==(const Sphere3D& other) const
-	{
-		return (Shape3D)*this == other && R == other.R;
-	}	
+	bool operator==(const Sphere3D& other) const;
 };

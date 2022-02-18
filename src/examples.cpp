@@ -138,7 +138,7 @@ void run_light_demo(Canvas& canvas)
 	const double pixel_size = wall_size / w;
 	const double half = wall_size / 2;
 
-	Sphere3D sphere(Point3D(0, 0, 0), Matrix4d::Scale(1, 1, 1), Material(1, 0.2, 1), 1);
+	Sphere3D sphere(Point3D(0, 0, 0), Matrix4d::Scale(1, 1, 1), Material(1, 0.2, 1));
 	Light3D light(Point3D(-10, 10, -10), Color3D::White);
 
 	Point3D ray_origin(0, 0, -5);

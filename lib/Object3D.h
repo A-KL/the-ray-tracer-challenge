@@ -17,8 +17,6 @@ public:
 	const Matrix4d Transformation;
 
 	bool operator==(const Object3D& other) const;
-
-	const Vector3D NormalAt(const Point3D& point) const;
 };
 
 
