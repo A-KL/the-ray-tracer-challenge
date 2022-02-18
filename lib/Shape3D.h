@@ -20,10 +20,7 @@ public:
 
 	const Material Mat;
 
-	virtual const Vector3D NormalAt(const Point3D& point) const 
-	{
-		return Vector3D(0, 0, 0);
-	};
+	virtual const Vector3D NormalAt(const Point3D& point) const;
 
 	bool operator==(const Shape3D& other) const;
 };

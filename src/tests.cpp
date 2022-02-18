@@ -42,7 +42,7 @@ void run_tests()
 
 	run_light_tests();
 
-	run_world_tests();
+	run_scene_tests();
 
 	run_normal_tests();
 

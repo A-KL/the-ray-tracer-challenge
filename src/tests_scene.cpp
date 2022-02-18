@@ -170,7 +170,73 @@ void test_computation_inside()
 	assert(Vector3D(0, 0, -1) == computation.Normal);
 }
 
-void run_world_tests()
+void test_scene_color_at_miss()
+{
+	// Setup
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
+	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
+
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
+
+	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 1, 0));
+
+	// Act
+	auto result = scene.ColorAt(ray);
+
+	// Assert
+	assert(Color3D(0, 0, 0) == result);
+}
+
+void test_scene_color_at_hit()
+{
+	// Setup
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
+	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
+
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
+
+	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
+
+	// Act
+	auto result = scene.ColorAt(ray);
+
+	// Assert
+	assert(Color3D(0.38066, 0.47583, 0.2855) == result);
+}
+
+void test_scene_color_at_behind()
+{
+	// Setup
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere2(Point3D(0, 0, 0), Matrix4d::Scale(0.5, 0.5, 0.5), Material(1, 1, 1, 1, 0.7, 0.2));
+
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
+
+	Ray3D ray(Point3D(0, 0, 0.75), Vector3D(0, 0, -1));
+
+	// Act
+	auto result = scene.ColorAt(ray);
+
+	// Assert
+	assert(sphere2.Mat.Color == result);
+}
+
+void run_scene_tests()
 {
 	test_world_default();
 
@@ -179,10 +245,16 @@ void run_world_tests()
 	test_computation_creation();
 
 	test_computation_inside();
-	
+
 	test_computation_outside();
 
 	test_world_shade();
 
 	test_world_shade_inside();
+
+	test_scene_color_at_miss();
+
+	test_scene_color_at_hit();
+
+	test_scene_color_at_behind();
 }

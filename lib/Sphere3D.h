@@ -20,7 +20,7 @@ struct Sphere3D : virtual public Shape3D
 		Shape3D(position, transform, material)
 	{ }
 
-	const Vector3D NormalAt(const Point3D& point) const;
+	//virtual const Vector3D NormalAt(const Point3D& point) const;
 
 	bool operator==(const Sphere3D& other) const;
 };

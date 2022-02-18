@@ -86,7 +86,7 @@
     <ClCompile Include="examples.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests_world.cpp">
+    <ClCompile Include="tests_scene.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="tests_normal.cpp">
