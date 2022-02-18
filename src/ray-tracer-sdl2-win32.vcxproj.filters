@@ -181,7 +181,7 @@
     <ClInclude Include="examples.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\World3D.h">
+    <ClInclude Include="..\lib\Scene3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Computation.h">

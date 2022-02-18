@@ -178,7 +178,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Computation.h" />
-    <ClInclude Include="..\lib\World3D.h" />
+    <ClInclude Include="..\lib\Scene3D.h" />
     <ClInclude Include="examples.h" />
     <ClInclude Include="SDLCanvas.h" />
     <ClInclude Include="SDLWindowRenderer.h" />

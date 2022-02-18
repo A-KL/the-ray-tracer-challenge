@@ -22,33 +22,33 @@
 #include "../lib/Computation.h"
 #include "../lib/RayTracer.h"
 
-#include "../lib/World3D.h"
+#include "../lib/Scene3D.h"
 
 #include "tests.h"
 
 void test_world_default()
 {
 	// Setup
-	World3D world;
+	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
 	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	// Act
-	world.Lights.push_back(light);
-	world.Shapes.push_back(sphere1);
-	world.Shapes.push_back(sphere2);
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
 
 	// Assert
-	assert(1 == world.Lights.size());
-	assert(2 == world.Shapes.size());
+	assert(1 == scene.Lights.size());
+	assert(2 == scene.Shapes.size());
 }
 
 void test_world_intersection()
 {
 	// Setup
-	World3D world;
+	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
 	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
@@ -56,12 +56,12 @@ void test_world_intersection()
 
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
 
-	world.Lights.push_back(light);
-	world.Shapes.push_back(sphere1);
-	world.Shapes.push_back(sphere2);
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
 
 	// Act
-	auto intersections = ray_intersect(world.Shapes, ray);
+	auto intersections = ray_intersect(scene.Shapes, ray);
 
 	// Assert
 	assert(4 == intersections.size());
@@ -77,22 +77,22 @@ void test_world_intersection()
 void test_world_shade()
 {
 	// Setup
-	World3D world;
+	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
 	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	world.Lights.push_back(light);
-	world.Shapes.push_back(sphere1);
-	world.Shapes.push_back(sphere2);
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
 
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
 	Intersection intersection(4, sphere1);
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray);
-	auto result = shade_hit(world.Lights, computation);
+	auto result = shade_hit(scene.Lights, computation);
 
 	// Assert
 	assert(Color3D(0.38066, 0.47583, 0.2855) == result);
@@ -101,22 +101,22 @@ void test_world_shade()
 void test_world_shade_inside()
 {
 	// Setup
-	World3D world;
+	Scene3D scene;
 	Light3D light(Point3D(0, 0.25, 0), Color3D(1, 1, 1));
 
 	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	world.Lights.push_back(light);
-	world.Shapes.push_back(sphere1);
-	world.Shapes.push_back(sphere2);
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
 
 	Ray3D ray(Point3D(0, 0, 0), Vector3D(0, 0, 1));
 	Intersection intersection(0.5, sphere2);
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray);
-	auto result = shade_hit(world.Lights, computation);
+	auto result = shade_hit(scene.Lights, computation);
 
 	// Assert
 	assert(Color3D(0.90498, 0.90498, 0.90498) == result);
