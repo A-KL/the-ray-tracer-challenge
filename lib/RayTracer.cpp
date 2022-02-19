@@ -112,3 +112,20 @@ const Color3D shade_hit(const std::list<Light3D>& lights, const Computation& com
 
 	return result;
 }
+
+const Matrix4d view_transform(const Point3D& from, const Point3D& to, const Vector3D& up)
+{
+	auto forward = Vector3D::Normalize(to - from);
+	auto upn = up.Normalize();
+	auto left = forward.Cross(upn);
+	auto true_up = left.Cross(forward);
+	auto orientation = Matrix4d
+	{
+		left.X(), left.Y(), left.Z(), 0,
+		true_up.X(), true_up.Y(), true_up.Z(), 0,
+		-forward.X(), -forward.Y(), -forward.Z(), 0,
+		0, 0, 0, 1
+	};
+
+	return orientation * Matrix4d::Translate(-from.X(), -from.Y(), -from.Z());
+}

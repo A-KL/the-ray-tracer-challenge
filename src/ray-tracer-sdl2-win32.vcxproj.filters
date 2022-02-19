@@ -104,6 +104,9 @@
     <ClCompile Include="..\lib\Sphere3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="test_camera.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Environment.h">

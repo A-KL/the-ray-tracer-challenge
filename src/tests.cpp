@@ -46,6 +46,8 @@ void run_tests()
 
 	run_normal_tests();
 
+	run_camera_tests();
+
 
 	test_vector_dot();
 

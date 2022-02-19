@@ -175,6 +175,7 @@
     <ClCompile Include="tests_ray.cpp" />
     <ClCompile Include="tests_matrix.cpp" />
     <ClCompile Include="tests_scene.cpp" />
+    <ClCompile Include="test_camera.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Computation.h" />

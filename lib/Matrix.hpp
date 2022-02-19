@@ -39,7 +39,19 @@ struct Matrix
 
 	bool operator==(const Matrix<TItem, TSizeX, TSizeY>& other) const
 	{
-		return memcmp(Data, other.Data, (TSizeX * TSizeY)) == 0;
+		for (auto x = 0; x < TSizeX; x++)
+		{
+			for (auto y = 0; y < TSizeY; y++)
+			{
+				if (!Mathf<TItem>::Approximately(Data[x][y], other.Data[x][y]))
+				{
+					return false;
+				}
+			}
+		}
+
+		return true;
+		//return memcmp(Data, other.Data, (TSizeX * TSizeY)) == 0;
 	}
 
 	bool operator!=(const Matrix<TItem, TSizeX, TSizeY>& other)
