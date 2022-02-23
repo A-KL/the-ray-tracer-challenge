@@ -178,6 +178,7 @@
     <ClCompile Include="test_camera.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lib\Camera.h" />
     <ClInclude Include="..\lib\Computation.h" />
     <ClInclude Include="..\lib\Scene3D.h" />
     <ClInclude Include="examples.h" />

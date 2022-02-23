@@ -190,5 +190,8 @@
     <ClInclude Include="..\lib\Computation.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\lib\Camera.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -24,6 +24,8 @@
 
 #include "../lib/Scene3D.h"
 
+#include "../lib/Camera.h"
+
 #include "tests.h"
 
 void test_camera_scene_move()
@@ -76,6 +78,37 @@ void test_camera_transform()
 	assert(expected == t);
 }
 
+void test_camera_pixel_size()
+{
+	// Setup
+	Camera camera(200, 125, M_PI / 2, Matrix4d::Identity());
+
+	// Assert
+	assert(Mathf<double>::Approximately(0.01, camera.PixelSize()));
+}
+
+void test_camera_pixel_size2()
+{
+	// Setup
+	Camera camera(125, 200, M_PI / 2, Matrix4d::Identity());
+
+	// Assert
+	assert(Mathf<double>::Approximately(0.01, camera.PixelSize()));
+}
+void test_camera_cast_ray()
+{
+	// Setup
+	Matrix4d transform = Matrix4d::RotateY(M_PI / 4) * Matrix4d::Translate(0, -2, 5);
+	Camera camera(201, 101, M_PI / 2, transform);
+
+	// Act
+	auto ray = camera.CastRay(100, 50);
+
+	// Assert
+	assert(Point3D(0, 2, -5) == ray.Location);
+	assert(Vector3D(sqrt(2)/2, 0, -sqrt(2) / 2) == ray.Direction);
+}
+
 void run_camera_tests()
 {
 	test_camera_scene_move();
@@ -83,4 +116,10 @@ void run_camera_tests()
 	test_camera_scale();
 
 	test_camera_transform();
+
+	test_camera_pixel_size();
+
+	test_camera_pixel_size2();
+
+	test_camera_cast_ray();
 }
