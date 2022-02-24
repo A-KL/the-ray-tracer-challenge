@@ -1,5 +1,8 @@
+#include <list>
+
 #include "Mathf.h"
 #include "Color3D.h"
+#include "Canvas.h"
 
 #include "Primitive3D.h"
 #include "Vector3D.h"
@@ -9,10 +12,17 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
-#include "Scene3D.h"
+#include "Material.h"
+#include "Object3D.h"
+#include "Shape3D.h"
 
+#include "Light3D.h"
 #include "Ray3D.h"
-#include "Canvas.h"
+#include "Intersection.h"
+#include "Computation.h"
+
+#include "RayTracer.h"
+#include "Scene3D.h"
 
 #include "Camera.h"
 

@@ -3,6 +3,7 @@
 
 #include "../lib/Mathf.h"
 #include "../lib/Color3D.h"
+#include "../lib/Canvas.h"
 
 #include "../lib/Primitive3D.h"
 #include "../lib/Vector3D.h"
