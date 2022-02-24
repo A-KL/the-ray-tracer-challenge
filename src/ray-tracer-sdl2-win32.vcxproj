@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lib\Camera.cpp" />
     <ClCompile Include="..\lib\Computation.cpp" />
     <ClCompile Include="..\lib\Object3D.cpp" />
     <ClCompile Include="..\lib\Shape3D.cpp" />

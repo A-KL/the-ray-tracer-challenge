@@ -36,7 +36,7 @@ void test_camera_scene_move()
 	Vector3D up(0, 1, 0);
 
 	// Act
-	auto t = view_transform(from, to, up);
+	auto t = Camera::ViewTransform(from, to, up);
 
 	// Assert
 	assert(t == Matrix4d::Translate(0, 0, -8));
@@ -50,7 +50,7 @@ void test_camera_scale()
 	Vector3D up(0, 1, 0);
 
 	// Act
-	auto t = view_transform(from, to, up);
+	auto t = Camera::ViewTransform(from, to, up);
 
 	// Assert
 	assert(t == Matrix4d::Scale(-1, 1, -1));
@@ -72,7 +72,7 @@ void test_camera_transform()
 	};
 
 	// Act
-	auto t = view_transform(from, to, up);
+	auto t = Camera::ViewTransform(from, to, up);
 
 	// Assert
 	assert(expected == t);
@@ -95,6 +95,7 @@ void test_camera_pixel_size2()
 	// Assert
 	assert(Mathf<double>::Approximately(0.01, camera.PixelSize()));
 }
+
 void test_camera_cast_ray()
 {
 	// Setup
@@ -107,6 +108,31 @@ void test_camera_cast_ray()
 	// Assert
 	assert(Point3D(0, 2, -5) == ray.Location);
 	assert(Vector3D(sqrt(2)/2, 0, -sqrt(2) / 2) == ray.Direction);
+}
+
+void test_camera_render()
+{
+	// Setup
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
+
+	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
+
+	scene.Lights.push_back(light);
+	scene.Shapes.push_back(sphere1);
+	scene.Shapes.push_back(sphere2);
+
+	Camera camera(11, 11, M_PI / 2, Point3D(0, 0, -5), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+
+	// Act
+	//camera.Render(scene, canvas);
+
+	// Assert
+
+	//assert(Color3D(0.38066, 0.47583, 0.2855) == canvas[5, 5]);
 }
 
 void run_camera_tests()
