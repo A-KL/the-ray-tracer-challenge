@@ -21,6 +21,22 @@ public:
 
 		auto computation = Computation::Prepare(*hits.begin(), ray);
 
-		return shade_hit(Lights, computation);
+		return ShadeHit(computation);
+	}
+
+	Color3D ShadeHit(const Computation& computation) const
+	{
+		Color3D result(0, 0, 0);
+
+		for (auto& light : Lights)
+		{
+			auto is_shadow = light
+				.InShadow(computation.OverPosition, Shapes);
+
+			result += light
+				.Compute(computation.Intersect.Shape->Mat, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+		}
+
+		return result;
 	}
 };

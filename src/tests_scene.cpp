@@ -92,7 +92,7 @@ void test_world_shade()
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray);
-	auto result = shade_hit(scene.Lights, computation);
+	auto result = scene.ShadeHit(computation);
 
 	// Assert
 	assert(Color3D(0.38066, 0.47583, 0.2855) == result);
@@ -116,7 +116,7 @@ void test_world_shade_inside()
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray);
-	auto result = shade_hit(scene.Lights, computation);
+	auto result = scene.ShadeHit(computation);
 
 	// Assert
 	assert(Color3D(0.90498, 0.90498, 0.90498) == result);
@@ -168,6 +168,21 @@ void test_computation_inside()
 	assert(Point3D(0, 0, 1) == computation.Position);
 	assert(Vector3D(0, 0, -1) == computation.Camera);
 	assert(Vector3D(0, 0, -1) == computation.Normal);
+}
+
+void test_computation_z()
+{
+	// Setup
+	Sphere3D sphere(Matrix4d::Translate(0, 0, 1));
+	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
+	Intersection intersection(5, sphere);
+
+	// Act
+	auto computation = Computation::Prepare(intersection, ray);
+
+	// Assert
+	assert((-FLT_EPSILON / 2) > computation.OverPosition.Z());
+	assert(computation.Position.Z() > computation.OverPosition.Z());
 }
 
 void test_scene_color_at_miss()
@@ -247,6 +262,8 @@ void run_scene_tests()
 	test_computation_inside();
 
 	test_computation_outside();
+
+	test_computation_z();
 
 	test_world_shade();
 

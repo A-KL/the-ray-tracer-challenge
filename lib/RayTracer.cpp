@@ -99,18 +99,3 @@ const std::list<Intersection> ray_hit(const std::list<Intersection>& intersectio
 
 	return EmptyList;
 }
-
-const Color3D shade_hit(const std::list<Light3D>& lights, const Computation& computation)
-{
-	Color3D result(0, 0, 0);
-
-	for (auto& light : lights)
-	{
-		//auto is_shadow = light.
-
-		result += light
-			.Compute(computation.Intersect.Shape->Mat, computation.Position, computation.Camera, computation.Normal);
-	}
-
-	return result;
-}
