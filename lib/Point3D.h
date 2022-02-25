@@ -20,11 +20,13 @@ public:
 		: Primitive3D<double>(x, y, z, 1)
 	{ }
 
-	Vector3D operator-(const Point3D& point);
+	Vector3D operator-(const Point3D& point) const;
 
-	Point3D operator-(const Vector3D& v);
+	Point3D operator-(const Vector3D& other) const;
 
-	Point3D operator+(const Vector3D& v);
+	Point3D operator+(const Vector3D& other) const;
+
+	bool operator==(const Point3D& other) const;
 
 	const static Point3D Origin;
 

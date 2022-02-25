@@ -2,37 +2,29 @@
 
 #include "Shape3D.h"
 
-class Sphere3D : 
-	public Shape3D
+struct Sphere3D : virtual public Shape3D
 {
-	public:
-		Sphere3D() :
-			Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material::Default, 1)
-		{ }
+	Sphere3D() :
+		Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material::Default)
+	{ }
 
-		Sphere3D(Matrix4d& transform, double size = 1) :
-			Sphere3D(Point3D::Origin, transform, Material::Default, size)
-		{ }
+	Sphere3D(Matrix4d& transform) :
+		Sphere3D(Point3D::Origin, transform, Material::Default)
+	{ }
 
-		Sphere3D(const Material& material, double size = 1) :
-			Sphere3D(Point3D::Origin, Matrix4d::Identity(), material, size)
-		{ }
+	Sphere3D(const Material& material) :
+		Sphere3D(Point3D::Origin, Matrix4d::Identity(), material)
+	{ }
 
-		Sphere3D(const Point3D& position, const Matrix4d& transform, const Material& material, double size) :
-			Shape3D(position, transform, material),
-			_size(size)
-		{ }
+	Sphere3D(const Matrix4d& transform, const Material& material) :
+		Shape3D(Point3D::Origin, transform, material)
+	{ }
 
-		inline double R() const
-		{
-			return _size;
-		}
+	Sphere3D(const Point3D& position, const Matrix4d& transform, const Material& material) :
+		Shape3D(position, transform, material)
+	{ }
 
-		bool operator==(const Sphere3D& other) const
-		{
-			return (Shape3D)*this == other && _size == other._size;
-		}	
+	//virtual const Vector3D NormalAt(const Point3D& point) const;
 
-	private:
-		double _size;
+	bool operator==(const Sphere3D& other) const;
 };

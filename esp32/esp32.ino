@@ -186,10 +186,9 @@ void setup(void)
 	display.waitDisplay();
 
 	//run_gravity_demo(canvas);
-	run_clock_demo(canvas);
+	//run_clock_demo(canvas);
 	//run_shadow_demo(canvas);
-
-	//run_light_demo(canvas);
+	run_light_demo(canvas);
 }
 
 void loop(void)

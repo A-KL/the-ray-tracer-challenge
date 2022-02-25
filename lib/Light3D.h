@@ -11,34 +11,23 @@ public:
 	{ }
 
 	Light3D(const Point3D& position, const Color3D& intensity) :
-		Object3D(position),
-		_intensity(intensity)
+		Light3D(position, Matrix4d::Identity(), intensity)
 	{ }
 
 
 	Light3D(const Point3D& position, const Matrix4d& translate, const Color3D& intensity) :
 		Object3D(position, translate),
-		_intensity(intensity)
+		Intensity(intensity)
 	{ }
 
-	inline Color3D Intensity() const
-	{
-		return _intensity;
-	}
+	const Color3D Intensity;
 
-	bool operator==(const Object3D& other) const
-	{
-		return false;
-	}
 
 	bool operator==(const Light3D& other) const
 	{
-		return (Object3D)*this == (Object3D)other && _intensity == other._intensity;
+		return (Object3D)*this == (Object3D)other && Intensity == other.Intensity;
 	}
 
 	Color3D Compute(const Material& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal) const;
-
-private:
-	Color3D _intensity;
 
 };

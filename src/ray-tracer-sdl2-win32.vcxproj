@@ -149,6 +149,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lib\Camera.cpp" />
+    <ClCompile Include="..\lib\Computation.cpp" />
+    <ClCompile Include="..\lib\InMemoryCanvas.cpp" />
+    <ClCompile Include="..\lib\Object3D.cpp" />
+    <ClCompile Include="..\lib\Shape3D.cpp" />
+    <ClCompile Include="..\lib\Sphere3D.cpp" />
     <ClCompile Include="examples.cpp" />
     <ClCompile Include="SDLWindowRenderer.cpp" />
     <ClCompile Include="..\lib\Color3D.cpp" />
@@ -159,7 +165,6 @@
     <ClCompile Include="..\lib\Projectile.cpp" />
     <ClCompile Include="..\lib\Ray3D.cpp" />
     <ClCompile Include="..\lib\RayTracer.cpp" />
-    <ClCompile Include="..\lib\Sphere3D.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SDLCanvas.cpp" />
     <ClCompile Include="ColorRgba.cpp" />
@@ -168,10 +173,17 @@
     <ClCompile Include="tests.cpp" />
     <ClCompile Include="tests_color.cpp" />
     <ClCompile Include="tests_light.cpp" />
+    <ClCompile Include="tests_normal.cpp" />
     <ClCompile Include="tests_ray.cpp" />
     <ClCompile Include="tests_matrix.cpp" />
+    <ClCompile Include="tests_scene.cpp" />
+    <ClCompile Include="test_camera.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lib\Camera.h" />
+    <ClInclude Include="..\lib\Computation.h" />
+    <ClInclude Include="..\lib\InMemoryCanvas.h" />
+    <ClInclude Include="..\lib\Scene3D.h" />
     <ClInclude Include="examples.h" />
     <ClInclude Include="SDLCanvas.h" />
     <ClInclude Include="SDLWindowRenderer.h" />

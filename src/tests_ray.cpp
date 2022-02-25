@@ -1,5 +1,6 @@
 #include <iostream>
 #include <list>
+#include <vector>
 #include <cassert>
 
 #include "../lib/Mathf.h"
@@ -13,11 +14,15 @@
 #include "../lib/MatrixOps.hpp"
 #include "../lib/MatrixTransform.hpp"
 
+#include "../lib/Material.h"
+
 #include "../lib/Shape3D.h"
 #include "../lib/Sphere3D.h"
+#include "../lib/Light3D.h"
+
 #include "../lib/Ray3D.h"
 #include "../lib/Intersection.h"
-
+#include "../lib/Computation.h"
 #include "../lib/RayTracer.h"
 
 #include "tests.h"
@@ -26,11 +31,9 @@ void test_ray_sphere_scale_intersect()
 {
 	// Set up
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
-	Sphere3D sphere;
+	Sphere3D sphere(Matrix4d::Scale(2, 2, 2));
 
 	// Act
-	sphere.SetTransformation(Matrix4d::Scale(2, 2, 2));
-
 	auto res = ray_intersect(sphere, ray);
 
 	// Assert
@@ -38,19 +41,17 @@ void test_ray_sphere_scale_intersect()
 
 	auto first = res.begin();
 
-	assert(3.0 == (*first++).T());
-	assert(7.0 == (*first).T());
+	assert(3.0 == (first++)->Value);
+	assert(7.0 == (first)->Value);
 }
 
 void test_ray_sphere_translate_intersect()
 {
 	// Set up
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
-	Sphere3D sphere;
+	Sphere3D sphere(Matrix4d::Translate(5, 0, 0));
 
 	// Act
-	sphere.SetTransformation(Matrix4d::Translate(5, 0, 0));
-
 	auto res = ray_intersect(sphere, ray);
 
 	// Assert
@@ -68,18 +69,18 @@ void test_ray_transform()
 	auto result = ray.Transform(transform);
 
 	// Assert
-	assert(Point3D(4, 6, 8) == result.Location());
-	assert(Vector3D(0, 1, 0) == result.Direction());
+	assert(Point3D(4, 6, 8) == result.Location);
+	assert(Vector3D(0, 1, 0) == result.Direction);
 
 	// Set up
 	transform = Matrix4d::Scale(2, 3, 4);
 
 	// Act
-	result = ray.Transform(transform);
+	auto result2 = ray.Transform(transform);
 
 	// Assert
-	assert(Point3D(2, 6, 12) == result.Location());
-	assert(Vector3D(0, 3, 0) == result.Direction());
+	assert(Point3D(2, 6, 12) == result2.Location);
+	assert(Vector3D(0, 3, 0) == result2.Direction);
 }
 
 void test_ray_positive_hits()
@@ -97,10 +98,10 @@ void test_ray_positive_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections);
+	auto results = ray_hit(intersections);
 
 	// Assert
-	assert(intersection1 == result);
+	assert(intersection1 == *results.begin());
 }
 
 void test_ray_some_negative_hits()
@@ -118,10 +119,10 @@ void test_ray_some_negative_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections);
+	auto results = ray_hit(intersections);
 
 	// Assert
-	assert(intersection2 == result);
+	assert(intersection2 == *results.begin());
 }
 
 void test_ray_some_all_negative_hits()
@@ -139,10 +140,10 @@ void test_ray_some_all_negative_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections);
+	auto results = ray_hit(intersections);
 
 	// Assert
-	assert(Intersection::Empty == result);
+	assert(results.empty());
 }
 
 void test_ray_mixed_hits()
@@ -164,10 +165,10 @@ void test_ray_mixed_hits()
 	};
 
 	// Act
-	auto result = ray_hit(intersections1);
+	auto results = ray_hit(intersections1);
 
 	// Assert
-	assert(intersection4 == result);
+	assert(intersection4 == *results.begin());
 }
 
 void test_ray_intersect()
@@ -184,8 +185,8 @@ void test_ray_intersect()
 
 	auto first = res.begin();
 
-	assert(5.0 == (*first++).T());
-	assert(5.0 == (*first).T());
+	assert(5.0 == first->Value);
+	assert(5.0 == (first++)->Value);
 
 
 	// Set up
@@ -199,8 +200,8 @@ void test_ray_intersect()
 
 	first = res.begin();
 
-	assert(-1.0 == (*first++).T());
-	assert(1.0 == (*first).T());
+	assert(-1.0 == (first++)->Value);
+	assert(1.0 == (first)->Value);
 
 
 	// Set up
@@ -219,20 +220,16 @@ void test_sphere_default_transform()
 	Sphere3D sphere;
 
 	// Assert
-	assert(Matrix4d::Identity() == sphere.Transformation());
+	assert(Matrix4d::Identity() == sphere.Transformation);
 }
 
 void test_sphere_set_transform()
 {
 	// Set up
-	Sphere3D sphere;
-	Matrix4d transform = Matrix4d::Translate(2, 3, 4);
-
-	// Act
-	sphere.SetTransformation(transform);
+	Sphere3D sphere(Matrix4d::Translate(2, 3, 4));
 
 	// Assert
-	assert(Matrix4d::Translate(2, 3, 4) == sphere.Transformation());
+	assert(Matrix4d::Translate(2, 3, 4) == sphere.Transformation);
 }
 
 void run_ray_tests()

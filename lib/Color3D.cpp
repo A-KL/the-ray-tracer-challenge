@@ -1,5 +1,3 @@
-#include <math.h> 
-
 #include "Mathf.h"
 #include "Color3D.h"
 
@@ -15,7 +13,7 @@ const Color3D Color3D::Blue(0, 0, 1);
 
 const Color3D Color3D::operator*(const Color3D& other) const
 {
-	return Color3D { (R + other.R) * 0.5, (G + other.G) * 0.5, (B + other.B) * 0.5 };
+	return Color3D { (R * other.R), (G * other.G), (B * other.B)};
 }
 
 const Color3D Color3D::operator+(const Color3D& other) const
@@ -34,6 +32,13 @@ bool Color3D::operator==(const Color3D& other) const
 		Mathf<double>::Approximately(R, other.R) &&
 		Mathf<double>::Approximately(G, other.G) &&
 		Mathf<double>::Approximately(B, other.B);
+}
+
+void Color3D::operator+=(const Color3D& other)
+{
+	this->R = this->R + other.R;
+	this->G = this->G + other.G;
+	this->B = this->B + other.B;
 }
 
 Color3D::operator unsigned int() const

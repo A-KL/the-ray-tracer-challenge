@@ -8,49 +8,15 @@ public:
 	{ }
 
 	Object3D(const Point3D& position, const Matrix4d& transform) :
-		_position(position),
-		_transformation(transform)
+		Position(position),
+		Transformation(transform)
 	{ }
 
-	inline Point3D Position() const
-	{
-		return _position;
-	}
+	const Point3D Position;
 
-	inline const Matrix4d Transformation() const
-	{
-		return _transformation;
-	}
+	const Matrix4d Transformation;
 
-	inline void SetTransformation(const Matrix4d& transformation)
-	{
-		_transformation = transformation;
-	}
-
-	bool virtual operator==(const Object3D& other) const
-	{
-		// TODO: fix this
-		return
-			_position.X() == other._position.X() &&
-			_position.Y() == other._position.Y() &&
-			_position.Z() == other._position.Z() &&
-			_transformation == other._transformation;
-	}
-
-	Vector3D NormalAt(Point3D& point) const
-	{
-		auto inverse = _transformation.Inverse();
-		auto object_point = inverse * point;
-		auto object_normal = object_point - _position;
-		auto world_normal = inverse.Transpose() * object_normal;
-		world_normal.SetW(0);
-
-		return world_normal.Normalize();
-	}
-
-private:
-	Point3D _position;
-	Matrix4d _transformation;
+	bool operator==(const Object3D& other) const;
 };
 
 

@@ -14,17 +14,17 @@ public:
 
 	void DrawLine(int x0, int y0, int x1, int y1, const Color3D& color);
 
-	inline int Height()
+	inline int Height() const
 	{
 		return _h;
 	}
 
-	inline int Witdth()
+	inline int Witdth() const
 	{
 		return _w;
 	}
 
-	inline unsigned int Bpp()
+	inline unsigned int Bpp() const
 	{
 		return _bpp;
 	}

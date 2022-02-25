@@ -4,24 +4,14 @@ class Ray3D
 {
 public:
 	Ray3D(const Point3D& position, const Vector3D& direction)
-		: _position(position), _direction(direction)
+		: Location(position), Direction(direction)
 	{ }
 
-	const Point3D Position(double value);
+	const Point3D Location;
 
-	inline Point3D Location() const
-	{
-		return _position;
-	}
+	const Vector3D Direction;
 
-	inline Vector3D Direction() const
-	{
-		return _direction;
-	}
+	Point3D Position(double value) const;
 
-	const Ray3D Transform(const Matrix4d& transformation) const;
-
-private:
-	Vector3D _direction;
-	Point3D _position;
+	Ray3D Transform(const Matrix4d& transformation) const;
 };

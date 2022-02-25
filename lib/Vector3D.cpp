@@ -60,7 +60,7 @@ double Vector3D::Dot(const Vector3D& other) const
 Vector3D Vector3D::Cross(const Vector3D& other) const
 {
 	return Vector3D(
-		X() * other.Z() - Z() * other.Y(),
+		Y() * other.Z() - Z() * other.Y(),
 		Z() * other.X() - X() * other.Z(),
 		X() * other.Y() - Y() * other.X());
 }
