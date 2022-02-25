@@ -151,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="..\lib\Camera.cpp" />
     <ClCompile Include="..\lib\Computation.cpp" />
+    <ClCompile Include="..\lib\InMemoryCanvas.cpp" />
     <ClCompile Include="..\lib\Object3D.cpp" />
     <ClCompile Include="..\lib\Shape3D.cpp" />
     <ClCompile Include="..\lib\Sphere3D.cpp" />
@@ -181,6 +182,7 @@
   <ItemGroup>
     <ClInclude Include="..\lib\Camera.h" />
     <ClInclude Include="..\lib\Computation.h" />
+    <ClInclude Include="..\lib\InMemoryCanvas.h" />
     <ClInclude Include="..\lib\Scene3D.h" />
     <ClInclude Include="examples.h" />
     <ClInclude Include="SDLCanvas.h" />

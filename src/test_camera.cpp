@@ -26,6 +26,7 @@
 #include "../lib/Scene3D.h"
 
 #include "../lib/Camera.h"
+#include "../lib/InMemoryCanvas.h"
 
 #include "tests.h"
 
@@ -127,13 +128,13 @@ void test_camera_render()
 	scene.Shapes.push_back(sphere2);
 
 	Camera camera(11, 11, M_PI / 2, Point3D(0, 0, -5), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+	InMemoryCanvas<11, 11> canvas;
 
 	// Act
-	//camera.Render(scene, canvas);
+	camera.Render(scene, canvas);
 
 	// Assert
-
-	//assert(Color3D(0.38066, 0.47583, 0.2855) == canvas[5, 5]);
+	assert(Color3D(0.38066, 0.47583, 0.2855) == canvas.Get(5, 5));
 }
 
 void run_camera_tests()
@@ -149,4 +150,6 @@ void run_camera_tests()
 	test_camera_pixel_size2();
 
 	test_camera_cast_ray();
+
+	test_camera_render();
 }

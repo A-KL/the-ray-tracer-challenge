@@ -17,11 +17,6 @@ bool Shape3D::operator==(const Shape3D& other) const
 	return ((Object3D)*this) == other && Mat == other.Mat;
 }
 
-//const Vector3D Shape3D::NormalAt(const Point3D& point) const
-//{
-//	return Vector3D(0, 0, 0);
-//};
-
 const Vector3D Shape3D::NormalAt(const Point3D& point) const
 {
 	auto inverse = Transformation.Inverse();

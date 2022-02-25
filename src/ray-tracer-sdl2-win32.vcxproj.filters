@@ -110,6 +110,9 @@
     <ClCompile Include="..\lib\Camera.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\InMemoryCanvas.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Environment.h">
@@ -194,6 +197,9 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Camera.h">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\InMemoryCanvas.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>
