@@ -15,3 +15,5 @@ void run_scene_tests();
 void run_normal_tests();
 
 void run_camera_tests();
+
+void run_shadow_tests();

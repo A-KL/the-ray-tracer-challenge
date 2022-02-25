@@ -113,6 +113,9 @@
     <ClCompile Include="..\lib\InMemoryCanvas.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="tests_shadow.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Environment.h">

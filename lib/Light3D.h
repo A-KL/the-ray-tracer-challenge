@@ -1,5 +1,7 @@
 #pragma once
 
+#include <list>
+
 #include "Object3D.h"
 
 class Light3D :
@@ -29,5 +31,7 @@ public:
 	}
 
 	Color3D Compute(const Material& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal) const;
+
+	bool InShadow(const Point3D& point, const std::list<Shape3D>& shapes) const;
 
 };

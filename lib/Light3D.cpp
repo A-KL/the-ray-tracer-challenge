@@ -1,3 +1,4 @@
+#include <list>
 #include <math.h>
 
 #include "Mathf.h"
@@ -12,8 +13,16 @@
 #include "MatrixTransform.hpp"
 
 #include "Material.h"
+#include "Shape3D.h"
+
+#include "Ray3D.h"
+#include "Intersection.h"
+#include "Computation.h"
 
 #include "Light3D.h"
+
+#include "RayTracer.h"
+
 
 Color3D Light3D::Compute(const Material& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal) const
 {
@@ -46,4 +55,19 @@ Color3D Light3D::Compute(const Material& material, const Point3D& position, cons
 	}
 
 	return ambient + diffuse + specular;
+}
+
+bool Light3D::InShadow(const Point3D& point, const std::list<Shape3D>& shapes) const
+{
+	auto v = Position - point;
+	auto distance = v.Magniture();
+	auto direction = v.Normalize();
+
+	Ray3D ray(point, direction);
+
+	auto intersections = ray_intersect(shapes, ray);
+
+	auto h = ray_hit(intersections);
+
+	return !h.empty() && (h.begin()->Value < distance);
 }

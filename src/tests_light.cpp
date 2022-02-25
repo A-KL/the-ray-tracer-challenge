@@ -15,6 +15,8 @@
 #include "../lib/MatrixTransform.hpp"
 
 #include "../lib/Material.h"
+#include "../lib/Shape3D.h"
+
 #include "../lib/Light3D.h"
 
 #include "tests.h"

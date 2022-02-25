@@ -48,6 +48,8 @@ void run_tests()
 
 	run_camera_tests();
 
+	run_shadow_tests();
+
 
 	test_vector_dot();
 
