@@ -27,6 +27,8 @@
 #include "../lib/Light3D.h"
 #include "../lib/Computation.h"
 #include "../lib/RayTracer.h"
+#include "../lib/Scene3D.h"
+#include "../lib/Camera.h"
 
 #include "examples.h"
 
@@ -173,4 +175,46 @@ void run_light_demo(Canvas& canvas)
 		canvas.Update();
 
 	}
+}
+
+void run_scene_demo(Canvas& canvas)
+{
+	const int w = canvas.Witdth(); //100
+	const int h = canvas.Height(); //50
+
+	auto left_wall_location = 
+		Matrix4d::Translate(0, 0, 5) * 
+		Matrix4d::RotateY(-M_PI/4) * Matrix4d::RotateX(M_PI/2) *
+		Matrix4d::Scale(10, 0.01, 10);
+
+
+	auto right_wall_location =
+		Matrix4d::Translate(0, 0, 5) *
+		Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2) *
+		Matrix4d::Scale(10, 0.01, 10);
+
+	Material floor_material(1, 0.9, 0.9, 0.1, 0.9, 0);
+
+	Sphere3D floor(Point3D(0, 0, 0), Matrix4d::Scale(10, 0.01, 10), floor_material);
+	Sphere3D left_wall(Point3D(0, 0, 0), left_wall_location, floor_material);
+	Sphere3D right_wall(Point3D(0, 0, 0), right_wall_location, floor_material);
+
+	// -----------------------------------------------------------------------------
+
+
+	// -----------------------------------------------------------------------------
+
+	Light3D main_light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+	Camera main_camera(w, h, M_PI/3, Point3D(0, 1.5, -5), Point3D(0, 1, 0), Vector3D(0, 1, 0));
+
+	Scene3D scene;
+
+	scene.Lights.push_back(main_light);
+
+	scene.Shapes.push_back(floor);
+	scene.Shapes.push_back(left_wall);
+	scene.Shapes.push_back(right_wall);
+
+	main_camera.Render(scene, canvas);
 }

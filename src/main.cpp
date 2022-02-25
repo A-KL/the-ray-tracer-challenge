@@ -25,8 +25,10 @@ int main()
 
 	//run_shadow_demo(canvas);
 
-	run_light_demo(canvas);
+	//run_light_demo(canvas);
 	
+	run_scene_demo(canvas);
+
 	do
 	{
 		SDL_Delay(10);
