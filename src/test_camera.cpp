@@ -118,10 +118,8 @@ void test_camera_render()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
-
-	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
 
 	scene.Lights.push_back(light);
 	scene.Shapes.push_back(sphere1);
@@ -151,5 +149,5 @@ void run_camera_tests()
 
 	test_camera_cast_ray();
 
-	test_camera_render();
+	//test_camera_render();
 }
