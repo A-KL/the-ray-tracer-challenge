@@ -16,6 +16,10 @@ struct Sphere3D : virtual public Shape3D
 		Sphere3D(Point3D::Origin, Matrix4d::Identity(), material)
 	{ }
 
+	Sphere3D(const Matrix4d& transform, const Material& material) :
+		Shape3D(Point3D::Origin, transform, material)
+	{ }
+
 	Sphere3D(const Point3D& position, const Matrix4d& transform, const Material& material) :
 		Shape3D(position, transform, material)
 	{ }

@@ -140,7 +140,7 @@ void run_light_demo(Canvas& canvas)
 	const double pixel_size = wall_size / w;
 	const double half = wall_size / 2;
 
-	Sphere3D sphere(Point3D(0, 0, 0), Matrix4d::Scale(1, 1, 1), Material(1, 0.2, 1));
+	Sphere3D sphere(Matrix4d::Scale(1), Material(1, 0.2, 1));
 	Light3D light(Point3D(-10, 10, -10), Color3D::White);
 
 	Point3D ray_origin(0, 0, -5);
@@ -195,18 +195,25 @@ void run_scene_demo(Canvas& canvas)
 
 	Material floor_material(1, 0.9, 0.9, 0.1, 0.9, 0);
 
-	Sphere3D floor(Point3D(0, 0, 0), Matrix4d::Scale(10, 0.01, 10), floor_material);
-	Sphere3D left_wall(Point3D(0, 0, 0), left_wall_location, floor_material);
-	Sphere3D right_wall(Point3D(0, 0, 0), right_wall_location, floor_material);
+	Sphere3D floor(Matrix4d::Scale(10, 0.01, 10), floor_material);
+	Sphere3D left_wall(left_wall_location, floor_material);
+	Sphere3D right_wall(right_wall_location, floor_material);
 
 	// -----------------------------------------------------------------------------
 
+	Sphere3D middle(Matrix4d::Translate(-0.5, 1, 0.5), Material(0.1, 1, 0.5, 0.1, 0.7, 0.3));
+
+	Sphere3D right(Matrix4d::Translate(1.5, 0.5, -0.5) * Matrix4d::Scale(0.5), Material(0.5, 1, 0.1, 0.1, 0.7, 0.3));
+
+	Sphere3D left(Matrix4d::Translate(-1.5, 0.33, -0.75) * Matrix4d::Scale(0.33), Material(1, 0.8, 0.1, 0.1, 0.7, 0.3));
 
 	// -----------------------------------------------------------------------------
 
 	Light3D main_light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
 	Camera main_camera(w, h, M_PI/3, Point3D(0, 1.5, -5), Point3D(0, 1, 0), Vector3D(0, 1, 0));
+
+	// -----------------------------------------------------------------------------
 
 	Scene3D scene;
 
@@ -215,6 +222,10 @@ void run_scene_demo(Canvas& canvas)
 	scene.Shapes.push_back(floor);
 	scene.Shapes.push_back(left_wall);
 	scene.Shapes.push_back(right_wall);
+
+	scene.Shapes.push_back(middle);
+	scene.Shapes.push_back(right);
+	scene.Shapes.push_back(left);
 
 	main_camera.Render(scene, canvas);
 }

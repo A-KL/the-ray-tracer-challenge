@@ -179,6 +179,15 @@ struct Matrix
 		return result;
 	}
 
+	static Matrix<TItem, 4, 4> Scale(TItem a)
+	{
+		Matrix<TItem, 4, 4> result;
+
+		matrix_scale(a, a, a, result);
+
+		return result;
+	}
+
 	static Matrix<TItem, 4, 4> Translate(const TItem x, const TItem y, const TItem z)
 	{
 		Matrix<TItem, 4, 4> result;

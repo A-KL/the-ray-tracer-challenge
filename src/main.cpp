@@ -17,7 +17,7 @@ int main()
 	SDL_Init(SDL_INIT_VIDEO);
 	SDL_Event event;
 
-	SDLWindowRenderer canvas("The Ray Tracer Challenge", 550, 550, 32);
+	SDLWindowRenderer canvas("The Ray Tracer Challenge", 665, 500, 32); //320*240
 
 	//run_projectile_demo(canvas);
 
