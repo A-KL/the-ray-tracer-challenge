@@ -101,6 +101,22 @@ void test_light_behind()
 	assert(Color3D(0.1, 0.1, 0.1) == result);
 }
 
+void test_light_shadow()
+{
+	// Set up
+	Material material(Color3D(1, 1, 1));
+	Vector3D camera(0, 0, -1);
+	Vector3D normal(0, 0, -1);
+
+	Light3D light(Point3D(0, 0, -10), Color3D::White);
+
+	// Act
+	auto result = light.Compute(material, Point3D(0, 0, 0), camera, normal, true);
+
+	// Assert
+	assert(Color3D(0.1, 0.1, 0.1) == result);
+}
+
 void run_light_tests()
 {
 	test_light_behind_camera();
@@ -112,4 +128,6 @@ void run_light_tests()
 	test_light_camera_reflection();
 
 	test_light_behind();
+
+	test_light_shadow();
 }

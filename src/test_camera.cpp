@@ -149,5 +149,5 @@ void run_camera_tests()
 
 	test_camera_cast_ray();
 
-	//test_camera_render();
+	test_camera_render();
 }

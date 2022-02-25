@@ -24,7 +24,7 @@
 #include "RayTracer.h"
 
 
-Color3D Light3D::Compute(const Material& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal) const
+Color3D Light3D::Compute(const Material& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow) const
 {
 	auto effective_color = material.Color * Intensity;
 
@@ -37,7 +37,7 @@ Color3D Light3D::Compute(const Material& material, const Point3D& position, cons
 	auto diffuse = Color3D::Black;
 	auto specular = Color3D::Black;
 
-	if (light_dot_normal >= 0)
+	if (!shadow && light_dot_normal >= 0)
 	{
 		diffuse = effective_color * material.Diffuse * light_dot_normal;
 

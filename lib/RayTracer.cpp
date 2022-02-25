@@ -106,6 +106,8 @@ const Color3D shade_hit(const std::list<Light3D>& lights, const Computation& com
 
 	for (auto& light : lights)
 	{
+		//auto is_shadow = light.
+
 		result += light
 			.Compute(computation.Intersect.Shape->Mat, computation.Position, computation.Camera, computation.Normal);
 	}
