@@ -1,4 +1,5 @@
 #include <list>
+#include <math.h>
 
 #include "Mathf.h"
 #include "Color3D.h"
@@ -23,7 +24,6 @@
 
 #include "RayTracer.h"
 #include "Scene3D.h"
-
 #include "Camera.h"
 
 Camera::Camera(int h, int v, double fow, const Point3D& from, const Point3D& to, const Vector3D& up)

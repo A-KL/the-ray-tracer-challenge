@@ -1,6 +1,4 @@
-﻿#pragma once
-
-#include <math.h>
+#pragma once
 
 struct Camera
 {

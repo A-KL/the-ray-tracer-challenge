@@ -1,3 +1,4 @@
+#include <math.h>
 #include "Mathf.h"
 
 #include "Primitive3D.h"

@@ -1,5 +1,9 @@
 #pragma once
 
+#ifndef FLT_EPSILON
+	#define FLT_EPSILON 1.192092896e-07F
+#endif
+
 template<typename TItem>
 struct Mathf
 {
