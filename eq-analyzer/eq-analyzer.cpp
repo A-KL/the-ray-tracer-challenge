@@ -1,6 +1,7 @@
 #define SDL_MAIN_HANDLED
 
 #include <SDL.h>
+#include <SDL_ttf.h>
 #include <iostream>
 
 #include "UVProgress.h"
@@ -22,13 +23,24 @@ int main()
 
 	SDL_RenderClear(sdl);
 
-	UIRect rect{ 10, 10, 230, 12 };
-
-	UIRect rect2{ 10, 32, 230, 12 };
+	UIRect rect{ 10, 200, 230, 12 };
+	UIRect rect2{ 10, 222, 230, 12 };
 
 	UVProgress<Uint8> level_left(rect, 0, 255, 200, 110);
-
 	UVProgress<Uint8> level_right(rect2, 0, 255, 200, 50);
+
+	UIRect rect3{ 30, 50, 270, 120 };
+	UISoundAnalyzer<30> analyzer(rect3);
+
+	analyzer.Draw(sdl);
+
+	TTF_Init();
+
+	//auto od = TTF_OpenFont("C:/Sources/the-ray-tracer-challenge/eq-analyzer/Roboto-Bold.ttf", 16);
+
+	UILabel label({ 0, 0, 32, 15 }, "TEST", "C:/Windows/Fonts/Calibril.ttf", 15);
+
+	label.Draw(sdl);
 
 	do
 	{
@@ -64,13 +76,15 @@ int main()
 				break;
 			}
 
+			SDL_PollEvent(&event);
 			SDL_RenderPresent(sdl);
 			SDL_Delay(5);
 		}
 
 		SDL_PollEvent(&event);
 		SDL_Delay(50);
-	} while (event.type != SDL_QUIT);
+	} 
+	while (event.type != SDL_QUIT);
 
 	SDL_DestroyRenderer(sdl);
 
