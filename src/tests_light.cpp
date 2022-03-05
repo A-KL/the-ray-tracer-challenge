@@ -79,7 +79,7 @@ void test_light_camera_reflection()
 	Light3D light(Point3D(0, 10, -10), Color3D(1, 1, 1));
 
 	// Act
-	auto result = light.Compute(material, Point3D(0, 0, 0), camera, normal);
+	auto result = light.Compute(material, Point3D(0, 0, 0), camera, normal, false);
 
 	// Assert
 	assert(Color3D(1.6364, 1.6364, 1.6364) == result);

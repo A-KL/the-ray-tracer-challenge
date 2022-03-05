@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef FLT_EPSILON
-	#define FLT_EPSILON 1.192092896e-07F
+#ifndef DBL_EPSILON
+	#define DBL_EPSILON 0.001//2.2204460492503131e-016
 #endif
 
 template<typename TItem>

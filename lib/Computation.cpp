@@ -24,7 +24,7 @@ const Computation Computation::Prepare(const Intersection& intersection, const R
 	auto normal = intersection.Shape->NormalAt(position);
 	auto camera = -ray.Direction;
 	auto inside = Vector3D::Dot(normal, camera) < 0;
-	auto over_point = position + normal * FLT_EPSILON;
+	auto over_point = position + normal * DBL_EPSILON;
 
 	return Computation{ intersection, position, over_point, inside ? -normal : normal, camera, inside };
 }

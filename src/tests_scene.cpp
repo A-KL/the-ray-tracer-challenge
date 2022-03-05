@@ -105,7 +105,7 @@ void test_world_shade_inside()
 	Light3D light(Point3D(0, 0.25, 0), Color3D(1, 1, 1));
 
 	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
-	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
+	Sphere3D sphere2(Matrix4d::Scale(0.5));
 
 	scene.Lights.push_back(light);
 	scene.Shapes.push_back(sphere1);
@@ -181,7 +181,7 @@ void test_computation_z()
 	auto computation = Computation::Prepare(intersection, ray);
 
 	// Assert
-	assert((-FLT_EPSILON / 2) > computation.OverPosition.Z());
+	assert((-DBL_EPSILON / 2) > computation.OverPosition.Z());
 	assert(computation.Position.Z() > computation.OverPosition.Z());
 }
 

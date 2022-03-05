@@ -63,18 +63,20 @@ std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
 
 	double a = Vector3D::Dot(final_ray.Direction, final_ray.Direction);
 
-	double b = 2 * Vector3D::Dot(final_ray.Direction, object_to_ray);
+	double b = 2.0 * Vector3D::Dot(final_ray.Direction, object_to_ray);
 
-	double c = Vector3D::Dot(object_to_ray, object_to_ray) - 1;
+	double c = Vector3D::Dot(object_to_ray, object_to_ray) - 1.0;
 
-	double d = pow(b, 2) - 4 * a * c;
+	double d = b * b - 4.0 * a * c;
 
 	std::list<Intersection> result;
 
 	if (d >= 0)
 	{
-		double t1 = (-b - sqrt(d)) / (2 * a);
-		double t2 = (-b + sqrt(d)) / (2 * a);
+		double sd = sqrt(d);
+		double aa = 2.0 * a;
+		double t1 = (-b - sd) / aa;
+		double t2 = (-b + sd) / aa;
 
 		result.push_back(Intersection(t1, object));
 		result.push_back(Intersection(t2, object));
