@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Canvas.h"
+#include "../lib/Core/Canvas.h"
 
 class M5StackCanvas :
 	public Canvas

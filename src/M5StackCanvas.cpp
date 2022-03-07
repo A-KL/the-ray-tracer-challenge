@@ -1,5 +1,6 @@
 #include <M5GFX.h>
-#include "Color3D.h"
+
+#include "../lib/Core/Color3D.h"
 #include "M5StackCanvas.h"
 
 void M5StackCanvas::Init(const Color3D& color)

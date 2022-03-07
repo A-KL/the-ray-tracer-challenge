@@ -29,13 +29,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests.cpp">
+    <ClCompile Include="..\test\tests.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="tests_matrix.cpp">
+    <ClCompile Include="..\test\tests_matrix.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="tests_ray.cpp">
+    <ClCompile Include="..\test\tests_ray.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Point3D.cpp">
@@ -59,13 +59,13 @@
     <ClCompile Include="SDLWindowRenderer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="tests_color.cpp">
+    <ClCompile Include="..\test\tests_color.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Light3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="tests_light.cpp">
+    <ClCompile Include="..\test\tests_light.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Color3D.cpp">
@@ -77,19 +77,13 @@
     <ClCompile Include="..\lib\RayTracer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="ColorRgba.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="examples.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="tests_scene.cpp">
+    <ClCompile Include="..\test\tests_scene.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="tests_normal.cpp">
+    <ClCompile Include="..\test\tests_normal.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Object3D.cpp">
@@ -104,7 +98,7 @@
     <ClCompile Include="..\lib\Sphere3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="test_camera.cpp">
+    <ClCompile Include="..\test\test_camera.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Camera.cpp">
@@ -113,7 +107,7 @@
     <ClCompile Include="..\lib\InMemoryCanvas.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="tests_shadow.cpp">
+    <ClCompile Include="..\test\tests_shadow.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>
@@ -163,7 +157,7 @@
     <ClInclude Include="..\lib\Vector3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="tests.h">
+    <ClInclude Include="..\test\tests.h">
       <Filter>Tests\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Material.h">
@@ -177,12 +171,6 @@
     </ClInclude>
     <ClInclude Include="..\lib\Shape3D.h">
       <Filter>Core\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>Graphics\Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ColorRgba.h">
-      <Filter>Graphics\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SDLCanvas.h">
       <Filter>Graphics\Header Files</Filter>

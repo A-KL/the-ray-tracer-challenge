@@ -31,7 +31,7 @@ Camera::Camera(int h, int v, double fow, const Point3D& from, const Point3D& to,
 { }
 
 Camera::Camera(int h, int v, double fow, const Matrix4d& transformation)
-	: HSize(h), VSize(v), FieldOfView(fow), Transformation(transformation)
+	: HSize(h), VSize(v), Transformation(transformation), FieldOfView(fow), _pixelSize(0) 
 {
 	auto half_view = tan(fow / 2);
 	auto aspect = (double)h / v;

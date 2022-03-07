@@ -15,7 +15,6 @@ public:
 	}
 
 private:
-	Vector3D _velocity;
-
 	Point3D _position;
+	Vector3D _velocity;	
 };
