@@ -1,15 +1,16 @@
 #pragma once
 
-#ifndef DBL_EPSILON
-	#define DBL_EPSILON 0.001//2.2204460492503131e-016
-#endif
-
 template<typename TItem>
 struct Mathf
 {
+	inline static TItem Epsilon()
+	{
+		return 0.00001;
+	}
+
 	static inline bool Approximately(TItem a, TItem b)
 	{
-		return fabs(a - b) < 0.00001f;
+		return fabs(a - b) < Epsilon();
 	}
 
 	static inline double ToZeroIfClose(TItem a)
@@ -21,3 +22,8 @@ private:
 	Mathf()
 	{ }
 };
+
+inline bool Mathf<int>::Approximately(int a, int b)
+{
+	return a == b;
+}

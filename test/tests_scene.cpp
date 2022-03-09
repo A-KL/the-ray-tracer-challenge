@@ -119,7 +119,7 @@ void test_world_shade_inside()
 	auto result = scene.ShadeHit(computation);
 
 	// Assert
-	//assert(Color3D(0.90498, 0.90498, 0.90498) == result);
+	assert(Color3D(0.90498, 0.90498, 0.90498) == result);
 }
 
 void test_computation_creation()

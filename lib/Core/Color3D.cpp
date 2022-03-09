@@ -1,4 +1,3 @@
-#include <math.h>
 #include "Mathf.h"
 #include "Color3D.h"
 

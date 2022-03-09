@@ -1,7 +1,7 @@
 #include <SDL.h>
 
-#include "../lib/Color3D.h"
-#include "../lib/Canvas.h"
+#include "../lib/Core/Color3D.h"
+#include "../lib/Core/Canvas.h"
 
 #include "SDLCanvas.h"
 

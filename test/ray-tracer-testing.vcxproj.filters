@@ -18,45 +18,45 @@
     <ClCompile Include="matrix_transform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Point3D.cpp">
+    <ClCompile Include="..\lib\Core\Point3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Projectile.cpp">
+    <ClCompile Include="..\lib\Core\Projectile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Vector3D.cpp">
+    <ClCompile Include="..\lib\Core\Vector3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Ray3D.cpp">
+    <ClCompile Include="..\lib\Core\Ray3D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\Environment.h">
+    <ClInclude Include="..\lib\Core\Environment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Mathf.h">
+    <ClInclude Include="..\lib\Core\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Matrix.hpp">
+    <ClInclude Include="..\lib\Core\Matrix.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\MatrixOps.hpp">
+    <ClInclude Include="..\lib\Core\MatrixOps.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\MatrixTransform.hpp">
+    <ClInclude Include="..\lib\Core\MatrixTransform.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Point3D.h">
+    <ClInclude Include="..\lib\Core\Point3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Primitive3D.h">
+    <ClInclude Include="..\lib\Core\Primitive3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Projectile.h">
+    <ClInclude Include="..\lib\Core\Projectile.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Vector3D.h">
+    <ClInclude Include="..\lib\Core\Vector3D.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

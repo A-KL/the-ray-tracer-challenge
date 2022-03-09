@@ -38,19 +38,19 @@
     <ClCompile Include="..\test\tests_ray.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Point3D.cpp">
+    <ClCompile Include="..\lib\Core\Point3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Projectile.cpp">
+    <ClCompile Include="..\lib\Core\Projectile.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Ray3D.cpp">
+    <ClCompile Include="..\lib\Core\Ray3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Intersection.cpp">
+    <ClCompile Include="..\lib\Core\Intersection.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Vector3D.cpp">
+    <ClCompile Include="..\lib\Core\Vector3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="SDLCanvas.cpp">
@@ -62,19 +62,19 @@
     <ClCompile Include="..\test\tests_color.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Light3D.cpp">
+    <ClCompile Include="..\lib\Core\Light3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\test\tests_light.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Color3D.cpp">
+    <ClCompile Include="..\lib\Core\Color3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Material.cpp">
+    <ClCompile Include="..\lib\Core\Material.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\RayTracer.cpp">
+    <ClCompile Include="..\lib\Core\RayTracer.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="examples.cpp">
@@ -86,25 +86,25 @@
     <ClCompile Include="..\test\tests_normal.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Object3D.cpp">
+    <ClCompile Include="..\lib\Core\Object3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Computation.cpp">
+    <ClCompile Include="..\lib\Core\Computation.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Shape3D.cpp">
+    <ClCompile Include="..\lib\Core\Shape3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Sphere3D.cpp">
+    <ClCompile Include="..\lib\Core\Sphere3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\test\test_camera.cpp">
       <Filter>Tests</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Camera.cpp">
+    <ClCompile Include="..\lib\Core\Camera.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\InMemoryCanvas.cpp">
+    <ClCompile Include="..\lib\Core\InMemoryCanvas.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\test\tests_shadow.cpp">
@@ -112,64 +112,64 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\lib\Environment.h">
+    <ClInclude Include="..\lib\Core\Environment.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Intersection.h">
+    <ClInclude Include="..\lib\Core\Intersection.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Light3D.h">
+    <ClInclude Include="..\lib\Core\Light3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Mathf.h">
+    <ClInclude Include="..\lib\Core\Mathf.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Matrix.hpp">
+    <ClInclude Include="..\lib\Core\Matrix.hpp">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Object3D.h">
+    <ClInclude Include="..\lib\Core\Object3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\MatrixTransform.hpp">
+    <ClInclude Include="..\lib\Core\MatrixTransform.hpp">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\MatrixOps.hpp">
+    <ClInclude Include="..\lib\Core\MatrixOps.hpp">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Point3D.h">
+    <ClInclude Include="..\lib\Core\Point3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Primitive3D.h">
+    <ClInclude Include="..\lib\Core\Primitive3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Projectile.h">
+    <ClInclude Include="..\lib\Core\Projectile.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Ray3D.h">
+    <ClInclude Include="..\lib\Core\Ray3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\RayTracer.h">
+    <ClInclude Include="..\lib\Core\RayTracer.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Sphere3D.h">
+    <ClInclude Include="..\lib\Core\Sphere3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Vector3D.h">
+    <ClInclude Include="..\lib\Core\Vector3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\test\tests.h">
       <Filter>Tests\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Material.h">
+    <ClInclude Include="..\lib\Core\Material.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Color3D.h">
+    <ClInclude Include="..\lib\Core\Color3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Canvas.h">
+    <ClInclude Include="..\lib\Core\Canvas.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Shape3D.h">
+    <ClInclude Include="..\lib\Core\Shape3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SDLCanvas.h">
@@ -181,16 +181,16 @@
     <ClInclude Include="examples.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Scene3D.h">
+    <ClInclude Include="..\lib\Core\Scene3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Computation.h">
+    <ClInclude Include="..\lib\Core\Computation.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Camera.h">
+    <ClInclude Include="..\lib\Core\Camera.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\InMemoryCanvas.h">
+    <ClInclude Include="..\lib\Core\InMemoryCanvas.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

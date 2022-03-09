@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../lib/Canvas.h"
+#include "../lib/Core/Canvas.h"
 
 class SDLCanvas :
 	public Canvas
