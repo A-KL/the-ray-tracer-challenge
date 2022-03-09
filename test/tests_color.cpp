@@ -1,6 +1,6 @@
 #include <cassert>
 
-#include "../lib/Color3D.h"
+#include "../lib/Core/Color3D.h"
 
 #include "tests.h"
 

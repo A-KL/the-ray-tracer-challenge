@@ -1,8 +1,8 @@
 #include <cassert>
 
-#include "../lib/Mathf.h"
-#include "../lib/Primitive3D.h"
-#include "../lib/Vector3D.h"
+#include "../lib/Core/Mathf.h"
+#include "../lib/Core/Primitive3D.h"
+#include "../lib/Core/Vector3D.h"
 
 #include "tests.h"
 

@@ -1,27 +1,27 @@
 #include <cassert>
 
-#include "../lib/Mathf.h"
-#include "../lib/Color3D.h"
+#include "../lib/Core/Mathf.h"
+#include "../lib/Core/Color3D.h"
 
-#include "../lib/Primitive3D.h"
-#include "../lib/Vector3D.h"
-#include "../lib/Point3D.h"
+#include "../lib/Core/Primitive3D.h"
+#include "../lib/Core/Vector3D.h"
+#include "../lib/Core/Point3D.h"
 
-#include "../lib/Matrix.hpp"
-#include "../lib/MatrixOps.hpp"
-#include "../lib/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.hpp"
+#include "../lib/Core/MatrixOps.hpp"
+#include "../lib/Core/MatrixTransform.hpp"
 
-#include "../lib/Material.h"
+#include "../lib/Core/Material.h"
 
-#include "../lib/Shape3D.h"
-#include "../lib/Sphere3D.h"
-#include "../lib/Light3D.h"
+#include "../lib/Core/Shape3D.h"
+#include "../lib/Core/Sphere3D.h"
+#include "../lib/Core/Light3D.h"
 
-#include "../lib/Ray3D.h"
-#include "../lib/Intersection.h"
-#include "../lib/Computation.h"
+#include "../lib/Core/Ray3D.h"
+#include "../lib/Core/Intersection.h"
+#include "../lib/Core/Computation.h"
 
-#include "../lib/RayTracer.h"
+#include "../lib/Core/RayTracer.h"
 
 #include "tests.h"
 

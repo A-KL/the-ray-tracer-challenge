@@ -1,18 +1,18 @@
 #include <cassert>
 
-#include "../lib/Mathf.h"
-#include "../lib/Color3D.h"
+#include "../lib/Core/Mathf.h"
+#include "../lib/Core/Color3D.h"
 
-#include "../lib/Primitive3D.h"
-#include "../lib/Vector3D.h"
-#include "../lib/Point3D.h"
+#include "../lib/Core/Primitive3D.h"
+#include "../lib/Core/Vector3D.h"
+#include "../lib/Core/Point3D.h"
 
-#include "../lib/Matrix.hpp"
-#include "../lib/MatrixOps.hpp"
-#include "../lib/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.hpp"
+#include "../lib/Core/MatrixOps.hpp"
+#include "../lib/Core/MatrixTransform.hpp"
 
-#include "../lib/Material.h"
-#include "../lib/Sphere3D.h"
+#include "../lib/Core/Material.h"
+#include "../lib/Core/Sphere3D.h"
 
 #include "tests.h"
 
