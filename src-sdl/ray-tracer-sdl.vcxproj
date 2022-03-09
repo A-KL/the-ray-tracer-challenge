@@ -20,42 +20,38 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{44010A60-DBE4-4EBA-80B2-3BAED0B048E5}</ProjectGuid>
+    <ProjectGuid>{E101A230-3B14-49A0-8041-A736360BE485}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>raytracertesting</RootNamespace>
+    <RootNamespace>ray-tracer-sdl2-win32</RootNamespace>
+    <ProjectName>ray-tracer-sdl2-win32</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
-    <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -77,9 +73,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <LibraryPath>C:\Sources\SDL2-2.0.10\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Sources\SDL2-2.0.10\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Sources\SDL2-2.0.10\include;C:\Sources\SDL2-2.0.20\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Sources\SDL2-2.0.10\lib\x64;C:\Sources\SDL2-2.0.20\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -89,88 +89,123 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <UseFullPaths>true</UseFullPaths>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <UseFullPaths>true</UseFullPaths>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <UseFullPaths>true</UseFullPaths>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <UseFullPaths>true</UseFullPaths>
-      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lib\Core\Camera.cpp" />
+    <ClCompile Include="..\lib\Core\Computation.cpp" />
+    <ClCompile Include="..\lib\Core\InMemoryCanvas.cpp" />
+    <ClCompile Include="..\lib\Core\Object3D.cpp" />
+    <ClCompile Include="..\lib\Core\Shape3D.cpp" />
+    <ClCompile Include="..\lib\Core\Sphere3D.cpp" />
+    <ClCompile Include="examples.cpp" />
+    <ClCompile Include="SDLWindowRenderer.cpp" />
+    <ClCompile Include="..\lib\Core\Color3D.cpp" />
+    <ClCompile Include="..\lib\Core\Intersection.cpp" />
+    <ClCompile Include="..\lib\Core\Light3D.cpp" />
+    <ClCompile Include="..\lib\Core\Material.cpp" />
     <ClCompile Include="..\lib\Core\Point3D.cpp" />
     <ClCompile Include="..\lib\Core\Projectile.cpp" />
     <ClCompile Include="..\lib\Core\Ray3D.cpp" />
+    <ClCompile Include="..\lib\Core\RayTracer.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SDLCanvas.cpp" />
     <ClCompile Include="..\lib\Core\Vector3D.cpp" />
-    <ClCompile Include="matrix_transform.cpp" />
+    <ClCompile Include="..\test\tests.cpp" />
+    <ClCompile Include="..\test\tests_color.cpp" />
+    <ClCompile Include="..\test\tests_light.cpp" />
+    <ClCompile Include="..\test\tests_normal.cpp" />
+    <ClCompile Include="..\test\tests_ray.cpp" />
+    <ClCompile Include="..\test\tests_matrix.cpp" />
+    <ClCompile Include="..\test\tests_scene.cpp" />
+    <ClCompile Include="..\test\tests_shadow.cpp" />
+    <ClCompile Include="..\test\test_camera.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lib\Core\Camera.h" />
+    <ClInclude Include="..\lib\Core\Computation.h" />
+    <ClInclude Include="..\lib\Core\InMemoryCanvas.h" />
+    <ClInclude Include="..\lib\Core\Scene3D.h" />
+    <ClInclude Include="examples.h" />
+    <ClInclude Include="SDLCanvas.h" />
+    <ClInclude Include="SDLWindowRenderer.h" />
+    <ClInclude Include="..\lib\Core\Canvas.h" />
+    <ClInclude Include="..\lib\Core\Color3D.h" />
+    <ClInclude Include="..\lib\Core\Intersection.h" />
+    <ClInclude Include="..\lib\Core\Light3D.h" />
+    <ClInclude Include="..\lib\Core\Material.h" />
+    <ClInclude Include="..\lib\Core\Matrix.hpp" />
     <ClInclude Include="..\lib\Core\Environment.h" />
     <ClInclude Include="..\lib\Core\Mathf.h" />
-    <ClInclude Include="..\lib\Core\Matrix.hpp" />
     <ClInclude Include="..\lib\Core\MatrixOps.hpp" />
     <ClInclude Include="..\lib\Core\MatrixTransform.hpp" />
+    <ClInclude Include="..\lib\Core\Object3D.h" />
     <ClInclude Include="..\lib\Core\Point3D.h" />
     <ClInclude Include="..\lib\Core\Primitive3D.h" />
     <ClInclude Include="..\lib\Core\Projectile.h" />
+    <ClInclude Include="..\lib\Core\Ray3D.h" />
+    <ClInclude Include="..\lib\Core\RayTracer.h" />
+    <ClInclude Include="..\lib\Core\Shape3D.h" />
+    <ClInclude Include="..\lib\Core\Sphere3D.h" />
     <ClInclude Include="..\lib\Core\Vector3D.h" />
+    <ClInclude Include="..\test\tests.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

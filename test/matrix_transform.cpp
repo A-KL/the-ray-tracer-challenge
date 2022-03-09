@@ -4,13 +4,13 @@
 #include <list>
 #include <cassert>
 
-#include "../lib/Primitive3D.h"
-#include "../lib/Vector3D.h"
-#include "../lib/Point3D.h"
+#include "../lib/Core/Primitive3D.h"
+#include "../lib/Core/Vector3D.h"
+#include "../lib/Core/Point3D.h"
 
-#include "../lib/Matrix.hpp"
-#include "../lib/MatrixOps.hpp"
-#include "../lib/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.hpp"
+#include "../lib/Core/MatrixOps.hpp"
+#include "../lib/Core/MatrixTransform.hpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
