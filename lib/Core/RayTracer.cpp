@@ -12,7 +12,7 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
-#include "Material.h"
+#include "Material3D.h"
 #include "Object3D.h"
 #include "Shape3D.h"
 
@@ -25,18 +25,7 @@
 
 const static std::list<Intersection> EmptyList;
 
-struct IntersectionComparator
-{
-	bool operator ()(const Intersection& intersection1, const Intersection& intersection2)
-	{
-		if (intersection1.Value == intersection2.Value)
-			return intersection1.Value < intersection2.Value;
-
-		return intersection1.Value < intersection2.Value;
-	}
-};
-
-std::list<Intersection> ray_intersect(const std::list<Shape3D>& objects, const Ray3D& ray)
+std::list<Intersection> ray_intersect(const std::list<Shape3D*>& objects, const Ray3D& ray)
 {
 	std::list<Intersection> result;
 
@@ -55,11 +44,11 @@ std::list<Intersection> ray_intersect(const std::list<Shape3D>& objects, const R
 	return result;
 }
 
-std::list<Intersection> ray_intersect(const Shape3D& object, const Ray3D& ray)
+std::list<Intersection> ray_intersect(const Shape3D* object, const Ray3D& ray)
 {
-	Ray3D final_ray = ray.Transform(object.Transformation.Inverse());
+	Ray3D final_ray = ray.Transform(object->Transformation.Inverse());
 
-	Vector3D object_to_ray = final_ray.Location - object.Position;
+	Vector3D object_to_ray = final_ray.Location - object->Position;
 
 	double a = Vector3D::Dot(final_ray.Direction, final_ray.Direction);
 

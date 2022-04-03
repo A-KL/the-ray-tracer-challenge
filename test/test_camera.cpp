@@ -121,9 +121,9 @@ void test_camera_render()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Camera camera(11, 11, M_PI / 2, Point3D(0, 0, -5), Point3D(0, 0, 0), Vector3D(0, 1, 0));
 	InMemoryCanvas<11, 11> canvas;

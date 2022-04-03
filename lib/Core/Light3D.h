@@ -32,6 +32,6 @@ public:
 
 	Color3D Compute(const Material3D& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow = false) const;
 
-	bool InShadow(const Point3D& point, const std::list<Shape3D>& shapes) const;
+	bool InShadow(const Point3D& point, const std::list<Shape3D*>& shapes) const;
 
 };

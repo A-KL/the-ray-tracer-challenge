@@ -4,9 +4,9 @@ class Scene3D
 {
 public:
 
-	std::list<Light3D> Lights;
+	std::list<Light3D*> Lights;
 
-	std::list<Shape3D> Shapes;
+	std::list<Shape3D*> Shapes;
 
 	Color3D ColorAt(const Ray3D& ray) const
 	{
@@ -31,10 +31,10 @@ public:
 		for (auto& light : Lights)
 		{
 			auto is_shadow = light
-				.InShadow(computation.OverPosition, Shapes);
+				->InShadow(computation.OverPosition, Shapes);
 
 			result += light
-				.Compute(computation.Intersect.Shape->Material, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+				->Compute(computation.Intersect.Shape->Material, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
 		}
 
 		return result;

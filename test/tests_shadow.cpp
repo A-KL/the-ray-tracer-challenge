@@ -35,9 +35,9 @@ void test_no_shadow()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Point3D point(0, 10, 0);
 
@@ -57,9 +57,9 @@ void test_shadow()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Point3D point(10, -10, 10);
 
@@ -79,9 +79,9 @@ void test_no_shadow2()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Point3D point(-20, 20, -20);
 

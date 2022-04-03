@@ -57,7 +57,7 @@ Color3D Light3D::Compute(const Material3D& material, const Point3D& position, co
 	return ambient + diffuse + specular;
 }
 
-bool Light3D::InShadow(const Point3D& point, const std::list<Shape3D>& shapes) const
+bool Light3D::InShadow(const Point3D& point, const std::list<Shape3D*>& shapes) const
 {
 	auto v = Position - point;
 	auto distance = v.Magniture();

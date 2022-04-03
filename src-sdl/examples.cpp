@@ -119,7 +119,7 @@ void run_shadow_demo(Canvas& canvas)
 			Point3D point_to_render(world_x, world_y, wall_position_z);
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
 
-			auto intersects = ray_intersect(sphere, ray);
+			auto intersects = ray_intersect(&sphere, ray);
 
 			if (!ray_hit(intersects).empty())
 			{
@@ -158,7 +158,7 @@ void run_light_demo(Canvas& canvas)
 			Point3D point_to_render(world_x, world_y, wall_position_z);
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
 
-			auto intersects = ray_intersect(sphere, ray);
+			auto intersects = ray_intersect(&sphere, ray);
 			auto intersections = ray_hit(intersects);
 
 			if (!intersections.empty())
@@ -217,15 +217,15 @@ void run_scene_demo(Canvas& canvas)
 
 	Scene3D scene;
 
-	scene.Lights.push_back(main_light);
+	scene.Lights.push_back(&main_light);
 
-	scene.Shapes.push_back(floor);
-	scene.Shapes.push_back(left_wall);
-	scene.Shapes.push_back(right_wall);
+	scene.Shapes.push_back(&floor);
+	scene.Shapes.push_back(&left_wall);
+	scene.Shapes.push_back(&right_wall);
 
-	scene.Shapes.push_back(middle);
-	scene.Shapes.push_back(right);
-	scene.Shapes.push_back(left);
+	scene.Shapes.push_back(&middle);
+	scene.Shapes.push_back(&right);
+	scene.Shapes.push_back(&left);
 
 	main_camera.Render(scene, canvas);
 }

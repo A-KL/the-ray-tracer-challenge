@@ -36,9 +36,9 @@ void test_world_default()
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	// Act
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	// Assert
 	assert(1 == scene.Lights.size());
@@ -56,9 +56,9 @@ void test_world_intersection()
 
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	// Act
 	auto intersections = ray_intersect(scene.Shapes, ray);
@@ -83,12 +83,12 @@ void test_world_shade()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
-	Intersection intersection(4, sphere1);
+	Intersection intersection(4, &sphere1);
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray);
@@ -107,12 +107,12 @@ void test_world_shade_inside()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Ray3D ray(Point3D(0, 0, 0), Vector3D(0, 0, 1));
-	Intersection intersection(0.5, sphere2);
+	Intersection intersection(0.5, &sphere2);
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray);
@@ -194,9 +194,9 @@ void test_scene_color_at_miss()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 1, 0));
 
@@ -216,9 +216,9 @@ void test_scene_color_at_hit()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
 
@@ -238,9 +238,9 @@ void test_scene_color_at_behind()
 	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
 	Sphere3D sphere2(Point3D(0, 0, 0), Matrix4d::Scale(0.5, 0.5, 0.5), Material3D(1, 1, 1, 1, 0.7, 0.2));
 
-	scene.Lights.push_back(light);
-	scene.Shapes.push_back(sphere1);
-	scene.Shapes.push_back(sphere2);
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
 
 	Ray3D ray(Point3D(0, 0, 0.75), Vector3D(0, 0, -1));
 
