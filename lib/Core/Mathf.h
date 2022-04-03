@@ -12,7 +12,7 @@ struct Mathf
 
 	static inline bool Approximately(TItem a, TItem b)
 	{
-		return fabs(a - b) < Epsilon();
+		return fabs(a - b) <= Epsilon();
 	}
 
 	static inline double ToZeroIfClose(TItem a)
