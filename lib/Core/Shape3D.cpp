@@ -15,6 +15,9 @@
 
 #include "Shape3D.h"
 
+#include "Intersection.h"
+#include "Ray3D.h"
+
 Shape3D::Shape3D(const Material3D& material) :
 	Shape3D(Point3D::Origin, Matrix4d::Identity(), material)
 {}
@@ -43,6 +46,25 @@ const Vector3D Shape3D::NormalAt(const Point3D& point) const
 
 	return world_normal.Normalize();
 }
+
+//std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const
+//{
+//	auto local_ray = ray.Transform(Transformation.Inverse());
+//
+//	//return LocalIntersect(local_ray);
+//	std::list<Intersection> result;
+//
+//	if (fabs(ray.Direction.Y()) < Mathf<double>::Epsilon())
+//	{
+//		return result;
+//	}
+//
+//	auto t = -ray.Location.Y() / ray.Direction.Y();
+//
+//	result.push_back(Intersection(t, this));
+//
+//	return result;
+//}
 
 //std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const
 //{

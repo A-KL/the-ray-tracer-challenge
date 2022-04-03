@@ -153,6 +153,7 @@
     <ClCompile Include="..\lib\Core\Computation.cpp" />
     <ClCompile Include="..\lib\Core\InMemoryCanvas.cpp" />
     <ClCompile Include="..\lib\Core\Object3D.cpp" />
+    <ClCompile Include="..\lib\Core\Plane3D.cpp" />
     <ClCompile Include="..\lib\Core\Shape3D.cpp" />
     <ClCompile Include="..\lib\Core\Sphere3D.cpp" />
     <ClCompile Include="examples.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="..\lib\Core\Camera.h" />
     <ClInclude Include="..\lib\Core\Computation.h" />
     <ClInclude Include="..\lib\Core\InMemoryCanvas.h" />
+    <ClInclude Include="..\lib\Core\Plane3D.hpp" />
     <ClInclude Include="..\lib\Core\Scene3D.h" />
     <ClInclude Include="examples.h" />
     <ClInclude Include="SDLCanvas.h" />

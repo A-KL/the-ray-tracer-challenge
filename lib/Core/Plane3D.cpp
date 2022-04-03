@@ -1,4 +1,6 @@
 #include <math.h>
+#include <list>
+
 #include "Mathf.h"
 #include "Color3D.h"
 #include "Material3D.h"
@@ -13,8 +15,6 @@
 
 #include "Shape3D.h"
 #include "Plane3D.hpp"
-
-#include "Intersection.h"
 
 Plane3D::Plane3D() :
 	Plane3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
@@ -44,4 +44,20 @@ bool Plane3D::Plane3D::operator==(const Plane3D& other) const
 const Vector3D Plane3D::LocalNormalAt(const Point3D& point) const
 {
 	return Vector3D(0, 1, 0);
+}
+
+std::list<Intersection> Plane3D::LocalIntersect(const Ray3D& ray) const
+{
+	std::list<Intersection> result;
+
+	if (fabs(ray.Direction.Y()) < Mathf<double>::Epsilon())
+	{
+		return result;
+	}
+
+	auto t = -ray.Location.Y() / ray.Direction.Y();
+
+	result.push_back(Intersection(t, this));
+
+	return result;
 }

@@ -1,3 +1,4 @@
+#include <list>
 #include <cassert>
 
 #include "../lib/Core/Mathf.h"

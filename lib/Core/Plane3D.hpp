@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Shape3D.h"
+#include "Intersection.h"
+#include "Ray3D.h"
 
 class Plane3D
 	: virtual public Shape3D
@@ -20,4 +22,6 @@ public:
 
 protected:
 	const Vector3D LocalNormalAt(const Point3D& point) const;
+
+	std::list<Intersection> LocalIntersect(const Ray3D& ray) const;
 };

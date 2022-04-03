@@ -15,6 +15,7 @@
 #include "Shape3D.h"
 #include "Intersection.h"
 
+
 Intersection::Intersection(double t, const Shape3D& object)
 	: Value(t), Shape(&object)
 { }

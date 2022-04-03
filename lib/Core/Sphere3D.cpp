@@ -1,4 +1,6 @@
 #include <math.h>
+#include <list>
+
 #include "Mathf.h"
 #include "Color3D.h"
 #include "Material3D.h"
@@ -13,8 +15,6 @@
 
 #include "Shape3D.h"
 #include "Sphere3D.h"
-
-#include "Intersection.h"
 
 Sphere3D::Sphere3D() :
 	Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
@@ -46,4 +46,33 @@ const Vector3D Sphere3D::LocalNormalAt(const Point3D& point) const
 	auto object_normal = point - Position;
 
 	return object_normal;
+}
+
+std::list<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
+{
+	Vector3D object_to_ray = ray.Location - Position;
+	
+	double a = Vector3D::Dot(ray.Direction, ray.Direction);
+	
+	double b = 2.0 * Vector3D::Dot(ray.Direction, object_to_ray);
+	
+	double c = Vector3D::Dot(object_to_ray, object_to_ray) - 1.0;
+	
+	double d = b * b - 4.0 * a * c;
+	
+	std::list<Intersection> result;
+	
+	if (d >= 0)
+	{
+		double sd = sqrt(d);
+		double aa = 2.0 * a;
+		double t1 = (-b - sd) / aa;
+		double t2 = (-b + sd) / aa;
+	
+		result.push_back(Intersection(t1, this));
+		result.push_back(Intersection(t2, this));
+		result.sort(IntersectionComparator());
+	}
+	
+	return result;
 }

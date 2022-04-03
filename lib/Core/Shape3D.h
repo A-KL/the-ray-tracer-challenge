@@ -1,6 +1,8 @@
 #pragma once
 
 #include "Object3D.h"
+//#include "Intersection.h"
+//#include "Ray3D.h"
 
 class Shape3D : public Object3D
 {
@@ -14,9 +16,13 @@ public:
 	const Material3D Material;
 
 	const Vector3D NormalAt(const Point3D& point) const;
+
+	//std::list<Intersection> Intersect(const Ray3D& ray) const;
 	
 	bool operator==(const Shape3D& other) const;
 
 protected:
 	virtual const Vector3D LocalNormalAt(const Point3D& point) const = 0;
+
+	//virtual std::list<Intersection> LocalIntersect(const Ray3D& ray) const = 0;
 };
