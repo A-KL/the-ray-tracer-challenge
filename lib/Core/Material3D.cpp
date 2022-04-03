@@ -1,11 +1,11 @@
 #include <math.h>
 #include "Mathf.h"
 #include "Color3D.h"
-#include "Material.h"
+#include "Material3D.h"
 
-const Material Material::Default(Color3D::White);
+const Material3D Material3D::Default(Color3D::White);
 
-bool Material::operator==(const Material& other) const
+bool Material3D::operator==(const Material3D& other) const
 {
 	return
 		Color == other.Color &&

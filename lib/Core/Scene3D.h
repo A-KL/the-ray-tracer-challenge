@@ -34,7 +34,7 @@ public:
 				.InShadow(computation.OverPosition, Shapes);
 
 			result += light
-				.Compute(computation.Intersect.Shape->Mat, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+				.Compute(computation.Intersect.Shape->Material, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
 		}
 
 		return result;

@@ -1,7 +1,7 @@
 #include <math.h>
 #include "Mathf.h"
 #include "Color3D.h"
-#include "Material.h"
+#include "Material3D.h"
 
 #include "Primitive3D.h"
 #include "Vector3D.h"
@@ -13,17 +13,30 @@
 
 #include "Shape3D.h"
 
+Shape3D::Shape3D(const Material3D& material) :
+	Shape3D(Point3D::Origin, Matrix4d::Identity(), material)
+{}
+
+Shape3D::Shape3D(const Matrix4d& transform, const Material3D& material) :
+	Shape3D(Point3D::Origin, transform, material)
+{}
+
+Shape3D::Shape3D(const Point3D& position, const Matrix4d& transform, const Material3D& material) :
+	Object3D(position, transform),
+	Material(material)
+{ }
+
 bool Shape3D::operator==(const Shape3D& other) const
 {
-	return ((Object3D)*this) == other && Mat == other.Mat;
+	return ((Object3D)*this) == other && Material == other.Material;
 }
 
 const Vector3D Shape3D::NormalAt(const Point3D& point) const
 {
 	auto inverse = Transformation.Inverse();
-	auto object_point = inverse * point;
-	auto object_normal = object_point - Position;
-	auto world_normal = inverse.Transpose() * object_normal;
+	auto local_point = inverse * point;
+	auto local_normal = LocalNormalAt(local_point);
+	auto world_normal = inverse.Transpose() * local_normal;
 	world_normal.SetW(0);
 
 	return world_normal.Normalize();

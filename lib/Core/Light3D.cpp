@@ -12,7 +12,7 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
-#include "Material.h"
+#include "Material3D.h"
 #include "Shape3D.h"
 
 #include "Ray3D.h"
@@ -24,7 +24,7 @@
 #include "RayTracer.h"
 
 
-Color3D Light3D::Compute(const Material& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow) const
+Color3D Light3D::Compute(const Material3D& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow) const
 {
 	auto effective_color = material.Color * Intensity;
 

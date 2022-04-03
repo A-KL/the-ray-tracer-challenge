@@ -12,7 +12,7 @@
 #include "../lib/Core/MatrixOps.hpp"
 #include "../lib/Core/MatrixTransform.hpp"
 
-#include "../lib/Core/Material.h"
+#include "../lib/Core/Material3D.h"
 
 #include "../lib/Core/Sphere3D.h"
 #include "../lib/Core/Light3D.h"
@@ -32,7 +32,7 @@ void test_world_default()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	// Act
@@ -51,7 +51,7 @@ void test_world_intersection()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
@@ -80,7 +80,7 @@ void test_world_shade()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
+	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	scene.Lights.push_back(light);
@@ -104,7 +104,7 @@ void test_world_shade_inside()
 	Scene3D scene;
 	Light3D light(Point3D(0, 0.25, 0), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
+	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5));
 
 	scene.Lights.push_back(light);
@@ -133,7 +133,7 @@ void test_computation_creation()
 	auto computation = Computation::Prepare(intersection, ray);
 
 	// Assert
-	assert((Shape3D)sphere == *computation.Intersect.Shape);
+	assert(&sphere == computation.Intersect.Shape);
 	assert(Point3D(0, 0, -1) == computation.Position);
 	assert(Vector3D(0, 0, -1) == computation.Camera);
 	assert(Vector3D(0, 0, -1) == computation.Normal);
@@ -191,7 +191,7 @@ void test_scene_color_at_miss()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
+	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	scene.Lights.push_back(light);
@@ -213,7 +213,7 @@ void test_scene_color_at_hit()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
+	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
 
 	scene.Lights.push_back(light);
@@ -235,8 +235,8 @@ void test_scene_color_at_behind()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-	Sphere3D sphere1(Material(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
-	Sphere3D sphere2(Point3D(0, 0, 0), Matrix4d::Scale(0.5, 0.5, 0.5), Material(1, 1, 1, 1, 0.7, 0.2));
+	Sphere3D sphere1(Material3D(Color3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
+	Sphere3D sphere2(Point3D(0, 0, 0), Matrix4d::Scale(0.5, 0.5, 0.5), Material3D(1, 1, 1, 1, 0.7, 0.2));
 
 	scene.Lights.push_back(light);
 	scene.Shapes.push_back(sphere1);
@@ -248,7 +248,7 @@ void test_scene_color_at_behind()
 	auto result = scene.ColorAt(ray);
 
 	// Assert
-	assert(sphere2.Mat.Color == result);
+	assert(sphere2.Material.Color == result);
 }
 
 void run_scene_tests()

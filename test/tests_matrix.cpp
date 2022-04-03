@@ -11,7 +11,7 @@
 #include "../lib/Core/MatrixOps.hpp"
 #include "../lib/Core/MatrixTransform.hpp"
 
-#include "../lib/Core/Material.h"
+#include "../lib/Core/Material3D.h"
 
 #include "../lib/Core/Shape3D.h"
 #include "../lib/Core/Sphere3D.h"

@@ -8,7 +8,7 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
-#include "Material.h"
+#include "Material3D.h"
 #include "Shape3D.h"
 #include "Intersection.h"
 

@@ -71,7 +71,7 @@
     <ClCompile Include="..\lib\Core\Color3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\lib\Core\Material.cpp">
+    <ClCompile Include="..\lib\Core\Material3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
     <ClCompile Include="..\lib\Core\RayTracer.cpp">
@@ -160,7 +160,7 @@
     <ClInclude Include="..\test\tests.h">
       <Filter>Tests\Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\lib\Core\Material.h">
+    <ClInclude Include="..\lib\Core\Material3D.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Core\Color3D.h">

@@ -19,7 +19,7 @@
 #include "../lib/Core/Projectile.h"
 
 #include "../lib/Core/Ray3D.h"
-#include "../lib/Core/Material.h"
+#include "../lib/Core/Material3D.h"
 #include "../lib/Core/Object3D.h"
 #include "../lib/Core/Shape3D.h"
 #include "../lib/Core/Sphere3D.h"
@@ -140,7 +140,7 @@ void run_light_demo(Canvas& canvas)
 	const double pixel_size = wall_size / w;
 	const double half = wall_size / 2;
 
-	Sphere3D sphere(Matrix4d::Scale(1), Material(1, 0.2, 1));
+	Sphere3D sphere(Matrix4d::Scale(1), Material3D(1, 0.2, 1));
 	Light3D light(Point3D(-10, 10, -10), Color3D::White);
 
 	Point3D ray_origin(0, 0, -5);
@@ -167,7 +167,7 @@ void run_light_demo(Canvas& canvas)
 				auto point = ray.Position(intersection->Value);
 				auto normal = intersection->Shape->NormalAt(point);
 				auto camera = -ray.Direction;
-				auto color = light.Compute(intersection->Shape->Mat, point, camera, normal);
+				auto color = light.Compute(intersection->Shape->Material, point, camera, normal);
 
 				canvas.DrawPoint(x, y, color);
 			}
@@ -193,7 +193,7 @@ void run_scene_demo(Canvas& canvas)
 		Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2) *
 		Matrix4d::Scale(10, 0.01, 10);
 
-	Material floor_material(1, 0.9, 0.9, 0.1, 0.9, 0);
+	Material3D floor_material(1, 0.9, 0.9, 0.1, 0.9, 0);
 
 	Sphere3D floor(Matrix4d::Scale(10, 0.01, 10), floor_material);
 	Sphere3D left_wall(left_wall_location, floor_material);
@@ -201,11 +201,11 @@ void run_scene_demo(Canvas& canvas)
 
 	// -----------------------------------------------------------------------------
 
-	Sphere3D middle(Matrix4d::Translate(-0.5, 1, 0.5), Material(0.1, 1, 0.5, 0.1, 0.7, 0.3));
+	Sphere3D middle(Matrix4d::Translate(-0.5, 1, 0.5), Material3D(0.1, 1, 0.5, 0.1, 0.7, 0.3));
 
-	Sphere3D right(Matrix4d::Translate(1.5, 0.5, -0.5) * Matrix4d::Scale(0.5), Material(0.5, 1, 0.1, 0.1, 0.7, 0.3));
+	Sphere3D right(Matrix4d::Translate(1.5, 0.5, -0.5) * Matrix4d::Scale(0.5), Material3D(0.5, 1, 0.1, 0.1, 0.7, 0.3));
 
-	Sphere3D left(Matrix4d::Translate(-1.5, 0.33, -0.75) * Matrix4d::Scale(0.33), Material(1, 0.8, 0.1, 0.1, 0.7, 0.3));
+	Sphere3D left(Matrix4d::Translate(-1.5, 0.33, -0.75) * Matrix4d::Scale(0.33), Material3D(1, 0.8, 0.1, 0.1, 0.7, 0.3));
 
 	// -----------------------------------------------------------------------------
 

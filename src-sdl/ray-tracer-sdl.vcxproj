@@ -160,7 +160,7 @@
     <ClCompile Include="..\lib\Core\Color3D.cpp" />
     <ClCompile Include="..\lib\Core\Intersection.cpp" />
     <ClCompile Include="..\lib\Core\Light3D.cpp" />
-    <ClCompile Include="..\lib\Core\Material.cpp" />
+    <ClCompile Include="..\lib\Core\Material3D.cpp" />
     <ClCompile Include="..\lib\Core\Point3D.cpp" />
     <ClCompile Include="..\lib\Core\Projectile.cpp" />
     <ClCompile Include="..\lib\Core\Ray3D.cpp" />
@@ -190,7 +190,7 @@
     <ClInclude Include="..\lib\Core\Color3D.h" />
     <ClInclude Include="..\lib\Core\Intersection.h" />
     <ClInclude Include="..\lib\Core\Light3D.h" />
-    <ClInclude Include="..\lib\Core\Material.h" />
+    <ClInclude Include="..\lib\Core\Material3D.h" />
     <ClInclude Include="..\lib\Core\Matrix.hpp" />
     <ClInclude Include="..\lib\Core\Environment.h" />
     <ClInclude Include="..\lib\Core\Mathf.h" />
