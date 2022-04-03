@@ -19,12 +19,13 @@
 #include "Environment.h"
 #include "Projectile.h"
 
-#include "Ray3D.h"
-#include "Material.h"
+#include "Material3D.h"
 #include "Object3D.h"
+
 #include "Shape3D.h"
-#include "Sphere3D.h"
 #include "Intersection.h"
+#include "Ray3D.h"
+#include "Sphere3D.h"
 #include "Light3D.h"
 #include "Computation.h"
 #include "RayTracer.h"
@@ -59,7 +60,7 @@ void run_scene_demo(Canvas& canvas)
 		Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2) *
 		Matrix4d::Scale(10, 0.01, 10);
 
-	Material floor_material(1, 0.9, 0.9, 0.1, 0.9, 0);
+	Material3D floor_material(1, 0.9, 0.9, 0.1, 0.9, 0);
 
 	Sphere3D floor(Matrix4d::Scale(10, 0.01, 10), floor_material);
 	Sphere3D left_wall(left_wall_location, floor_material);
@@ -67,11 +68,11 @@ void run_scene_demo(Canvas& canvas)
 
 	// -----------------------------------------------------------------------------
 
-	Sphere3D middle(Matrix4d::Translate(-0.5, 1, 0.5), Material(0.1, 1, 0.5, 0.1, 0.7, 0.3));
+	Sphere3D middle(Matrix4d::Translate(-0.5, 1, 0.5), Material3D(0.1, 1, 0.5, 0.1, 0.7, 0.3));
 
-	Sphere3D right(Matrix4d::Translate(1.5, 0.5, -0.5) * Matrix4d::Scale(0.5), Material(0.5, 1, 0.1, 0.1, 0.7, 0.3));
+	Sphere3D right(Matrix4d::Translate(1.5, 0.5, -0.5) * Matrix4d::Scale(0.5), Material3D(0.5, 1, 0.1, 0.1, 0.7, 0.3));
 
-	Sphere3D left(Matrix4d::Translate(-1.5, 0.33, -0.75) * Matrix4d::Scale(0.33), Material(1, 0.8, 0.1, 0.1, 0.7, 0.3));
+	Sphere3D left(Matrix4d::Translate(-1.5, 0.33, -0.75) * Matrix4d::Scale(0.33), Material3D(1, 0.8, 0.1, 0.1, 0.7, 0.3));
 
 	// -----------------------------------------------------------------------------
 
@@ -83,15 +84,15 @@ void run_scene_demo(Canvas& canvas)
 
 	Scene3D scene;
 
-	scene.Lights.push_back(main_light);
+	scene.Lights.push_back(&main_light);
 
-	scene.Shapes.push_back(floor);
-	scene.Shapes.push_back(left_wall);
-	scene.Shapes.push_back(right_wall);
+	scene.Shapes.push_back(&floor);
+	scene.Shapes.push_back(&left_wall);
+	scene.Shapes.push_back(&right_wall);
 
-	scene.Shapes.push_back(middle);
-	scene.Shapes.push_back(right);
-	scene.Shapes.push_back(left);
+	scene.Shapes.push_back(&middle);
+	scene.Shapes.push_back(&right);
+	scene.Shapes.push_back(&left);
 
 	main_camera.Render(scene, canvas);
 }
