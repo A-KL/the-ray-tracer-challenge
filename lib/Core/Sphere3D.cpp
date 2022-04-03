@@ -14,6 +14,8 @@
 #include "Shape3D.h"
 #include "Sphere3D.h"
 
+#include "Intersection.h"
+
 Sphere3D::Sphere3D() :
 	Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
 { }

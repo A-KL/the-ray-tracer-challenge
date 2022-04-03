@@ -16,12 +16,11 @@
 #include "Object3D.h"
 #include "Shape3D.h"
 
-#include "Light3D.h"
-#include "Ray3D.h"
 #include "Intersection.h"
-#include "Computation.h"
-
+#include "Ray3D.h"
 #include "RayTracer.h"
+#include "Light3D.h"
+#include "Computation.h"
 #include "Scene3D.h"
 #include "Camera.h"
 

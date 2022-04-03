@@ -1,7 +1,7 @@
 #include <math.h>
 #include "Mathf.h"
-#include "Primitive3D.h"
 
+#include "Primitive3D.h"
 #include "Vector3D.h"
 
 Vector3D Vector3D::operator+(const Vector3D& other) const

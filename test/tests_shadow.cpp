@@ -17,8 +17,8 @@
 #include "../lib/Core/Sphere3D.h"
 #include "../lib/Core/Light3D.h"
 
-#include "../lib/Core/Ray3D.h"
 #include "../lib/Core/Intersection.h"
+#include "../lib/Core/Ray3D.h"
 #include "../lib/Core/Computation.h"
 #include "../lib/Core/RayTracer.h"
 

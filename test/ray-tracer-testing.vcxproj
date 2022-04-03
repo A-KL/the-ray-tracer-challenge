@@ -155,14 +155,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lib\Core\Intersection.cpp" />
     <ClCompile Include="..\lib\Core\Point3D.cpp" />
     <ClCompile Include="..\lib\Core\Projectile.cpp" />
     <ClCompile Include="..\lib\Core\Ray3D.cpp" />
+    <ClCompile Include="..\lib\Core\RayTracer.cpp" />
     <ClCompile Include="..\lib\Core\Vector3D.cpp" />
     <ClCompile Include="matrix_transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Core\Environment.h" />
+    <ClInclude Include="..\lib\Core\Intersection.h" />
     <ClInclude Include="..\lib\Core\Mathf.h" />
     <ClInclude Include="..\lib\Core\Matrix.hpp" />
     <ClInclude Include="..\lib\Core\MatrixOps.hpp" />
@@ -170,6 +173,7 @@
     <ClInclude Include="..\lib\Core\Point3D.h" />
     <ClInclude Include="..\lib\Core\Primitive3D.h" />
     <ClInclude Include="..\lib\Core\Projectile.h" />
+    <ClInclude Include="..\lib\Core\RayTracer.h" />
     <ClInclude Include="..\lib\Core\Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

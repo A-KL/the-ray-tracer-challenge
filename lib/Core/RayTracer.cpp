@@ -16,33 +16,33 @@
 #include "Object3D.h"
 #include "Shape3D.h"
 
+#include "Intersection.h"
 #include "Light3D.h"
 #include "Ray3D.h"
-#include "Intersection.h"
 #include "Computation.h"
 
 #include "RayTracer.h"
 
 const static std::list<Intersection> EmptyList;
 
-std::list<Intersection> ray_intersect(const std::list<Shape3D*>& objects, const Ray3D& ray)
-{
-	std::list<Intersection> result;
-
-	for (auto const& object : objects) 
-	{
-		auto intersections = ray_intersect(object, ray);
-
-		for (auto const& intersection : intersections)
-		{
-			result.push_back(intersection);
-		}
-	}
-
-	result.sort(IntersectionComparator());
-
-	return result;
-}
+//std::list<Intersection> ray_intersect(const std::list<Shape3D*>& objects, const Ray3D& ray)
+//{
+//	std::list<Intersection> result;
+//
+//	for (auto const& object : objects) 
+//	{
+//		auto intersections = ray_intersect(object, ray);
+//
+//		for (auto const& intersection : intersections)
+//		{
+//			result.push_back(intersection);
+//		}
+//	}
+//
+//	result.sort(IntersectionComparator());
+//
+//	return result;
+//}
 
 std::list<Intersection> ray_intersect(const Shape3D* object, const Ray3D& ray)
 {
@@ -75,7 +75,7 @@ std::list<Intersection> ray_intersect(const Shape3D* object, const Ray3D& ray)
 	return result;
 }
 
-const std::list<Intersection> ray_hit(const std::list<Intersection>& intersections)
+std::list<Intersection> ray_hit(const std::list<Intersection>& intersections)
 {
 	std::list<Intersection> sorted(intersections);
 

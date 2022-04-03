@@ -15,12 +15,11 @@
 #include "../lib/Core/Material3D.h"
 
 #include "../lib/Core/Sphere3D.h"
-#include "../lib/Core/Light3D.h"
-
-#include "../lib/Core/Ray3D.h"
 #include "../lib/Core/Intersection.h"
-#include "../lib/Core/Computation.h"
+#include "../lib/Core/Ray3D.h"
 #include "../lib/Core/RayTracer.h"
+#include "../lib/Core/Light3D.h"
+#include "../lib/Core/Computation.h"
 
 #include "../lib/Core/Scene3D.h"
 
@@ -61,7 +60,7 @@ void test_world_intersection()
 	scene.Shapes.push_back(&sphere2);
 
 	// Act
-	auto intersections = ray_intersect(scene.Shapes, ray);
+	auto intersections = ray.Intersect(scene.Shapes);
 
 	// Assert
 	assert(4 == intersections.size());

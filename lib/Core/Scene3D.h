@@ -10,7 +10,7 @@ public:
 
 	Color3D ColorAt(const Ray3D& ray) const
 	{
-		auto intersects = ray_intersect(Shapes, ray);
+		auto intersects = ray.Intersect(Shapes);
 
 		auto hits = ray_hit(intersects);
 

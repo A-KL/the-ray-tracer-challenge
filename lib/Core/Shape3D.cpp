@@ -13,9 +13,7 @@
 #include "MatrixOps.hpp"
 #include "MatrixTransform.hpp"
 
-#include "Ray3D.h"
 #include "Shape3D.h"
-#include "Intersection.h"
 
 Shape3D::Shape3D(const Material3D& material) :
 	Shape3D(Point3D::Origin, Matrix4d::Identity(), material)
@@ -45,7 +43,7 @@ const Vector3D Shape3D::NormalAt(const Point3D& point) const
 
 	return world_normal.Normalize();
 }
-//
+
 //std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const
 //{
 //	Ray3D final_ray = ray.Transform(Transformation.Inverse());
