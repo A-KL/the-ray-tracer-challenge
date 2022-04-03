@@ -1,5 +1,7 @@
 #pragma once
 
+#include <math.h>
+
 template<typename TItem>
 struct Mathf
 {
@@ -22,8 +24,3 @@ private:
 	Mathf()
 	{ }
 };
-
-inline bool Mathf<int>::Approximately(int a, int b)
-{
-	return a == b;
-}
