@@ -25,25 +25,6 @@
 
 const static std::list<Intersection> EmptyList;
 
-//std::list<Intersection> ray_intersect(const std::list<Shape3D*>& objects, const Ray3D& ray)
-//{
-//	std::list<Intersection> result;
-//
-//	for (auto const& object : objects) 
-//	{
-//		auto intersections = ray_intersect(object, ray);
-//
-//		for (auto const& intersection : intersections)
-//		{
-//			result.push_back(intersection);
-//		}
-//	}
-//
-//	result.sort(IntersectionComparator());
-//
-//	return result;
-//}
-
 std::list<Intersection> ray_intersect(const Shape3D* object, const Ray3D& ray)
 {
 	Ray3D final_ray = ray.Transform(object->Transformation.Inverse());
