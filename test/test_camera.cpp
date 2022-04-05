@@ -13,17 +13,7 @@
 #include "../lib/Core/MatrixOps.hpp"
 #include "../lib/Core/MatrixTransform.hpp"
 
-#include "../lib/Core/Material3D.h"
-
 #include "../lib/Core/Sphere3D.h"
-#include "../lib/Core/Light3D.h"
-
-#include "../lib/Core/Intersection.h"
-#include "../lib/Core/Ray3D.h"
-#include "../lib/Core/Computation.h"
-#include "../lib/Core/RayTracer.h"
-
-#include "../lib/Core/Scene3D.h"
 
 #include "../lib/Core/Camera.h"
 #include "../lib/Core/InMemoryCanvas.h"

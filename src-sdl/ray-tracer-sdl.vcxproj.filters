@@ -113,6 +113,9 @@
     <ClCompile Include="..\lib\Core\Plane3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\lib\Core\Scene3D.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Core\Environment.h">

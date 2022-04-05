@@ -119,7 +119,7 @@ void run_shadow_demo(Canvas& canvas)
 			Point3D point_to_render(world_x, world_y, wall_position_z);
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
 
-			auto intersects = ray_intersect(&sphere, ray);
+			auto intersects = sphere.Intersect(ray);
 
 			if (!ray_hit(intersects).empty())
 			{
@@ -158,7 +158,7 @@ void run_light_demo(Canvas& canvas)
 			Point3D point_to_render(world_x, world_y, wall_position_z);
 			Ray3D ray(ray_origin, (point_to_render - ray_origin).Normalize());
 
-			auto intersects = ray_intersect(&sphere, ray);
+			auto intersects = sphere.Intersect(ray);
 			auto intersections = ray_hit(intersects);
 
 			if (!intersections.empty())

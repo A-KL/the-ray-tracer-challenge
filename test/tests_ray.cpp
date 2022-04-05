@@ -34,7 +34,7 @@ void test_ray_sphere_scale_intersect()
 	Sphere3D sphere(Matrix4d::Scale(2, 2, 2));
 
 	// Act
-	auto res = ray_intersect(&sphere, ray);
+	auto res = sphere.Intersect(ray);
 
 	// Assert
 	assert(2 == res.size());
@@ -52,7 +52,7 @@ void test_ray_sphere_translate_intersect()
 	Sphere3D sphere(Matrix4d::Translate(5, 0, 0));
 
 	// Act
-	auto res = ray_intersect(&sphere, ray);
+	auto res = sphere.Intersect(ray);
 
 	// Assert
 	assert(0 == res.size());
@@ -178,7 +178,7 @@ void test_ray_intersect()
 	Sphere3D sphere;
 
 	// Act
-	auto res = ray_intersect(&sphere, ray);
+	auto res = sphere.Intersect(ray);
 
 	// Assert
 	assert(2 == res.size());
@@ -193,7 +193,7 @@ void test_ray_intersect()
 	Ray3D ray2(Point3D(0, 0, 0), Vector3D(0, 0, 1));
 
 	// Act
-	res = ray_intersect(&sphere, ray2);
+	res = sphere.Intersect(ray2);
 
 	// Assert
 	assert(2 == res.size());
@@ -208,7 +208,7 @@ void test_ray_intersect()
 	Ray3D ray3(Point3D(0, 2, -5), Vector3D(0, 0, 1));
 
 	// Act
-	res = ray_intersect(&sphere, ray3);
+	res = sphere.Intersect(ray3);
 
 	// Assert
 	assert(0 == res.size());

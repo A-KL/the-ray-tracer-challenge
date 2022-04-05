@@ -154,6 +154,7 @@
     <ClCompile Include="..\lib\Core\InMemoryCanvas.cpp" />
     <ClCompile Include="..\lib\Core\Object3D.cpp" />
     <ClCompile Include="..\lib\Core\Plane3D.cpp" />
+    <ClCompile Include="..\lib\Core\Scene3D.cpp" />
     <ClCompile Include="..\lib\Core\Shape3D.cpp" />
     <ClCompile Include="..\lib\Core\Sphere3D.cpp" />
     <ClCompile Include="examples.cpp" />
