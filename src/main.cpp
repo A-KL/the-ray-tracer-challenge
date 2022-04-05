@@ -22,12 +22,10 @@
 #include "Material3D.h"
 #include "Object3D.h"
 
-#include "Shape3D.h"
 #include "Intersection.h"
-#include "Ray3D.h"
 #include "Sphere3D.h"
+#include "Plane3D.hpp"
 #include "Light3D.h"
-#include "Computation.h"
 #include "RayTracer.h"
 #include "Scene3D.h"
 #include "Camera.h"

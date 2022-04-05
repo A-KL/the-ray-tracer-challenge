@@ -3,9 +3,12 @@
 #include <list>
 #include "Point3D.h"
 #include "Vector3D.h"
-#include "Object3D.h"
-#include "Material3D.h"
 #include "MatrixOps.hpp"
+
+#include "Material3D.h"
+#include "Object3D.h"
+//#include "Intersection.h"
+//#include "Ray3D.h"
 
 class Shape3D : public Object3D
 {

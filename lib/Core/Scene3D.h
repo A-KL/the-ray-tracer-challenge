@@ -2,6 +2,8 @@
 
 #include <list>
 
+#include "Color3D.h"
+#include "Shape3D.h"
 #include "Light3D.h"
 #include "Ray3D.h"
 #include "Computation.h"
