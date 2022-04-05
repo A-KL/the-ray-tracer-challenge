@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Point3D.h"
+#include "MatrixOps.hpp"
+
 class Object3D
 {
 public:

@@ -1,7 +1,8 @@
+#include "Material3D.h"
+
 #include <math.h>
 #include "Mathf.h"
 #include "Color3D.h"
-#include "Material3D.h"
 
 const Material3D Material3D::Default(Color3D::White);
 

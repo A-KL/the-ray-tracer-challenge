@@ -1,5 +1,9 @@
 #pragma once
 
+#include <list>
+
+#include "MatrixOps.hpp"
+
 class Ray3D
 {
 public:

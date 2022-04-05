@@ -2,7 +2,9 @@
 
 #include "Shape3D.h"
 #include "Intersection.h"
+#include "Vector3D.h"
 #include "Ray3D.h"
+#include "MatrixOps.hpp"
 
 class Plane3D
 	: virtual public Shape3D

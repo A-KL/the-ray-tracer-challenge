@@ -1,5 +1,8 @@
 #pragma once
 
+#include <M5GFX.h>
+
+#include "../lib/Core/Color3D.h"
 #include "../lib/Core/Canvas.h"
 
 class M5StackCanvas :

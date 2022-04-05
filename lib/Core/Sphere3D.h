@@ -1,11 +1,15 @@
 #pragma once
 
-#include "Shape3D.h"
-#include "Intersection.h"
-#include "Ray3D.h"
+#include <list>
 
-class Sphere3D
-	: virtual public Shape3D
+#include "Point3D.h"
+#include "Intersection.h"
+#include "Material3D.h"
+#include "MatrixOps.hpp"
+#include "Ray3D.h"
+#include "Shape3D.h"
+
+class Sphere3D : virtual public Shape3D
 {
 public:
 	Sphere3D();

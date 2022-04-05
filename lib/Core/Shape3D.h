@@ -1,8 +1,7 @@
 #pragma once
-
+#include <list>
 #include "Object3D.h"
-//#include "Intersection.h"
-//#include "Ray3D.h"
+#include "Material3D.h"
 
 class Shape3D : public Object3D
 {

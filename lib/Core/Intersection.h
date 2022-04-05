@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Shape3D.h"
+
 class Intersection
 {
 public:

@@ -1,20 +1,5 @@
-#include <math.h>
-#include <list>
-
-#include "Mathf.h"
-#include "Color3D.h"
-#include "Material3D.h"
-
-#include "Primitive3D.h"
-#include "Vector3D.h"
-#include "Point3D.h"
-
-#include "Matrix.hpp"
-#include "MatrixOps.hpp"
-#include "MatrixTransform.hpp"
-
-#include "Shape3D.h"
 #include "Sphere3D.h"
+#include "Vector3D.h"
 
 Sphere3D::Sphere3D() :
 	Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)

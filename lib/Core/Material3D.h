@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Color3D.h"
+
 struct Material3D
 {
 	Material3D(const Material3D& material);
