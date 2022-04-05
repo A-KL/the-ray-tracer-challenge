@@ -22,6 +22,7 @@
 #include "Material3D.h"
 #include "Object3D.h"
 
+#include "Shape3D.h"
 #include "Intersection.h"
 #include "Sphere3D.h"
 #include "Plane3D.hpp"

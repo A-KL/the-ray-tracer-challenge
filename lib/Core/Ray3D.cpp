@@ -26,7 +26,7 @@ std::list<Intersection> Ray3D::Intersect(const std::list<Shape3D*>& objects) con
 
 	for (auto const& object : objects)
 	{
-		auto intersections = ray_intersect(object, *this);
+		auto intersections = object->Intersect(*this);
 
 		for (auto const& intersection : intersections)
 		{

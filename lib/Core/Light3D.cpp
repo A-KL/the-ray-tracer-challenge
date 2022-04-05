@@ -1,5 +1,6 @@
 #include "Light3D.h"
 
+#include "Ray3D.h"
 #include "RayTracer.h"
 
 Light3D::Light3D() :

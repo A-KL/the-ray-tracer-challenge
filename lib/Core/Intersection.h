@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Shape3D.h"
+class Shape3D;
 
 class Intersection
 {
