@@ -7,7 +7,6 @@ public:
 		: Gravity(gravity), Wind(wind)
 	{ }
 
-
 	Vector3D Gravity;
 
 	Vector3D Wind;

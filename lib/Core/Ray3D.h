@@ -4,9 +4,9 @@
 
 #include "Point3D.h"
 #include "Vector3D.h"
+#include "MatrixOps.hpp"
 #include "Shape3D.h"
 #include "Intersection.h"
-#include "MatrixOps.hpp"
 
 class Ray3D
 {

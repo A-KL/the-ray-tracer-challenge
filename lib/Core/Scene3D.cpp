@@ -1,7 +1,6 @@
 #include "Scene3D.h"
 
 #include "RayTracer.h"
-#include "Computation.h"
 
 Color3D Scene3D::ColorAt(const Ray3D& ray) const
 {

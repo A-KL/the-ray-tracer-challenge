@@ -1,8 +1,7 @@
-#include <math.h>
-
-#include "Mathf.h"
-
 #include "Plane3D.hpp"
+
+#include <math.h>
+#include "Mathf.h"
 
 Plane3D::Plane3D() :
 	Plane3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
