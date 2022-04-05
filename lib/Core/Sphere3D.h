@@ -3,6 +3,7 @@
 #include <list>
 
 #include "Point3D.h"
+#include "Vector3D.h"
 #include "Intersection.h"
 #include "Material3D.h"
 #include "MatrixOps.hpp"

@@ -1,16 +1,3 @@
-#include <math.h>
-
-#include "Mathf.h"
-#include "Color3D.h"
-
-#include "Primitive3D.h"
-#include "Vector3D.h"
-#include "Point3D.h"
-
-#include "Material3D.h"
-#include "Shape3D.h"
-#include "Intersection.h"
-
 #include "Ray3D.h"
 
 #include "RayTracer.h"

@@ -1,5 +1,4 @@
 #include "Sphere3D.h"
-#include "Vector3D.h"
 
 Sphere3D::Sphere3D() :
 	Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)

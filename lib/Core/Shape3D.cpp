@@ -1,22 +1,4 @@
-
-#include <math.h>
-
-#include "Mathf.h"
-#include "Color3D.h"
-#include "Material3D.h"
-
-#include "Primitive3D.h"
-#include "Vector3D.h"
-#include "Point3D.h"
-
-#include "Matrix.hpp"
-#include "MatrixOps.hpp"
-#include "MatrixTransform.hpp"
-
 #include "Shape3D.h"
-
-#include "Intersection.h"
-#include "Ray3D.h"
 
 Shape3D::Shape3D(const Material3D& material) :
 	Shape3D(Point3D::Origin, Matrix4d::Identity(), material)

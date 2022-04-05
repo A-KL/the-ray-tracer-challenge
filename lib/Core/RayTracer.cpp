@@ -1,5 +1,6 @@
-#include "Vector3D.h"
 #include "RayTracer.h"
+
+#include "Vector3D.h"
 
 const static std::list<Intersection> EmptyList;
 

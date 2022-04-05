@@ -2,6 +2,12 @@
 
 #include <list>
 
+#include "Color3D.h"
+#include "Vector3D.h"
+#include "Point3D.h"
+#include "MatrixOps.hpp"
+#include "Material3D.h"
+#include "Shape3D.h"
 #include "Object3D.h"
 
 class Light3D :

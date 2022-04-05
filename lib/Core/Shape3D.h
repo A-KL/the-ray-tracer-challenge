@@ -1,7 +1,11 @@
 #pragma once
+
 #include <list>
+#include "Point3D.h"
+#include "Vector3D.h"
 #include "Object3D.h"
 #include "Material3D.h"
+#include "MatrixOps.hpp"
 
 class Shape3D : public Object3D
 {
