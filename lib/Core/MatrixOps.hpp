@@ -1,5 +1,8 @@
 #pragma once
 
+#include "Matrix.hpp"
+#include "MatrixTransform.hpp"
+
 template<typename  TItem, unsigned TSizeX, unsigned TSizeY>
 bool matrix_inverse(
 	const Matrix<TItem, TSizeX, TSizeY>& matrix,

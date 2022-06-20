@@ -2,14 +2,14 @@
 
 #include <iostream>
 #include <cstring>
+#include <math.h>
 
-using namespace std;
+#include "Mathf.h"
 
 template<typename TItem>
 class Primitive3D
 {
 public:
-
 	Primitive3D(const TItem data[])
 	{ 
 		memcpy(_data, data, sizeof(_data));
@@ -53,7 +53,7 @@ public:
 			W() == other.W();
 	}
 
-	friend ostream& operator<<(ostream& out, const Primitive3D<TItem>& p)
+	friend std::ostream& operator<<(std::ostream& out, const Primitive3D<TItem>& p)
 	{
 		out << "(";
 		out << p.X() << ",";

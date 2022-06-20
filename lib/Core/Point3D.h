@@ -1,8 +1,10 @@
 #pragma once
 
 #include <iostream>
-
-using namespace std;
+#include <math.h>
+#include "Mathf.h"
+#include "Primitive3D.h"
+#include "Vector3D.h"
 
 class Point3D :
 	public Primitive3D<double>
@@ -30,6 +32,6 @@ public:
 
 	const static Point3D Origin;
 
-	friend ostream& operator<<(ostream& out, const Point3D& p);
+	friend std::ostream& operator<<(std::ostream& out, const Point3D& p);
 };
 

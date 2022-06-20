@@ -19,5 +19,5 @@ Cross-platform ray tracer based on the book: [The Ray Tracer Challenge - A Test-
 | №5  | ![Chapter 5](/img/ray_trace_shadow.png)  | ![Chapter 5](/img/ray_trace_shadow_esp32.png)  |
 | №6  | ![Chapter 6](/img/ray_trace_light_material.png)  | ![Chapter 6](/img/ray_trace_light_material_esp32.png)  |
 | №7  | ![Chapter 7](/img/ray_trace_scene.png)  | ![Chapter 6](/img/ray_trace_scene_esp32.png)  |
-| №7  | ![Chapter 7](/img/ray_trace_scene_shadows.png)  | ![Chapter 6](/img/ray_trace_scene_shadows_esp32.png)  |
-
+| №8  | ![Chapter 8](/img/ray_trace_scene_shadows.png)  | ![Chapter 6](/img/ray_trace_scene_shadows_esp32.png)  |
+| №9  | ![Chapter 9](/img/ray_trace_scene_shadows_plane.png)  | ![Chapter 6](/img/ray_trace_scene_shadows_plane_esp32.png)  |

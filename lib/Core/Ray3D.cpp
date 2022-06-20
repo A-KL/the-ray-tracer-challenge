@@ -1,15 +1,10 @@
-#include <math.h>
-#include "Mathf.h"
-
-#include "Primitive3D.h"
-#include "Vector3D.h"
-#include "Point3D.h"
-
-#include "Matrix.hpp"
-#include "MatrixOps.hpp"
-#include "MatrixTransform.hpp"
-
 #include "Ray3D.h"
+
+#include "RayTracer.h"
+
+Ray3D::Ray3D(const Point3D& position, const Vector3D& direction)
+	: Location(position), Direction(direction)
+{ }
 
 Point3D Ray3D::Position(double value) const
 {
@@ -23,4 +18,23 @@ Ray3D Ray3D::Transform(const Matrix4d& transformation) const
 	auto dir = transformation * Direction;
 
 	return Ray3D(pos, dir);
+}
+
+std::list<Intersection> Ray3D::Intersect(const std::list<Shape3D*>& objects) const
+{
+	std::list<Intersection> result;
+
+	for (auto const& object : objects)
+	{
+		auto intersections = object->Intersect(*this);
+
+		for (auto const& intersection : intersections)
+		{
+			result.push_back(intersection);
+		}
+	}
+
+	result.sort(IntersectionComparator());
+
+	return result;
 }

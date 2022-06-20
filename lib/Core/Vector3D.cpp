@@ -1,7 +1,3 @@
-#include <math.h>
-#include "Mathf.h"
-#include "Primitive3D.h"
-
 #include "Vector3D.h"
 
 Vector3D Vector3D::operator+(const Vector3D& other) const
@@ -66,7 +62,7 @@ Vector3D Vector3D::Cross(const Vector3D& other) const
 		X() * other.Y() - Y() * other.X());
 }
 
-ostream& operator<<(ostream& out, const Vector3D& p)
+std::ostream& operator<<(std::ostream& out, const Vector3D& p)
 {
 	out << "Vector3D";
 	out << (Primitive3D<double>)p;

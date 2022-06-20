@@ -1,5 +1,14 @@
 #pragma once
 
+#include "Canvas.h"
+
+#include "Vector3D.h"
+#include "Point3D.h"
+#include "MatrixOps.hpp"
+
+#include "Ray3D.h"
+#include "Scene3D.h"
+
 struct Camera
 {
 	Camera(int h, int v, double fow, const Matrix4d& transformation);

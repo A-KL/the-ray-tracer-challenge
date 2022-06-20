@@ -1,5 +1,9 @@
 #pragma once
 
+#include "Vector3D.h"
+#include "Point3D.h"
+#include "Environment.h"
+
 class Projectile
 {
 public:

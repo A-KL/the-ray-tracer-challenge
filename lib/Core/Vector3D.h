@@ -3,7 +3,8 @@
 #include <math.h>
 #include <iostream>
 
-using namespace std;
+#include "Mathf.h"
+#include "Primitive3D.h"
 
 class Vector3D :
 	public Primitive3D<double>
@@ -42,7 +43,7 @@ public:
 
 	Vector3D operator*(double) const;
 
-	friend ostream& operator<<(ostream& out, const Vector3D& p);
+	friend std::ostream& operator<<(std::ostream& out, const Vector3D& p);
 
 protected:
 	Vector3D(double x, double y, double z, double w)

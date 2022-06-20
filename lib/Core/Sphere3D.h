@@ -1,30 +1,32 @@
 #pragma once
 
+#include <list>
+
+#include "Point3D.h"
+#include "Vector3D.h"
+#include "Intersection.h"
+#include "Material3D.h"
+#include "MatrixOps.hpp"
+#include "Ray3D.h"
 #include "Shape3D.h"
 
-struct Sphere3D : virtual public Shape3D
+class Sphere3D : virtual public Shape3D
 {
-	Sphere3D() :
-		Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material::Default)
-	{ }
+public:
+	Sphere3D();
 
-	Sphere3D(Matrix4d& transform) :
-		Sphere3D(Point3D::Origin, transform, Material::Default)
-	{ }
+	Sphere3D(Matrix4d& transform);
 
-	Sphere3D(const Material& material) :
-		Sphere3D(Point3D::Origin, Matrix4d::Identity(), material)
-	{ }
+	Sphere3D(const Material3D& material);
 
-	Sphere3D(const Matrix4d& transform, const Material& material) :
-		Shape3D(Point3D::Origin, transform, material)
-	{ }
+	Sphere3D(const Matrix4d& transform, const Material3D& material);
 
-	Sphere3D(const Point3D& position, const Matrix4d& transform, const Material& material) :
-		Shape3D(position, transform, material)
-	{ }
-
-	//virtual const Vector3D NormalAt(const Point3D& point) const;
+	Sphere3D(const Point3D& position, const Matrix4d& transform, const Material3D& material);
 
 	bool operator==(const Sphere3D& other) const;
+
+protected:
+	const Vector3D LocalNormalAt(const Point3D& point) const;
+
+	std::list<Intersection> LocalIntersect(const Ray3D& ray) const;
 };

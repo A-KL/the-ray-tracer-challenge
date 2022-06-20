@@ -1,16 +1,24 @@
 #pragma once
 
+#include <math.h>
+
+#include "Mathf.h"
+#include "Color3D.h"
 #include "Canvas.h"
+
+#include "Primitive3D.h"
+#include "Vector3D.h"
+#include "Point3D.h"
+
+#include "Matrix.hpp"
+#include "MatrixOps.hpp"
+
+#include "InMemoryCanvas.h"
 
 template<unsigned TWidth, unsigned THeight>
 class InMemoryCanvas : public Canvas
 {
 public:
-	//InMemoryCanvas()
-	//{
-
-	//}
-
 	void DrawPoint(int x, int y, const Color3D& color)
 	{
 		_data[x + TWidth * y] = color;
@@ -37,14 +45,10 @@ public:
 	}
 
 	void Clear(const Color3D& color)
-	{
-
-	}
+	{ }
 
 	void Clear()
-	{
-
-	}
+	{ }
 
 	void Update()
 	{ }

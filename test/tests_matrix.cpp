@@ -1,3 +1,4 @@
+#include <list>
 #include <cassert>
 
 #include "../lib/Core/Mathf.h"
@@ -11,14 +12,14 @@
 #include "../lib/Core/MatrixOps.hpp"
 #include "../lib/Core/MatrixTransform.hpp"
 
-#include "../lib/Core/Material.h"
+#include "../lib/Core/Material3D.h"
 
 #include "../lib/Core/Shape3D.h"
 #include "../lib/Core/Sphere3D.h"
 #include "../lib/Core/Light3D.h"
 
-#include "../lib/Core/Ray3D.h"
 #include "../lib/Core/Intersection.h"
+#include "../lib/Core/Ray3D.h"
 #include "../lib/Core/Computation.h"
 
 #include "../lib/Core/RayTracer.h"

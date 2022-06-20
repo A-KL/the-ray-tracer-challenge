@@ -1,5 +1,11 @@
 #pragma once
 
+#include "Vector3D.h"
+#include "Point3D.h"
+
+#include "Intersection.h"
+#include "Ray3D.h"
+
 struct Computation
 {
 	const static Computation Prepare(const Intersection& intersection, const Ray3D& ray);

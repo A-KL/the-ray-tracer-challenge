@@ -1,28 +1,3 @@
-#include <list>
-
-#include "Mathf.h"
-#include "Color3D.h"
-#include "Canvas.h"
-
-#include "Primitive3D.h"
-#include "Vector3D.h"
-#include "Point3D.h"
-
-#include "Matrix.hpp"
-#include "MatrixOps.hpp"
-#include "MatrixTransform.hpp"
-
-#include "Material.h"
-#include "Object3D.h"
-#include "Shape3D.h"
-
-#include "Light3D.h"
-#include "Ray3D.h"
-#include "Intersection.h"
-#include "Computation.h"
-
-#include "RayTracer.h"
-#include "Scene3D.h"
 #include "Camera.h"
 
 Camera::Camera(int h, int v, double fow, const Point3D& from, const Point3D& to, const Vector3D& up)

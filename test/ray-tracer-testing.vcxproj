@@ -30,7 +30,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
@@ -155,21 +155,49 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\lib\Core\Camera.cpp" />
+    <ClCompile Include="..\lib\Core\Color3D.cpp" />
+    <ClCompile Include="..\lib\Core\Computation.cpp" />
+    <ClCompile Include="..\lib\Core\InMemoryCanvas.cpp" />
+    <ClCompile Include="..\lib\Core\Intersection.cpp" />
+    <ClCompile Include="..\lib\Core\Light3D.cpp" />
+    <ClCompile Include="..\lib\Core\Material3D.cpp" />
+    <ClCompile Include="..\lib\Core\Object3D.cpp" />
+    <ClCompile Include="..\lib\Core\Plane3D.cpp" />
     <ClCompile Include="..\lib\Core\Point3D.cpp" />
     <ClCompile Include="..\lib\Core\Projectile.cpp" />
     <ClCompile Include="..\lib\Core\Ray3D.cpp" />
+    <ClCompile Include="..\lib\Core\RayTracer.cpp" />
+    <ClCompile Include="..\lib\Core\Scene3D.cpp" />
+    <ClCompile Include="..\lib\Core\Shape3D.cpp" />
+    <ClCompile Include="..\lib\Core\Sphere3D.cpp" />
     <ClCompile Include="..\lib\Core\Vector3D.cpp" />
     <ClCompile Include="matrix_transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\lib\Core\Camera.h" />
+    <ClInclude Include="..\lib\Core\Canvas.h" />
+    <ClInclude Include="..\lib\Core\Color3D.h" />
+    <ClInclude Include="..\lib\Core\Computation.h" />
     <ClInclude Include="..\lib\Core\Environment.h" />
+    <ClInclude Include="..\lib\Core\InMemoryCanvas.h" />
+    <ClInclude Include="..\lib\Core\Intersection.h" />
+    <ClInclude Include="..\lib\Core\Light3D.h" />
+    <ClInclude Include="..\lib\Core\Material3D.h" />
     <ClInclude Include="..\lib\Core\Mathf.h" />
     <ClInclude Include="..\lib\Core\Matrix.hpp" />
     <ClInclude Include="..\lib\Core\MatrixOps.hpp" />
     <ClInclude Include="..\lib\Core\MatrixTransform.hpp" />
+    <ClInclude Include="..\lib\Core\Object3D.h" />
+    <ClInclude Include="..\lib\Core\Plane3D.hpp" />
     <ClInclude Include="..\lib\Core\Point3D.h" />
     <ClInclude Include="..\lib\Core\Primitive3D.h" />
     <ClInclude Include="..\lib\Core\Projectile.h" />
+    <ClInclude Include="..\lib\Core\Ray3D.h" />
+    <ClInclude Include="..\lib\Core\RayTracer.h" />
+    <ClInclude Include="..\lib\Core\Scene3D.h" />
+    <ClInclude Include="..\lib\Core\Shape3D.h" />
+    <ClInclude Include="..\lib\Core\Sphere3D.h" />
     <ClInclude Include="..\lib\Core\Vector3D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
