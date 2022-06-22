@@ -236,7 +236,7 @@ void test_scene_color_at_behind()
 	Light3D light(Point3D(-10, 10, -10), Color3D::White);
 
 	Sphere3D sphere1(Material3D(SolidColor3D(0.8, 1.0, 0.6), 1, 0.7, 0.2));
-	Sphere3D sphere2(Point3D::Origin, Matrix4d::Scale(0.5, 0.5, 0.5), Material3D(SolidColor3D(), 1, 0.7, 0.2));
+	Sphere3D sphere2(Point3D::Origin, Matrix4d::Scale(0.5, 0.5, 0.5), Material3D(SolidColor3D::Default, 1, 0.7, 0.2));
 
 	scene.Lights.push_back(&light);
 	scene.Shapes.push_back(&sphere1);

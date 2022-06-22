@@ -22,6 +22,11 @@ const Color3D Color3D::operator+(const Color3D& other) const
 	return Color3D { R + other.R, G + other.G, B + other.B };
 }
 
+const Color3D Color3D::operator-(const Color3D& other) const
+{
+	return Color3D{ R - other.R, G - other.G, B - other.B };
+}
+
 const Color3D Color3D::operator*(double other) const
 {
 	return Color3D { R * other, G * other, B * other };

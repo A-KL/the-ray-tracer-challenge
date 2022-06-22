@@ -2,7 +2,6 @@
 
 #include <math.h>
 #include "Mathf.h"
-#include "ColorPattern.h"
 
 const Material3D Material3D::Default(SolidColor3D::Default, 0.1, 0.9, 0.9, 200);
 
@@ -10,9 +9,9 @@ Material3D::Material3D(const Material3D& material)
 	: Material3D(*material.Pattern, material.Ambient, material.Diffuse, material.Specular, material.Shininess)
 { }
 
-//Material3D::Material3D(double r, double g, double b, double ambient, double diffuse, double specular, double shininess)
-//	: Material3D(SolidColor3D(r, g, b), ambient, diffuse, specular, shininess)
-//{  }
+Material3D::Material3D(double r, double g, double b, double ambient, double diffuse, double specular, double shininess)
+	: Material3D(SolidColor3D(r, g, b), ambient, diffuse, specular, shininess)
+{  }
 
 Material3D::Material3D(const ColorPattern& pattern, double ambient, double diffuse, double specular, double shininess)
 	: Pattern(&pattern), Ambient(ambient), Diffuse(diffuse), Specular(specular), Shininess(shininess)

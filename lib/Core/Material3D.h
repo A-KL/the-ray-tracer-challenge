@@ -6,7 +6,7 @@ struct Material3D
 {
 	Material3D(const Material3D& material);
 
-	//Material3D(double r = 1, double g = 1, double b = 1, double ambient = 0.1, double diffuse = 0.9, double specular = 0.9, double shininess = 200);
+	Material3D(double r = 1, double g = 1, double b = 1, double ambient = 0.1, double diffuse = 0.9, double specular = 0.9, double shininess = 200);
 
 	Material3D(const ColorPattern& pattern, double ambient = 0.1, double diffuse = 0.9, double specular = 0.9, double shininess = 200);
 

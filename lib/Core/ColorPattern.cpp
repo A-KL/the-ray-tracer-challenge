@@ -27,3 +27,13 @@ const Color3D StripeColor::at(const Point3D& location) const
 {
 	return (((int)floor(location.X()) % 2) == 0) ? ColorA : ColorB;
 }
+
+
+GradientColor::GradientColor(const Color3D& colorA, const Color3D& colorB)
+	: StripeColor(colorA, colorB)
+{ }
+
+const Color3D GradientColor::at(const Point3D& location) const
+{
+	return ColorA * (ColorB - ColorA) * (location.X() - floor(location.X()));
+}

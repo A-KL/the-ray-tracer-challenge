@@ -12,7 +12,7 @@ public:
 
 	const virtual Color3D at(const Point3D& location) const = 0;
 
-	//const virtual bool operator==(const Material3D& other) const = 0;
+	//const virtual bool operator==(const ColorPattern& other) const = 0;
 };
 
 class SolidColor3D
@@ -39,6 +39,15 @@ public:
 
 	const Color3D ColorA;
 	const Color3D ColorB;
+
+	const Color3D at(const Point3D& location) const;
+};
+
+class GradientColor
+	: public StripeColor
+{
+public:
+	GradientColor(const Color3D& colorA, const Color3D& colorB);
 
 	const Color3D at(const Point3D& location) const;
 };
