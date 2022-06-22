@@ -4,6 +4,9 @@
 #include "../lib/Core/Color3D.h"
 #include "../lib/Core/ColorPattern.h"
 
+#include "../lib/Core/Material3D.h"
+#include "../lib/Core/Light3D.h"
+
 #include "tests.h"
 
 void test_stride_pattern_alternates()
@@ -24,7 +27,27 @@ void test_stride_pattern_alternates()
 	assert(white == stripeWhiteAndBlack.at(Point3D(-1.1, 0, 0)));
 }
 
+void test_light_with_pattern()
+{
+	// Set up
+	Material3D material(StripeColor(Color3D(1, 1, 1), Color3D(0, 0, 0)), 1, 0, 0);
+	Vector3D camera(0, 0, -1);
+	Vector3D normal(0, 0, -1);
+
+	Light3D light(Point3D(0, 0, -10), Color3D(1, 1, 1));
+
+	// Act
+	auto result1 = light.Compute(material, Point3D(0.9, 0, 0), camera, normal, false);
+	auto result2 = light.Compute(material, Point3D(1.1, 0, 0), camera, normal, false);
+
+	// Assert
+	assert(Color3D(1, 1, 1) == result1);
+	assert(Color3D(0, 0, 0) == result2);
+}
+
 void run_patterns_tests()
 {
 	test_stride_pattern_alternates();
+
+	test_light_with_pattern();
 }
