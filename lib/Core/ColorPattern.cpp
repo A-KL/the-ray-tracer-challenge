@@ -35,5 +35,5 @@ GradientColor::GradientColor(const Color3D& colorA, const Color3D& colorB)
 
 const Color3D GradientColor::at(const Point3D& location) const
 {
-	return ColorA * (ColorB - ColorA) * (location.X() - floor(location.X()));
+	return ColorA + (ColorB - ColorA) * (location.X() - floor(location.X()));
 }

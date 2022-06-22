@@ -9,6 +9,19 @@
 
 #include "tests.h"
 
+void test_gradient_pattern_interpolates()
+{
+	// Set up
+	GradientColor gradientWhiteAndBlack(Color3D::White, Color3D::Black);
+
+	// Act
+	// Assert
+	assert(Color3D::White == gradientWhiteAndBlack.at(Point3D(0, 0, 0)));
+	assert(Color3D(0.75, 0.75, 0.75) == gradientWhiteAndBlack.at(Point3D(0.25, 0, 0)));
+	assert(Color3D(0.5, 0.5, 0.5) == gradientWhiteAndBlack.at(Point3D(0.5, 0, 0)));
+	assert(Color3D(0.25, 0.25, 0.25) == gradientWhiteAndBlack.at(Point3D(0.75, 0, 0)));
+}
+
 void test_stride_pattern_alternates()
 {
 	// Set up
@@ -48,6 +61,8 @@ void test_light_with_pattern()
 void run_patterns_tests()
 {
 	test_stride_pattern_alternates();
+
+	test_gradient_pattern_interpolates();
 
 	test_light_with_pattern();
 }
