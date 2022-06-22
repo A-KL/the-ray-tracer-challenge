@@ -116,6 +116,12 @@
     <ClCompile Include="..\lib\Core\Scene3D.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\test\tests_color_patterns.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
+    <ClCompile Include="..\lib\Core\ColorPattern.cpp">
+      <Filter>Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Core\Environment.h">
@@ -200,6 +206,9 @@
       <Filter>Core\Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\lib\Core\Plane3D.hpp">
+      <Filter>Core\Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\lib\Core\ColorPattern.h">
       <Filter>Core\Header Files</Filter>
     </ClInclude>
   </ItemGroup>

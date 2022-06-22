@@ -19,7 +19,7 @@ Light3D::Light3D(const Point3D& position, const Matrix4d& translate, const Color
 
 Color3D Light3D::Compute(const Material3D& material, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow) const
 {
-	auto effective_color = material.Color * Intensity;
+	auto effective_color = material.Pattern->at(position) * Intensity;
 
 	auto light_direction = Vector3D::Normalize(Position - position);
 

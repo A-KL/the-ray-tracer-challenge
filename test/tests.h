@@ -17,3 +17,5 @@ void run_normal_tests();
 void run_camera_tests();
 
 void run_shadow_tests();
+
+void run_patterns_tests();

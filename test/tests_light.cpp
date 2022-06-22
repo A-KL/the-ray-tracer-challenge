@@ -24,7 +24,7 @@
 void test_light_behind_camera()
 {
 	// Set up
-	Material3D material(Color3D(1, 1, 1));
+	Material3D material(SolidColor3D(1, 1, 1));
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
@@ -40,7 +40,7 @@ void test_light_behind_camera()
 void test_light_45_camera()
 {
 	// Set up
-	Material3D material(Color3D(1, 1, 1));
+	Material3D material(SolidColor3D(1, 1, 1));
 	Vector3D camera(0, sqrt(2) * 0.5, - sqrt(2) * 0.5);
 	Vector3D normal(0, 0, -1);
 
@@ -56,7 +56,7 @@ void test_light_45_camera()
 void test_light_45_camera_reverse()
 {
 	// Set up
-	Material3D material(Color3D(1, 1, 1));
+	Material3D material(SolidColor3D(1, 1, 1));
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
@@ -72,7 +72,7 @@ void test_light_45_camera_reverse()
 void test_light_camera_reflection()
 {
 	// Set up
-	Material3D material(Color3D(1, 1, 1));
+	Material3D material(SolidColor3D(1, 1, 1));
 	Vector3D camera(0, - sqrt(2) * 0.5, -sqrt(2) * 0.5);
 	Vector3D normal(0, 0, -1);
 
@@ -88,7 +88,7 @@ void test_light_camera_reflection()
 void test_light_behind()
 {
 	// Set up
-	Material3D material(Color3D(1, 1, 1));
+	Material3D material(SolidColor3D(1, 1, 1));
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
@@ -104,7 +104,7 @@ void test_light_behind()
 void test_light_shadow()
 {
 	// Set up
-	Material3D material(Color3D(1, 1, 1));
+	Material3D material(SolidColor3D(1, 1, 1));
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 

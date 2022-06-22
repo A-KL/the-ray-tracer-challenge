@@ -34,9 +34,9 @@ struct Color3D
 
 		switch (index)
 		{
-		case 0: return R;
-		case 1: return G;
-		case 2: return B;
+			case 0: return R;
+			case 1: return G;
+			case 2: return B;
 		}
 	}
 
