@@ -4,13 +4,20 @@
 
 #include "Color3D.h"
 #include "Point3D.h"
+#include "MatrixOps.hpp"
+
+class Shape3D;
 
 class ColorPattern
 {
 public:
 	ColorPattern();
 
+	const Matrix4d Transformation;
+
 	const virtual Color3D at(const Point3D& location) const = 0;
+
+	const virtual Color3D at_shape(const Point3D& location, const Shape3D& shape) const;
 
 	//const virtual bool operator==(const ColorPattern& other) const = 0;
 };
@@ -31,11 +38,11 @@ public:
 };
 
 
-class StripeColor
+class StripeColor3D
 	: public ColorPattern
 {
 public:
-	StripeColor(const Color3D& colorA, const Color3D& colorB);
+	StripeColor3D(const Color3D& colorA, const Color3D& colorB);
 
 	const Color3D ColorA;
 	const Color3D ColorB;
@@ -43,11 +50,11 @@ public:
 	const Color3D at(const Point3D& location) const;
 };
 
-class GradientColor
-	: public StripeColor
+class GradientColor3D
+	: public StripeColor3D
 {
 public:
-	GradientColor(const Color3D& colorA, const Color3D& colorB);
+	GradientColor3D(const Color3D& colorA, const Color3D& colorB);
 
 	const Color3D at(const Point3D& location) const;
 };

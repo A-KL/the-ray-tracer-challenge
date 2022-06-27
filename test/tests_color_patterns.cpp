@@ -6,13 +6,14 @@
 
 #include "../lib/Core/Material3D.h"
 #include "../lib/Core/Light3D.h"
+#include "../lib/Core/Sphere3D.h"
 
 #include "tests.h"
 
 void test_gradient_pattern_interpolates()
 {
 	// Set up
-	GradientColor gradientWhiteAndBlack(Color3D::White, Color3D::Black);
+	GradientColor3D gradientWhiteAndBlack(Color3D::White, Color3D::Black);
 
 	// Act
 	// Assert
@@ -28,7 +29,7 @@ void test_stride_pattern_alternates()
 	auto black = Color3D::Black;
 	auto white = Color3D::White;
 
-	StripeColor stripeWhiteAndBlack(white, black);
+	StripeColor3D stripeWhiteAndBlack(white, black);
 
 	// Act
 	// Assert
@@ -43,7 +44,7 @@ void test_stride_pattern_alternates()
 void test_light_with_pattern()
 {
 	// Set up
-	Material3D material(StripeColor(Color3D(1, 1, 1), Color3D(0, 0, 0)), 1, 0, 0);
+	Material3D material(StripeColor3D(Color3D(1, 1, 1), Color3D(0, 0, 0)), 1, 0, 0);
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
@@ -58,6 +59,20 @@ void test_light_with_pattern()
 	assert(Color3D(0, 0, 0) == result2);
 }
 
+void test_object_with_transform_with_pattern()
+{
+	// Set up
+	Sphere3D object(Matrix4d::Scale(2, 2, 2));
+	Point3D location(1.5, 0, 0);
+	StripeColor3D stripeWhiteAndBlack(Color3D::White, Color3D::Black);
+
+	// Act
+	auto result = stripeWhiteAndBlack.at_shape(location, object);
+
+	// Assert
+	assert(Color3D::White == result);
+}
+
 void run_patterns_tests()
 {
 	test_stride_pattern_alternates();
@@ -65,4 +80,6 @@ void run_patterns_tests()
 	test_gradient_pattern_interpolates();
 
 	test_light_with_pattern();
+
+	test_object_with_transform_with_pattern();
 }
