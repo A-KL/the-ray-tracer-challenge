@@ -44,6 +44,7 @@ void test_stride_pattern_alternates()
 void test_light_with_pattern()
 {
 	// Set up
+	Sphere3D sphere;
 	Material3D material(StripeColor3D(Color3D(1, 1, 1), Color3D(0, 0, 0)), 1, 0, 0);
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
@@ -51,23 +52,51 @@ void test_light_with_pattern()
 	Light3D light(Point3D(0, 0, -10), Color3D(1, 1, 1));
 
 	// Act
-	auto result1 = light.Compute(material, Point3D(0.9, 0, 0), camera, normal, false);
-	auto result2 = light.Compute(material, Point3D(1.1, 0, 0), camera, normal, false);
+	auto result1 = light.Compute(material, sphere, Point3D(0.9, 0, 0), camera, normal, false);
+	auto result2 = light.Compute(material, sphere, Point3D(1.1, 0, 0), camera, normal, false);
 
 	// Assert
 	assert(Color3D(1, 1, 1) == result1);
 	assert(Color3D(0, 0, 0) == result2);
 }
 
-void test_object_with_transform_with_pattern()
+void test_transformed_object_with_pattern()
 {
 	// Set up
-	Sphere3D object(Matrix4d::Scale(2, 2, 2));
+	Sphere3D sphere(Matrix4d::Scale(2, 2, 2));
 	Point3D location(1.5, 0, 0);
 	StripeColor3D stripeWhiteAndBlack(Color3D::White, Color3D::Black);
 
 	// Act
-	auto result = stripeWhiteAndBlack.at_shape(location, object);
+	auto result = stripeWhiteAndBlack.at_shape(location, sphere);
+
+	// Assert
+	assert(Color3D::White == result);
+}
+
+void test_object_with_scaled_pattern()
+{
+	// Set up
+	Sphere3D sphere;
+	Point3D location(1.5, 0, 0);
+	StripeColor3D stripeWhiteAndBlack(Color3D::White, Color3D::Black, Matrix4d::Scale(2, 2, 2));
+
+	// Act
+	auto result = stripeWhiteAndBlack.at_shape(location, sphere);
+
+	// Assert
+	assert(Color3D::White == result);
+}
+
+void test_transformed_object_with_translated_pattern()
+{
+	// Set up
+	Sphere3D sphere(Matrix4d::Scale(2, 2, 2));
+	Point3D location(2.5, 0, 0);
+	StripeColor3D stripeWhiteAndBlack(Color3D::White, Color3D::Black, Matrix4d::Translate(0.5, 0, 0));
+
+	// Act
+	auto result = stripeWhiteAndBlack.at_shape(location, sphere);
 
 	// Assert
 	assert(Color3D::White == result);
@@ -81,5 +110,9 @@ void run_patterns_tests()
 
 	test_light_with_pattern();
 
-	test_object_with_transform_with_pattern();
+	test_transformed_object_with_pattern();
+
+	test_object_with_scaled_pattern();
+
+	test_transformed_object_with_translated_pattern();
 }

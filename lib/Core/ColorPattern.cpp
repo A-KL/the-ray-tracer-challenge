@@ -7,6 +7,15 @@ ColorPattern::ColorPattern()
 	: Transformation(Matrix4d::Identity())
 { }
 
+ColorPattern::ColorPattern(const Matrix4d& transformation)
+	: Transformation(transformation)
+{ }
+
+const bool ColorPattern::operator==(const ColorPattern& other) const
+{
+	return Transformation == other.Transformation;
+}
+
 const Color3D ColorPattern::at_shape(const Point3D& location, const Shape3D& shape) const
 {
 	auto object_point = shape.Transformation.Inverse() * location;
@@ -21,7 +30,11 @@ SolidColor3D::SolidColor3D(double r, double g, double b)
 { }
 
 SolidColor3D::SolidColor3D(const Color3D& color)
-	: Color(color)
+	: SolidColor3D(color, Matrix4d::Identity())
+{ }
+
+SolidColor3D::SolidColor3D(const Color3D& color, const Matrix4d& transformation)
+	: Color(color), ColorPattern(transformation)
 { }
 
 const Color3D SolidColor3D::at(const Point3D& location) const
@@ -31,7 +44,11 @@ const Color3D SolidColor3D::at(const Point3D& location) const
 
 
 StripeColor3D::StripeColor3D(const Color3D& colorA, const Color3D& colorB)
-	: ColorA(colorA), ColorB(colorB)
+	: StripeColor3D(colorA, colorB, Matrix4d::Identity())
+{ }
+
+StripeColor3D::StripeColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
+	: ColorA(colorA), ColorB(colorB), ColorPattern(transformation)
 { }
 
 const Color3D StripeColor3D::at(const Point3D& location) const
@@ -41,7 +58,11 @@ const Color3D StripeColor3D::at(const Point3D& location) const
 
 
 GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB)
-	: StripeColor3D(colorA, colorB)
+	: StripeColor3D(colorA, colorB, Matrix4d::Identity())
+{ }
+
+GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
+	: StripeColor3D(colorA, colorB, transformation)
 { }
 
 const Color3D GradientColor3D::at(const Point3D& location) const

@@ -168,7 +168,7 @@ void run_light_demo(Canvas& canvas)
 				auto point = ray.Position(intersection->Value);
 				auto normal = intersection->Shape->NormalAt(point);
 				auto camera = -ray.Direction;
-				auto color = light.Compute(intersection->Shape->Material, point, camera, normal);
+				auto color = light.Compute(intersection->Shape->Material, *intersection->Shape, point, camera, normal);
 
 				canvas.DrawPoint(x, y, color);
 			}
