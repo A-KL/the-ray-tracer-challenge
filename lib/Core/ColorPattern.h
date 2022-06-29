@@ -66,3 +66,28 @@ public:
 
 	const Color3D at(const Point3D& location) const;
 };
+
+class RingColor3D
+	: public StripeColor3D
+{
+public:
+	RingColor3D(const Color3D& colorA, const Color3D& colorB);
+
+	RingColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation);
+
+	const Color3D at(const Point3D& location) const;
+};
+
+class BlendedColor3D
+	: public ColorPattern
+{
+public:
+	BlendedColor3D(const ColorPattern& patternA, const ColorPattern& patternB);
+
+	BlendedColor3D(const ColorPattern* patternA, const ColorPattern* patternB);
+
+	const ColorPattern* PatternA;
+	const ColorPattern* PatternB;
+
+	const Color3D at(const Point3D& location) const;
+};

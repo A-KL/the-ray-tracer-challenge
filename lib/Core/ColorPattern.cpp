@@ -58,7 +58,7 @@ const Color3D StripeColor3D::at(const Point3D& location) const
 
 
 GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB)
-	: StripeColor3D(colorA, colorB, Matrix4d::Identity())
+	: GradientColor3D(colorA, colorB, Matrix4d::Identity())
 { }
 
 GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
@@ -68,4 +68,46 @@ GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB, c
 const Color3D GradientColor3D::at(const Point3D& location) const
 {
 	return ColorA + (ColorB - ColorA) * (location.X() - floor(location.X()));
+}
+
+
+RingColor3D::RingColor3D(const Color3D& colorA, const Color3D& colorB)
+	: RingColor3D(colorA, colorB, Matrix4d::Identity())
+{ }
+
+RingColor3D::RingColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
+	: StripeColor3D(colorA, colorB, transformation)
+{ }
+
+const Color3D RingColor3D::at(const Point3D& location) const
+{
+	return 
+	(
+		(
+			(int)
+				floor(
+					sqrt(
+						pow(location.X(), 2) + pow(location.Z(), 2)
+					)
+				) 
+			% 2
+		) == 0
+	) ? ColorA : ColorB;
+}
+
+
+BlendedColor3D::BlendedColor3D(const ColorPattern& patternA, const ColorPattern& patternB)
+	: BlendedColor3D(&patternA, &patternB)
+{ }
+
+BlendedColor3D::BlendedColor3D(const ColorPattern* patternA, const ColorPattern* patternB)
+	: PatternA(patternA), PatternB(patternB)
+{ }
+
+const Color3D BlendedColor3D::at(const Point3D& location) const
+{
+	auto colorA = PatternA->at(location);
+	auto colorB = PatternB->at(location);
+
+	return (colorA + colorB) / 2.0;
 }
