@@ -78,7 +78,9 @@ struct Color3D
 
 	const static Color3D Green;
 
-	const static const Color3D LightGreen;
+	const static Color3D DarkGreen;
+
+	const static Color3D LightGreen;
 
 	const static Color3D Blue;
 
