@@ -53,7 +53,7 @@ StripeColor3D::StripeColor3D(const Color3D& colorA, const Color3D& colorB, const
 
 const Color3D StripeColor3D::at(const Point3D& location) const
 {
-	return (std::fmod(floor(location.X()), 2) == 0) ? ColorA : ColorB;
+	return Mathf<double>::IsZero(std::fmod(floor(location.X()), 2)) ? ColorA : ColorB;
 }
 
 
@@ -81,15 +81,17 @@ RingColor3D::RingColor3D(const Color3D& colorA, const Color3D& colorB, const Mat
 
 const Color3D RingColor3D::at(const Point3D& location) const
 {
-	return (	
-		std::fmod(
-			floor(
-				sqrt(
-					pow(location.X(), 2) + pow(location.Z(), 2)
-				)
-			),
-			2
-		) == 0
+	return (
+		Mathf<double>::IsZero(
+			std::fmod(
+				floor(
+					sqrt(
+						location.X() * location.X() + location.Z() * location.Z()
+					)
+				),
+				2
+			)
+		)
 	) ? ColorA : ColorB;
 }
 
@@ -104,10 +106,12 @@ CheckersColor3D::CheckersColor3D(const Color3D& colorA, const Color3D& colorB, c
 const Color3D CheckersColor3D::at(const Point3D& location) const
 {
 	return (
-		std::fmod(
-			abs(location.X()) + abs(location.Y())+ abs(location.Z()), 
-			2
-		) == 0
+		Mathf<double>::IsZero(
+			std::fmod(
+				floor(location.X()) + floor(location.Y())+ floor(location.Z()),
+				2
+			)
+		)
 	) ? ColorA : ColorB;
 }
 

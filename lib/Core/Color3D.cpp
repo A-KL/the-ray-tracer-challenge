@@ -10,7 +10,15 @@ const Color3D Color3D::Red(1, 0, 0);
 
 const Color3D Color3D::Green(0, 1, 0);
 
+const Color3D Color3D::LightGreen(0, 0.6, 0);
+
 const Color3D Color3D::Blue(0, 0, 1);
+
+const Color3D Color3D::Yellow(1, 1, 0);
+
+const Color3D Color3D::Gray(0.4, 0.4, 0.4);
+
+const Color3D Color3D::DarkGray(0.1, 0.1, 0.1);
 
 const Color3D Color3D::operator*(const Color3D& other) const
 {

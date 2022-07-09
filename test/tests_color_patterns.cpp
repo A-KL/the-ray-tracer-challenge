@@ -23,6 +23,19 @@ void test_gradient_pattern_interpolates()
 	assert(Color3D(0.25, 0.25, 0.25) == gradientWhiteAndBlack.at(Point3D(0.75, 0, 0)));
 }
 
+void test_ring_pattern_interpolates()
+{
+	// Set up
+	RingColor3D whiteAndBlackRing(Color3D::White, Color3D::Black);
+
+	// Act
+	// Assert
+	assert(Color3D::White == whiteAndBlackRing.at(Point3D(0, 0, 0)));
+	assert(Color3D::Black == whiteAndBlackRing.at(Point3D(1, 0, 0)));
+	assert(Color3D::Black == whiteAndBlackRing.at(Point3D(0, 0, 1)));
+	assert(Color3D::Black == whiteAndBlackRing.at(Point3D(0.708, 0, 0.708)));
+}
+
 void test_stride_pattern_alternates()
 {
 	// Set up
@@ -115,4 +128,6 @@ void run_patterns_tests()
 	test_object_with_scaled_pattern();
 
 	test_transformed_object_with_translated_pattern();
+
+	test_ring_pattern_interpolates();
 }

@@ -78,7 +78,15 @@ struct Color3D
 
 	const static Color3D Green;
 
+	const static const Color3D LightGreen;
+
 	const static Color3D Blue;
+
+	const static Color3D Yellow;
+
+	const static Color3D Gray;
+
+	const static Color3D DarkGray;
 
 private:
 	inline unsigned char Bound(double val) const
