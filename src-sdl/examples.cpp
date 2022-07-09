@@ -295,8 +295,10 @@ void run_scene_patterns_demo(Canvas& canvas)
 		Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2) *
 		Matrix4d::Scale(10, 0.01, 10);
 
-	Material3D floor_material(GradientColor3D(Color3D::Green, Color3D::Red), 0.1, 0.9, 0);
-	Material3D left_wall_material(GradientColor3D(Color3D::Green, Color3D::Red), 0.1, 0.9, 0);
+	auto gradientStripes = StripeColor3D(Color3D::Green, Color3D::White); // BlendedColor3D(StripeColor3D(Color3D::Green, Color3D::White), StripeColor3D(Color3D::Black, Color3D::White));
+
+	Material3D floor_material(gradientStripes, 0.1, 0.9, 0);
+	Material3D left_wall_material(gradientStripes, 0.1, 0.9, 0);
 	Material3D right_wall_material(GradientColor3D(Color3D::Blue, Color3D::White), 0.1, 0.9, 0);
 
 	Plane3D floor(Matrix4d::Scale(10, 0.01, 10), floor_material);

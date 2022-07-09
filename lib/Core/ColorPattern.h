@@ -78,6 +78,17 @@ public:
 	const Color3D at(const Point3D& location) const;
 };
 
+class CheckersColor3D
+	: public StripeColor3D
+{
+public:
+	CheckersColor3D(const Color3D& colorA, const Color3D& colorB);
+
+	CheckersColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation);
+
+	const Color3D at(const Point3D& location) const;
+};
+
 class BlendedColor3D
 	: public ColorPattern
 {
