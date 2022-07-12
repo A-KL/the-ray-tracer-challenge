@@ -297,9 +297,9 @@ void run_scene_patterns_demo(Canvas& canvas)
 	CheckersColor3D blackGrayCheckers(Color3D::DarkGray, Color3D::Gray, Matrix4d::Scale(0.1, 0.1, 0.1));
 	StripeColor3D blackGrayStripes(Color3D::DarkGray, Color3D::Gray, Matrix4d::Scale(0.09, 0.09, 0.09) * Matrix4d::RotateY(M_PI / 6));
 
-	GradientColor3D redYellowGradient(Color3D::Red, Color3D::Yellow, Matrix4d::Scale(0.15, 0.15, 0.15) * Matrix4d::RotateY(-M_PI / 2) * Matrix4d::RotateY(-M_PI / 2));
+	GradientColor3D redYellowGradient(Color3D::Red, Color3D::Yellow, Matrix4d::Scale(2, 2, 2) ); //* Matrix4d::RotateY(-M_PI / 2) * Matrix4d::RotateY(-M_PI / 2)
 
-	RingColor3D greenRadial(Color3D::DarkGreen, Color3D::LightGreen, Matrix4d::Scale(0.15, 0.15, 0.15) * Matrix4d::RotateX(- M_PI/4) * Matrix4d::RotateZ(M_PI / 6));
+	RingColor3D greenRadial(Color3D::LightGreen, Color3D::DarkGreen, Matrix4d::Scale(0.12, 0.12, 0.12) * Matrix4d::RotateX(-M_PI / 3) * Matrix4d::RotateZ(M_PI / 6));
 
 	//auto gradientStripes = StripeColor3D(Color3D::Green, Color3D::White); // BlendedColor3D(StripeColor3D(Color3D::Green, Color3D::White), StripeColor3D(Color3D::Black, Color3D::White));
 
