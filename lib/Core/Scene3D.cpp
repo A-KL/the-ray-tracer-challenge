@@ -28,7 +28,7 @@ Color3D Scene3D::ShadeHit(const Computation& computation) const
             ->InShadow(computation.OverPosition, Shapes);
 
         result += light
-            ->Compute(computation.Intersect.Shape->Material, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+            ->Compute(computation.Intersect.Shape->Material, *computation.Intersect.Shape, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
     }
 
     return result;

@@ -34,9 +34,9 @@ struct Color3D
 
 		switch (index)
 		{
-		case 0: return R;
-		case 1: return G;
-		case 2: return B;
+			case 0: return R;
+			case 1: return G;
+			case 2: return B;
 		}
 	}
 
@@ -44,7 +44,11 @@ struct Color3D
 
 	const Color3D operator+(const Color3D& other) const;
 
+	const Color3D operator-(const Color3D& other) const;
+
 	const Color3D operator*(double other) const;
+
+	const Color3D operator/(double other) const;
 
 	void operator+=(const Color3D& other);
 
@@ -74,7 +78,17 @@ struct Color3D
 
 	const static Color3D Green;
 
+	const static Color3D DarkGreen;
+
+	const static Color3D LightGreen;
+
 	const static Color3D Blue;
+
+	const static Color3D Yellow;
+
+	const static Color3D Gray;
+
+	const static Color3D DarkGray;
 
 private:
 	inline unsigned char Bound(double val) const

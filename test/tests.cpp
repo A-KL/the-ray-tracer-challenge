@@ -50,6 +50,8 @@ void run_tests()
 
 	run_shadow_tests();
 
+	run_patterns_tests();
+
 
 	test_vector_dot();
 

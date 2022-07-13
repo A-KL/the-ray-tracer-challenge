@@ -15,9 +15,14 @@ struct Mathf
 		return fabs(a - b) <= Epsilon();
 	}
 
+	static inline bool IsZero(TItem a)
+	{
+		return Approximately(a, 0);
+	}
+
 	static inline double ToZeroIfClose(TItem a)
 	{
-		return Approximately(a, 0) ? 0 : a;
+		return IsZero(a) ? 0 : a;
 	}
 
 private:

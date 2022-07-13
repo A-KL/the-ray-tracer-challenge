@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\lib\Core\Camera.cpp" />
+    <ClCompile Include="..\lib\Core\ColorPattern.cpp" />
     <ClCompile Include="..\lib\Core\Computation.cpp" />
     <ClCompile Include="..\lib\Core\InMemoryCanvas.cpp" />
     <ClCompile Include="..\lib\Core\Object3D.cpp" />
@@ -157,6 +158,7 @@
     <ClCompile Include="..\lib\Core\Scene3D.cpp" />
     <ClCompile Include="..\lib\Core\Shape3D.cpp" />
     <ClCompile Include="..\lib\Core\Sphere3D.cpp" />
+    <ClCompile Include="..\test\tests_color_patterns.cpp" />
     <ClCompile Include="examples.cpp" />
     <ClCompile Include="SDLWindowRenderer.cpp" />
     <ClCompile Include="..\lib\Core\Color3D.cpp" />
@@ -182,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Core\Camera.h" />
+    <ClInclude Include="..\lib\Core\ColorPattern.h" />
     <ClInclude Include="..\lib\Core\Computation.h" />
     <ClInclude Include="..\lib\Core\InMemoryCanvas.h" />
     <ClInclude Include="..\lib\Core\Plane3D.hpp" />
