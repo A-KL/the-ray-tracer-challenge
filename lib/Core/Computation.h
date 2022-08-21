@@ -20,5 +20,7 @@ struct Computation
 
 	const Vector3D Camera;
 
+	const Vector3D Reflection;
+
 	const bool IsInside;
 };

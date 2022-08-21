@@ -9,12 +9,12 @@ Material3D::Material3D(const Material3D& material)
 	: Material3D(*material.Pattern, material.Ambient, material.Diffuse, material.Specular, material.Shininess)
 { }
 
-Material3D::Material3D(double r, double g, double b, double ambient, double diffuse, double specular, double shininess)
-	: Material3D(SolidColor3D(r, g, b), ambient, diffuse, specular, shininess)
+Material3D::Material3D(double r, double g, double b, double ambient, double diffuse, double specular, double shininess, double reflective)
+	: Material3D(SolidColor3D(r, g, b), ambient, diffuse, specular, shininess, reflective)
 {  }
 
-Material3D::Material3D(const ColorPattern& pattern, double ambient, double diffuse, double specular, double shininess)
-	: Pattern(&pattern), Ambient(ambient), Diffuse(diffuse), Specular(specular), Shininess(shininess)
+Material3D::Material3D(const ColorPattern& pattern, double ambient, double diffuse, double specular, double shininess, double reflective)
+	: Pattern(&pattern), Ambient(ambient), Diffuse(diffuse), Specular(specular), Shininess(shininess), Reflective(reflective)
 {  }
 
 bool Material3D::operator==(const Material3D& other) const
@@ -24,5 +24,6 @@ bool Material3D::operator==(const Material3D& other) const
 		Mathf<double>::Approximately(Ambient, other.Ambient) &&
 		Mathf<double>::Approximately(Diffuse, other.Diffuse) &&
 		Mathf<double>::Approximately(Specular, other.Specular) &&
-		Mathf<double>::Approximately(Shininess, other.Shininess);
+		Mathf<double>::Approximately(Shininess, other.Shininess) &&
+		Mathf<double>::Approximately(Reflective, other.Reflective);
 }
