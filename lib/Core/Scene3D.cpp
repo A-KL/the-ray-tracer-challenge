@@ -18,6 +18,19 @@ Color3D Scene3D::ColorAt(const Ray3D& ray) const
     return ShadeHit(computation);
 }
 
+Color3D Scene3D::ReflectedAt(const Computation& comp) const
+{
+    if (Mathf<double>::IsZero(comp.Intersect.Shape->Material.Reflective))
+    {
+        return Color3D::Black;
+    }
+
+    Ray3D reflected_ray(comp.OverPosition, comp.Reflection);
+    auto color = this->ColorAt(reflected_ray);
+
+    return color * comp.Intersect.Shape->Material.Reflective;
+}
+
 Color3D Scene3D::ShadeHit(const Computation& computation) const
 {
     Color3D result(0, 0, 0);
@@ -29,6 +42,8 @@ Color3D Scene3D::ShadeHit(const Computation& computation) const
 
         result += light
             ->Compute(computation.Intersect.Shape->Material, *computation.Intersect.Shape, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+
+        result += ReflectedAt(computation);
     }
 
     return result;

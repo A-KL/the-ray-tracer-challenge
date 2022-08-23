@@ -14,7 +14,7 @@ class Plane3D
 public:
 	Plane3D();
 
-	Plane3D(Matrix4d& transform);
+	Plane3D(const Matrix4d& transform);
 
 	Plane3D(const Material3D& material);
 

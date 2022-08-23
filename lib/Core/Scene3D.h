@@ -17,5 +17,7 @@ public:
 
 	Color3D ColorAt(const Ray3D& ray) const;
 
+	Color3D ReflectedAt(const Computation& comp) const;
+
 	Color3D ShadeHit(const Computation& computation) const;
 };

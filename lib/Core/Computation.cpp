@@ -12,5 +12,5 @@ const Computation Computation::Prepare(const Intersection& intersection, const R
 	auto over_point = position + normal * Mathf<double>::Epsilon();
 	auto reflection = Vector3D::Reflect(ray.Direction, normal);
 
-	return Computation{ intersection, position, over_point, normal, camera, reflection, inside };
+	return Computation { intersection, position, over_point, normal, camera, reflection, inside };
 }
