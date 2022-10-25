@@ -15,9 +15,9 @@ public:
 
 	std::list<Shape3D*> Shapes;
 
-	Color3D ColorAt(const Ray3D& ray) const;
+	Color3D ColorAt(const Ray3D& ray, int remaining = 4) const;
 
-	Color3D ReflectedAt(const Computation& comp) const;
+	Color3D ReflectedAt(const Computation& comp, int remaining = 4) const;
 
-	Color3D ShadeHit(const Computation& computation) const;
+	Color3D ShadeHit(const Computation& computation, int remaining = 4) const;
 };

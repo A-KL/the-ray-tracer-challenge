@@ -35,7 +35,7 @@ void test_precomoute_reflection_vector()
 {
 	// Set up
 	Plane3D sphere;
-	Ray3D ray(Point3D(0, 1, -1), Vector3D(0, -sqrt(2)/2.0, sqrt(2)/2.0));
+	Ray3D ray(Point3D(0, 1, -1), Vector3D(0, -sqrt(2) / 2.0, sqrt(2) / 2.0));
 	Intersection interception(sqrt(2), sphere);
 
 	// Act
@@ -112,7 +112,7 @@ void test_reflective_material_shade_hit()
 	scene.Shapes.push_back(&sphere2);
 	scene.Shapes.push_back(&sphere3);
 
-	Ray3D ray(Point3D(0, 0, -3), Vector3D(0, -sqrt(2)/2.0, sqrt(2) / 2.0));
+	Ray3D ray(Point3D(0, 0, -3), Vector3D(0, -sqrt(2) / 2.0, sqrt(2) / 2.0));
 	Intersection interception(sqrt(2), sphere3);
 
 	// Act
@@ -123,6 +123,46 @@ void test_reflective_material_shade_hit()
 	assert(Color3D(0.87677, 0.92436, 0.82918) == result);
 }
 
+void test_reflective_material_recursion()
+{
+	// Setup
+	Scene3D scene;
+	Light3D light(Point3D(0, 0, 0), Color3D(1, 1, 1));
+
+	Plane3D lower(Matrix4d::Translate(0, -1, 0), Material3D(SolidColor3D(1, 1, 1), 0.1, 0.9, 0.9, 200, 1));
+	Plane3D upper(Matrix4d::Translate(0, 1, 0), Material3D(SolidColor3D(1, 1, 1), 0.1, 0.9, 0.9, 200, 1));
+
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&lower);
+	scene.Shapes.push_back(&upper);
+
+	Ray3D ray(Point3D(0, 0, 0), Vector3D(0, 1, 0));
+
+	// Act
+	auto color = scene.ColorAt(ray);
+}
+
+void test_reflective_material_max_recursion()
+{
+	// Setup
+	Scene3D scene;
+	Light3D light(Point3D(0, 0, 0), Color3D(1, 1, 1));
+
+	Plane3D shape(Matrix4d::Translate(0, -1, 0), Material3D(SolidColor3D(1, 1, 1), 0.1, 0.9, 0.9, 200, 0.5));
+
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&shape);
+
+	Ray3D ray(Point3D(0, 0, -3), Vector3D(0, -sqrt(2) / 2.0, sqrt(2) / 2.0));
+	Intersection interception(sqrt(2), shape);
+
+	// Act
+	auto computation = Computation::Prepare(interception, ray);
+	auto result = scene.ReflectedAt(computation, 0);
+
+	// Assert
+	assert(Color3D(0, 0, 0) == result);
+}
 
 void run_reflection_tests()
 {
@@ -133,4 +173,8 @@ void run_reflection_tests()
 	test_reflective_material();
 
 	test_reflective_material_shade_hit();
+
+	test_reflective_material_recursion();
+
+	test_reflective_material_max_recursion();
 }
