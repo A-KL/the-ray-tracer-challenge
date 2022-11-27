@@ -142,11 +142,11 @@ void test_reflective_material_recursion()
 	auto color = scene.ColorAt(ray);
 }
 
-void test_reflective_material_max_recursion()
+void test_reflective_material_limit_recursion()
 {
 	// Setup
 	Scene3D scene;
-	Light3D light(Point3D(0, 0, 0), Color3D(1, 1, 1));
+	Light3D light(Point3D(0, 0, 0), Color3D::White);
 
 	Plane3D shape(Matrix4d::Translate(0, -1, 0), Material3D(SolidColor3D(1, 1, 1), 0.1, 0.9, 0.9, 200, 0.5));
 
@@ -161,7 +161,7 @@ void test_reflective_material_max_recursion()
 	auto result = scene.ReflectedAt(computation, 0);
 
 	// Assert
-	assert(Color3D(0, 0, 0) == result);
+	assert(Color3D::Black == result);
 }
 
 void run_reflection_tests()
@@ -176,5 +176,5 @@ void run_reflection_tests()
 
 	test_reflective_material_recursion();
 
-	test_reflective_material_max_recursion();
+	test_reflective_material_limit_recursion();
 }
