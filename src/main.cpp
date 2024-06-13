@@ -1,7 +1,9 @@
 #include <list>
 
+#ifdef ESP32
 #include <Arduino.h>
 #include <M5GFX.h>
+#endif
 
 #include "Mathf.h"
 
@@ -31,10 +33,12 @@
 #include "Scene3D.h"
 #include "Camera.h"
 
+#ifdef ESP32
 #include "M5StackCanvas.h"
 
 M5GFX display;
 M5StackCanvas canvas(display);
+
 //#include <M5UnitOLED.h>
 //M5UnitOLED display; // default setting
 //M5UnitOLED display ( 21, 22, 400000 ); // SDA, SCL, FREQ
@@ -42,10 +46,11 @@ M5StackCanvas canvas(display);
 //#include <M5UnitLCD.h>
 //M5UnitLCD display;  // default setting
 //M5UnitLCD display  ( 21, 22, 400000 ); // SDA, SCL, FREQ
+#endif
 
 void run_scene_demo(Canvas& canvas)
 {
-	const int w = canvas.Witdth(); //100
+	const int w = canvas.Width(); //100
 	const int h = canvas.Height(); //50
 
 	auto left_wall_location = 
@@ -98,7 +103,7 @@ void run_scene_demo(Canvas& canvas)
 
 void run_scene_plane_demo(Canvas& canvas)
 {
-	const int w = canvas.Witdth(); //100
+	const int w = canvas.Width(); //100
 	const int h = canvas.Height(); //50
 
 	auto left_wall_location =
@@ -146,7 +151,7 @@ void run_scene_plane_demo(Canvas& canvas)
 
 void run_scene_patterns_demo(Canvas& canvas)
 {
-	const int w = canvas.Witdth(); //100
+	const int w = canvas.Width(); //100
 	const int h = canvas.Height(); //50
 
 	// -----------------------------------------------------------------------------

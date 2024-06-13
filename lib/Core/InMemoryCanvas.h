@@ -34,7 +34,7 @@ public:
 		return THeight;
 	}
 
-	inline int Witdth() const
+	inline int Width() const
 	{
 		return TWidth;
 	}
