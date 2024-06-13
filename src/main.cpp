@@ -1,9 +1,5 @@
 #include <list>
-
-#ifdef ESP32
-#include <Arduino.h>
-#include <M5GFX.h>
-#endif
+#include <chrono>
 
 #include "Mathf.h"
 
@@ -33,19 +29,10 @@
 #include "Scene3D.h"
 #include "Camera.h"
 
-#ifdef ESP32
-#include "M5StackCanvas.h"
-
-M5GFX display;
-M5StackCanvas canvas(display);
-
-//#include <M5UnitOLED.h>
-//M5UnitOLED display; // default setting
-//M5UnitOLED display ( 21, 22, 400000 ); // SDA, SCL, FREQ
-
-//#include <M5UnitLCD.h>
-//M5UnitLCD display;  // default setting
-//M5UnitLCD display  ( 21, 22, 400000 ); // SDA, SCL, FREQ
+#ifdef ARDUINO
+#include "ArduinoApp.h"
+#else
+#include "SDL_App.h"
 #endif
 
 void run_scene_demo(Canvas& canvas)
@@ -207,22 +194,14 @@ void run_scene_patterns_demo(Canvas& canvas)
 	main_camera.Render(scene, canvas);
 }
 
-void setup(void)
+void Run(Canvas& canvas)
 { 
-    canvas.Init();
-	display.waitDisplay();
-
 	//run_gravity_demo(canvas);
 	//run_clock_demo(canvas);
 	//run_shadow_demo(canvas);
 	//run_light_demo(canvas);
 
-	//run_scene_demo(canvas);
+	run_scene_demo(canvas);
 	//run_scene_plane_demo(canvas);
-	run_scene_patterns_demo(canvas);
-}
-
-void loop(void)
-{ 
-  delay(10);
+	//run_scene_patterns_demo(canvas);
 }
