@@ -1,11 +1,11 @@
 #pragma once
 
-#define SDL_MAIN_HANDLED
+// #define SDL_MAIN_HANDLED
 
-#include <SDL2/SDL.h>
+// #include <SDL2/SDL.h>
 
-#include "../lib/Core/Color3D.h"
-#include "../lib/Core/Canvas.h"
+// #include "../lib/Core/Color3D.h"
+// #include "../lib/Core/Canvas.h"
 
 class SDLCanvas :
 	public Canvas
