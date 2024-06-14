@@ -19,7 +19,7 @@ int main()
 		665, 
         500, 0);
 
-    auto canvas = SDLCanvas(renderer, 24);
+    auto canvas = SDLCanvas(renderer, 32);
 
 	auto start_time = std::chrono::high_resolution_clock::now();
 

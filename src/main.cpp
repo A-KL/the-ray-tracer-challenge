@@ -29,6 +29,8 @@
 #include "Scene3D.h"
 #include "Camera.h"
 
+#include "tests.h"
+
 #ifdef ARDUINO
 #include "ArduinoApp.h"
 #else
@@ -196,12 +198,16 @@ void run_scene_patterns_demo(Canvas& canvas)
 
 void Run(Canvas& canvas)
 { 
+	#ifdef _DEBUG
+	run_tests();
+	#endif
+
 	//run_gravity_demo(canvas);
 	//run_clock_demo(canvas);
 	//run_shadow_demo(canvas);
 	//run_light_demo(canvas);
 
-	run_scene_demo(canvas);
+	//run_scene_demo(canvas);
 	//run_scene_plane_demo(canvas);
 	//run_scene_patterns_demo(canvas);
 }
