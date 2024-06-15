@@ -35,7 +35,7 @@
 
 void run_projectile_demo(Canvas& canvas)
 {
-	const double w = canvas.Witdth();
+	const double w = canvas.Width();
 	const double h = canvas.Height();
 
 	Point3D start(0, 1, 0);
@@ -64,7 +64,7 @@ void run_projectile_demo(Canvas& canvas)
 
 void run_clock_demo(Canvas& canvas)
 {
-	const double offset_x = canvas.Witdth() / 2;
+	const double offset_x = canvas.Width() / 2;
 	const double offset_y = canvas.Height() / 2;
 	const double size = 100;
 	const double count = 12;
@@ -93,7 +93,7 @@ void run_clock_demo(Canvas& canvas)
 
 void run_shadow_demo(Canvas& canvas)
 {
-	const double w = canvas.Witdth();
+	const double w = canvas.Width();
 	const double h = canvas.Height();
 	const double wall_size = 7.0;
 	const double wall_position_z = 10.0;
@@ -134,7 +134,7 @@ void run_shadow_demo(Canvas& canvas)
 
 void run_light_demo(Canvas& canvas)
 {
-	const double w = canvas.Witdth();
+	const double w = canvas.Width();
 	const double h = canvas.Height();
 	const double wall_size = 7.0;
 	const double wall_position_z = 10.0;
@@ -180,7 +180,7 @@ void run_light_demo(Canvas& canvas)
 
 void run_scene_demo(Canvas& canvas)
 {
-	const int w = canvas.Witdth(); //100
+	const int w = canvas.Width(); //100
 	const int h = canvas.Height(); //50
 
 	auto left_wall_location = 
@@ -233,7 +233,7 @@ void run_scene_demo(Canvas& canvas)
 
 void run_scene_plane_demo(Canvas& canvas)
 {
-	const int w = canvas.Witdth(); //100
+	const int w = canvas.Width(); //100
 	const int h = canvas.Height(); //50
 
 	auto left_wall_location =
@@ -281,7 +281,7 @@ void run_scene_plane_demo(Canvas& canvas)
 
 void run_scene_patterns_demo(Canvas& canvas)
 {
-	const int w = canvas.Witdth(); //100
+	const int w = canvas.Width(); //100
 	const int h = canvas.Height(); //50
 
 	// -----------------------------------------------------------------------------

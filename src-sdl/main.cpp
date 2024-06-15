@@ -1,7 +1,7 @@
 #define SDL_MAIN_HANDLED
 
 #include <chrono>
-#include <SDL2/SDL.h>
+#include <SDL.h>
 
 #include "SDLCanvas.h"
 #include "SDLWindowRenderer.h"

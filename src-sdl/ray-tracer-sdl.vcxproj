@@ -73,13 +73,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>C:\Sources\SDL2-2.0.10\lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Sources\SDL2-2.0.10\include;$(IncludePath)</IncludePath>
+    <LibraryPath>E:\Sources\SDL2-2.28.5\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>E:\Sources\SDL2-2.28.5\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Sources\SDL2-2.0.10\include;C:\Sources\SDL2-2.0.20\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Sources\SDL2-2.0.10\lib\x64;C:\Sources\SDL2-2.0.20\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Sources\SDL2-2.0.10\include;C:\Sources\SDL2-2.0.20\include;E:\Sources\SDL2-2.28.5\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Sources\SDL2-2.0.10\lib\x64;C:\Sources\SDL2-2.0.20\lib\x64;E:\Sources\SDL2-2.28.5\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
