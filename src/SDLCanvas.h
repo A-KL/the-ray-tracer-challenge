@@ -17,7 +17,7 @@ public:
 
 		_bpp = bpp;
 
-		_sdl = SDL_CreateRenderer(window, -1, 0);
+		_sdl = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 	}
 
 	SDLCanvas(SDL_Window* window)

@@ -16,10 +16,21 @@ int main()
 		"The Ray Tracer Challenge",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		665, 
-        500, 0);
+		640, 
+        480, 
+		SDL_WINDOW_RESIZABLE ); //| SDL_WINDOW_METAL
+
+	if (window == NULL) {
+		fprintf(stderr, "ERROR: can't create window: %s\n", SDL_GetError());
+		return EXIT_FAILURE;
+	}
 
     auto canvas = SDLCanvas(window, 32);
+
+	// if (canvas == NULL) {
+	// 	fprintf(stderr, "ERROR: can't create renderer: %s\n", SDL_GetError());
+	// 	return EXIT_FAILURE;
+	// }
 
 	auto start_time = std::chrono::high_resolution_clock::now();
 
