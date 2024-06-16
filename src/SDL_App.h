@@ -12,14 +12,14 @@ int main()
     SDL_Init(SDL_INIT_VIDEO);
 	SDL_Event event;
 
-    auto renderer = SDL_CreateWindow(
+    auto window = SDL_CreateWindow(
 		"The Ray Tracer Challenge",
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		665, 
         500, 0);
 
-    auto canvas = SDLCanvas(renderer, 32);
+    auto canvas = SDLCanvas(window, 32);
 
 	auto start_time = std::chrono::high_resolution_clock::now();
 
