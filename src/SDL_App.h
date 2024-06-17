@@ -36,6 +36,8 @@ int main()
 
     Run(canvas);
 
+	canvas.Update(true);
+
     auto end_time = std::chrono::high_resolution_clock::now();
 	auto time = end_time - start_time;
 

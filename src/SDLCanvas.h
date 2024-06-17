@@ -65,9 +65,14 @@ public:
 		Clear(_background);
 	}
 
-	void Update()
+	void Update(bool force = false)
 	{
-		SDL_RenderPresent(_sdl);
+		#ifdef __APPLE__
+		if (force)
+			SDL_RenderPresent(_sdl);
+		#else
+			SDL_RenderPresent(_sdl);
+		#endif
 	}
 
 	~SDLCanvas()

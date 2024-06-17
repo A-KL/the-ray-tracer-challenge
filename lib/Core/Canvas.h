@@ -19,5 +19,5 @@ public:
 
 	virtual void Clear() = 0;
 
-	virtual void Update() = 0;
+	virtual void Update(bool force = false) = 0;
 };
