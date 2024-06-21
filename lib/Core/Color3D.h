@@ -38,6 +38,7 @@ struct Color3D
 			case 1: return G;
 			case 2: return B;
 		}
+		throw std::invalid_argument("Unable to address a channel via index.");
 	}
 
 	const Color3D operator*(const Color3D& other) const;

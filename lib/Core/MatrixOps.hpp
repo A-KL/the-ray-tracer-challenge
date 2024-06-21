@@ -124,16 +124,16 @@ void matrix_mul(
 	}
 }
 
-template<typename TItem>
-void matrix_mul(
-	const Matrix<TItem, 3, 3>& matrix,
-	const Vector3D& other,
-	Vector3D& result)
-{
-	result.X = matrix.Data[0][0] * other.X + matrix.Data[1][0] * other.Y + matrix.Data[2][0] * other.Z;
-	result.Y = matrix.Data[0][1] * other.X + matrix.Data[1][1] * other.Y + matrix.Data[2][1] * other.Z;
-	result.Z = matrix.Data[0][2] * other.X + matrix.Data[1][2] * other.Y + matrix.Data[2][2] * other.Z;
-}
+// template<typename TItem>
+// void matrix_mul(
+// 	const Matrix<TItem, 3, 3>& matrix,
+// 	const Vector3D& other,
+// 	Vector3D& result)
+// {
+// 	result.X = matrix.Data[0][0] * other.X() + matrix.Data[1][0] * other.Y() + matrix.Data[2][0] * other.Z();
+// 	result.Y = matrix.Data[0][1] * other.X() + matrix.Data[1][1] * other.Y() + matrix.Data[2][1] * other.Z();
+// 	result.Z = matrix.Data[0][2] * other.X() + matrix.Data[1][2] * other.Y() + matrix.Data[2][2] * other.Z();
+// }
 
 template<typename TItem, unsigned TSize>
 void matrix_mul(

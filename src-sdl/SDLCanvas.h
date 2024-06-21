@@ -19,7 +19,7 @@ public:
 		return _h;
 	}
 
-	inline int Witdth() const
+	inline int Width() const
 	{
 		return _w;
 	}

@@ -15,7 +15,7 @@ class Sphere3D : virtual public Shape3D
 public:
 	Sphere3D();
 
-	Sphere3D(Matrix4d& transform);
+	Sphere3D(const Matrix4d& transform);
 
 	Sphere3D(const Material3D& material);
 

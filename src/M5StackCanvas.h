@@ -11,20 +11,40 @@ class M5StackCanvas :
 public:
 	M5StackCanvas(M5GFX& display) :
 		_display(&display)
-	{}
+	{ }
 
-	void Init(const Color3D& color = Color3D::Black);
+	void Init(const Color3D& color = Color3D::Black)
+	{
+		_display->init();
+		_display->startWrite();
+		_display->fillScreen((unsigned short)color);
 
-	void DrawPoint(int x, int y, const Color3D& color);
+		if (_display->isEPD())
+		{
+			_display->setEpdMode(epd_mode_t::epd_fastest);
+		}
+		if (_display->width() < _display->height())
+		{
+			_display->setRotation(_display->getRotation() ^ 1);
+		}
+	}
 
-	void DrawLine(int x0, int y0, int x1, int y1, const Color3D& color);
+	void DrawPoint(int x, int y, const Color3D& color)
+	{
+		_display->drawPixel(x, y, (unsigned short)color);
+	}
+
+	void DrawLine(int x0, int y0, int x1, int y1, const Color3D& color)
+	{
+		_display->drawLine(x0, y0, x1, y1, (unsigned short)color);
+	}
 
 	inline int Height() const
 	{
 		return _display->height();
 	}
 
-	inline int Witdth() const
+	inline int Width() const
 	{
 		return _display->width();
 	}
@@ -34,13 +54,20 @@ public:
 		return 24;
 	}
 
-	void Clear(const Color3D& color);
+	inline void Clear(const Color3D& color)
+	{
+		_display->fillScreen((unsigned short)color);
+	}
 
-	void Clear();
+	inline void Clear()
+	{
+		Clear(_background);
+	}
 
-	void Update();
-
-	virtual ~M5StackCanvas();
+	inline void Update()
+	{
+		_display->display();
+	}
 
 private:
 	M5GFX* _display;

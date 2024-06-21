@@ -4,7 +4,7 @@ Sphere3D::Sphere3D() :
 	Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
 { }
 
-Sphere3D::Sphere3D(Matrix4d& transform) :
+Sphere3D::Sphere3D(const Matrix4d& transform) :
 	Sphere3D(Point3D::Origin, transform, Material3D::Default)
 { }
 
