@@ -7,7 +7,7 @@ Plane3D::Plane3D() :
 	Plane3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
 { }
 
-Plane3D::Plane3D(Matrix4d& transform) :
+Plane3D::Plane3D(const Matrix4d& transform) :
 	Plane3D(Point3D::Origin, transform, Material3D::Default)
 { }
 

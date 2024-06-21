@@ -7,7 +7,7 @@ struct Mathf
 {
 	inline static TItem Epsilon()
 	{
-		return 0.00001;
+		return 0.0001;
 	}
 
 	static inline bool Approximately(TItem a, TItem b)

@@ -21,3 +21,5 @@ void run_camera_tests();
 void run_shadow_tests();
 
 void run_patterns_tests();
+
+void run_reflection_tests();
