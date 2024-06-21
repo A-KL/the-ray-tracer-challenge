@@ -11,7 +11,7 @@ public:
 
 	virtual int Height() const = 0;
 
-	virtual int Witdth() const = 0;
+	virtual int Width() const = 0;
 
 	virtual unsigned int Bpp() const = 0;
 
@@ -19,5 +19,5 @@ public:
 
 	virtual void Clear() = 0;
 
-	virtual void Update() = 0;
+	virtual void Update(bool force = false) = 0;
 };

@@ -34,7 +34,7 @@ public:
 		return THeight;
 	}
 
-	inline int Witdth() const
+	inline int Width() const
 	{
 		return TWidth;
 	}
@@ -50,7 +50,7 @@ public:
 	void Clear()
 	{ }
 
-	void Update()
+	void Update(bool force = false)
 	{ }
 
 	inline Color3D Get(int x, int y)

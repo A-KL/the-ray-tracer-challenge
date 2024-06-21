@@ -24,6 +24,7 @@ const Color3D Color3D::DarkGray(0.1, 0.1, 0.1);
 
 const Color3D Color3D::operator*(const Color3D& other) const
 {
+	//return Color3D { (R + other.R)/2., (G + other.G)/2, (B + other.B)/2};
 	return Color3D { (R * other.R), (G * other.G), (B * other.B)};
 }
 
