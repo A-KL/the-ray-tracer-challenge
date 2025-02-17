@@ -31,7 +31,7 @@
 
 #include "tests.h"
 
-void test_precomoute_reflection_vector()
+void test_precompute_reflection_vector()
 {
 	// Set up
 	Plane3D shape;
@@ -205,9 +205,27 @@ void test_reflective_n1_n2_intersections()
 	}
 }
 
+void test_reflective_under_point_is_offset_below_surface()
+{
+	// Setup
+	Sphere3D shape(Matrix4d::Translate(0, 0, 1), Material3D::Glass);
+
+	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
+
+	Intersection intersection(5, shape);
+	std::vector<const Intersection> intersections { intersection };
+
+	// Act
+	auto computation = Computation::Prepare(intersection, ray, intersections);
+
+	// Assert
+	assert(computation.UnderPosition.Z() > (Mathf<double>::Epsilon() / 2.0));
+	assert(computation.Position.Z() < computation.UnderPosition.Z());
+}
+
 void run_reflection_tests()
 {
-	test_precomoute_reflection_vector();
+	test_precompute_reflection_vector();
 
 	test_nonreflective_material();
 
@@ -220,4 +238,6 @@ void run_reflection_tests()
 	test_reflective_material_limit_recursion();
 
 	test_reflective_n1_n2_intersections();
+
+	test_reflective_under_point_is_offset_below_surface();
 }

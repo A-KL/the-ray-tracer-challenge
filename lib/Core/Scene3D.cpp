@@ -53,3 +53,13 @@ Color3D Scene3D::ReflectedAt(const Computation& comp, int remaining) const
 
     return color * comp.Intersect.Shape->Material.Reflective;
 }
+
+Color3D Scene3D::RefractedAt(const Computation& comp, const int remaining) const
+{
+    if (comp.Intersect.Shape->Material.Transparency == 0) 
+    {
+        return Color3D::Black;
+    }
+
+    return Color3D::White;
+}

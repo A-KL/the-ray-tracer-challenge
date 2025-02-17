@@ -19,5 +19,7 @@ public:
 
 	Color3D ReflectedAt(const Computation& comp, int remaining = 4) const;
 
+	Color3D RefractedAt(const Computation& comp, const int remaining) const;
+
 	Color3D ShadeHit(const Computation& computation, int remaining = 4) const;
 };

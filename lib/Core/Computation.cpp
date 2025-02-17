@@ -40,6 +40,7 @@ const Computation Computation::Prepare(const Intersection& intersection, const R
 	auto inside = Vector3D::Dot(normal, camera) < 0;
 	normal = inside ? -normal : normal;
 	auto over_point = position + normal * Mathf<double>::Epsilon();
+	auto under_point = position - normal * Mathf<double>::Epsilon();
 	auto reflection = Vector3D::Reflect(ray.Direction, normal);
 	auto n1 = 1.0;
 	auto n2 = 1.0;
@@ -49,7 +50,7 @@ const Computation Computation::Prepare(const Intersection& intersection, const R
 		Compute_N1_N2(intersection, intersections, n1, n2);
 	}
 
-	return Computation { intersection, position, over_point, normal, camera, reflection, inside, n1, n2 };
+	return Computation { intersection, position, over_point, under_point, normal, camera, reflection, inside, n1, n2 };
 }
 
 const Computation Computation::Prepare(const Intersection& intersection, const Ray3D& ray)

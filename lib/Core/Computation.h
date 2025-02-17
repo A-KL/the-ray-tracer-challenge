@@ -18,6 +18,8 @@ struct Computation
 
 	const Point3D OverPosition;
 
+	const Point3D UnderPosition;
+
 	const Vector3D Normal;
 
 	const Vector3D Camera;
