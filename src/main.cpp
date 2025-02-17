@@ -1,6 +1,6 @@
 #include "Canvas.h"
 
-//#include "tests.h"
+#include "tests.h"
 #include "examples.h"
 
 #ifdef ARDUINO
@@ -11,9 +11,9 @@
 
 void Run(Canvas& canvas)
 { 
-	#ifdef _DEBUG
+#ifdef _DEBUG
 	run_tests();
-	#endif
+#endif
 
 	//run_projectile_demo(canvas);
 	//run_clock_demo(canvas);

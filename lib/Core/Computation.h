@@ -10,6 +10,8 @@ struct Computation
 {
 	const static Computation Prepare(const Intersection& intersection, const Ray3D& ray);
 
+	const static Computation Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<const Intersection>& intersections);
+
 	const Intersection Intersect;
 
 	const Point3D Position;
@@ -23,4 +25,8 @@ struct Computation
 	const Vector3D Reflection;
 
 	const bool IsInside;
+
+	const double N1;
+
+	const double N2;
 };

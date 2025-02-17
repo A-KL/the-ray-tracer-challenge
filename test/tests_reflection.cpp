@@ -34,9 +34,9 @@
 void test_precomoute_reflection_vector()
 {
 	// Set up
-	Plane3D sphere;
+	Plane3D shape;
 	Ray3D ray(Point3D(0, 1, -1), Vector3D(0, -sqrt(2) / 2.0, sqrt(2) / 2.0));
-	Intersection interception(sqrt(2), sphere);
+	Intersection interception(sqrt(2), shape);
 
 	// Act
 	auto result = Computation::Prepare(interception, ray);
@@ -164,6 +164,47 @@ void test_reflective_material_limit_recursion()
 	assert(Color3D::Black == result);
 }
 
+void test_reflective_n1_n2_intersections()
+{
+	// Setup
+	auto default_material = Material3D::Glass;
+
+	double n1_results[] { 1.0, 1.5, 2.0, 2.5, 2.5, 1.5 };
+	double n2_results[] { 1.5, 2.0, 2.5, 2.5, 1.5, 1.0 };
+	
+	Sphere3D glass_sphere_a(
+		Matrix4d::Scale(2, 2, 2), 
+		default_material.With([](Material3D& m) -> void { m.RefractiveIndex = 1.5; }));
+
+	Sphere3D glass_sphere_b(
+		Matrix4d::Translate(0, 0, -0.25), 
+		default_material.With([](Material3D& m) -> void { m.RefractiveIndex = 2.0; }));
+
+	Sphere3D glass_sphere_c(
+		Matrix4d::Translate(0, 0, 0.25),
+		default_material.With([](Material3D& m) -> void { m.RefractiveIndex = 2.5; }));
+
+	std::vector<const Intersection> interceptions {
+		{ 2.00, glass_sphere_a },
+		{ 2.75, glass_sphere_b },
+		{ 3.25, glass_sphere_c },
+		{ 4.75, glass_sphere_b },
+		{ 5.25, glass_sphere_c },
+		{ 6.00, glass_sphere_a },
+	 };
+
+	// Act
+	Ray3D ray(Point3D(0, 0, -4), Vector3D(0, 0, 1));
+
+	for (auto i = 0; i < interceptions.size(); i++) {
+		auto computation = Computation::Prepare(interceptions[i], ray, interceptions);
+
+		// Assert
+		assert(computation.N1 == n1_results[i]);
+		assert(computation.N2 == n2_results[i]);
+	}
+}
+
 void run_reflection_tests()
 {
 	test_precomoute_reflection_vector();
@@ -177,4 +218,6 @@ void run_reflection_tests()
 	test_reflective_material_recursion();
 
 	test_reflective_material_limit_recursion();
+
+	test_reflective_n1_n2_intersections();
 }
