@@ -56,10 +56,24 @@ Color3D Scene3D::ReflectedAt(const Computation& comp, int remaining) const
 
 Color3D Scene3D::RefractedAt(const Computation& comp, const int remaining) const
 {
-    if (comp.Intersect.Shape->Material.Transparency == 0) 
-    {
+    if (comp.Intersect.Shape->Material.Transparency == 0) {
         return Color3D::Black;
     }
+    // Find the ratio of first index of refraction to the second.
+    // (Yup, this is inverted from the definition of Snell's Law.)
+    auto n_ratio = comp.N1 / comp.N2;
+    // cos(theta_i) is the same as the dot product of the two vectors
+    auto cos_i = Vector3D::Dot(comp.Camera, comp.Normal);
+    // Find sin(theta_t)^2 via trigonometric identity
+    auto sin2_t = pow(n_ratio, 2) * (1 - pow(cos_i, 2));
+
+    if (sin2_t > 1) {
+        return Color3D::Black;
+    }
+
+    // Find cos(theta_t) via trigonometric identity
+    auto cos_t = sqrt(1.0 - sin2_t);
+   // auto direction = 
 
     return Color3D::White;
 }

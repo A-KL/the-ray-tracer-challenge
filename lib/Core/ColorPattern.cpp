@@ -24,6 +24,22 @@ const Color3D ColorPattern::at_shape(const Point3D& location, const Shape3D& sha
 	return at(pattern_point);
 }
 
+// Test Pattern
+
+TestPattern::TestPattern()
+	: ColorPattern()
+{ }
+
+TestPattern::TestPattern(const Matrix4d& transformation)
+	: ColorPattern(transformation)
+{ }
+
+const Color3D TestPattern::at(const Point3D& location) const
+{
+	return Color3D(location.X(), location.Y(), location.Z());
+}
+
+// SolidColor3D
 
 SolidColor3D::SolidColor3D(double r, double g, double b)
 	: SolidColor3D(Color3D(r, g, b))
@@ -42,6 +58,7 @@ const Color3D SolidColor3D::at(const Point3D& location) const
 	return Color;
 }
 
+// StripeColor3D
 
 StripeColor3D::StripeColor3D(const Color3D& colorA, const Color3D& colorB)
 	: StripeColor3D(colorA, colorB, Matrix4d::Identity())
@@ -56,6 +73,7 @@ const Color3D StripeColor3D::at(const Point3D& location) const
 	return Mathf<double>::IsZero(std::fmod(floor(location.X()), 2)) ? ColorA : ColorB;
 }
 
+// GradientColor3D
 
 GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB)
 	: GradientColor3D(colorA, colorB, Matrix4d::Identity())
@@ -70,6 +88,7 @@ const Color3D GradientColor3D::at(const Point3D& location) const
 	return ColorA + (ColorB - ColorA) * (location.X() - floor(location.X()));
 }
 
+// RingColor3D
 
 RingColor3D::RingColor3D(const Color3D& colorA, const Color3D& colorB)
 	: RingColor3D(colorA, colorB, Matrix4d::Identity())
@@ -95,6 +114,8 @@ const Color3D RingColor3D::at(const Point3D& location) const
 	) ? ColorA : ColorB;
 }
 
+// CheckersColor3D
+
 CheckersColor3D::CheckersColor3D(const Color3D& colorA, const Color3D& colorB)
 	: CheckersColor3D(colorA, colorB, Matrix4d::Identity())
 { }
@@ -115,6 +136,7 @@ const Color3D CheckersColor3D::at(const Point3D& location) const
 	) ? ColorA : ColorB;
 }
 
+// BlendedColor3D
 
 BlendedColor3D::BlendedColor3D(const ColorPattern& patternA, const ColorPattern& patternB)
 	: BlendedColor3D(&patternA, &patternB)

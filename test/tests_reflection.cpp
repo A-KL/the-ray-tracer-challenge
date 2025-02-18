@@ -223,7 +223,7 @@ void test_reflective_under_point_is_offset_below_surface()
 	assert(computation.Position.Z() < computation.UnderPosition.Z());
 }
 
-void test_reflective_color_with_opaque_surface()
+void test_refractive_color_with_opaque_surface()
 {	
 	// Default world
 	Scene3D scene;
@@ -259,6 +259,77 @@ void test_reflective_color_with_opaque_surface()
 	assert(c == Color3D::Black);
 }
 
+void test_refractive_color_under_total_internal_reflection()
+{	
+	// Default world
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+    Material3D material1(SolidColor3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2, 200, 0.0, 1.0, 1.5);
+	Material3D material2(SolidColor3D(1, 1, 1), 1);
+
+	Sphere3D sphere1(material1);
+	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5), material2);
+
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
+
+	// Setup
+	Ray3D ray(Point3D(0, 0, sqrt(2.0)/2.0), Vector3D(0, 1, 0));
+
+	std::vector<const Intersection> intersections 
+	{ 
+		Intersection(-sqrt(2.0)/2.0, sphere1),
+		Intersection(sqrt(2.0)/2.0, sphere1) 
+	};
+
+	// Act
+	//  NOTE: this time you're inside the sphere, so you need
+	//  to look at the second intersection, xs[1], not xs[0]
+	auto computation = Computation::Prepare(intersections[1], ray, intersections);
+
+	auto c = scene.RefractedAt(computation, 5);
+
+	// Assert
+	assert(c == Color3D::Black);
+}
+
+void test_refractive_color_with_refracted_ray()
+{	
+	// Default world
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+    Material3D material1(TestPattern(), 0.1, 0.7, 0.2);
+	Material3D material2(SolidColor3D(1, 1, 1), 1, 0.9, 0.9, 200, 0.0, 1.0, 1.5);
+
+	Sphere3D sphere1(material1);
+	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5), material2);
+
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
+
+	// Setup
+	Ray3D ray(Point3D(0, 0, 0.1), Vector3D(0, 1, 0));
+
+	std::vector<const Intersection> intersections 
+	{ 
+		Intersection(-0.9899, sphere1),
+		Intersection(-0.4899, sphere2),
+		Intersection(0.4899, sphere2),
+		Intersection(0.9899, sphere1)
+	};
+
+	// Act
+	auto computation = Computation::Prepare(intersections[2], ray, intersections);
+	auto c = scene.RefractedAt(computation, 5);
+
+	// Assert
+	assert(c == Color3D(0, 0.9899, 0.04725));
+}
+
 void run_reflection_tests()
 {
 	test_precompute_reflection_vector();
@@ -277,5 +348,9 @@ void run_reflection_tests()
 
 	test_reflective_under_point_is_offset_below_surface();
 
-	test_reflective_color_with_opaque_surface();
+	test_refractive_color_with_opaque_surface();
+
+	test_refractive_color_under_total_internal_reflection();
+
+	test_refractive_color_with_refracted_ray();
 }
