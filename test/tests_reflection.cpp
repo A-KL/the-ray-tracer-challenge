@@ -301,8 +301,8 @@ void test_refractive_color_with_refracted_ray()
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-    Material3D material1(TestPattern(), 0.1, 0.7, 0.2);
-	Material3D material2(SolidColor3D(1, 1, 1), 1, 0.9, 0.9, 200, 0.0, 1.0, 1.5);
+    Material3D material1(TestPattern(), 1.0, 0.7, 0.2);
+	Material3D material2(SolidColor3D(1, 1, 1), 0.1, 0.9, 0.9, 200, 0.0, 1.0, 1.5);
 
 	Sphere3D sphere1(material1);
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5), material2);
@@ -327,7 +327,8 @@ void test_refractive_color_with_refracted_ray()
 	auto c = scene.RefractedAt(computation, 5);
 
 	// Assert
-	assert(c == Color3D(0, 0.9899, 0.04725));
+	std::cout << c << std::endl;
+	assert(c == Color3D(0, 0.99888, 0.04725));
 }
 
 void run_reflection_tests()

@@ -54,9 +54,10 @@ Color3D Scene3D::ReflectedAt(const Computation& comp, int remaining) const
     return color * comp.Intersect.Shape->Material.Reflective;
 }
 
-Color3D Scene3D::RefractedAt(const Computation& comp, const int remaining) const
+Color3D Scene3D::RefractedAt(const Computation& comp, const int remaining = 5) const
 {
-    if (comp.Intersect.Shape->Material.Transparency == 0) {
+    if (comp.Intersect.Shape->Material.Transparency <= Mathf<double>::Epsilon() || remaining == 0) 
+    {
         return Color3D::Black;
     }
     // Find the ratio of first index of refraction to the second.
@@ -73,7 +74,8 @@ Color3D Scene3D::RefractedAt(const Computation& comp, const int remaining) const
 
     // Find cos(theta_t) via trigonometric identity
     auto cos_t = sqrt(1.0 - sin2_t);
-   // auto direction = 
+    auto direction = comp.Normal * (n_ratio * cos_i - cos_t) - comp.Camera * n_ratio;
+    auto refracted_ray = Ray3D(comp.UnderPosition, direction);
 
-    return Color3D::White;
+    return ColorAt(refracted_ray, remaining - 1) * comp.Intersect.Shape->Material.Transparency;
 }
