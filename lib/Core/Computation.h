@@ -12,6 +12,8 @@ struct Computation
 
 	const static Computation Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<const Intersection>& intersections);
 
+	const double SchlickValue() const;
+
 	const Intersection Intersect;
 
 	const Point3D Position;

@@ -32,6 +32,26 @@ void Compute_N1_N2(const Intersection& intersection, const std::vector<const Int
 	}
 }
 
+const double Computation::SchlickValue() const
+{
+    auto cos = Camera.Dot(Normal);
+
+    if (N1 > N2) 
+    {
+        auto n = N1 / N2;
+        auto sin2_t = n * n * (1.0 - cos * cos);
+        if (sin2_t > 1.0) 
+            return 1.0; 
+
+		auto cos_t = sqrt(1.0 - sin2_t);
+		cos = cos_t;
+    }
+
+	auto r0 = pow((N1 - N2) / (N1 + N2), 2);
+
+    return (r0 + (1.0 - r0) * pow((1.0 - cos), 5));
+}
+
 const Computation Computation::Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<const Intersection>& intersections)
 {
 	auto position = ray.Position(intersection.Value);

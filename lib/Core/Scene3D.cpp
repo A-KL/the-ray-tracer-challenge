@@ -29,9 +29,11 @@ Color3D Scene3D::ShadeHit(const Computation& computation, int remaining) const
 
         result += light
             ->Compute(computation.Intersect.Shape->Material, *computation.Intersect.Shape, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+        
+        result += ReflectedAt(computation, remaining);
+        
     }
 
-    result += ReflectedAt(computation, remaining);
     result += RefractedAt(computation, remaining);
 
     return result;
@@ -67,9 +69,10 @@ Color3D Scene3D::RefractedAt(const Computation& comp, const int remaining = 5) c
     // cos(theta_i) is the same as the dot product of the two vectors
     auto cos_i = Vector3D::Dot(comp.Camera, comp.Normal);
     // Find sin(theta_t)^2 via trigonometric identity
-    auto sin2_t = pow(n_ratio, 2) * (1 - pow(cos_i, 2));
+    auto sin2_t = n_ratio * n_ratio * (1 - cos_i * cos_i);
 
-    if (sin2_t > 1) {
+    if (sin2_t > 1) 
+    {
         return Color3D::Black;
     }
 
