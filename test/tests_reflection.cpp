@@ -426,6 +426,25 @@ void test_reflection_schlick_approximation_with_perpendicular_viewing_angle()
 	assert(Mathf<double>::Approximately(reflectance, 0.04));
 }
 
+void test_reflection_n2_more_n1()
+{
+	// Setup
+	Sphere3D glass_sphere(Material3D::Glass);
+	Ray3D ray(Point3D(0, 0.99, -2), Vector3D(0, 0, 1));
+	std::vector<const Intersection> intersections 
+	{ 
+		Intersection(1.8589, glass_sphere)
+	};
+
+	auto computation = Computation::Prepare(intersections[0], ray, intersections);
+
+	// Act
+	auto reflectance = computation.SchlickValue();
+
+	// Assert
+	assert(Mathf<double>::Approximately(reflectance, 0.48873));
+}
+
 void run_reflection_tests()
 {
 	test_precompute_reflection_vector();
@@ -455,4 +474,6 @@ void run_reflection_tests()
 	test_reflection_schlick_approximation_under_total_internal_reflection();
 
 	test_reflection_schlick_approximation_with_perpendicular_viewing_angle();
+
+	test_reflection_n2_more_n1();
 }
