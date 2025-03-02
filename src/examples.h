@@ -13,3 +13,5 @@ void run_scene_demo(Canvas& canvas);
 void run_scene_plane_demo(Canvas& canvas);
 
 void run_scene_patterns_demo(Canvas& canvas);
+
+void run_fresnel_demo(Canvas& canvas);

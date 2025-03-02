@@ -336,3 +336,36 @@ void run_scene_patterns_demo(Canvas& canvas)
 
 	main_camera.Render(scene, canvas);
 }
+
+void run_fresnel_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = Camera(w, h, M_PI / 3, Point3D(0, 0, -5), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+	auto main_light = Light3D(Point3D(2, 10, -5), Color3D(0.9, 0.9, 0.9));
+
+	// Wall
+	auto wall_location =
+		Matrix4d::RotateX(M_PI / 2) *
+		Matrix4d::Translate(0, 0, 10);
+
+	auto wall_material_pattern = 
+		CheckersColor3D(Color3D(0.15, 0.15, 0.15), Color3D(0.85, 0.85, 0.85));
+
+	auto wall_material = 
+		Material3D(wall_material_pattern, 0.8, 0.2, 0.0);
+
+	auto wall = 
+		Plane3D(wall_location, wall_material);
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+
+	scene.Shapes.push_back(&wall);
+
+	main_camera.Render(scene, canvas);
+}
