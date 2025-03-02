@@ -1,6 +1,7 @@
 #include "Canvas.h"
 
-#include "tests.h"
+#include "../test/tests.h"
+
 #include "examples.h"
 
 #ifdef ARDUINO

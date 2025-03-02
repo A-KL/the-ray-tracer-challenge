@@ -184,7 +184,7 @@ void test_reflective_n1_n2_intersections()
 		Matrix4d::Translate(0, 0, 0.25),
 		default_material.With([](Material3D& m) -> void { m.RefractiveIndex = 2.5; }));
 
-	std::vector<const Intersection> interceptions {
+	const std::vector<Intersection> interceptions {
 		{ 2.00, glass_sphere_a },
 		{ 2.75, glass_sphere_b },
 		{ 3.25, glass_sphere_c },
@@ -213,7 +213,10 @@ void test_reflective_under_point_is_offset_below_surface()
 	Ray3D ray(Point3D(0, 0, -5), Vector3D(0, 0, 1));
 
 	Intersection intersection(5, shape);
-	std::vector<const Intersection> intersections { intersection };
+	const std::vector<Intersection> intersections 
+	{
+		 intersection 
+	};
 
 	// Act
 	auto computation = Computation::Prepare(intersection, ray, intersections);
@@ -244,7 +247,7 @@ void test_refractive_color_with_opaque_surface()
 
 	auto first_shape = *scene.Shapes.begin();
 
-	std::vector<const Intersection> intersections 
+	const std::vector<Intersection> intersections 
 	{ 
 		Intersection(4, first_shape),
 		Intersection(6, first_shape) 
@@ -278,7 +281,7 @@ void test_refractive_color_under_total_internal_reflection()
 	// Setup
 	Ray3D ray(Point3D(0, 0, sqrt(2.0)/2.0), Vector3D(0, 1, 0));
 
-	std::vector<const Intersection> intersections 
+	const std::vector<Intersection> intersections 
 	{ 
 		Intersection(-sqrt(2.0)/2.0, sphere1),
 		Intersection(sqrt(2.0)/2.0, sphere1) 
@@ -314,7 +317,7 @@ void test_refractive_color_with_refracted_ray()
 	// Setup
 	Ray3D ray(Point3D(0, 0, 0.1), Vector3D(0, 1, 0));
 
-	std::vector<const Intersection> intersections 
+	const std::vector<Intersection> intersections 
 	{ 
 		Intersection(-0.9899, sphere1),
 		Intersection(-0.4899, sphere2),
@@ -371,7 +374,7 @@ void test_refractive_shade_hit_transparent_material()
 
 	Ray3D ray(Point3D(0, 0, -3), Vector3D(0, (-sqrt(2.0)/2.0), (sqrt(2.0)/2.0)));
 
-	std::vector<const Intersection> intersections 
+	const std::vector<Intersection> intersections 
 	{ 
 		Intersection(sqrt(2.0), floor)
 	};
@@ -381,9 +384,10 @@ void test_refractive_shade_hit_transparent_material()
 	auto c = scene.ShadeHit(computation, 5);
 
 	// Assert
-	std::cout << c << std::endl;
+	// std::cout << c << std::endl;
 	// TODO: FIX IT
 	//assert(c == Color3D(0.93642, 0.68642, 0.68642));
+	std::cout << "TEST DISABLED: test_refractive_shade_hit_transparent_material" << std::endl;
 }
 
 void test_reflection_schlick_approximation_under_total_internal_reflection()
@@ -391,7 +395,7 @@ void test_reflection_schlick_approximation_under_total_internal_reflection()
 	// Setup
 	Sphere3D glass_sphere(Material3D::Glass);
 	Ray3D ray(Point3D(0, 0, sqrt(2.0)/2.0), Vector3D(0, 1, 0));
-	std::vector<const Intersection> intersections 
+	const std::vector<Intersection> intersections 
 	{ 
 		Intersection(-sqrt(2.0)/2.0, glass_sphere),
 		Intersection(sqrt(2.0)/2.0, glass_sphere) 
@@ -411,7 +415,7 @@ void test_reflection_schlick_approximation_with_perpendicular_viewing_angle()
 	// Setup
 	Sphere3D glass_sphere(Material3D::Glass);
 	Ray3D ray(Point3D(0, 0, 0), Vector3D(0, 1, 0));
-	std::vector<const Intersection> intersections 
+	const std::vector<Intersection> intersections 
 	{ 
 		Intersection(-1.0, glass_sphere),
 		Intersection(1.0, glass_sphere) 
@@ -431,7 +435,7 @@ void test_reflection_n2_more_n1()
 	// Setup
 	Sphere3D glass_sphere(Material3D::Glass);
 	Ray3D ray(Point3D(0, 0.99, -2), Vector3D(0, 0, 1));
-	std::vector<const Intersection> intersections 
+	const std::vector<Intersection> intersections 
 	{ 
 		Intersection(1.8589, glass_sphere)
 	};
@@ -443,6 +447,68 @@ void test_reflection_n2_more_n1()
 
 	// Assert
 	assert(Mathf<double>::Approximately(reflectance, 0.48873));
+}
+
+void test_reflectance_when_combining_reflection_refraction()
+{	
+	// Default world
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+    Material3D material1(SolidColor3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2);
+
+	Sphere3D sphere1(material1);
+	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
+
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
+
+	// Setup
+	Ray3D ray(Point3D(0, 0, -3), Vector3D(0, (-sqrt(2.0)/2.0), (sqrt(2.0)/2.0)));
+
+	Material3D floor_material(
+		SolidColor3D(),
+		0.1, /* ambient */
+		0.9, /* diffuse */
+		0.2, /* specular */
+		200, 
+		0.5, /* reflective */
+		0.5, /* transparency */
+		1.5  /* refractive index */
+	);
+
+	Plane3D floor(Matrix4d::Translate(0, -1, 0), floor_material);
+
+	scene.Shapes.push_back(&floor);
+
+	Material3D ball_material(
+		SolidColor3D(1.0, 0, 0),
+		0.5, /* ambient */
+		0.9, /* diffuse */
+		0.2, /* specular */
+		200, 
+		0.0, /* reflective */
+		0.0, /* transparency */
+		1.0  /* refractive index */
+	);
+
+	Sphere3D ball(Matrix4d::Translate(0, -3.5, -0.5), ball_material);
+
+	scene.Shapes.push_back(&ball);
+
+	const std::vector<Intersection> intersections 
+	{ 
+		Intersection(sqrt(2.0), floor)
+	};
+
+	auto computation = Computation::Prepare(intersections[0], ray, intersections);
+
+	// Act
+	auto c = scene.ShadeHit(computation, 5);
+
+	// Assert
+	assert(c == Color3D(0.93391, 0.69643, 0.69243));
 }
 
 void run_reflection_tests()
@@ -476,4 +542,6 @@ void run_reflection_tests()
 	test_reflection_schlick_approximation_with_perpendicular_viewing_angle();
 
 	test_reflection_n2_more_n1();
+
+	test_reflectance_when_combining_reflection_refraction();
 }

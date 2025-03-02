@@ -1,5 +1,7 @@
 #pragma once
 
+#include <vector>
+
 #include "Vector3D.h"
 #include "Point3D.h"
 
@@ -10,7 +12,7 @@ struct Computation
 {
 	const static Computation Prepare(const Intersection& intersection, const Ray3D& ray);
 
-	const static Computation Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<const Intersection>& intersections);
+	const static Computation Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<Intersection>& intersections);
 
 	const double SchlickValue() const;
 

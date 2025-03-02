@@ -1,9 +1,10 @@
 #include <vector>
+#include <algorithm>
 
 #include "Mathf.h"
 #include "Computation.h"
 
-void Compute_N1_N2(const Intersection& intersection, const std::vector<const Intersection>& intersections, double& n1, double& n2)
+void Compute_N1_N2(const Intersection& intersection, const std::vector<Intersection>& intersections, double& n1, double& n2)
 {
 	std::vector<const Shape3D*> containers;
 
@@ -52,7 +53,7 @@ const double Computation::SchlickValue() const
     return (r0 + (1.0 - r0) * pow((1.0 - cos), 5));
 }
 
-const Computation Computation::Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<const Intersection>& intersections)
+const Computation Computation::Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<Intersection>& intersections)
 {
 	auto position = ray.Position(intersection.Value);
 	auto normal = intersection.Shape->NormalAt(position);
@@ -75,5 +76,5 @@ const Computation Computation::Prepare(const Intersection& intersection, const R
 
 const Computation Computation::Prepare(const Intersection& intersection, const Ray3D& ray)
 {
-	return Prepare(intersection, ray, std::vector<const Intersection> { intersection });
+	return Prepare(intersection, ray, std::vector<Intersection> { intersection });
 }
