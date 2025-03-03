@@ -57,8 +57,8 @@ Color3D Scene3D::ReflectedAt(const Computation& comp, int remaining) const
         return Color3D::Black;
     }
 
-    Ray3D reflected_ray(comp.OverPosition, comp.Reflection);
-    auto color = this->ColorAt(reflected_ray, remaining - 1);
+    auto reflected_ray = Ray3D(comp.OverPosition, comp.Reflection);
+    auto color = ColorAt(reflected_ray, remaining - 1);
 
     return color * comp.Intersect.Shape->Material.Reflective;
 }

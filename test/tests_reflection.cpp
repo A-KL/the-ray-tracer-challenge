@@ -355,7 +355,7 @@ void test_refractive_shade_hit_transparent_material()
 		0.9, /* diffuse */
 		0.2, /* specular */
 		200, 
-		0.5, /* reflective */
+		0.0, /* reflective */
 		0.5, /* transparency */
 		1.5  /* refractive index */
 	);
@@ -384,10 +384,7 @@ void test_refractive_shade_hit_transparent_material()
 	auto c = scene.ShadeHit(computation, 5);
 
 	// Assert
-	// std::cout << c << std::endl;
-	// TODO: FIX IT
-	//assert(c == Color3D(0.93642, 0.68642, 0.68642));
-	std::cout << "TEST DISABLED: test_refractive_shade_hit_transparent_material" << std::endl;
+	assert(c == Color3D(0.93642, 0.68642, 0.68642));
 }
 
 void test_reflection_schlick_approximation_under_total_internal_reflection()
