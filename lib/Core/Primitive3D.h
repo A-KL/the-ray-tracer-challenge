@@ -19,13 +19,13 @@ public:
 		: _data { x, y, z, w }
 	{ }
 
-	inline TItem X() const { return _data[0]; };
+	const inline TItem X() const { return _data[0]; };
 
-	inline TItem Y() const { return _data[1]; };
+	const inline TItem Y() const { return _data[1]; };
 
-	inline TItem Z() const { return _data[2]; };
+	const inline TItem Z() const { return _data[2]; };
 
-	inline TItem W() const { return _data[3]; };
+	const inline TItem W() const { return _data[3]; };
 
 	inline void SetW(TItem value) { _data[3] = value; };
 

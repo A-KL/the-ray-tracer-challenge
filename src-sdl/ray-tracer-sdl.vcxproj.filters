@@ -122,6 +122,9 @@
     <ClCompile Include="..\lib\Core\ColorPattern.cpp">
       <Filter>Core</Filter>
     </ClCompile>
+    <ClCompile Include="..\test\tests_reflection.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\lib\Core\Environment.h">

@@ -24,6 +24,17 @@ public:
 	const bool operator==(const ColorPattern& other) const;
 };
 
+class TestPattern
+	: public ColorPattern
+{
+public:
+	TestPattern();
+
+	TestPattern(const Matrix4d& transformation);
+
+	const Color3D at(const Point3D& location) const;
+};
+
 class SolidColor3D
 	: public ColorPattern
 {

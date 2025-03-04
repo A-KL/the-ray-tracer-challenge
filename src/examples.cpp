@@ -336,3 +336,105 @@ void run_scene_patterns_demo(Canvas& canvas)
 
 	main_camera.Render(scene, canvas);
 }
+
+void run_fresnel_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = Camera(w, h, M_PI / 3, Point3D(0, 0, -5), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+	auto main_light = Light3D(Point3D(2, 10, -5), Color3D(0.9, 0.9, 0.9));
+
+	// Wall
+
+	auto wall_location =
+		Matrix4d::RotateX(M_PI / 2) *
+		Matrix4d::Translate(0, 0, 10);
+
+	auto wall_material_pattern = 
+		CheckersColor3D(Color3D(0.15, 0.15, 0.15), Color3D(0.85, 0.85, 0.85));
+
+	auto wall_material = 
+		Material3D(wall_material_pattern, 0.8, 0.2, 0.0);
+
+	auto wall = 
+		Plane3D(wall_location, wall_material);
+
+	// Glass ball
+
+	auto ball_material = 
+		Material3D(SolidColor3D(Color3D::White), 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.5);
+
+	auto ball_location = 
+		Matrix4d::Scale(1.8, 1.8, 1.8);
+
+	auto ball = Sphere3D(ball_location, ball_material);
+
+	// Hollow ball center
+	
+	auto ball_center_material = 
+		Material3D(SolidColor3D(Color3D::White), 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.80000034);
+
+	auto ball_center_location = 
+		Matrix4d::Scale(0.5, 0.5, 0.5);
+
+	auto ball_center = 
+		Sphere3D(ball_center_location, ball_center_material);
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+
+	scene.Shapes.push_back(&wall);
+	scene.Shapes.push_back(&ball);
+	scene.Shapes.push_back(&ball_center);
+
+	main_camera.Render(scene, canvas);
+}
+
+void run_glass_sphere_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+		Camera(w, h, M_PI / 3, Point3D(0, 0, -3), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+
+	auto main_light = 
+		Light3D(Point3D(-100, 0, -50), Color3D::White);
+
+	// Floor
+
+	auto floor_location =
+		Matrix4d::Translate(0, -1, 0);
+
+	auto floor_material_pattern = 
+		CheckersColor3D(Color3D::Black, Color3D::White, Matrix4d::Scale(4, 4, 4));
+
+	auto floor_material = 
+		Material3D(floor_material_pattern, 1, 0, 0, 0, 0);
+
+	auto floor = 
+		Plane3D(floor_location, floor_material);
+
+	// Sphere
+
+	auto sphere_material = 
+		Material3D(SolidColor3D(Color3D::White), 0.0, 0.4, 0.9, 300, 1.0, 0.9, 1.5);
+
+	auto sphere = 
+		Sphere3D(sphere_material);
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+
+	scene.Shapes.push_back(&floor);
+	scene.Shapes.push_back(&sphere);
+
+	main_camera.Render(scene, canvas);
+}

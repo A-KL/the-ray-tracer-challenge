@@ -64,7 +64,7 @@ public:
 		Clear(_background);
 	}
 
-	inline void Update()
+	inline void Update(bool force = false)
 	{
 		_display->display();
 	}

@@ -52,6 +52,7 @@ void run_tests()
 
 	run_patterns_tests();
 
+	run_reflection_tests();
 
 	test_vector_dot();
 
