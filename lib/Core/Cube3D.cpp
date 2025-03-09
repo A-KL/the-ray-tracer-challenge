@@ -75,8 +75,6 @@ std::list<Intersection> Cube3D::LocalIntersect(const Ray3D& ray) const
     }
 
     return results;
-
-    //return std::list<Intersection> { Intersection(tmin, this), Intersection(tmax, this) };
 }
 
 void Cube3D::CheckAxis(const double origin, const double direction, double &tmin, double &tmax, double min, double max) const

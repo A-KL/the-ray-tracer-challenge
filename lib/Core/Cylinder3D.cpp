@@ -30,71 +30,39 @@ bool Cylinder3D::Cylinder3D::operator==(const Cylinder3D& other) const
 
 const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point) const
 {
-    auto abx_x = abs(point.X());
-    auto abx_y = abs(point.Y());
-    auto abx_z = abs(point.Z());
-
-    auto maxc = Mathf<double>::Max(abx_x, abx_y, abx_z);
-
-    if (maxc == abx_x)
-    {
-        return Vector3D(point.X(), 0, 0);
-    }
-    if (maxc == abx_y)
-    {
-        return Vector3D(0, point.Y(), 0);
-    }
-
-	return Vector3D(0, 0, point.Z());
+	return Vector3D(point.X(), 0, point.Z());
 }
 
 std::list<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
 {
-    double max_x = 0;
-    double min_x = 0;
-
-    double max_y = 0;
-    double min_y = 0;
-
-    double max_z = 0;
-    double min_z = 0;
-
-    CheckAxis(ray.Location.X(), ray.Direction.X(), min_x, max_x);
-    CheckAxis(ray.Location.Y(), ray.Direction.Y(), min_y, max_y);
-    CheckAxis(ray.Location.Z(), ray.Direction.Z(), min_z, max_z);
-
-    auto tmin = Mathf<double>::Max(min_x, min_y, min_z);
-    auto tmax = Mathf<double>::Min(max_x, max_y, max_z);
-
     std::list<Intersection> results;
 
-    if (tmin <= tmax)
+    auto a = ray.Direction.X() * ray.Direction.X() + ray.Direction.Z() * ray.Direction.Z();
+
+    if (Mathf<double>::IsZero(a))
     {
-        results.push_back(Intersection(tmin, this));
-        results.push_back(Intersection(tmax, this));  
+        return results;
     }
 
+    auto b = 2 * ray.Location.X() * ray.Direction.X() +
+             2 * ray.Location.Z() * ray.Direction.Z();
+
+    auto c = ray.Location.X() * ray.Location.X() + ray.Location.Z() * ray.Location.Z() - 1;
+
+    auto disc = b * b - 4 * a * c;
+
+    if (disc < 0)
+    {
+        return results;
+    }
+
+    auto t0 = (-b - std::sqrt(disc)) / (2 * a);
+    auto t1 = (-b + std::sqrt(disc)) / (2 * a);
+
+    results.push_back(Intersection(t0, this));
+    results.push_back(Intersection(t1, this));
+
+    // std::cout << "t0: " << t0 << " t1: " << t1 << std::endl;
+
     return results;
-
-    //return std::list<Intersection> { Intersection(tmin, this), Intersection(tmax, this) };
-}
-
-void Cylinder3D::CheckAxis(const double origin, const double direction, double &tmin, double &tmax, double min, double max) const
-{
-	auto tmin_numerator = (min - origin);
-	auto tmax_numerator = (max - origin);
-
-	if (abs(direction) >= Mathf<double>::Epsilon()) {
-		tmin = tmin_numerator / direction;
-		tmax = tmax_numerator / direction;
-	} else {
-		tmin = tmin_numerator * INFINITY;
-		tmax = tmax_numerator * INFINITY;
-	}
-
-	if (tmin > tmax) {
-		auto tmp = tmin;
-		tmin = tmax;
-		tmax = tmp;
-	}
 }

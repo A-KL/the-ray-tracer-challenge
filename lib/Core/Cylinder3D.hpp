@@ -27,7 +27,4 @@ public:
 	std::list<Intersection> LocalIntersect(const Ray3D& ray) const;
 
 	const Vector3D LocalNormalAt(const Point3D& point) const;
-
-private:
-	void CheckAxis(const double origin, const double direction, double &tmin, double &tmax, double min = -1, double max = 1) const;
 };

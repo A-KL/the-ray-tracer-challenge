@@ -21,22 +21,27 @@
 
 #include "tests.h"
 
-// void test_cylinder3D_ray_hit()
-// {
-//     // Setup
-//     Cube3D cube;
-//     Ray3D ray(Point3D(5, 0.5, 0), Vector3D(-1, 0, 0));
+void test_cylinder_ray_hit()
+{
+    // Setup
+    Point3D origin(0.5, 0, -5);
+    Vector3D direction(0.1, 1, 1);
 
-//     // Act
-//     auto xs = cube.LocalIntersect(ray);
+    Cylinder3D cube;
+    Ray3D ray(origin, direction.Normalize());
+
+    // Act
+    auto xs = cube.LocalIntersect(ray);
     
-//     //Assert
-//     assert(2 == xs.size());
+    //Assert
+    auto first = xs.begin();
+    auto t0 = (first++)->Value;
+    auto t1 = first->Value;
 
-//     auto first = xs.begin();
-//     assert(4 == (first++)->Value);
-//     assert(6 == first->Value);
-// }
+    assert(2 == xs.size());
+    assert(Mathf<double>::Approximately(6.80798, t0));
+    assert(Mathf<double>::Approximately(7.08872, t1));
+}
 
 void test_cylinder_ray_miss()
 {
@@ -45,7 +50,7 @@ void test_cylinder_ray_miss()
     Point3D origin(0, 0, -5);
 
     Cylinder3D cylinder;
-    Ray3D ray(origin, direction);
+    Ray3D ray(origin, direction.Normalize());
 
     // Act
     auto xs = cylinder.LocalIntersect(ray);
@@ -54,20 +59,24 @@ void test_cylinder_ray_miss()
     assert(xs.size() == 0);
 }
 
-// void test_cube_normal()
-// {
-//     // Setup
-//     Cube3D cube;
-//     Point3D point(1, 0.5, -0.8);
+void test_cylinder_normal()
+{
+    // Setup
+    Cylinder3D cube;
+    Point3D point(-1, 1, 0);
 
-//     // Act
-//     auto normal = cube.NormalAt(point);
+    // Act
+    auto normal = cube.NormalAt(point);
     
-//     //Assert
-//     assert(normal == Vector3D(1, 0, 0));
-// }
+    //Assert
+    assert(normal == Vector3D(-1, 0, 0));
+}
 
 void run_cylinder_tests()
 {
 	test_cylinder_ray_miss();
+
+    test_cylinder_ray_hit();
+
+    test_cylinder_normal();
 }
