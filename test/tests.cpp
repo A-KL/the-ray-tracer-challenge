@@ -57,4 +57,6 @@ void run_tests()
 	test_vector_dot();
 
 	test_vector_reflect();
+
+	run_cube_tests();
 }

@@ -23,3 +23,5 @@ void run_shadow_tests();
 void run_patterns_tests();
 
 void run_reflection_tests();
+
+void run_cube_tests();

@@ -25,6 +25,16 @@ struct Mathf
 		return IsZero(a) ? 0 : a;
 	}
 
+	static inline TItem Min(TItem a, TItem b, TItem c)
+	{
+		return a > b ? b > c ? c : b : a > c ? c : a;
+	}
+
+	static inline TItem Max(TItem a, TItem b, TItem c)
+	{
+		return a < b ? b < c ? c : b : a < c ? c : a;
+	}
+
 private:
 	Mathf()
 	{ }
