@@ -25,3 +25,5 @@ void run_patterns_tests();
 void run_reflection_tests();
 
 void run_cube_tests();
+
+void run_cylinder_tests();

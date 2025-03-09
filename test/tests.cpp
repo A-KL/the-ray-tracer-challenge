@@ -59,4 +59,6 @@ void run_tests()
 	test_vector_reflect();
 
 	run_cube_tests();
+
+	run_cylinder_tests();
 }
