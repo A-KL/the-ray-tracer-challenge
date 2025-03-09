@@ -45,7 +45,7 @@ void test_cube_ray_miss()
     Ray3D ray(Point3D(-2, 0, 0), Vector3D(0.2673, 0.5343, 0.8018));
 
     // Act
-    auto xs = cube.Intersect(ray);
+    auto xs = cube.LocalIntersect(ray);
     
     //Assert
     assert(xs.size() == 0);

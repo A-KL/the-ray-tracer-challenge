@@ -66,15 +66,23 @@ std::list<Intersection> Cube3D::LocalIntersect(const Ray3D& ray) const
     auto tmin = Mathf<double>::Max(min_x, min_y, min_z);
     auto tmax = Mathf<double>::Min(max_x, max_y, max_z);
 
-    std::cout << min_x << " : " << min_y << " : " << min_z << std::endl;
+    std::list<Intersection> results;
 
-    return std::list<Intersection> { Intersection(tmin, this), Intersection(tmax, this) };
+    if (tmin <= tmax)
+    {
+        results.push_back(Intersection(tmin, this));
+        results.push_back(Intersection(tmax, this));  
+    }
+
+    return results;
+
+    //return std::list<Intersection> { Intersection(tmin, this), Intersection(tmax, this) };
 }
 
 void Cube3D::CheckAxis(const double origin, const double direction, double &tmin, double &tmax, double min, double max) const
 {
 	auto tmin_numerator = (min - origin);
-	auto tmax_numerator = (max - direction);
+	auto tmax_numerator = (max - origin);
 
 	if (abs(direction) >= Mathf<double>::Epsilon()) {
 		tmin = tmin_numerator / direction;
@@ -89,6 +97,4 @@ void Cube3D::CheckAxis(const double origin, const double direction, double &tmin
 		tmin = tmax;
 		tmax = tmp;
 	}
-
-    std::cout << tmin << " : " << tmax << std::endl;
 }
