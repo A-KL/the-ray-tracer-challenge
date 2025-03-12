@@ -38,6 +38,13 @@ std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const
 	return LocalIntersect(local_ray);
 }
 
+void Shape3D::Swap(double &a, double &b) const
+{
+	auto tmp = a;
+	a = b;
+	b = tmp;
+}
+
 //std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const
 //{
 //	Ray3D final_ray = ray.Transform(Transformation.Inverse());

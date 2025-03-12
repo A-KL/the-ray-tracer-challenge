@@ -59,10 +59,34 @@ std::list<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
     auto t0 = (-b - std::sqrt(disc)) / (2 * a);
     auto t1 = (-b + std::sqrt(disc)) / (2 * a);
 
-    results.push_back(Intersection(t0, this));
-    results.push_back(Intersection(t1, this));
+    if (t0 > t1) {
+        Swap(t0, t1);
+	}
+
+    auto y0 = ray.Location.Y() + t0 * ray.Direction.Y();
+    auto y1 = ray.Location.Y() + t1 * ray.Direction.Y();
+
+    if (Min < y0 && y0 < Max) {
+        results.push_back(Intersection(t0, this));
+    }
+    if (Min < y1 && y1 < Max) {
+        results.push_back(Intersection(t1, this));
+    }
 
     // std::cout << "t0: " << t0 << " t1: " << t1 << std::endl;
 
     return results;
+}
+
+bool Cylinder3D::CheckCap(const Ray3D& ray, const double t) const
+{
+    auto x = ray.Location.X() + t * ray.Direction.X();
+    auto z = ray.Location.Z() + t * ray.Direction.Z();
+
+    return (x * x + z * z) <= 1;
+}
+
+void Cylinder3D::IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const
+{
+ // TODO
 }

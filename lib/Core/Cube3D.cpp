@@ -91,8 +91,6 @@ void Cube3D::CheckAxis(const double origin, const double direction, double &tmin
 	}
 
 	if (tmin > tmax) {
-		auto tmp = tmin;
-		tmin = tmax;
-		tmax = tmp;
+        Swap(tmin, tmax);
 	}
 }

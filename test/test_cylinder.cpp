@@ -72,6 +72,24 @@ void test_cylinder_normal()
     assert(normal == Vector3D(-1, 0, 0));
 }
 
+void test_cylinder_constrains()
+{
+    // Setup
+    Vector3D direction(0, 1, -5);
+    Point3D origin(0, 0, 1);
+
+    Cylinder3D cylinder;
+    cylinder.Min = 1;
+    cylinder.Max = 2;
+    Ray3D ray(origin, direction.Normalize());
+
+    // Act
+    auto xs = cylinder.LocalIntersect(ray);
+    
+    //Assert
+    assert(0 == xs.size());
+}
+
 void run_cylinder_tests()
 {
 	test_cylinder_ray_miss();
@@ -79,4 +97,6 @@ void run_cylinder_tests()
     test_cylinder_ray_hit();
 
     test_cylinder_normal();
+
+    test_cylinder_constrains();
 }

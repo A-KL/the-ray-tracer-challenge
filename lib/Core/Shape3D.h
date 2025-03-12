@@ -32,4 +32,6 @@ protected:
 	virtual const Vector3D LocalNormalAt(const Point3D& point) const = 0;
 
 	virtual std::list<Intersection> LocalIntersect(const Ray3D& ray) const = 0;
+
+	void Swap(double &a, double &b) const;
 };
