@@ -1,6 +1,11 @@
-#define LGFX_AUTODETECT
+#ifdef LGFX_AUTODETECT
 #include <LovyanGFX.h>
 #include <LGFX_AUTODETECT.hpp>
+#else
+#include <TFT_eSPI.h>
+#include <TFT_eSPI_T_HMI_Display.h>
+using LGFX = TFT_eSPI_T_HMI_Display;
+#endif
 
 #include "Canvas.h"
 #include "LovyanGFXCanvas.h"
@@ -18,6 +23,7 @@ LovyanGFXCanvas canvas(lcd);
 void setup(void)
 {
   lcd.init();
+  lcd.fillScreen(TFT_BLUE);
 }
 
 void loop(void)

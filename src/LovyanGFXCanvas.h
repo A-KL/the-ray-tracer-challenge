@@ -1,8 +1,5 @@
 #pragma once
 
-#define LGFX_AUTODETECT
-#include <LovyanGFX.h>
-
 #include "../lib/Core/Color3D.h"
 #include "../lib/Core/Canvas.h"
 
@@ -67,7 +64,7 @@ public:
 
 	inline void Update(bool force = false)
 	{
-		_display->display();
+			_display->display();
 	}
 
 private:

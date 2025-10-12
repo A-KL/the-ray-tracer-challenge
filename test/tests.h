@@ -1,6 +1,8 @@
 #pragma once
 
+#ifndef DBL_EPSILON
 #define DBL_EPSILON 2.2204460492503131e-16
+#endif
 
 void run_tests();
 
