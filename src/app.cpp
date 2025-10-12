@@ -3,8 +3,8 @@
 #include <LGFX_AUTODETECT.hpp>
 #else
 #include <TFT_eSPI.h>
-#include <TFT_eSPI_T_HMI_Display.h>
-using LGFX = TFT_eSPI_T_HMI_Display;
+#include <TFT_eSPI_GFX.h>
+using LGFX = TFT_eSPI_GFX;
 #endif
 
 #include "Canvas.h"
@@ -44,18 +44,3 @@ void loop(void)
 	//run_glass_sphere_demo(canvas);
     //lcd.fillCircle(rand()%lcd.width(), rand()%lcd.height(), 16, rand());
 }
-
-#if defined ( ESP_PLATFORM ) && !defined ( ARDUINO )
-extern "C" {
-
-int app_main(int, char**)
-{
-    setup();
-    for (;;) {
-      loop();
-    }
-    return 0;
-}
-
-}
-#endif
