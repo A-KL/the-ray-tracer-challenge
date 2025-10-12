@@ -16,6 +16,9 @@ class TFT_eSPI_T_HMI_Display : public TFT_eSPI
       pinMode(PWR_EN_PIN, OUTPUT);
       digitalWrite(PWR_EN_PIN, HIGH);
 
+      pinMode(PWR_ON_PIN, OUTPUT);
+      digitalWrite(PWR_ON_PIN, HIGH);
+
       pinMode(TFT_BLK_PIN, OUTPUT);
       digitalWrite(TFT_BLK_PIN, HIGH);
     }

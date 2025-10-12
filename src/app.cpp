@@ -47,6 +47,7 @@ void loop(void)
 
 #if defined ( ESP_PLATFORM ) && !defined ( ARDUINO )
 extern "C" {
+
 int app_main(int, char**)
 {
     setup();
@@ -55,5 +56,6 @@ int app_main(int, char**)
     }
     return 0;
 }
+
 }
 #endif
