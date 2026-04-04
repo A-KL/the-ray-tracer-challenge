@@ -29,3 +29,5 @@ void run_reflection_tests();
 void run_cube_tests();
 
 void run_cylinder_tests();
+
+void run_cone_tests();

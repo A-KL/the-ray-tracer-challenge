@@ -12,9 +12,9 @@ class Cylinder3D
 	: virtual public Shape3D
 {
 public:
-    Cylinder3D();
+	Cylinder3D();
 
-    Cylinder3D(const Matrix4d& transform);
+	Cylinder3D(const Matrix4d& transform);
 
 	Cylinder3D(const Material3D& material);
 
@@ -25,6 +25,8 @@ public:
 	double Min = - INFINITY;
 
 	double Max = INFINITY;
+
+	bool Closed = false;
 
 	bool operator==(const Cylinder3D& other) const;
 

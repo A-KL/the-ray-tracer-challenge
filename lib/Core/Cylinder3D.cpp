@@ -30,7 +30,17 @@ bool Cylinder3D::Cylinder3D::operator==(const Cylinder3D& other) const
 
 const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point) const
 {
-	return Vector3D(point.X(), 0, point.Z());
+    auto dist = point.X() * point.X() + point.Z() * point.Z();
+
+    if (dist < 1 && point.Y() >= Max - Mathf<double>::Epsilon()) {
+        return Vector3D(0, 1, 0);
+    }
+    else if (dist < 1 && point.Y() <= Min + Mathf<double>::Epsilon()) {
+        return Vector3D(0, -1, 0);
+    }
+    else {
+        return Vector3D(point.X(), 0, point.Z());
+    }
 }
 
 std::list<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
@@ -88,5 +98,27 @@ bool Cylinder3D::CheckCap(const Ray3D& ray, const double t) const
 
 void Cylinder3D::IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const
 {
- // TODO
+    // a helper function to reduce duplication.
+    // checks to see if the intersection at `t` is within a radius
+    // of 1 (the radius of your cylinders) from the y axis.
+
+    if (!Closed || ray.Direction.Y() == 0){
+        return;
+    }
+
+    // check for an intersection with the lower end cap by intersecting
+    // the ray with the plane at y=cyl.minimum
+
+    auto t = (Min - ray.Location.Y()) / ray.Direction.Y();
+    if (CheckCap(ray, t)) {
+        results.push_back(Intersection(t, this));
+    }
+
+    // check for an intersection with the upper end cap by intersecting
+    // the ray with the plane at y=cyl.maximum
+    
+    t = (Max - ray.Location.Y()) / ray.Direction.Y();
+    if (CheckCap(ray, t)) {
+        results.push_back(Intersection(t, this));
+    }
 }

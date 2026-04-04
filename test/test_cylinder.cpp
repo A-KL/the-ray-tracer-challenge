@@ -90,6 +90,24 @@ void test_cylinder_constrains()
     assert(0 == xs.size());
 }
 
+void test_cylinder_constrains_closed()
+{
+    // Setup
+    Point3D origin(0.5, 1, 0);
+    Vector3D direction(0, -1, 0);
+
+    Cylinder3D cylinder;
+    cylinder.Min = 1;
+    cylinder.Max = 2;
+    cylinder.Closed = true;
+
+    // Act
+    auto n = cylinder.LocalNormalAt(origin);
+
+    //Assert
+    assert(direction == n);
+}
+
 void run_cylinder_tests()
 {
 	test_cylinder_ray_miss();
@@ -99,4 +117,6 @@ void run_cylinder_tests()
     test_cylinder_normal();
 
     test_cylinder_constrains();
+
+    test_cylinder_constrains_closed();
 }
