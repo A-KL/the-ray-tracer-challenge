@@ -22,6 +22,8 @@
 #include "../lib/Core/Object3D.h"
 #include "../lib/Core/Shape3D.h"
 #include "../lib/Core/Sphere3D.h"
+#include "../lib/Core/Cylinder3D.hpp"
+#include "../lib/Core/Cone3D.hpp"
 #include "../lib/Core/Plane3D.hpp"
 #include "../lib/Core/Intersection.h"
 #include "../lib/Core/Ray3D.h"
@@ -435,6 +437,40 @@ void run_glass_sphere_demo(Canvas& canvas)
 
 	scene.Shapes.push_back(&floor);
 	scene.Shapes.push_back(&sphere);
+
+	main_camera.Render(scene, canvas);
+}
+
+void run_cylinder_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+		Camera(w, h, M_PI / 3, Point3D(0, 0, -10), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+
+	auto main_light = 
+		Light3D(Point3D(-10, 10, -10), Color3D::White);
+
+	// Cylinder
+
+	auto material = 
+		Material3D(SolidColor3D(Color3D::White), 0.1, 0.8, 0.6, 15);
+
+	auto cylinder = 
+		Cylinder3D(Matrix4d::Translate(0, -0.5, 0) * Matrix4d::Scale(1, 3.1415, 1), material);
+
+		cylinder.Closed = true;
+		cylinder.Min = 0;
+		cylinder.Max = 1;
+
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+	scene.Shapes.push_back(&cylinder);
 
 	main_camera.Render(scene, canvas);
 }

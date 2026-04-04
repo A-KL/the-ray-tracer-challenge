@@ -1,15 +1,13 @@
 #pragma once
 
-#include <M5GFX.h>
-
 #include "../lib/Core/Color3D.h"
 #include "../lib/Core/Canvas.h"
 
-class M5StackCanvas :
+class LovyanGFXCanvas :
 	public Canvas
 {
 public:
-	M5StackCanvas(M5GFX& display) :
+	LovyanGFXCanvas(LGFX& display) :
 		_display(&display)
 	{ }
 
@@ -66,11 +64,11 @@ public:
 
 	inline void Update(bool force = false)
 	{
-		_display->display();
+			_display->display();
 	}
 
 private:
-	M5GFX* _display;
+	LGFX* _display;
 
 	const Color3D _background = Color3D::Black;
 };
