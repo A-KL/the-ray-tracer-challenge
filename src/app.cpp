@@ -39,8 +39,10 @@ void loop(void)
 	//run_scene_demo(canvas);
 	//run_scene_plane_demo(canvas);
 	//run_scene_patterns_demo(canvas);
-	run_fresnel_demo(canvas);
+	// run_fresnel_demo(canvas);
 
 	//run_glass_sphere_demo(canvas);
+
+	run_cylinder_demo(canvas);
     //lcd.fillCircle(rand()%lcd.width(), rand()%lcd.height(), 16, rand());
 }
