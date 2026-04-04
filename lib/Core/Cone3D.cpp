@@ -48,17 +48,20 @@ const Vector3D Cone3D::LocalNormalAt(const Point3D& point) const
     }
 }
 
-bool Cone3D::CheckCap(const Ray3D& ray, const double t, double radius) const
+bool Cone3D::CheckCap(const Ray3D& ray, const double t) const
 {
     auto x = ray.Location.X() + t * ray.Direction.X();
+    auto y = ray.Location.Y() + t * ray.Direction.Y();
     auto z = ray.Location.Z() + t * ray.Direction.Z();
 
-    return (x * x + z * z) <= radius;
+    return (x * x + z * z) <= (y * y);
 }
 
 std::list<Intersection> Cone3D::LocalIntersect(const Ray3D& ray) const
 {
     std::list<Intersection> results;
+
+    IntersectCaps(ray, results);
 
     auto a = ray.Direction.X() * ray.Direction.X() -  
              ray.Direction.Y() * ray.Direction.Y() + 
@@ -111,3 +114,29 @@ std::list<Intersection> Cone3D::LocalIntersect(const Ray3D& ray) const
     return results;
 }
 
+void Cone3D::IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const
+{
+    // a helper function to reduce duplication.
+    // checks to see if the intersection at `t` is within a radius
+    // of 1 (the radius of your cones) from the y axis.
+
+    if (!Closed || Mathf<double>::IsZero(ray.Direction.Y())){
+        return;
+    }
+
+    // check for an intersection with the lower end cap by intersecting
+    // the ray with the plane at y=cone.minimum
+
+    auto t = (Min - ray.Location.Y()) / ray.Direction.Y();
+    if (CheckCap(ray, t)) {
+        results.push_back(Intersection(t, this));
+    }
+
+    // check for an intersection with the upper end cap by intersecting
+    // the ray with the plane at y=cone.maximum
+    
+    t = (Max - ray.Location.Y()) / ray.Direction.Y();
+    if (CheckCap(ray, t)) {
+        results.push_back(Intersection(t, this));
+    }
+}

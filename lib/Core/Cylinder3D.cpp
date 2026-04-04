@@ -102,7 +102,7 @@ void Cylinder3D::IntersectCaps(const Ray3D& ray, std::list<Intersection>& result
     // checks to see if the intersection at `t` is within a radius
     // of 1 (the radius of your cylinders) from the y axis.
 
-    if (!Closed || ray.Direction.Y() == 0){
+    if (!Closed || Mathf<double>::IsZero(ray.Direction.Y())){
         return;
     }
 
