@@ -63,4 +63,6 @@ void run_tests()
 	run_cylinder_tests();
 
 	run_cone_tests();
+
+	run_group_tests();
 }

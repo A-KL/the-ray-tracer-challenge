@@ -18,18 +18,16 @@ public:
 
   Group3D(const Point3D& position, const Matrix4d& transform);
 
-  // Group3D(const Material3D& material);
+  Group3D* AddShape(Shape3D& shape);
 
-  // Group3D(const Matrix4d& transform, const Material3D& material);
+  Group3D* AddShape(Shape3D* shape);
 
-  // Group3D(const Point3D& position, const Matrix4d& transform, const Material3D& material);
+  bool operator==(const Group3D& other) const;
 
-  // std::vector<std::shared_ptr<Shape3D>> Shapes;
+  std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 
-  // bool operator==(const Group3D& other) const;
+private:
+  std::vector<Shape3D*> _shapes;
 
-  // std::list<Intersection> LocalIntersect(const Ray3D& ray) const;
-
-  // const Vector3D LocalNormalAt(const Point3D& point) const;
-
+  const Vector3D LocalNormalAt(const Point3D& point) const;
 };

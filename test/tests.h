@@ -31,3 +31,5 @@ void run_cube_tests();
 void run_cylinder_tests();
 
 void run_cone_tests();
+
+void run_group_tests();

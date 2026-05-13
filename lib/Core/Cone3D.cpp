@@ -24,7 +24,7 @@ Cone3D::Cone3D(const Point3D& position, const Matrix4d& transform, const Materia
 	Shape3D(position, transform, material)
 { }
 
-bool Cone3D::Cone3D::operator==(const Cone3D& other) const
+bool Cone3D::operator==(const Cone3D& other) const
 {
 	return *this == other;
 }
@@ -57,9 +57,9 @@ bool Cone3D::CheckCap(const Ray3D& ray, const double t) const
     return (x * x + z * z) <= (y * y);
 }
 
-std::list<Intersection> Cone3D::LocalIntersect(const Ray3D& ray) const
+std::vector<Intersection> Cone3D::LocalIntersect(const Ray3D& ray) const
 {
-    std::list<Intersection> results;
+    std::vector<Intersection> results;
 
     IntersectCaps(ray, results);
 
@@ -114,7 +114,7 @@ std::list<Intersection> Cone3D::LocalIntersect(const Ray3D& ray) const
     return results;
 }
 
-void Cone3D::IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const
+void Cone3D::IntersectCaps(const Ray3D& ray, std::vector<Intersection>& results) const
 {
     // a helper function to reduce duplication.
     // checks to see if the intersection at `t` is within a radius

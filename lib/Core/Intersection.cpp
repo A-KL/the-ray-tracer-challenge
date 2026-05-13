@@ -18,12 +18,12 @@ bool Intersection::operator!=(const Intersection& other) const
 	return !(*this == other);
 }
 
-//bool Intersection::operator>(const Intersection& other) const
-//{
-//	return Value > other.Value;
-//}
-//
-//bool Intersection::operator<(const Intersection& other) const
-//{
-//	return Value < other.Value;
-//}
+bool Intersection::operator>(const Intersection& other) const
+{
+	return Value > other.Value;
+}
+
+bool Intersection::operator<(const Intersection& other) const
+{
+	return Value < other.Value;
+}

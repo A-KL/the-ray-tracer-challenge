@@ -43,9 +43,9 @@ const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point) const
     }
 }
 
-std::list<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
+std::vector<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
 {
-    std::list<Intersection> results;
+    std::vector<Intersection> results;
 
     auto a = ray.Direction.X() * ray.Direction.X() + ray.Direction.Z() * ray.Direction.Z();
 

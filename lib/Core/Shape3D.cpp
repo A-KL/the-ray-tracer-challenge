@@ -31,7 +31,7 @@ const Vector3D Shape3D::NormalAt(const Point3D& point) const
 	return world_normal.Normalize();
 }
 
-std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const
+std::vector<Intersection> Shape3D::Intersect(const Ray3D& ray) const
 {
 	auto local_ray = ray.Transform(Transformation.Inverse());
 

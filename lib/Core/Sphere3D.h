@@ -28,5 +28,5 @@ public:
 protected:
 	const Vector3D LocalNormalAt(const Point3D& point) const;
 
-	std::list<Intersection> LocalIntersect(const Ray3D& ray) const;
+	std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 };

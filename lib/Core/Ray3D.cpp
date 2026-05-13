@@ -20,7 +20,7 @@ Ray3D Ray3D::Transform(const Matrix4d& transformation) const
 	return Ray3D(pos, dir);
 }
 
-std::list<Intersection> Ray3D::Intersect(const std::list<Shape3D*>& objects) const
+std::vector<Intersection> Ray3D::Intersect(const std::vector<Shape3D*>& objects) const
 {
 	std::list<Intersection> result;
 
@@ -34,7 +34,8 @@ std::list<Intersection> Ray3D::Intersect(const std::list<Shape3D*>& objects) con
 		}
 	}
 
-	result.sort(IntersectionComparator());
+	// std::list<Intersection>::sort(result.begin(), result.end());
+	result.sort();
 
-	return result;
+	return std::vector<Intersection>(result.begin(), result.end());
 }

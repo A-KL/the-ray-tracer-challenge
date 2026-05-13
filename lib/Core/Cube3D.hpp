@@ -12,9 +12,9 @@ class Cube3D
 	: virtual public Shape3D
 {
 public:
-    Cube3D();
+	Cube3D();
 
-    Cube3D(const Matrix4d& transform);
+	Cube3D(const Matrix4d& transform);
 
 	Cube3D(const Material3D& material);
 
@@ -24,7 +24,7 @@ public:
 
 	bool operator==(const Cube3D& other) const;
 
-	std::list<Intersection> LocalIntersect(const Ray3D& ray) const;
+	std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 
 	const Vector3D LocalNormalAt(const Point3D& point) const;
 

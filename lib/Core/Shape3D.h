@@ -22,16 +22,18 @@ public:
 
 	const Material3D Material;
 
+	Shape3D* Parent = nullptr;
+
 	const Vector3D NormalAt(const Point3D& point) const;
 
-	std::list<Intersection> Intersect(const Ray3D& ray) const;
+	std::vector<Intersection> Intersect(const Ray3D& ray) const;
 	
 	bool operator==(const Shape3D& other) const;
 
 protected:
 	virtual const Vector3D LocalNormalAt(const Point3D& point) const = 0;
 
-	virtual std::list<Intersection> LocalIntersect(const Ray3D& ray) const = 0;
+	virtual std::vector<Intersection> LocalIntersect(const Ray3D& ray) const = 0;
 
 	void Swap(double &a, double &b) const;
 };

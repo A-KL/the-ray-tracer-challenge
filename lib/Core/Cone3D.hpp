@@ -31,12 +31,13 @@ public:
 
 	bool operator==(const Cone3D& other) const;
 
-	std::list<Intersection> LocalIntersect(const Ray3D& ray) const;
+	std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 
 	const Vector3D LocalNormalAt(const Point3D& point) const;
 
 private:
+
 	bool CheckCap(const Ray3D& ray, const double t) const;
 
-	void IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const;
+	void IntersectCaps(const Ray3D& ray, std::vector<Intersection>& results) const;
 };

@@ -17,6 +17,11 @@ Light3D::Light3D(const Point3D& position, const Matrix4d& translate, const Color
 	Intensity(intensity)
 { }
 
+bool Light3D::operator==(const Light3D& other) const
+{
+	return (Object3D)*this == (Object3D)other && Intensity == other.Intensity;
+}
+
 Color3D Light3D::Compute(const Material3D& material, const Shape3D& shape, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow) const
 {
 	auto effective_color = material.Pattern->at_shape(position, shape) * Intensity;
@@ -50,7 +55,7 @@ Color3D Light3D::Compute(const Material3D& material, const Shape3D& shape, const
 	return ambient + diffuse + specular;
 }
 
-bool Light3D::InShadow(const Point3D& point, const std::list<Shape3D*>& shapes) const
+bool Light3D::InShadow(const Point3D& point, const std::vector<Shape3D*>& shapes) const
 {
 	auto v = Position - point;
 	auto distance = v.Magniture();

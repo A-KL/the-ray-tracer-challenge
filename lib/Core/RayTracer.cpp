@@ -2,7 +2,7 @@
 
 #include "Vector3D.h"
 
-const static std::list<Intersection> EmptyList;
+const static std::vector<Intersection> EmptyList;
 
 // std::list<Intersection> ray_intersect(const Shape3D* object, const Ray3D& ray)
 // {
@@ -35,17 +35,18 @@ const static std::list<Intersection> EmptyList;
 // 	return result;
 // }
 
-std::list<Intersection> ray_hit(const std::list<Intersection>& intersections)
+std::vector<Intersection> ray_hit(const std::vector<Intersection>& intersections)
 {
-	std::list<Intersection> sorted(intersections);
+	std::list<Intersection> sorted(intersections.begin(), intersections.end());
 
-	sorted.sort(IntersectionComparator());
+	// std::sort(sorted.begin(), sorted.end()); //, IntersectionComparator()
+	sorted.sort();
 
 	for (auto& intersection : sorted)
 	{
 		if (intersection.Value >= 0)
 		{
-			return std::list<Intersection> { intersection };
+			return std::vector<Intersection> { intersection };
 		}
 	}
 

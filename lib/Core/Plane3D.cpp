@@ -33,9 +33,9 @@ const Vector3D Plane3D::LocalNormalAt(const Point3D& point) const
 	return Vector3D(0, 1, 0);
 }
 
-std::list<Intersection> Plane3D::LocalIntersect(const Ray3D& ray) const
+std::vector<Intersection> Plane3D::LocalIntersect(const Ray3D& ray) const
 {
-	std::list<Intersection> result;
+	std::vector<Intersection> result;
 
 	if (fabs(ray.Direction.Y()) < Mathf<double>::Epsilon())
 	{

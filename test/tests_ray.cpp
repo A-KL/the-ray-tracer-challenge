@@ -92,7 +92,7 @@ void test_ray_positive_hits()
 		intersection1(1, sphere),
 		intersection2(2, sphere);
 
-	std::list<Intersection> intersections = {
+	std::vector<Intersection> intersections = {
 		intersection1,
 		intersection2
 	};
@@ -113,7 +113,7 @@ void test_ray_some_negative_hits()
 		intersection1(-1, sphere),
 		intersection2(1, sphere);
 
-	std::list<Intersection> intersections = {
+	std::vector<Intersection> intersections = {
 		intersection1,
 		intersection2
 	};
@@ -134,7 +134,7 @@ void test_ray_some_all_negative_hits()
 		intersection1(-2, sphere),
 		intersection2(-1, sphere);
 
-	std::list<Intersection> intersections = {
+	std::vector<Intersection> intersections = {
 		intersection1,
 		intersection2
 	};
@@ -157,7 +157,7 @@ void test_ray_mixed_hits()
 		intersection3(-3, sphere),
 		intersection4(2, sphere);
 
-	std::list<Intersection> intersections1 = {
+	std::vector<Intersection> intersections1 = {
 		intersection1,
 		intersection2,
 		intersection3,

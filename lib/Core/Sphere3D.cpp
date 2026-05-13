@@ -32,7 +32,7 @@ const Vector3D Sphere3D::LocalNormalAt(const Point3D& point) const
 	return object_normal;
 }
 
-std::list<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
+std::vector<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
 {
 	Vector3D object_to_ray = ray.Location - Position;
 	
@@ -55,8 +55,10 @@ std::list<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
 	
 		result.push_back(Intersection(t1, this));
 		result.push_back(Intersection(t2, this));
-		result.sort(IntersectionComparator());
+
+	//	std::sort(result.begin(), result.end());//, IntersectionComparator());
+		result.sort();
 	}
 	
-	return result;
+	return std::vector<Intersection>(result.begin(), result.end());
 }
