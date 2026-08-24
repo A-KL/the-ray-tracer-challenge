@@ -37,5 +37,5 @@ public:
 private:
 	bool CheckCap(const Ray3D& ray, const double t) const;
 
-	void IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const;
+	void IntersectCaps(const Ray3D& ray, std::vector<Intersection>& results) const;
 };

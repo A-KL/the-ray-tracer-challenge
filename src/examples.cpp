@@ -480,8 +480,8 @@ Shape3D* hexagon_corner(const ColorPattern& color)
 {
 	auto corner = new Sphere3D(
 		Matrix4d::Translate(0, 0, -1) * 
-		Matrix4d::Scale(0.25, 0.25, 0.25));
-		Material3D(color, 0.1, 0.8, 0.6, 15);
+		Matrix4d::Scale(0.25, 0.25, 0.25),
+		Material3D(color, 0.1, 0.8, 0.6, 15));
 
 	return corner;
 }
@@ -497,7 +497,7 @@ Shape3D* hexagon_edge(const ColorPattern& color)
 
 		edge->Min	= 0;
 		edge->Max	= 1;
-		edge->Closed = true;
+		edge->Closed = false;
 
 	return edge;
 }
@@ -524,10 +524,12 @@ void run_hexagon_demo(Canvas& canvas)
 		Light3D(Point3D(-10, 10, -10), Color3D::White);
 
 	auto main_color = 
-		SolidColor3D(Color3D::Blue);
+		//CheckersColor3D(Color3D::DarkGray, Color3D::Gray, Matrix4d::Scale(0.5, 0.5, 0.5));
+		GradientColor3D(Color3D::Red, Color3D::Yellow);
+		//SolidColor3D(Color3D::Blue);
 
 	// Hexagon
-	
+
 	Group3D hexagon;
 
 	for (auto i = 0; i < 6; i++) {

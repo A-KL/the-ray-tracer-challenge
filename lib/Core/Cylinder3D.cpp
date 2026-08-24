@@ -50,6 +50,8 @@ std::vector<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
 {
     std::vector<Intersection> results;
 
+    IntersectCaps(ray, results);
+
     auto a = ray.Direction.X() * ray.Direction.X() + ray.Direction.Z() * ray.Direction.Z();
 
     if (Mathf<double>::IsZero(a))
@@ -99,7 +101,7 @@ bool Cylinder3D::CheckCap(const Ray3D& ray, const double t) const
     return (x * x + z * z) <= 1;
 }
 
-void Cylinder3D::IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const
+void Cylinder3D::IntersectCaps(const Ray3D& ray, std::vector<Intersection>& results) const
 {
     // a helper function to reduce duplication.
     // checks to see if the intersection at `t` is within a radius
