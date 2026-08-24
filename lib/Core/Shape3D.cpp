@@ -2,33 +2,39 @@
 
 #include "Ray3D.h"
 
-Shape3D::Shape3D(const Material3D& material) :
+Shape3D::Shape3D(const Material3D material) :
 	Shape3D(Point3D::Origin, Matrix4d::Identity(), material)
 {}
 
-Shape3D::Shape3D(const Matrix4d& transform, const Material3D& material) :
+Shape3D::Shape3D(const Matrix4d transform, const Material3D material) :
 	Shape3D(Point3D::Origin, transform, material)
 {}
 
-Shape3D::Shape3D(const Point3D& position, const Matrix4d& transform, const Material3D& material) :
+Shape3D::Shape3D(const Point3D position, const Matrix4d transform, const Material3D material) :
 	Object3D(position, transform),
 	Material(material)
 { }
 
 bool Shape3D::operator==(const Shape3D& other) const
 {
-	return ((Object3D)*this) == other && Material == other.Material;
+	return Object3D::operator==(other) && Material == other.Material;
 }
 
 const Vector3D Shape3D::NormalAt(const Point3D& point) const
 {
-	auto inverse = Transformation.Inverse();
-	auto local_point = inverse * point;
+	auto local_point = WorldToObject(*this, point);
 	auto local_normal = LocalNormalAt(local_point);
-	auto world_normal = inverse.Transpose() * local_normal;
-	world_normal.SetW(0);
+	auto world_normal = NormalToWorld(*this, local_normal);
 
-	return world_normal.Normalize();
+	return world_normal;
+
+	// auto inverse = Transformation.Inverse();
+	// auto local_point = inverse * point;
+	// auto local_normal = LocalNormalAt(local_point);
+	// auto world_normal = inverse.Transpose() * local_normal;
+	// world_normal.SetW(0);
+
+	// return world_normal.Normalize();
 }
 
 std::vector<Intersection> Shape3D::Intersect(const Ray3D& ray) const
@@ -43,6 +49,33 @@ void Shape3D::Swap(double &a, double &b) const
 	auto tmp = a;
 	a = b;
 	b = tmp;
+}
+
+const Point3D Shape3D::WorldToObject(const Shape3D& shape, const Point3D& point) const
+{
+	auto object_point = point;
+
+    if (shape.Parent != nullptr)
+    {
+        object_point = WorldToObject(*shape.Parent, object_point);
+    }
+
+    return (shape.Transformation.Inverse() * object_point);
+}
+
+const Vector3D Shape3D::NormalToWorld(const Shape3D& shape, const Vector3D& normal) const
+{
+    auto object_normal = shape.Transformation.Inverse().Transpose() * normal;
+    object_normal.SetW(0);
+
+    auto world_normal = object_normal.Normalize();
+
+    if (shape.Parent != nullptr)
+    {
+        world_normal = NormalToWorld(*shape.Parent, world_normal);
+    }
+
+    return world_normal;
 }
 
 //std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const

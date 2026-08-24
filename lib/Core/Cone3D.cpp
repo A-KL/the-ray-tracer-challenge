@@ -26,7 +26,10 @@ Cone3D::Cone3D(const Point3D& position, const Matrix4d& transform, const Materia
 
 bool Cone3D::operator==(const Cone3D& other) const
 {
-	return *this == other;
+    return Shape3D::operator==(other) &&
+        (Min == other.Min || Mathf<double>::Approximately(Min, other.Min)) &&
+        (Max == other.Max || Mathf<double>::Approximately(Max, other.Max)) &&
+        Closed == other.Closed;
 }
 
 const Vector3D Cone3D::LocalNormalAt(const Point3D& point) const

@@ -23,6 +23,7 @@
 #include "../lib/Core/Shape3D.h"
 #include "../lib/Core/Sphere3D.h"
 #include "../lib/Core/Cylinder3D.hpp"
+#include "../lib/Core/Group3D.hpp"
 #include "../lib/Core/Cone3D.hpp"
 #include "../lib/Core/Plane3D.hpp"
 #include "../lib/Core/Intersection.h"
@@ -471,6 +472,75 @@ void run_cylinder_demo(Canvas& canvas)
 
 	scene.Lights.push_back(&main_light);
 	scene.Shapes.push_back(&cylinder);
+
+	main_camera.Render(scene, canvas);
+}
+
+Shape3D* hexagon_corner(const ColorPattern& color)
+{
+	auto corner = new Sphere3D(
+		Matrix4d::Translate(0, 0, -1) * 
+		Matrix4d::Scale(0.25, 0.25, 0.25));
+		Material3D(color, 0.1, 0.8, 0.6, 15);
+
+	return corner;
+}
+
+Shape3D* hexagon_edge(const ColorPattern& color)
+{
+	auto edge = new Cylinder3D(
+		Matrix4d::Translate(0, 0, -1) * 
+		Matrix4d::RotateY(-M_PI / 6) *
+		Matrix4d::RotateZ(-M_PI / 2) * 
+		Matrix4d::Scale(0.25, 1, 0.25),
+		Material3D(color, 0.1, 0.8, 0.6, 15));
+
+		edge->Min	= 0;
+		edge->Max	= 1;
+		edge->Closed = true;
+
+	return edge;
+}
+
+Group3D* hexagon_side(const Matrix4d& transformation, const ColorPattern& color)
+{
+	auto side = new Group3D(transformation);
+
+	side->AddShape(hexagon_corner(color));
+	side->AddShape(hexagon_edge(color));
+
+	return side;
+}
+
+void run_hexagon_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+		Camera(w, h, M_PI / 3, Point3D(0.5, 1.25, -3), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+
+	auto main_light = 
+		Light3D(Point3D(-10, 10, -10), Color3D::White);
+
+	auto main_color = 
+		SolidColor3D(Color3D::Blue);
+
+	// Hexagon
+	
+	Group3D hexagon;
+
+	for (auto i = 0; i < 6; i++) {
+		auto side = hexagon_side(Matrix4d::RotateY(i * M_PI / 3), main_color);
+		hexagon.AddShape(side);
+	}
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+	scene.Shapes.push_back(&hexagon);
 
 	main_camera.Render(scene, canvas);
 }

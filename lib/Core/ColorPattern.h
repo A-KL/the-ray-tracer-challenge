@@ -13,7 +13,7 @@ class ColorPattern
 public:
 	ColorPattern();
 
-	ColorPattern(const Matrix4d& transformation);
+	ColorPattern(const Matrix4d transformation);
 
 	const Matrix4d Transformation;
 
@@ -30,7 +30,7 @@ class TestPattern
 public:
 	TestPattern();
 
-	TestPattern(const Matrix4d& transformation);
+	TestPattern(const Matrix4d transformation);
 
 	const Color3D at(const Point3D& location) const;
 };
@@ -41,9 +41,9 @@ class SolidColor3D
 public:
 	SolidColor3D(double r = 1, double g = 1, double b = 1);
 
-	SolidColor3D(const Color3D& color);
+	SolidColor3D(const Color3D color);
 
-	SolidColor3D(const Color3D& color, const Matrix4d& transformation);
+	SolidColor3D(const Color3D color, const Matrix4d transformation);
 
 	const Color3D Color;
 
@@ -52,14 +52,13 @@ public:
 	const static SolidColor3D Default;
 };
 
-
 class StripeColor3D
 	: public ColorPattern
 {
 public:
-	StripeColor3D(const Color3D& colorA, const Color3D& colorB);
+	StripeColor3D(const Color3D colorA, const Color3D colorB);
 
-	StripeColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation);
+	StripeColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation);
 
 	const Color3D ColorA;
 	const Color3D ColorB;
@@ -71,9 +70,9 @@ class GradientColor3D
 	: public StripeColor3D
 {
 public:
-	GradientColor3D(const Color3D& colorA, const Color3D& colorB);
+	GradientColor3D(const Color3D colorA, const Color3D colorB);
 
-	GradientColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation);
+	GradientColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation);
 
 	const Color3D at(const Point3D& location) const;
 };
@@ -82,9 +81,9 @@ class RingColor3D
 	: public StripeColor3D
 {
 public:
-	RingColor3D(const Color3D& colorA, const Color3D& colorB);
+	RingColor3D(const Color3D colorA, const Color3D colorB);
 
-	RingColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation);
+	RingColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation);
 
 	const Color3D at(const Point3D& location) const;
 };
@@ -93,9 +92,9 @@ class CheckersColor3D
 	: public StripeColor3D
 {
 public:
-	CheckersColor3D(const Color3D& colorA, const Color3D& colorB);
+	CheckersColor3D(const Color3D colorA, const Color3D colorB);
 
-	CheckersColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation);
+	CheckersColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation);
 
 	const Color3D at(const Point3D& location) const;
 };

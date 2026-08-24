@@ -25,7 +25,7 @@ Cube3D::Cube3D(const Point3D& position, const Matrix4d& transform, const Materia
 
 bool Cube3D::operator==(const Cube3D& other) const
 {
-	return (Cube3D)*this == other;
+    return Shape3D::operator==(other);
 }
 
 const Vector3D Cube3D::LocalNormalAt(const Point3D& point) const

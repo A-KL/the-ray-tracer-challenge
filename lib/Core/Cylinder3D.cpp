@@ -7,25 +7,28 @@ Cylinder3D::Cylinder3D() :
     Cylinder3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
 { }
 
-Cylinder3D::Cylinder3D(const Matrix4d& transform) :
+Cylinder3D::Cylinder3D(const Matrix4d transform) :
     Cylinder3D(Point3D::Origin, transform, Material3D::Default)
 { }
 
-Cylinder3D::Cylinder3D(const Material3D& material) :
+Cylinder3D::Cylinder3D(const Material3D material) :
     Cylinder3D(Point3D::Origin, Matrix4d::Identity(), material)
 { }
 
-Cylinder3D::Cylinder3D(const Matrix4d& transform, const Material3D& material) :
+Cylinder3D::Cylinder3D(const Matrix4d transform, const Material3D material) :
 	Shape3D(Point3D::Origin, transform, material)
 { }
 
-Cylinder3D::Cylinder3D(const Point3D& position, const Matrix4d& transform, const Material3D& material) :
+Cylinder3D::Cylinder3D(const Point3D position, const Matrix4d transform, const Material3D material) :
 	Shape3D(position, transform, material)
 { }
 
 bool Cylinder3D::Cylinder3D::operator==(const Cylinder3D& other) const
 {
-	return (Cylinder3D)*this == other;
+    return Shape3D::operator==(other) &&
+        (Min == other.Min || Mathf<double>::Approximately(Min, other.Min)) &&
+        (Max == other.Max || Mathf<double>::Approximately(Max, other.Max)) &&
+        Closed == other.Closed;
 }
 
 const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point) const

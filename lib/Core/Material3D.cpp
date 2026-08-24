@@ -26,7 +26,7 @@ const Material3D Material3D::Glass(
 );
 
 Material3D::Material3D(const Material3D& material)
-	: Material3D(*material.Pattern, material.Ambient, material.Diffuse, material.Specular, material.Shininess, material.Reflective, material.Transparency, material.RefractiveIndex)
+	: Material3D(material.Pattern, material.Ambient, material.Diffuse, material.Specular, material.Shininess, material.Reflective, material.Transparency, material.RefractiveIndex)
 { }
 
 Material3D::Material3D(const ColorPattern& pattern, double ambient, double diffuse, double specular, double shininess, double reflective, double transparency, double refractive_index)

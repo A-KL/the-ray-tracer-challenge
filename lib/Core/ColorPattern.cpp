@@ -7,7 +7,7 @@ ColorPattern::ColorPattern()
 	: Transformation(Matrix4d::Identity())
 { }
 
-ColorPattern::ColorPattern(const Matrix4d& transformation)
+ColorPattern::ColorPattern(const Matrix4d transformation)
 	: Transformation(transformation)
 { }
 
@@ -30,7 +30,7 @@ TestPattern::TestPattern()
 	: ColorPattern()
 { }
 
-TestPattern::TestPattern(const Matrix4d& transformation)
+TestPattern::TestPattern(const Matrix4d transformation)
 	: ColorPattern(transformation)
 { }
 
@@ -45,11 +45,11 @@ SolidColor3D::SolidColor3D(double r, double g, double b)
 	: SolidColor3D(Color3D(r, g, b))
 { }
 
-SolidColor3D::SolidColor3D(const Color3D& color)
+SolidColor3D::SolidColor3D(const Color3D color)
 	: SolidColor3D(color, Matrix4d::Identity())
 { }
 
-SolidColor3D::SolidColor3D(const Color3D& color, const Matrix4d& transformation)
+SolidColor3D::SolidColor3D(const Color3D color, const Matrix4d transformation)
 	: Color(color), ColorPattern(transformation)
 { }
 
@@ -60,11 +60,11 @@ const Color3D SolidColor3D::at(const Point3D& location) const
 
 // StripeColor3D
 
-StripeColor3D::StripeColor3D(const Color3D& colorA, const Color3D& colorB)
+StripeColor3D::StripeColor3D(const Color3D colorA, const Color3D colorB)
 	: StripeColor3D(colorA, colorB, Matrix4d::Identity())
 { }
 
-StripeColor3D::StripeColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
+StripeColor3D::StripeColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation)
 	: ColorA(colorA), ColorB(colorB), ColorPattern(transformation)
 { }
 
@@ -75,11 +75,11 @@ const Color3D StripeColor3D::at(const Point3D& location) const
 
 // GradientColor3D
 
-GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB)
+GradientColor3D::GradientColor3D(const Color3D colorA, const Color3D colorB)
 	: GradientColor3D(colorA, colorB, Matrix4d::Identity())
 { }
 
-GradientColor3D::GradientColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
+GradientColor3D::GradientColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation)
 	: StripeColor3D(colorA, colorB, transformation)
 { }
 
@@ -90,11 +90,11 @@ const Color3D GradientColor3D::at(const Point3D& location) const
 
 // RingColor3D
 
-RingColor3D::RingColor3D(const Color3D& colorA, const Color3D& colorB)
+RingColor3D::RingColor3D(const Color3D colorA, const Color3D colorB)
 	: RingColor3D(colorA, colorB, Matrix4d::Identity())
 { }
 
-RingColor3D::RingColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
+RingColor3D::RingColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation)
 	: StripeColor3D(colorA, colorB, transformation)
 { }
 
@@ -116,11 +116,11 @@ const Color3D RingColor3D::at(const Point3D& location) const
 
 // CheckersColor3D
 
-CheckersColor3D::CheckersColor3D(const Color3D& colorA, const Color3D& colorB)
+CheckersColor3D::CheckersColor3D(const Color3D colorA, const Color3D colorB)
 	: CheckersColor3D(colorA, colorB, Matrix4d::Identity())
 { }
 
-CheckersColor3D::CheckersColor3D(const Color3D& colorA, const Color3D& colorB, const Matrix4d& transformation)
+CheckersColor3D::CheckersColor3D(const Color3D colorA, const Color3D colorB, const Matrix4d transformation)
 	: StripeColor3D(colorA, colorB, transformation)
 { }
 

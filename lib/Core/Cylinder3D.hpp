@@ -14,13 +14,13 @@ class Cylinder3D
 public:
 	Cylinder3D();
 
-	Cylinder3D(const Matrix4d& transform);
+	Cylinder3D(const Matrix4d transform);
 
-	Cylinder3D(const Material3D& material);
+	Cylinder3D(const Material3D material);
 
-	Cylinder3D(const Matrix4d& transform, const Material3D& material);
+	Cylinder3D(const Matrix4d transform, const Material3D material);
 
-	Cylinder3D(const Point3D& position, const Matrix4d& transform, const Material3D& material);
+	Cylinder3D(const Point3D position, const Matrix4d transform, const Material3D material);
 
 	double Min = - INFINITY;
 

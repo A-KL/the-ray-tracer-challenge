@@ -29,12 +29,22 @@ Vector3D Vector3D::Normalize() const
 {
 	double m = Magniture();
 
+	if (Mathf<double>::IsZero(m))
+	{
+		return Vector3D(0, 0, 0);
+	}
+
 	return Vector3D(X() / m, Y() / m, Z() / m, W() / m);
 }
 
 Vector3D Vector3D::Normalize(const Vector3D& v1)
 {
 	double m = v1.Magniture();
+	
+	if (Mathf<double>::IsZero(m))
+	{
+		return Vector3D(0, 0, 0);
+	}
 
 	return Vector3D(v1.X() / m, v1.Y() / m, v1.Z() / m, v1.W() / m);
 }

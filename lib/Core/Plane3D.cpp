@@ -25,7 +25,7 @@ Plane3D::Plane3D(const Point3D& position, const Matrix4d& transform, const Mater
 
 bool Plane3D::Plane3D::operator==(const Plane3D& other) const
 {
-	return (Plane3D)*this == other;
+	return Shape3D::operator==(other);
 }
 
 const Vector3D Plane3D::LocalNormalAt(const Point3D& point) const

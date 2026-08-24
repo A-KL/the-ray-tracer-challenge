@@ -13,7 +13,7 @@ Color3D Scene3D::ColorAt(const Ray3D& ray, int remaining) const
         return Color3D::Black;
     }
 
-    auto computation = Computation::Prepare(*hits.begin(), ray);
+    auto computation = Computation::Prepare(*hits.begin(), ray, intersects);
 
     return ShadeHit(computation, remaining);
 }
