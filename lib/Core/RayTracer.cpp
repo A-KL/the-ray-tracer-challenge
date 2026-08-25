@@ -2,6 +2,8 @@
 
 #include "Vector3D.h"
 
+#include <list>
+
 const static std::vector<Intersection> EmptyList;
 
 // std::list<Intersection> ray_intersect(const Shape3D* object, const Ray3D& ray)

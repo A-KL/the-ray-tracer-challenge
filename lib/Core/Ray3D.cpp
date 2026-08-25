@@ -2,6 +2,8 @@
 
 #include "RayTracer.h"
 
+#include <list>
+
 Ray3D::Ray3D(const Point3D& position, const Vector3D& direction)
 	: Location(position), Direction(direction)
 { }

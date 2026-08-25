@@ -525,8 +525,8 @@ void run_hexagon_demo(Canvas& canvas)
 
 	auto main_color = 
 		//CheckersColor3D(Color3D::DarkGray, Color3D::Gray, Matrix4d::Scale(0.5, 0.5, 0.5));
-		GradientColor3D(Color3D::Red, Color3D::Yellow);
-		//SolidColor3D(Color3D::Blue);
+		//GradientColor3D(Color3D::Red, Color3D::Yellow);
+		SolidColor3D(Color3D::Blue);
 
 	// Hexagon
 
