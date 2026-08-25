@@ -355,7 +355,7 @@ void run_fresnel_demo(Canvas& canvas)
 		Matrix4d::Translate(0, 0, 10);
 
 	auto wall_material_pattern = 
-		CheckersColor3D(Color3D(0.15, 0.15, 0.15), Color3D(0.85, 0.85, 0.85));
+		CheckersColor3D(Color3D(0.15, 0.15, 0.15), Color3D(0.85, 0.85, 0.85), Matrix4d::Scale(0.8, 0.8, 0.8));
 
 	auto wall_material = 
 		Material3D(wall_material_pattern, 0.8, 0.2, 0.0);

@@ -25,13 +25,15 @@
 
 #include "tests.h"
 
+// #include "unity.h"
+
 void default_world()
 {
 	// Default world
 	Scene3D scene;
 	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
 
-    Material3D material1(SolidColor3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2);
+	Material3D material1(SolidColor3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2);
 
 	Sphere3D sphere1(material1);
 	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
@@ -40,3 +42,22 @@ void default_world()
 	scene.Shapes.push_back(&sphere1);
 	scene.Shapes.push_back(&sphere2);
 }
+
+// void setUp(void) {
+//   // set stuff up here
+// }
+
+// void tearDown(void) {
+//   // clean stuff up here
+// }
+
+// int runUnityTests(void) {
+//   UNITY_BEGIN();
+//   RUN_TEST(default_world);
+//   // RUN_TEST(test_function_should_doAlsoDoBlah);
+//   return UNITY_END();
+// }
+
+// int main(void) {
+//   return runUnityTests();
+// }

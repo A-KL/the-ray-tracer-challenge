@@ -41,8 +41,8 @@ void loop(void)
 	// run_scene_patterns_demo(canvas);
 	
 	// run_fresnel_demo(canvas);
-	// run_glass_sphere_demo(canvas);
+	run_glass_sphere_demo(canvas);
 
 	// run_cylinder_demo(canvas);
-	run_hexagon_demo(canvas);
+	// run_hexagon_demo(canvas);
 }
