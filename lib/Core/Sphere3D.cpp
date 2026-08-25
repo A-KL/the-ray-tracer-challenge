@@ -4,25 +4,25 @@ Sphere3D::Sphere3D() :
 	Sphere3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
 { }
 
-Sphere3D::Sphere3D(const Matrix4d& transform) :
+Sphere3D::Sphere3D(const Matrix4d transform) :
 	Sphere3D(Point3D::Origin, transform, Material3D::Default)
 { }
 
-Sphere3D::Sphere3D(const Material3D& material) :
+Sphere3D::Sphere3D(const Material3D material) :
 	Sphere3D(Point3D::Origin, Matrix4d::Identity(), material)
 { }
 
-Sphere3D::Sphere3D(const Matrix4d& transform, const Material3D& material) :
+Sphere3D::Sphere3D(const Matrix4d transform, const Material3D material) :
 	Shape3D(Point3D::Origin, transform, material)
 { }
 
-Sphere3D::Sphere3D(const Point3D& position, const Matrix4d& transform, const Material3D& material) :
+Sphere3D::Sphere3D(const Point3D position, const Matrix4d transform, const Material3D material) :
 	Shape3D(position, transform, material)
 { }
 
 bool Sphere3D::Sphere3D::operator==(const Sphere3D& other) const
 {
-	return (Sphere3D)*this == other;
+	return Shape3D::operator==(other);
 }
 
 const Vector3D Sphere3D::LocalNormalAt(const Point3D& point) const
@@ -32,7 +32,7 @@ const Vector3D Sphere3D::LocalNormalAt(const Point3D& point) const
 	return object_normal;
 }
 
-std::list<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
+std::vector<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
 {
 	Vector3D object_to_ray = ray.Location - Position;
 	
@@ -55,8 +55,10 @@ std::list<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
 	
 		result.push_back(Intersection(t1, this));
 		result.push_back(Intersection(t2, this));
-		result.sort(IntersectionComparator());
+
+	//	std::sort(result.begin(), result.end());//, IntersectionComparator());
+		result.sort();
 	}
 	
-	return result;
+	return std::vector<Intersection>(result.begin(), result.end());
 }

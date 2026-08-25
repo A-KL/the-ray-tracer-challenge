@@ -1,7 +1,7 @@
 #pragma once
 
-#include <list>
+#include <vector>
 
 #include "Intersection.h"
 
-std::list<Intersection> ray_hit(const std::list<Intersection>& intersections);
+std::vector<Intersection> ray_hit(const std::vector<Intersection>& intersections);

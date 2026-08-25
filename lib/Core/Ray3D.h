@@ -1,6 +1,6 @@
 #pragma once
 
-#include <list>
+#include <vector>
 
 #include "Point3D.h"
 #include "Vector3D.h"
@@ -21,5 +21,5 @@ public:
 
 	Ray3D Transform(const Matrix4d& transformation) const;
 
-	std::list<Intersection> Intersect(const std::list<Shape3D*>& objects) const;
+	std::vector<Intersection> Intersect(const std::vector<Shape3D*>& objects) const;
 };

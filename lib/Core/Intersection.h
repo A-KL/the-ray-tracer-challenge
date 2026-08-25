@@ -17,18 +17,18 @@ public:
 
 	bool operator!=(const Intersection& other) const;
 
-	//bool operator>(const Intersection& other) const;
+	bool operator>(const Intersection& other) const;
 
-	//bool operator<(const Intersection& other) const;
+	bool operator<(const Intersection& other) const;
 };
 
-struct IntersectionComparator
-{
-	bool operator ()(const Intersection& intersection1, const Intersection& intersection2)
-	{
-		if (intersection1.Value == intersection2.Value)
-			return intersection1.Value < intersection2.Value;
+// struct IntersectionComparator
+// {
+// 	inline bool operator ()(const Intersection& intersection1, const Intersection& intersection2)
+// 	{
+// 		if (intersection1.Value == intersection2.Value)
+// 			return intersection1.Value < intersection2.Value;
 
-		return intersection1.Value < intersection2.Value;
-	}
-};
+// 		return intersection1.Value < intersection2.Value;
+// 	}
+// };

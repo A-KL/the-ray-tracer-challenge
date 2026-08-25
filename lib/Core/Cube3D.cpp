@@ -23,9 +23,9 @@ Cube3D::Cube3D(const Point3D& position, const Matrix4d& transform, const Materia
 	Shape3D(position, transform, material)
 { }
 
-bool Cube3D::Cube3D::operator==(const Cube3D& other) const
+bool Cube3D::operator==(const Cube3D& other) const
 {
-	return (Cube3D)*this == other;
+    return Shape3D::operator==(other);
 }
 
 const Vector3D Cube3D::LocalNormalAt(const Point3D& point) const
@@ -48,7 +48,7 @@ const Vector3D Cube3D::LocalNormalAt(const Point3D& point) const
 	return Vector3D(0, 0, point.Z());
 }
 
-std::list<Intersection> Cube3D::LocalIntersect(const Ray3D& ray) const
+std::vector<Intersection> Cube3D::LocalIntersect(const Ray3D& ray) const
 {
     double max_x = 0;
     double min_x = 0;
@@ -66,7 +66,7 @@ std::list<Intersection> Cube3D::LocalIntersect(const Ray3D& ray) const
     auto tmin = Mathf<double>::Max(min_x, min_y, min_z);
     auto tmax = Mathf<double>::Min(max_x, max_y, max_z);
 
-    std::list<Intersection> results;
+    std::vector<Intersection> results;
 
     if (tmin <= tmax)
     {

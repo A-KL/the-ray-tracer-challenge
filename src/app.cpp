@@ -31,18 +31,18 @@ void loop(void)
 #ifdef _DEBUG
 	run_tests();
 #endif
-	//run_projectile_demo(canvas);
-	//run_clock_demo(canvas);
-	//run_shadow_demo(canvas);
-	//run_light_demo(canvas);
+	// run_projectile_demo(canvas);
+	// run_clock_demo(canvas);
+	// run_shadow_demo(canvas);
+	// run_light_demo(canvas);
 
-	//run_scene_demo(canvas);
-	//run_scene_plane_demo(canvas);
-	//run_scene_patterns_demo(canvas);
+	// run_scene_demo(canvas);
+	// run_scene_plane_demo(canvas);
+	// run_scene_patterns_demo(canvas);
+	
 	// run_fresnel_demo(canvas);
+	run_glass_sphere_demo(canvas);
 
-	//run_glass_sphere_demo(canvas);
-
-	run_cylinder_demo(canvas);
-    //lcd.fillCircle(rand()%lcd.width(), rand()%lcd.height(), 16, rand());
+	// run_cylinder_demo(canvas);
+	// run_hexagon_demo(canvas);
 }

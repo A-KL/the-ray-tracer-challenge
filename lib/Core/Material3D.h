@@ -25,7 +25,7 @@ struct Material3D
 	const double Specular;
 	const double Shininess;
 	const double Reflective;
-	const double Transparency;
+	double Transparency;
 	double RefractiveIndex;
 
 	const static Material3D Glass;

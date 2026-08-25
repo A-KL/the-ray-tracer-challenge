@@ -23,13 +23,9 @@ public:
 
 	const Color3D Intensity;
 
-	bool operator==(const Light3D& other) const
-	{
-		return (Object3D)*this == (Object3D)other && Intensity == other.Intensity;
-	}
+	bool operator==(const Light3D& other) const;
 
 	Color3D Compute(const Material3D& material, const Shape3D& shape, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow = false) const;
 
-	bool InShadow(const Point3D& point, const std::list<Shape3D*>& shapes) const;
-
+	bool InShadow(const Point3D& point, const std::vector<Shape3D*>& shapes) const;
 };

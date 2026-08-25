@@ -7,25 +7,28 @@ Cylinder3D::Cylinder3D() :
     Cylinder3D(Point3D::Origin, Matrix4d::Identity(), Material3D::Default)
 { }
 
-Cylinder3D::Cylinder3D(const Matrix4d& transform) :
+Cylinder3D::Cylinder3D(const Matrix4d transform) :
     Cylinder3D(Point3D::Origin, transform, Material3D::Default)
 { }
 
-Cylinder3D::Cylinder3D(const Material3D& material) :
+Cylinder3D::Cylinder3D(const Material3D material) :
     Cylinder3D(Point3D::Origin, Matrix4d::Identity(), material)
 { }
 
-Cylinder3D::Cylinder3D(const Matrix4d& transform, const Material3D& material) :
+Cylinder3D::Cylinder3D(const Matrix4d transform, const Material3D material) :
 	Shape3D(Point3D::Origin, transform, material)
 { }
 
-Cylinder3D::Cylinder3D(const Point3D& position, const Matrix4d& transform, const Material3D& material) :
+Cylinder3D::Cylinder3D(const Point3D position, const Matrix4d transform, const Material3D material) :
 	Shape3D(position, transform, material)
 { }
 
 bool Cylinder3D::Cylinder3D::operator==(const Cylinder3D& other) const
 {
-	return (Cylinder3D)*this == other;
+    return Shape3D::operator==(other) &&
+        (Min == other.Min || Mathf<double>::Approximately(Min, other.Min)) &&
+        (Max == other.Max || Mathf<double>::Approximately(Max, other.Max)) &&
+        Closed == other.Closed;
 }
 
 const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point) const
@@ -43,9 +46,11 @@ const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point) const
     }
 }
 
-std::list<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
+std::vector<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
 {
-    std::list<Intersection> results;
+    std::vector<Intersection> results;
+
+    IntersectCaps(ray, results);
 
     auto a = ray.Direction.X() * ray.Direction.X() + ray.Direction.Z() * ray.Direction.Z();
 
@@ -96,7 +101,7 @@ bool Cylinder3D::CheckCap(const Ray3D& ray, const double t) const
     return (x * x + z * z) <= 1;
 }
 
-void Cylinder3D::IntersectCaps(const Ray3D& ray, std::list<Intersection>& results) const
+void Cylinder3D::IntersectCaps(const Ray3D& ray, std::vector<Intersection>& results) const
 {
     // a helper function to reduce duplication.
     // checks to see if the intersection at `t` is within a radius
