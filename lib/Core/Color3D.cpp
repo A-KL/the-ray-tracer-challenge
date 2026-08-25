@@ -48,6 +48,11 @@ const Color3D Color3D::operator/(double other) const
 	return Color3D{ R / other, G / other, B / other };
 }
 
+const Color3D Color3D::operator/(int other) const
+{
+	return Color3D{ R / other, G / other, B / other };
+}
+
 bool Color3D::operator==(const Color3D& other) const
 {
 	return

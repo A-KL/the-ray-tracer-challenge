@@ -593,3 +593,68 @@ void run_hexagon_demo(Canvas& canvas)
 
 	main_camera.Render(scene, canvas);
 }
+
+void run_reflection_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+			Camera(w, h, M_PI / 3, Point3D(0, 1.5, -5), Point3D(0, 1, 0), Vector3D(0, 1, 0));
+
+	auto main_light = 
+			Light3D(Point3D(-10, 10, -10), Color3D::White);
+
+	// Floor
+
+	auto floor_pattern = 
+			CheckersColor3D(Color3D::White, Color3D::Black);
+
+	auto floor_material = 
+			Material3D(floor_pattern, 1, 0, 0);
+
+	auto floor = 
+			Plane3D(floor_material);
+
+	// Left wall
+
+	auto left_wall = Plane3D(
+			Matrix4d::Translate(0, 0, 5) * Matrix4d::RotateY(-M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
+			floor_material);
+
+	// Right wall
+
+	auto right_wall = Plane3D(
+			Matrix4d::Translate(0, 0, 5) * Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
+			floor_material);
+
+	// Spheres
+
+	Sphere3D middle_sphere(
+			Matrix4d::Translate(-0.5, 1, 0.5), 
+			Material3D(SolidColor3D(Color3D::White), 0.1, 0.7, 0.3, 200, 1));
+
+	Sphere3D right_sphere(
+			Matrix4d::Translate(1.5, 0.5, -0.5) * Matrix4d::Scale(0.5, 0.5, 0.5), 
+			Material3D(SolidColor3D(0.5, 1, 0.1), 0.1, 0.7, 0.3, 200, 0.5, 0.0, 1.0));
+
+	Sphere3D left_sphere(
+			Matrix4d::Translate(-1.5, 0.33, -0.75) * Matrix4d::Scale(0.33, 0.33, 0.33), 
+			Material3D(SolidColor3D(1, 0.8, 0.1), 0.1, 0.7, 0.3));
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+
+	scene.Shapes.push_back(&left_wall);
+	scene.Shapes.push_back(&right_wall);
+	scene.Shapes.push_back(&floor);
+
+	scene.Shapes.push_back(&middle_sphere);
+	scene.Shapes.push_back(&right_sphere);
+	scene.Shapes.push_back(&left_sphere);
+
+	main_camera.Render(scene, canvas);
+}

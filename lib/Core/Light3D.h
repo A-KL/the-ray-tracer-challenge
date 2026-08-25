@@ -1,7 +1,5 @@
 #pragma once
 
-#include <list>
-
 #include "Color3D.h"
 #include "Vector3D.h"
 #include "Point3D.h"
@@ -10,14 +8,12 @@
 #include "Shape3D.h"
 #include "Object3D.h"
 
-class Light3D :
-	public Object3D
+class Light3D : public Object3D
 {
 public:
 	Light3D();
 
 	Light3D(const Point3D& position, const Color3D& intensity);
-
 
 	Light3D(const Point3D& position, const Matrix4d& translate, const Color3D& intensity);
 

@@ -11,7 +11,6 @@ Light3D::Light3D(const Point3D& position, const Color3D& intensity) :
 	Light3D(position, Matrix4d::Identity(), intensity)
 { }
 
-
 Light3D::Light3D(const Point3D& position, const Matrix4d& translate, const Color3D& intensity) :
 	Object3D(position, translate),
 	Intensity(intensity)

@@ -20,15 +20,23 @@ Color3D Scene3D::ColorAt(const Ray3D& ray, int remaining) const
 
 Color3D Scene3D::ShadeHit(const Computation& computation, int remaining) const
 {
-    Color3D result(0, 0, 0);
+    auto result = Color3D::Black;
+    auto count = 0;
+    auto intensity = 0.0;
 
     for (auto& light : Lights)
     {
+        count++;
+
         auto is_shadow = light
             ->InShadow(computation.OverPosition, Shapes);
 
         result += light
             ->Compute(computation.Intersect.Shape->Material, *computation.Intersect.Shape, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+    }
+
+    if (count > 0)  { // TODO: Test this case
+        result = result / count;
     }
 
     auto material = computation.Intersect.Shape->Material;
