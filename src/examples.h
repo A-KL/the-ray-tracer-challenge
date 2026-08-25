@@ -16,6 +16,8 @@ void run_scene_patterns_demo(Canvas& canvas);
 
 void run_fresnel_demo(Canvas& canvas);
 
+void run_fresnel_simple_demo(Canvas& canvas);
+
 void run_glass_sphere_demo(Canvas& canvas);
 
 void run_cylinder_demo(Canvas& canvas);

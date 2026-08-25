@@ -22,6 +22,8 @@
 
 #include "tests.h"
 
+
+// Tests #4: Intersecting a Ray with an empty Group
 void test_ray_intersect_empty_group()
 {
     // Setup
@@ -38,6 +40,7 @@ void test_ray_intersect_empty_group()
     assert(0 == xs.size());
 }
 
+// Tests #5: Intersecting a Ray with a full Group
 void test_ray_intersect_full_group()
 {
     // Setup
@@ -67,6 +70,8 @@ void test_ray_intersect_full_group()
     assert(&s1 == xs[3].Shape);
 }
 
+// Test #6: Group Transformations
+// Demonstrate that group and child transformations are both applied.
 void test_transformed_group()
 {
     // Setup
@@ -111,7 +116,10 @@ Vector3D NormalToWorld(const Shape3D& shape, const Vector3D& normal)
     return world_normal;
 }
 
-
+// Test #7: Convert a Point from World Space to Object Space
+// 
+// Take a point in world space and transform it to object space, taking into consideration any parent objects between the two spaces.
+//
 void test_convert_world_to_object_space()
 {
     // Setup
@@ -132,6 +140,11 @@ void test_convert_world_to_object_space()
     assert(Point3D(0, 0, -1) == result);
 }
 
+// Test #8: Convert a Normal Vector from Object Space to World Space
+//
+// Take a normal vector in object space and transform it to world space, taking
+// into consideration any parent objects between the two spaces.
+//
 void test_convert_normal_to_world_space()
 {
     // Setup
@@ -152,6 +165,11 @@ void test_convert_normal_to_world_space()
     assert(Vector3D(0, 0, -1) == result);
 }
 
+// Test #9: Find the Normal on an Object in a Group
+//
+// Find the normal on a child object of a group, taking into account transformations
+// on both the child object and the parent(s).
+//
 void test_normal_on_child_object()
 {
     // Setup

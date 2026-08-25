@@ -442,6 +442,53 @@ void run_glass_sphere_demo(Canvas& canvas)
 	main_camera.Render(scene, canvas);
 }
 
+void run_fresnel_simple_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+		Camera(w, h, M_PI / 3, Point3D(0, 0, -3), Point3D(0, 0, 0), Vector3D(0, 1, 0));
+
+	auto main_light = 
+		Light3D(Point3D(-100, 0, -50), Color3D::White);
+
+	// Floor
+
+	auto floor_location =
+		Matrix4d::Translate(0, -1, 0);
+
+	auto floor_pattern = 
+		CheckersColor3D(Color3D::Green, Color3D::Red, Matrix4d::Scale(1, 1, 1));
+
+	auto back_pattern = 
+		CheckersColor3D(Color3D::White, Color3D::Gray, Matrix4d::Scale(0.1, 0.1, 0.1));
+
+	auto floor_material = 
+		Material3D(floor_pattern, 1, 0, 0, 0, 0, 0.5);
+
+	auto back_material = 
+		Material3D(back_pattern, 1, 0, 0, 0, 0, 1);
+
+	auto floor = 
+		Plane3D(floor_location, floor_material);
+
+	auto back = Plane3D(
+			Matrix4d::Translate(0, -1, 0) * Matrix4d::RotateX(M_PI/2), 
+			back_material);
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+
+	scene.Shapes.push_back(&back);
+	scene.Shapes.push_back(&floor);
+	
+	main_camera.Render(scene, canvas);
+}
+
 void run_cylinder_demo(Canvas& canvas)
 {
 	const int w = canvas.Width();
