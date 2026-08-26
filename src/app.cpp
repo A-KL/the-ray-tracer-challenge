@@ -29,7 +29,7 @@ void setup(void)
 void loop(void)
 {
 #ifdef _DEBUG
-	run_tests();
+	// run_tests();
 #endif
 	// run_projectile_demo(canvas);
 	// run_clock_demo(canvas);

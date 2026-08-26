@@ -25,8 +25,6 @@
 
 #include "tests.h"
 
-// #include "unity.h"
-
 void default_world()
 {
 	// Default world
@@ -42,22 +40,3 @@ void default_world()
 	scene.Shapes.push_back(&sphere1);
 	scene.Shapes.push_back(&sphere2);
 }
-
-// void setUp(void) {
-//   // set stuff up here
-// }
-
-// void tearDown(void) {
-//   // clean stuff up here
-// }
-
-// int runUnityTests(void) {
-//   UNITY_BEGIN();
-//   RUN_TEST(default_world);
-//   // RUN_TEST(test_function_should_doAlsoDoBlah);
-//   return UNITY_END();
-// }
-
-// int main(void) {
-//   return runUnityTests();
-// }
