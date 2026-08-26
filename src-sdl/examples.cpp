@@ -346,18 +346,46 @@ void run_fresnel_demo(Canvas& canvas)
 	auto main_light = Light3D(Point3D(2, 10, -5), Color3D(0.9, 0.9, 0.9));
 
 	// Wall
+
 	auto wall_location =
-		Matrix4d::RotateX(M_PI / 2) *
-		Matrix4d::Translate(0, 0, 10);
+		Matrix4d::Translate(0, 0, 10) *
+		Matrix4d::RotateX(M_PI / 2);
 
 	auto wall_material_pattern = 
-		CheckersColor3D(Color3D(0.15, 0.15, 0.15), Color3D(0.85, 0.85, 0.85));
+		CheckersColor3D(Color3D(0.15, 0.15, 0.15), Color3D(0.85, 0.85, 0.85), Matrix4d::Scale(0.8, 0.8, 0.8));
 
 	auto wall_material = 
 		Material3D(wall_material_pattern, 0.8, 0.2, 0.0);
 
 	auto wall = 
 		Plane3D(wall_location, wall_material);
+
+	// Glass ball
+
+	auto ball_pattern =
+		SolidColor3D(Color3D::White);
+
+	auto ball_material = 
+		Material3D(ball_pattern, 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.5);
+
+	auto ball_location = 
+		Matrix4d::Scale(1.8, 1.8, 1.8);
+
+	auto ball = Sphere3D(ball_location, ball_material);
+
+	// Hollow ball center
+	
+	auto ball_center_pattern =
+		SolidColor3D(Color3D::White);
+
+	auto ball_center_material = 
+		Material3D(ball_center_pattern, 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.0000034);
+
+	auto ball_center_location = 
+		Matrix4d::Scale(0.5, 0.5, 0.5);
+
+	auto ball_center = 
+		Sphere3D(ball_center_location, ball_center_material);
 
 	// Render
 	
@@ -366,6 +394,8 @@ void run_fresnel_demo(Canvas& canvas)
 	scene.Lights.push_back(&main_light);
 
 	scene.Shapes.push_back(&wall);
+	scene.Shapes.push_back(&ball);
+	scene.Shapes.push_back(&ball_center);
 
 	main_camera.Render(scene, canvas);
 }

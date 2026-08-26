@@ -362,8 +362,8 @@ void run_fresnel_demo(Canvas& canvas)
 	// Wall
 
 	auto wall_location =
-		Matrix4d::RotateX(M_PI / 2) *
-		Matrix4d::Translate(0, 0, 10);
+		Matrix4d::Translate(0, 0, 10) *
+		Matrix4d::RotateX(M_PI / 2);
 
 	auto wall_material_pattern = 
 		CheckersColor3D(Color3D(0.15, 0.15, 0.15), Color3D(0.85, 0.85, 0.85), Matrix4d::Scale(0.8, 0.8, 0.8));
@@ -376,8 +376,11 @@ void run_fresnel_demo(Canvas& canvas)
 
 	// Glass ball
 
+	auto ball_pattern =
+		SolidColor3D(Color3D::White);
+
 	auto ball_material = 
-		Material3D(SolidColor3D(Color3D::White), 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.5);
+		Material3D(ball_pattern, 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.5);
 
 	auto ball_location = 
 		Matrix4d::Scale(1.8, 1.8, 1.8);
@@ -386,8 +389,11 @@ void run_fresnel_demo(Canvas& canvas)
 
 	// Hollow ball center
 	
+	auto ball_center_pattern =
+		SolidColor3D(Color3D::White);
+
 	auto ball_center_material = 
-		Material3D(SolidColor3D(Color3D::White), 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.0000034);
+		Material3D(ball_center_pattern, 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.0000034);
 
 	auto ball_center_location = 
 		Matrix4d::Scale(0.5, 0.5, 0.5);
