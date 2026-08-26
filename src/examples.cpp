@@ -661,6 +661,45 @@ void run_cylinders_demo(Canvas& canvas)
 	c1.Max = 0.75;
 	c1.Closed = true;
 
+	// Concentric cylinders
+
+	auto c2_material = Material3D(
+		SolidColor3D(Color3D(1, 1, 0.3)), 0.1, 0.8, 0.9, 300);
+
+	auto c2 = Cylinder3D(
+		Matrix4d::Translate(1, 0, 0) * Matrix4d::Scale(0.8, 1, 0.8), c2_material);
+
+	c2.Min = 0;
+	c2.Max = 0.2;
+
+	auto c3_material = Material3D(
+		SolidColor3D(Color3D(1, 0.9, 0.4)), 0.1, 0.8, 0.9, 300);
+
+	auto c3 = Cylinder3D(
+		Matrix4d::Translate(1, 0, 0) * Matrix4d::Scale(0.6, 1, 0.6), c3_material);
+
+	c3.Min = 0;
+	c3.Max = 0.3;
+
+	auto c4_material = Material3D(
+		SolidColor3D(Color3D(1, 0.8, 0.5)), 0.1, 0.8, 0.9, 300);
+
+	auto c4 = Cylinder3D(
+		Matrix4d::Translate(1, 0, 0) * Matrix4d::Scale(0.4, 1, 0.4), c4_material);
+
+	c4.Min = 0;
+	c4.Max = 0.4;
+
+	auto c5_material = Material3D(
+		SolidColor3D(Color3D(1, 0.7, 0.6)), 0.1, 0.8, 0.9, 300);
+
+	auto c5 = Cylinder3D(
+		Matrix4d::Translate(1, 0, 0) * Matrix4d::Scale(0.2, 1, 0.2), c5_material);
+
+	c5.Min = 0;
+	c5.Max = 0.5;
+	c5.Closed = true;
+
   // Decorative cylinders
 
 	auto c6_material = Material3D(
@@ -727,6 +766,10 @@ void run_cylinders_demo(Canvas& canvas)
 
 	scene.Shapes.push_back(&floor);
 	scene.Shapes.push_back(&c1);
+	scene.Shapes.push_back(&c2);
+	scene.Shapes.push_back(&c3);
+	scene.Shapes.push_back(&c4);
+	scene.Shapes.push_back(&c5);
 	scene.Shapes.push_back(&c6);
 	scene.Shapes.push_back(&c7);
 	scene.Shapes.push_back(&c8);
