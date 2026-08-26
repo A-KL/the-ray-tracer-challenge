@@ -11,6 +11,7 @@ Light3D::Light3D(const Point3D& position, const Color3D& intensity) :
 	Light3D(position, Matrix4d::Identity(), intensity)
 { }
 
+
 Light3D::Light3D(const Point3D& position, const Matrix4d& translate, const Color3D& intensity) :
 	Object3D(position, translate),
 	Intensity(intensity)
@@ -57,7 +58,7 @@ Color3D Light3D::Compute(const Material3D& material, const Shape3D& shape, const
 bool Light3D::InShadow(const Point3D& point, const std::vector<Shape3D*>& shapes) const
 {
 	auto v = Position - point;
-	auto distance = v.Magniture();
+	auto distance = v.Magnitude();
 	auto direction = v.Normalize();
 
 	Ray3D ray(point, direction);

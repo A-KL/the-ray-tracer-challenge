@@ -20,14 +20,14 @@ Vector3D Vector3D::operator*(double value) const
 	return Vector3D(X() * value, Y() * value, Z() * value);
 }
 
-double Vector3D::Magniture() const
+double Vector3D::Magnitude() const
 {
 	return sqrt(pow(X(), 2) + pow(Y(), 2) + pow(Z(), 2) + pow(W(), 2));
 }
 
 Vector3D Vector3D::Normalize() const
 {
-	double m = Magniture();
+	double m = Magnitude();
 
 	if (Mathf<double>::IsZero(m))
 	{
@@ -39,7 +39,7 @@ Vector3D Vector3D::Normalize() const
 
 Vector3D Vector3D::Normalize(const Vector3D& v1)
 {
-	double m = v1.Magniture();
+	double m = v1.Magnitude();
 	
 	if (Mathf<double>::IsZero(m))
 	{

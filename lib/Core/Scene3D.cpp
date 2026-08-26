@@ -28,11 +28,17 @@ Color3D Scene3D::ShadeHit(const Computation& computation, int remaining) const
     {
         count++;
 
-        auto is_shadow = light
-            ->InShadow(computation.OverPosition, Shapes);
+        auto is_shadow = light->InShadow(
+            computation.OverPosition,
+            Shapes);    
 
-        result += light
-            ->Compute(computation.Intersect.Shape->Material, *computation.Intersect.Shape, computation.OverPosition, computation.Camera, computation.Normal, is_shadow);
+        result += light->Compute(
+            computation.Intersect.Shape->Material, 
+            *computation.Intersect.Shape, 
+            computation.OverPosition, 
+            computation.Camera, 
+            computation.Normal, 
+            is_shadow);
     }
 
     if (count > 0)  { // TODO: Test this case

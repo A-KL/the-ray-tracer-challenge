@@ -21,7 +21,7 @@ public:
 	~Vector3D()
 	{}
 
-	double Magniture() const;
+	double Magnitude() const;
 
 	Vector3D Normalize() const;
 

@@ -26,6 +26,7 @@
 
 #include "tests.h"
 
+// There is no shadow when nothing is collinear with point and light
 void test_no_shadow()
 {
 	// Setup
@@ -48,6 +49,7 @@ void test_no_shadow()
 	assert(false == result);
 }
 
+// The shadow when an object is between the point and the light
 void test_shadow()
 {
 	// Setup
@@ -70,6 +72,7 @@ void test_shadow()
 	assert(true == result);
 }
 
+// There is no shadow when an object is behind the light
 void test_no_shadow2()
 {
 	// Setup
@@ -92,6 +95,29 @@ void test_no_shadow2()
 	assert(false == result);
 }
 
+// There is no shadow when an object is behind the point
+void test_no_shadow3()
+{
+	// Setup
+	Scene3D scene;
+	Light3D light(Point3D(-10, 10, -10), Color3D(1, 1, 1));
+
+	Sphere3D sphere1(Material3D(SolidColor3D(0.8, 1.0, 0.6), 0.1, 0.7, 0.2));
+	Sphere3D sphere2(Matrix4d::Scale(0.5, 0.5, 0.5));
+
+	scene.Lights.push_back(&light);
+	scene.Shapes.push_back(&sphere1);
+	scene.Shapes.push_back(&sphere2);
+
+	Point3D point(-2, 2, -2);
+
+	// Act
+	auto result = light.InShadow(point, scene.Shapes);
+
+	// Assert
+	assert(false == result);
+}
+
 void run_shadow_tests()
 {
 	test_no_shadow();
@@ -99,4 +125,6 @@ void run_shadow_tests()
 	test_shadow();
 
 	test_no_shadow2();
+
+	test_no_shadow3();
 }
