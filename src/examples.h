@@ -23,3 +23,5 @@ void run_cylinder_demo(Canvas& canvas);
 void run_hexagon_demo(Canvas& canvas);
 
 void run_reflection_demo(Canvas& canvas);
+
+void run_cylinders_demo(Canvas& canvas);

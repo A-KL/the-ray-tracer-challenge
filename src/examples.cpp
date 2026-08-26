@@ -628,3 +628,110 @@ void run_reflection_demo(Canvas& canvas)
 
 	main_camera.Render(scene, canvas);
 }
+
+void run_cylinders_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+			Camera(w, h, M_PI / 10, Point3D(8, 3.5, -9), Point3D(0, 0.3, 0), Vector3D(0, 1, 0));
+
+	auto main_light = Light3D(
+		Point3D(-10, 10, -10), Color3D::White);
+
+	// Floor
+	auto floor_pattern = CheckersColor3D(
+		Color3D(0.75, 0.75, 0.75), Color3D(0.5, 0.5, 0.5), Matrix4d::RotateY(0.3) * Matrix4d::Scale(0.25));
+
+	auto floor_material = Material3D(
+		floor_pattern, 0.2, 0.9, 0);
+
+	auto floor = Plane3D(
+		floor_material);
+
+	// Cylinder
+	auto c1_material = Material3D(
+		SolidColor3D(Color3D(0, 0, 0.6)), 0.1, 0.9, 0.3, 300, 0.9);
+
+	auto c1 = Cylinder3D(
+		Matrix4d::Translate(-1, 0, 1) * Matrix4d::Scale(0.5, 1, 0.5), c1_material);
+
+	c1.Min = 0;
+	c1.Max = 0.75;
+	c1.Closed = true;
+
+  // Decorative cylinders
+
+	auto c6_material = Material3D(
+		SolidColor3D(Color3D::Red), 0.1, 0.9, 0.9, 300);
+
+	auto c6 = Cylinder3D(
+		Matrix4d::Translate(0, 0, -0.75) * Matrix4d::Scale(0.05, 1, 0.05), c6_material);
+
+	c6.Min = 0;
+	c6.Max = 0.3;
+	c6.Closed = true;
+
+	auto c7_material = Material3D(
+		SolidColor3D(Color3D(1, 1, 0)), 0.1, 0.9, 0.9, 300);
+
+	auto c7 = Cylinder3D(
+		Matrix4d::Translate(0, 0, -2.25) * Matrix4d::RotateY(-0.15) * 
+		Matrix4d::Translate(0, 0, 1.5) * Matrix4d::Scale(0.05, 1, 0.05), c7_material);
+
+	c7.Min = 0;
+	c7.Max = 0.3;
+	c7.Closed = true;
+
+	auto c8_material = Material3D(
+		SolidColor3D(Color3D(0, 1, 0)), 0.1, 0.9, 0.9, 300);
+
+	auto c8 = Cylinder3D(
+		Matrix4d::Translate(0, 0, -2.25) * Matrix4d::RotateY(-0.3) * 
+		Matrix4d::Translate(0, 0, 1.5) * Matrix4d::Scale(0.05, 1, 0.05), c8_material);
+
+	c8.Min = 0;
+	c8.Max = 0.3;
+	c8.Closed = true;
+
+	auto c9_material = Material3D(
+		SolidColor3D(Color3D(0, 1, 1)), 0.1, 0.9, 0.9, 300);
+
+	auto c9 = Cylinder3D(
+		Matrix4d::Translate(0, 0, -2.25) * Matrix4d::RotateY(-0.45) * 
+		Matrix4d::Translate(0, 0, 1.5) * Matrix4d::Scale(0.05, 1, 0.05), c9_material);
+
+	c9.Min = 0;
+	c9.Max = 0.3;
+	c9.Closed = true;
+
+	// Glass
+
+	auto glass_c_material = Material3D(
+		SolidColor3D(Color3D(0.25, 0, 0)), 0.1, 0.9, 0.9, 300, 0.9, 0.9, 1.5);
+
+	auto glass_c = Cylinder3D(
+		Matrix4d::Translate(0, 0, -1.5) * Matrix4d::Scale(0.33, 1, 0.33), 
+		glass_c_material);
+
+	glass_c.Min = 0.0001;
+	glass_c.Max = 0.5;
+	glass_c.Closed = true;
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+
+	scene.Shapes.push_back(&floor);
+	scene.Shapes.push_back(&c1);
+	scene.Shapes.push_back(&c6);
+	scene.Shapes.push_back(&c7);
+	scene.Shapes.push_back(&c8);
+	scene.Shapes.push_back(&c9);
+	scene.Shapes.push_back(&glass_c);
+
+	main_camera.Render(scene, canvas);
+}

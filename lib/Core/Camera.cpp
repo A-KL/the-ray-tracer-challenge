@@ -32,10 +32,10 @@ Matrix4d Camera::ViewTransform(const Point3D& from, const Point3D& to, const Vec
 	auto true_up = left.Cross(forward);
 	auto orientation = Matrix4d
 	{
-		left.X(), left.Y(), left.Z(), 0,
-		true_up.X(), true_up.Y(), true_up.Z(), 0,
+		 left.X(), 		 left.Y(), 		 left.Z(), 		0,
+		 true_up.X(),  true_up.Y(),  true_up.Z(), 0,
 		-forward.X(), -forward.Y(), -forward.Z(), 0,
-		0, 0, 0, 1
+		0, 							0, 						0, 					1
 	};
 
 	return orientation * Matrix4d::Translate(-from.X(), -from.Y(), -from.Z());
