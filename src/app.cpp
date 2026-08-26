@@ -40,12 +40,10 @@ void loop(void)
 	// run_scene_plane_demo(canvas);
 	// run_scene_patterns_demo(canvas);
 	
-	run_fresnel_demo(canvas);
+	// run_fresnel_demo(canvas);
 	// run_glass_sphere_demo(canvas);
-	// run_fresnel_simple_demo(canvas);
-
 	// run_cylinder_demo(canvas);
 	// run_hexagon_demo(canvas);
 
-	// run_reflection_demo(canvas);
+	run_reflection_demo(canvas);
 }

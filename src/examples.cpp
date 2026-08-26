@@ -459,53 +459,6 @@ void run_glass_sphere_demo(Canvas& canvas)
 	main_camera.Render(scene, canvas);
 }
 
-void run_fresnel_simple_demo(Canvas& canvas)
-{
-	const int w = canvas.Width();
-	const int h = canvas.Height();
-
-	auto main_camera = 
-		Camera(w, h, M_PI / 3, Point3D(0, 0, -3), Point3D(0, 0, 0), Vector3D(0, 1, 0));
-
-	auto main_light = 
-		Light3D(Point3D(-100, 0, -50), Color3D::White);
-
-	// Floor
-
-	auto floor_location =
-		Matrix4d::Translate(0, -1, 0);
-
-	auto floor_pattern = 
-		CheckersColor3D(Color3D::Green, Color3D::Red, Matrix4d::Scale(1, 1, 1));
-
-	auto back_pattern = 
-		CheckersColor3D(Color3D::White, Color3D::Gray, Matrix4d::Scale(0.1, 0.1, 0.1));
-
-	auto floor_material = 
-		Material3D(floor_pattern, 1, 0, 0, 0, 0, 0.5);
-
-	auto back_material = 
-		Material3D(back_pattern, 1, 0, 0, 0, 0, 1);
-
-	auto floor = 
-		Plane3D(floor_location, floor_material);
-
-	auto back = Plane3D(
-			Matrix4d::Translate(0, -1, 0) * Matrix4d::RotateX(M_PI/2), 
-			back_material);
-
-	// Render
-	
-	Scene3D scene;
-
-	scene.Lights.push_back(&main_light);
-
-	scene.Shapes.push_back(&back);
-	scene.Shapes.push_back(&floor);
-	
-	main_camera.Render(scene, canvas);
-}
-
 void run_cylinder_demo(Canvas& canvas)
 {
 	const int w = canvas.Width();
@@ -622,48 +575,28 @@ void run_reflection_demo(Canvas& canvas)
 	auto main_light = 
 			Light3D(Point3D(-10, 10, -10), Color3D::White);
 
-	// -----------------------------------------------------------------------------
-
-	auto floor_material = 
-		Material3D(SolidColor3D(1, 0.9, 0.9), 0.1, 0.9, 0);
-
-	auto floor = 
-		Plane3D(Matrix4d::Scale(10, 0.01, 10), floor_material);
-
 	// Floor
 
-	// auto floor_pattern = 
-	// 		CheckersColor3D(Color3D::White, Color3D::Black);
+	auto floor_pattern = 
+		CheckersColor3D(Color3D::White, Color3D::Black);
 
-	// auto floor_material = 
-	// 		Material3D(floor_pattern, 1, 0, 0);
+	auto floor_material = 
+		Material3D(floor_pattern, 0.1, 0.9, 0);
 
-	// auto floor = 
-	// 		Plane3D(floor_material);
+	auto floor = 
+		Plane3D(floor_material);
 
-	// // Left wall
+	// Left wall
 
-	// auto left_wall = Plane3D(
-	// 		Matrix4d::Translate(0, 0, 5) * Matrix4d::RotateY(-M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
-	// 		floor_material);
+	auto left_wall = Plane3D(
+			Matrix4d::Translate(0, 0, 5) * Matrix4d::RotateY(-M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
+			floor_material);
 
-	// // Right wall
+	// Right wall
 
-	// auto right_wall = Plane3D(
-	// 		Matrix4d::Translate(0, 0, 5) * Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
-	// 		floor_material);
-
-	// Sphere3D middle(
-	// 	Matrix4d::Translate(-0.5, 1, 0.5),
-	// 	Material3D(SolidColor3D(0.1, 1, 0.5), 0.1, 0.7, 0.3));
-
-	// Sphere3D right(
-	// 	Matrix4d::Translate(1.5, 0.5, -0.5) * Matrix4d::Scale(0.5), 
-	// 	Material3D(SolidColor3D(0.5, 1, 0.1), 0.1, 0.7, 0.3));
-
-	// Sphere3D left(
-	// 	Matrix4d::Translate(-1.5, 0.33, -0.75) * Matrix4d::Scale(0.33), 
-	// 	Material3D(SolidColor3D(1, 0.8, 0.1), 0.1, 0.7, 0.3));
+	auto right_wall = Plane3D(
+			Matrix4d::Translate(0, 0, 5) * Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
+			floor_material);
 
 	// Spheres
 
@@ -685,8 +618,8 @@ void run_reflection_demo(Canvas& canvas)
 
 	scene.Lights.push_back(&main_light);
 
-	// scene.Shapes.push_back(&left_wall);
-	// scene.Shapes.push_back(&right_wall);
+	scene.Shapes.push_back(&left_wall);
+	scene.Shapes.push_back(&right_wall);
 	scene.Shapes.push_back(&floor);
 
 	scene.Shapes.push_back(&middle_sphere);
