@@ -33,6 +33,8 @@ int runUnityTests(void) {
 
   RUN_TEST(run_group_tests);
 
+  RUN_TEST(run_triangle_tests);
+
   return UNITY_END();
 }
 

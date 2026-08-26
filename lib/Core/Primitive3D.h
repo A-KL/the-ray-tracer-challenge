@@ -44,7 +44,7 @@ public:
 		return Primitive3D<TItem>(-X(), -Y(), -Z(), -W());
 	}
 
-	virtual bool operator==(const Primitive3D<TItem>& other)
+	virtual bool operator==(const Primitive3D<TItem>& other) const
 	{
 		return 
 			Mathf<TItem>::Approximately(X(), other.X()) &&
@@ -67,4 +67,3 @@ public:
 private:
 	TItem _data[4];
 };
-

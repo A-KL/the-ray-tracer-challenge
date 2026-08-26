@@ -65,4 +65,6 @@ void run_tests()
 	run_cone_tests();
 
 	run_group_tests();
+
+	run_triangle_tests();
 }
