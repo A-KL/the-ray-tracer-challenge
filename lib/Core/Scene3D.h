@@ -22,4 +22,6 @@ public:
 	Color3D RefractedAt(const Computation& comp, const int remaining) const;
 
 	Color3D ShadeHit(const Computation& computation, int remaining = 4) const;
+
+	bool InShadow(const Point3D& location, const Point3D& light_position) const;
 };

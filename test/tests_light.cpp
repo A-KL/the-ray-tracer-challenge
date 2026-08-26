@@ -25,15 +25,15 @@
 void test_light_behind_camera()
 {
 	// Set up
-	Sphere3D sphere;
 	Material3D material(SolidColor3D(1, 1, 1));
+	Sphere3D sphere(material);
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
 	Light3D light(Point3D(0, 0, -10), Color3D(1, 1, 1));
 
 	// Act
-	auto result = light.Compute(material, sphere, Point3D(0, 0, 0), camera, normal);
+	auto result = light.Compute(sphere, Point3D(0, 0, 0), camera, normal);
 
 	// Assert
 	assert(Color3D(1.9, 1.9, 1.9) == result);
@@ -42,15 +42,15 @@ void test_light_behind_camera()
 void test_light_45_camera()
 {
 	// Set up
-	Sphere3D sphere;
 	Material3D material(SolidColor3D(1, 1, 1));
+	Sphere3D sphere(material);
 	Vector3D camera(0, sqrt(2) * 0.5, - sqrt(2) * 0.5);
 	Vector3D normal(0, 0, -1);
 
 	Light3D light(Point3D(0, 0, -10), Color3D(1, 1, 1));
 
 	// Act
-	auto result = light.Compute(material, sphere, Point3D(0, 0, 0), camera, normal);
+	auto result = light.Compute(sphere, Point3D(0, 0, 0), camera, normal);
 
 	// Assert
 	assert(Color3D(1.0, 1.0, 1.0) == result);
@@ -59,15 +59,15 @@ void test_light_45_camera()
 void test_light_45_camera_reverse()
 {
 	// Set up
-	Sphere3D sphere;
 	Material3D material(SolidColor3D(1, 1, 1));
+	Sphere3D sphere(material);
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
 	Light3D light(Point3D(0, 10, -10), Color3D(1, 1, 1));
 
 	// Act
-	auto result = light.Compute(material, sphere, Point3D(0, 0, 0), camera, normal);
+	auto result = light.Compute(sphere, Point3D(0, 0, 0), camera, normal);
 
 	// Assert
 	assert(Color3D(0.7364, 0.7364, 0.7364) == result);
@@ -76,15 +76,15 @@ void test_light_45_camera_reverse()
 void test_light_camera_reflection()
 {
 	// Set up
-	Sphere3D sphere;
 	Material3D material(SolidColor3D(1, 1, 1));
+	Sphere3D sphere(material);
 	Vector3D camera(0, - sqrt(2) * 0.5, -sqrt(2) * 0.5);
 	Vector3D normal(0, 0, -1);
 
 	Light3D light(Point3D(0, 10, -10), Color3D(1, 1, 1));
 
 	// Act
-	auto result = light.Compute(material, sphere, Point3D(0, 0, 0), camera, normal, false);
+	auto result = light.Compute(sphere, Point3D(0, 0, 0), camera, normal, false);
 
 	// Assert
 	assert(Color3D(1.6364, 1.6364, 1.6364) == result);
@@ -93,15 +93,15 @@ void test_light_camera_reflection()
 void test_light_behind()
 {
 	// Set up
-	Sphere3D sphere;
 	Material3D material(SolidColor3D(1, 1, 1));
+	Sphere3D sphere(material);
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
 	Light3D light(Point3D(0, 0, 10), Color3D(1, 1, 1));
 
 	// Act
-	auto result = light.Compute(material, sphere, Point3D(0, 0, 0), camera, normal);
+	auto result = light.Compute(sphere, Point3D(0, 0, 0), camera, normal);
 
 	// Assert
 	assert(Color3D(0.1, 0.1, 0.1) == result);
@@ -110,15 +110,15 @@ void test_light_behind()
 void test_light_shadow()
 {
 	// Set up
-	Sphere3D sphere;
 	Material3D material(SolidColor3D(1, 1, 1));
+	Sphere3D sphere(material);
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
 
 	Light3D light(Point3D(0, 0, -10), Color3D::White);
 
 	// Act
-	auto result = light.Compute(material, sphere, Point3D(0, 0, 0), camera, normal, true);
+	auto result = light.Compute(sphere, Point3D(0, 0, 0), camera, normal, true);
 
 	// Assert
 	assert(Color3D(0.1, 0.1, 0.1) == result);

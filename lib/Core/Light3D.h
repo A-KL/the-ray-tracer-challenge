@@ -7,6 +7,7 @@
 #include "Material3D.h"
 #include "Shape3D.h"
 #include "Object3D.h"
+#include "Object3D.h"
 
 class Light3D : public Object3D
 {
@@ -21,7 +22,9 @@ public:
 
 	bool operator==(const Light3D& other) const;
 
-	Color3D Compute(const Material3D& material, const Shape3D& shape, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow = false) const;
+	Color3D Compute(const Shape3D& shape, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow = false) const;
 
 	bool InShadow(const Point3D& point, const std::vector<Shape3D*>& shapes) const;
+
+	// double IntensityAt(const Point3D& point, const Scene3D& scene) const;
 };

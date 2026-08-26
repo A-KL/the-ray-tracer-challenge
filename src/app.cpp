@@ -13,7 +13,7 @@ using LGFX = TFT_eSPI_GFX;
 #include "../test/tests.h"
 
 #if defined ( SDL_h_ )
-static LGFX lcd ( 800, 600, 2 );
+static LGFX lcd ( 600, 400, 2 );
 #else
 static LGFX lcd;
 #endif
@@ -38,9 +38,9 @@ void loop(void)
 
 	// run_scene_demo(canvas);
 	// run_scene_plane_demo(canvas);
-	run_scene_patterns_demo(canvas);
+	// run_scene_patterns_demo(canvas);
 	
-	// run_fresnel_demo(canvas);
+	run_fresnel_demo(canvas);
 	// run_glass_sphere_demo(canvas);
 	// run_fresnel_simple_demo(canvas);
 

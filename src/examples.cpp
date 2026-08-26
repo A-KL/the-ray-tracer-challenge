@@ -171,7 +171,7 @@ void run_light_demo(Canvas& canvas)
 				auto point = ray.Position(intersection->Value);
 				auto normal = intersection->Shape->NormalAt(point);
 				auto camera = -ray.Direction;
-				auto color = light.Compute(intersection->Shape->Material, *intersection->Shape, point, camera, normal);
+				auto color = light.Compute(*intersection->Shape, point, camera, normal);
 
 				canvas.DrawPoint(x, y, color);
 			}
@@ -387,7 +387,7 @@ void run_fresnel_demo(Canvas& canvas)
 	// Hollow ball center
 	
 	auto ball_center_material = 
-		Material3D(SolidColor3D(Color3D::White), 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.80000034);
+		Material3D(SolidColor3D(Color3D::White), 0.0, 0.0, 0.9, 300, 0.9, 0.9, 1.0000034);
 
 	auto ball_center_location = 
 		Matrix4d::Scale(0.5, 0.5, 0.5);

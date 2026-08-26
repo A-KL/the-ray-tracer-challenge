@@ -69,8 +69,8 @@ void test_stripe_pattern_alternates_in_x()
 void test_stripe_light_applied()
 {
 	// Set up
-	Sphere3D sphere;
 	Material3D material(StripeColor3D(Color3D::White, Color3D::Black), 1, 0, 0);
+	Sphere3D sphere(material);
 	
 	Vector3D camera(0, 0, -1);
 	Vector3D normal(0, 0, -1);
@@ -78,8 +78,8 @@ void test_stripe_light_applied()
 	Light3D light(Point3D(0, 0, -10), Color3D::White);
 
 	// Act
-	auto result1 = light.Compute(material, sphere, Point3D(0.9, 0, 0), camera, normal, false);
-	auto result2 = light.Compute(material, sphere, Point3D(1.1, 0, 0), camera, normal, false);
+	auto result1 = light.Compute(sphere, Point3D(0.9, 0, 0), camera, normal, false);
+	auto result2 = light.Compute(sphere, Point3D(1.1, 0, 0), camera, normal, false);
 
 	// Assert
 	assert(Color3D::White == result1);

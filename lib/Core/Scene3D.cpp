@@ -22,18 +22,22 @@ Color3D Scene3D::ShadeHit(const Computation& computation, int remaining) const
 {
     auto result = Color3D::Black;
     auto count = 0;
-    auto intensity = 0.0;
 
     for (auto& light : Lights)
     {
         count++;
+
+        // auto intensity = light->IntensityAt(
+        //     *computation.Intersect.Shape,
+        //     computation,
+        //     this
+        // );
 
         auto is_shadow = light->InShadow(
             computation.OverPosition,
             Shapes);    
 
         result += light->Compute(
-            computation.Intersect.Shape->Material, 
             *computation.Intersect.Shape, 
             computation.OverPosition, 
             computation.Camera, 
@@ -57,6 +61,21 @@ Color3D Scene3D::ShadeHit(const Computation& computation, int remaining) const
     }
 
     return result + reflected + refracted;
+}
+
+bool Scene3D::InShadow(const Point3D& location, const Point3D& light_position) const
+{
+	auto v = light_position - location;
+	auto distance = v.Magnitude();
+	auto direction = v.Normalize();
+
+	Ray3D ray(location, direction);
+
+	auto intersections = ray.Intersect(Shapes);
+
+	auto h = ray_hit(intersections);
+
+	return !h.empty() && (h.begin()->Value < distance);
 }
 
 Color3D Scene3D::ReflectedAt(const Computation& comp, int remaining) const

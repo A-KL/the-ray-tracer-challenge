@@ -22,13 +22,13 @@ bool Light3D::operator==(const Light3D& other) const
 	return (Object3D)*this == (Object3D)other && Intensity == other.Intensity;
 }
 
-Color3D Light3D::Compute(const Material3D& material, const Shape3D& shape, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow) const
+Color3D Light3D::Compute(const Shape3D& shape, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow) const
 {
-	auto effective_color = material.Pattern->at_shape(position, shape) * Intensity;
+	auto effective_color = shape.Material.Pattern->at_shape(position, shape) * Intensity;
 
 	auto light_direction = Vector3D::Normalize(Position - position);
 
-	auto ambient = effective_color * material.Ambient;
+	auto ambient = effective_color * shape.Material.Ambient;
 
 	auto light_dot_normal = Vector3D::Dot(light_direction, normal);
 
@@ -37,7 +37,7 @@ Color3D Light3D::Compute(const Material3D& material, const Shape3D& shape, const
 
 	if (!shadow && light_dot_normal >= 0)
 	{
-		diffuse = effective_color * material.Diffuse * light_dot_normal;
+		diffuse = effective_color * shape.Material.Diffuse * light_dot_normal;
 
 		auto reflect_direction = Vector3D::Reflect(-light_direction, normal);
 
@@ -46,9 +46,9 @@ Color3D Light3D::Compute(const Material3D& material, const Shape3D& shape, const
 
 		if (reflect_dot_camera > 0)
 		{
-			auto factor = pow(reflect_dot_camera, material.Shininess);
+			auto factor = pow(reflect_dot_camera, shape.Material.Shininess);
 
-			specular = Intensity * material.Specular * factor;
+			specular = Intensity * shape.Material.Specular * factor;
 		}
 	}
 
