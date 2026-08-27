@@ -17,6 +17,21 @@ const Vector3D Triangle3D::LocalNormalAt(const Point3D& point) const
 	return Normal;
 }
 
+const Point3D Triangle3D::GetP1() const
+{
+  return p1;
+}
+
+const Point3D Triangle3D::GetP2() const
+{
+  return p2;
+}
+
+const Point3D Triangle3D::GetP3() const
+{
+  return p3;
+}
+
 std::vector<Intersection> Triangle3D::LocalIntersect(const Ray3D& ray) const
 {
 	std::vector<Intersection> result;
@@ -25,7 +40,8 @@ std::vector<Intersection> Triangle3D::LocalIntersect(const Ray3D& ray) const
 
   auto det = e1.Dot(dir_cross_e2);
 
-  if (fabs(det) < Mathf<double>::Epsilon()) {
+  if (fabs(det) < Mathf<double>::Epsilon()) 
+  {
     return result;
   }
 
@@ -33,11 +49,22 @@ std::vector<Intersection> Triangle3D::LocalIntersect(const Ray3D& ray) const
   auto p1_to_origin = ray.Location - p1;
   auto u = f * p1_to_origin.Dot(dir_cross_e2);
 
-  if (u < 0 || u > 1) {
+  if (u < 0 || u > 1) 
+  {
     return result;
   }
 
-	result.push_back(Intersection(1, this));
+  auto origin_cross_e1 = p1_to_origin.Cross(e1);
+  auto v = f * ray.Direction.Dot(origin_cross_e1);
+
+  if (v < 0 or (u + v) > 1)
+  {
+    return result;
+  }
+
+  auto t = f * e2.Dot(origin_cross_e1);
+
+	result.push_back(Intersection(t, this));
 
 	return result;
 }

@@ -16,6 +16,9 @@ class Triangle3D : virtual public Shape3D
 public:
 	Triangle3D(const Point3D p1, const Point3D p2, const Point3D p3);
 
+  // Triangle3D(const Point3D* p1, const Point3D* p2, const Point3D* p3);
+  // Triangle3D(const Point3D& p1, const Point3D& p2, const Point3D& p3);
+
   // Triangle3D(const Material3D material);
 
 	// Triangle3D(const Matrix4d transform, const Material3D material);
@@ -28,10 +31,12 @@ public:
 
   std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 
+  const Point3D GetP1() const;
+  const Point3D GetP2() const;
+  const Point3D GetP3() const;
+
 protected:
 	const Vector3D LocalNormalAt(const Point3D& point) const;
-
-	
 
 private:
   const Point3D p1;

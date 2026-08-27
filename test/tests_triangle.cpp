@@ -81,6 +81,58 @@ void test_ray_misses_p1_p3()
   assert(true == xs.empty());
 }
 
+// Tests #5: Intersecting a Ray with a Triangle
+//
+// A ray misses the p1-p2 edge
+//
+void test_ray_misses_p1_p2()
+{
+  // Set up
+  Triangle3D triangle(Point3D(0, 1, 0), Point3D(-1, 0, 0), Point3D(1, 0, 0));
+  Ray3D ray(Point3D(-1, 1, -2), Vector3D(0, 0, 1));
+
+  // Act
+  auto xs = triangle.LocalIntersect(ray);
+  
+  // Assert
+  assert(true == xs.empty());
+}
+
+// Tests #6: Intersecting a Ray with a Triangle
+//
+// A ray misses the p2-p3 edge
+//
+void test_ray_misses_p2_p3()
+{
+  // Set up
+  Triangle3D triangle(Point3D(0, 1, 0), Point3D(-1, 0, 0), Point3D(1, 0, 0));
+  Ray3D ray(Point3D(0, -1, -2), Vector3D(0, 0, 1));
+
+  // Act
+  auto xs = triangle.LocalIntersect(ray);
+  
+  // Assert
+  assert(true == xs.empty());
+}
+
+// Tests #7: Intersecting a Ray with a Triangle
+//
+// A ray strikes a triangle
+//
+void test_ray_strikes_triangle()
+{
+  // Set up
+  Triangle3D triangle(Point3D(0, 1, 0), Point3D(-1, 0, 0), Point3D(1, 0, 0));
+  Ray3D ray(Point3D(0, 0.5, -2), Vector3D(0, 0, 1));
+
+  // Act
+  auto xs = triangle.LocalIntersect(ray);
+  
+  // Assert
+  assert(1 == xs.size());
+  assert(2 == xs[0].Value);
+}
+
 void run_triangle_tests()
 {
 	test_finding_normal();
@@ -88,4 +140,10 @@ void run_triangle_tests()
   test_intersect_parallel_ray();
 
   test_ray_misses_p1_p3();
+
+  test_ray_misses_p1_p2();
+
+  test_ray_misses_p2_p3();
+
+  test_ray_strikes_triangle();
 }

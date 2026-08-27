@@ -1,0 +1,151 @@
+#include <list>
+#include <cassert>
+
+#include <sstream>
+#include <iostream>
+
+#include "../lib/Core/Mathf.h"
+#include "../lib/Core/Color3D.h"
+
+#include "../lib/Core/Primitive3D.h"
+#include "../lib/Core/Vector3D.h"
+#include "../lib/Core/Point3D.h"
+
+#include "../lib/Core/Matrix.hpp"
+#include "../lib/Core/MatrixOps.hpp"
+#include "../lib/Core/MatrixTransform.hpp"
+
+#include "../lib/Core/Material3D.h"
+#include "../lib/Core/Sphere3D.h"
+#include "../lib/Core/Polygon3D.h"
+
+#include "tests.h"
+
+std::vector<std::string> split(std::string s, const std::string& delimiter) {
+    std::vector<std::string> tokens;
+    size_t pos = 0;
+    std::string token;
+    while ((pos = s.find(delimiter)) != std::string::npos) {
+        token = s.substr(0, pos);
+        tokens.push_back(token);
+        s.erase(0, pos + delimiter.length());
+    }
+    tokens.push_back(s);
+
+    return tokens;
+}
+
+inline void ltrim(std::string &s) {
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
+        return !std::isspace(ch);
+    }));
+}
+
+// Trim from the end (in place)
+inline void rtrim(std::string &s) {
+    s.erase(std::find_if(s.rbegin(), s.rend(), [](unsigned char ch) {
+        return !std::isspace(ch);
+    }).base(), s.end());
+}
+
+void obj_load_polygon(const char* data, Polygon3D& result)
+{
+  std::istringstream f(data);
+  std::string line;
+
+  while (std::getline(f, line)) {
+    ltrim(line);
+
+    if (line.empty()) {
+      continue;
+    }
+
+    auto tokens = split(line, " ");
+    //std::cout << line << " " << tokens.size() << std::endl;
+
+    if (tokens[0] == "v") {
+      // std::cout << tokens[1] << " " << tokens[2] << " " << tokens[3] << std::endl;
+      auto point = Point3D(std::stof(tokens[1]), std::stof(tokens[2]), std::stof(tokens[3]));
+      result.AddVertex(point);
+    } 
+    else if (tokens[0] == "f") {
+      std::vector<int> face_indexes;
+
+      for(auto i=1; i<tokens.size(); i++) {
+        face_indexes.push_back(std::stoi(tokens[i]));
+      }
+      result.AddFace(face_indexes);
+    }
+  }
+}
+
+// Test #9: OBJ File with Vertex Data
+//
+// The parser should process vertex data from the given input.
+//
+void test_parser_loads_vertex_data()
+{
+  // Arrange
+  const char* data = "\
+    v -1 1 0\n\
+    v -1.0000 0.5000 0.0000\n\
+    v 1 0 0\n\
+    v 1 1 0";
+
+  Polygon3D polygon;
+
+  // Act
+  obj_load_polygon(data, polygon);
+
+  // Assert
+  assert (polygon.GetVertex(1) == Point3D(-1, 1, 0));
+  assert (polygon.GetVertex(2) == Point3D(-1, 0.5, 0));
+  assert (polygon.GetVertex(3) == Point3D(1, 0, 0));
+  assert (polygon.GetVertex(4) == Point3D(1, 1, 0));
+}
+
+// Test #10: OBJ File with Triangle Data
+//
+// The parser should process triangle data from the given input.
+//
+void test_parser_loads_vertex_and_face_data()
+{
+  // Arrange
+  const char* data = "\
+    v -1 1 0\n\
+    v -1 0 0\n\
+    v 1 0 0\n\
+    v 1 1 0\n\
+    \
+    f 1 2 3\n\
+    f 1 3 4";
+
+  Polygon3D polygon;
+
+  // Act
+  obj_load_polygon(data, polygon);
+
+  auto t1 = polygon.GetTriangle(1);
+  auto t2 = polygon.GetTriangle(2);
+
+  // Assert
+  assert (polygon.GetVertex(1) == Point3D(-1, 1, 0));
+  assert (polygon.GetVertex(2) == Point3D(-1, 0, 0));
+  assert (polygon.GetVertex(3) == Point3D(1, 0, 0));
+  assert (polygon.GetVertex(4) == Point3D(1, 1, 0));
+
+  assert (t1.GetP1() == polygon.GetVertex(1));
+  assert (t1.GetP2() == polygon.GetVertex(2));
+  assert (t1.GetP3() == polygon.GetVertex(3));
+
+  assert (t2.GetP1() == polygon.GetVertex(1));
+  assert (t2.GetP2() == polygon.GetVertex(3));
+  assert (t2.GetP3() == polygon.GetVertex(4));
+}
+
+void run_obj_tests()
+{
+	test_parser_loads_vertex_data();
+
+  test_parser_loads_vertex_and_face_data();
+}
