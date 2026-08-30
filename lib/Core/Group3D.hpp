@@ -15,6 +15,8 @@ class Group3D
 public:
   Group3D();
 
+  Group3D(const Group3D& group);
+
   Group3D(const Matrix4d& transform);
 
   Group3D(const Point3D& position, const Matrix4d& transform);
@@ -23,7 +25,11 @@ public:
 
   Group3D* AddShape(Shape3D* shape);
 
+  const Shape3D* GetShape(int index) const;
+
   bool operator==(const Group3D& other) const;
+
+  int ShapesCount() const;
 
   std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 

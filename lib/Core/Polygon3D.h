@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iostream>
+#include <deque>
 #include <vector>
 
 #include "Point3D.h"
@@ -10,21 +11,29 @@
 class Polygon3D
 {
 	public:
-		Polygon3D() : vertices({}), triangles({})
+		Polygon3D() : vertices({}), triangles({}), groups({})
 		{}
 
 		const Point3D GetVertex(const int index) const;
 
-		const Triangle3D GetTriangle(const int index) const;
+		const RefTriangle3D& GetTriangle(const int index) const;
 
-		void AddVertex(Point3D vertex);
+		const Group3D* GetGroup(const int index) const;
+
+		void AddVertex(double p1, double p2, double p3);
 
 		void AddFace(std::vector<int>& indexes);
 
+		void AddGroup(const char* name);
+
+		int GroupsCount();
+
 	private:
-		std::vector<Point3D> vertices;
+		std::deque<Point3D> vertices;
 
-		std::vector<Triangle3D> triangles;
+		std::deque<RefTriangle3D> triangles;
 
-		// Group3D triangles;
+		std::deque<Group3D> groups;
+
+		int default_group_index = -1;
 };

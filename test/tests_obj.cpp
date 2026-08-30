@@ -61,20 +61,21 @@ void obj_load_polygon(const char* data, Polygon3D& result)
     }
 
     auto tokens = split(line, " ");
-    //std::cout << line << " " << tokens.size() << std::endl;
 
     if (tokens[0] == "v") {
-      // std::cout << tokens[1] << " " << tokens[2] << " " << tokens[3] << std::endl;
-      auto point = Point3D(std::stof(tokens[1]), std::stof(tokens[2]), std::stof(tokens[3]));
-      result.AddVertex(point);
+      result.AddVertex(std::stof(tokens[1]), std::stof(tokens[2]), std::stof(tokens[3]));
     } 
     else if (tokens[0] == "f") {
       std::vector<int> face_indexes;
 
-      for(auto i=1; i<tokens.size(); i++) {
+      for (auto i=1; i<tokens.size(); i++) {
         face_indexes.push_back(std::stoi(tokens[i]));
       }
+     
       result.AddFace(face_indexes);
+    }
+    else if (tokens[0] == "g") {
+        result.AddGroup(tokens[1].c_str());
     }
   }
 }
@@ -134,13 +135,92 @@ void test_parser_loads_vertex_and_face_data()
   assert (polygon.GetVertex(3) == Point3D(1, 0, 0));
   assert (polygon.GetVertex(4) == Point3D(1, 1, 0));
 
-  assert (t1.GetP1() == polygon.GetVertex(1));
-  assert (t1.GetP2() == polygon.GetVertex(2));
-  assert (t1.GetP3() == polygon.GetVertex(3));
+  assert (t1.P1 == polygon.GetVertex(1));
+  assert (t1.P2 == polygon.GetVertex(2));
+  assert (t1.P3 == polygon.GetVertex(3));
 
-  assert (t2.GetP1() == polygon.GetVertex(1));
-  assert (t2.GetP2() == polygon.GetVertex(3));
-  assert (t2.GetP3() == polygon.GetVertex(4));
+  assert (t2.P1 == polygon.GetVertex(1));
+  assert (t2.P2 == polygon.GetVertex(3));
+  assert (t2.P3 == polygon.GetVertex(4));
+}
+
+// Test #11:  OBJ File with Polygon Data
+//
+// The parser should process and triangulate polygonal data from the given input.
+//
+void test_parser_triangulates()
+{
+  // Arrange
+  const char* data = "\
+    v -1 1 0\n\
+    v -1 0 0\n\
+    v 1 0 0\n\
+    v 1 1 0\n\
+    v 0 2 0\n\
+    \
+    f 1 2 3 4 5";
+
+  Polygon3D polygon;
+
+  // Act
+  obj_load_polygon(data, polygon);
+
+  auto t1 = polygon.GetTriangle(1);
+  auto t2 = polygon.GetTriangle(2);
+  auto t3 = polygon.GetTriangle(3);
+
+  // Assert
+  assert (t1.P1 == polygon.GetVertex(1));
+  assert (t1.P2 == polygon.GetVertex(2));
+  assert (t1.P3 == polygon.GetVertex(3));
+
+  assert (t2.P1 == polygon.GetVertex(1));
+  assert (t2.P2 == polygon.GetVertex(3));
+  assert (t2.P3 == polygon.GetVertex(4));
+
+  assert (t3.P1 == polygon.GetVertex(1));
+  assert (t3.P2 == polygon.GetVertex(4));
+  assert (t3.P3 == polygon.GetVertex(5));
+}
+
+// Test #12: Named Groups in OBJ Files
+//
+// The parser should recognize a group statement and add subsequent triangles to the named group.
+//
+void test_obj_groups()
+{
+    // Arrange
+  const char* data = "\
+    v -1 1 0\n\
+    v -1 0 0\n\
+    v 1 0 0\n\
+    v 1 1 0\n\
+    g FirstGroup\n\
+    f 1 2 3\n\
+    g SecondGroup\n\
+    f 1 3 4";
+
+  Polygon3D polygon;
+
+  // Act
+  obj_load_polygon(data, polygon);
+
+  auto g1 = polygon.GetGroup(1);
+  auto g2 = polygon.GetGroup(2);
+
+  auto t1 = dynamic_cast<const RefTriangle3D*>(g1->GetShape(0));
+  auto t2 = dynamic_cast<const RefTriangle3D*>(g2->GetShape(0));
+
+  // // Assert
+  assert(2 == polygon.GroupsCount());
+
+  assert (t1->P1 == polygon.GetVertex(1));
+  assert (t1->P2 == polygon.GetVertex(2));
+  assert (t1->P3 == polygon.GetVertex(3));
+
+  assert (t2->P1 == polygon.GetVertex(1));
+  assert (t2->P2 == polygon.GetVertex(3));
+  assert (t2->P3 == polygon.GetVertex(4));
 }
 
 void run_obj_tests()
@@ -148,4 +228,8 @@ void run_obj_tests()
 	test_parser_loads_vertex_data();
 
   test_parser_loads_vertex_and_face_data();
+
+  test_parser_triangulates();
+
+  test_obj_groups();
 }

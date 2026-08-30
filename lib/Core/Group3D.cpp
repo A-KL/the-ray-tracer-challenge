@@ -7,6 +7,12 @@ Group3D::Group3D() :
     Group3D(Matrix4d::Identity())
 { }
 
+Group3D::Group3D(const Group3D& group)
+    : Group3D(group.Position, group.Transformation)
+{ 
+    _shapes = group._shapes;
+}
+
 Group3D::Group3D(const Matrix4d& transform) :
     Group3D(Point3D::Origin, transform)
 { }
@@ -25,6 +31,17 @@ Group3D* Group3D::AddShape(Shape3D* shape)
     shape->Parent = this;
     _shapes.push_back(shape);
     return this;
+}
+
+const Shape3D* Group3D::GetShape(int index) const
+{
+    assert(index < _shapes.size());
+    return _shapes[index];
+}
+
+int Group3D::ShapesCount() const
+{
+    return _shapes.size();
 }
 
 bool Group3D::operator==(const Group3D& other) const 
