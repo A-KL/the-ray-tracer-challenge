@@ -15,13 +15,11 @@ class TTriangle3D : virtual public Shape3D
 {
   public:
 
-	  TTriangle3D(
-      const TTriangle3D& t) :
+	  TTriangle3D(const TTriangle3D& t) :
       TTriangle3D(t.P1, t.P2, t.P3)
     { }
 
-    TTriangle3D(
-      const TPoint3D p1, const TPoint3D p2, const TPoint3D p3) : 
+    TTriangle3D(const TPoint3D p1, const TPoint3D p2, const TPoint3D p3) : 
       Shape3D(Material3D::Default), P1(p1), P2(p2), P3(p3), E1(p2 - p1), E2(p3 - p1)
     {  }
 

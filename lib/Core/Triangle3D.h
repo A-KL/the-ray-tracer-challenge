@@ -30,23 +30,12 @@ class RefTriangle3D : virtual public TTriangle3D<Point3D&>
     const Vector3D ComputeNormal() const;    
 };
 
-class Triangle3D : virtual public Shape3D
+class Triangle3D : virtual public TTriangle3D<Point3D>
 {
 public:
   Triangle3D(const Triangle3D& point);
 
 	Triangle3D(const Point3D p1, const Point3D p2, const Point3D p3);
-
-	bool operator==(const Triangle3D& other) const;
-
-  std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
-
-  const Point3D P1;
-  const Point3D P2;
-  const Point3D P3;
-
-  const Vector3D E1;
-  const Vector3D E2;
 
   const Vector3D Normal;
 
