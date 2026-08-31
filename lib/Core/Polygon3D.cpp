@@ -1,9 +1,15 @@
 #include "Polygon3D.h"
 
-const Point3D Polygon3D::GetVertex(const int index) const
+const Point3D& Polygon3D::GetVertex(const int index) const
 {
   assert(index <= vertices.size());
   return vertices[(index-1)];
+}
+
+const Vector3D& Polygon3D::GetNormal(const int index) const
+{
+  assert(index <= normals.size());
+  return normals[(index-1)];
 }
 
 const RefTriangle3D& Polygon3D::GetTriangle(const int index) const
@@ -16,11 +22,7 @@ const Group3D* Polygon3D::GetGroup(const int index) const
 {
   assert(index <= groups.size());
 
-  auto group = &groups[(index-1)];
-
-  // std::cout << "GetGroup #" << index << " shapes count: " << (*group).ShapesCount() << std::endl;
-
-  return group;
+  return &groups[(index-1)];
 }
 
 void Polygon3D::AddVertex(double p1, double p2, double p3)
@@ -28,20 +30,18 @@ void Polygon3D::AddVertex(double p1, double p2, double p3)
   vertices.push_back(Point3D(p1, p2, p3));
 }
 
+void Polygon3D::AddNormal(double p1, double p2, double p3)
+{
+  normals.push_back(Vector3D(p1, p2, p3));
+}
+
 void Polygon3D::AddGroup(const char* name)
 {
-  // std::cout << "AddGroup " << name << std::endl;
-
   Group3D default_group;
 
   groups.push_back(default_group);
 
   default_group_index++;
-}
-
-int Polygon3D::GroupsCount()
-{
-  return groups.size();
 }
 
 void Polygon3D::AddFace(std::vector<int>& indexes)
@@ -80,4 +80,9 @@ void Polygon3D::AddFace(std::vector<int>& indexes)
       // std::cout << "->> AddFace " << groups[default_group_index].ShapesCount() << std::endl;
     }
   }
+}
+
+int Polygon3D::GroupsCount()
+{
+  return groups.size();
 }

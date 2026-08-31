@@ -1,8 +1,6 @@
 #include <list>
 #include <cassert>
 
-
-
 #include "../lib/Core/Mathf.h"
 #include "../lib/Core/Color3D.h"
 
@@ -143,6 +141,11 @@ void test_obj_groups()
     g SecondGroup\n\
     f 1 3 4";
 
+    // points 12 * 4 = 48B
+    // g1 8 * 3 = 32B
+    // g2 8 * 3 = 32B
+    // 64 + 48 = 112
+
   Polygon3D polygon;
 
   // Act
@@ -164,6 +167,24 @@ void test_obj_groups()
   assert (t2->P1 == polygon.GetVertex(1));
   assert (t2->P2 == polygon.GetVertex(3));
   assert (t2->P3 == polygon.GetVertex(4));
+
+  // Vector3D v(111,22,333);
+
+  // std::vector<Vector3D> test;
+
+  // test.push_back(v);
+  // test.push_back(v);
+
+  // auto d1 = &test[1];
+  // auto d2 = &test[1];
+
+  // std::cout << &polygon.GetVertex(1) << std::endl;
+  // std::cout << &polygon.GetVertex(1) << std::endl;
+  
+  // Vector3D v2(2,2,2);
+
+  // test.push_back(v2);
+  // test.push_back(v2);
 }
 
 void run_obj_tests()
