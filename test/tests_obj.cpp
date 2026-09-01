@@ -141,11 +141,6 @@ void test_obj_groups()
     g SecondGroup\n\
     f 1 3 4";
 
-    // points 12 * 4 = 48B
-    // g1 8 * 3 = 32B
-    // g2 8 * 3 = 32B
-    // 64 + 48 = 112
-
   Polygon3D polygon;
 
   // Act
@@ -154,8 +149,8 @@ void test_obj_groups()
   auto g1 = polygon.GetGroup(1);
   auto g2 = polygon.GetGroup(2);
 
-  auto t1 = dynamic_cast<const RefTriangle3D*>(g1->GetShape(0));
-  auto t2 = dynamic_cast<const RefTriangle3D*>(g2->GetShape(0));
+  auto t1 = dynamic_cast<const Triangle3D*>(g1.GetShape(0));
+  auto t2 = dynamic_cast<const Triangle3D*>(g2.GetShape(0));
 
   // // Assert
   assert(2 == polygon.GroupsCount());
@@ -167,24 +162,65 @@ void test_obj_groups()
   assert (t2->P1 == polygon.GetVertex(1));
   assert (t2->P2 == polygon.GetVertex(3));
   assert (t2->P3 == polygon.GetVertex(4));
+}
 
-  // Vector3D v(111,22,333);
+// Test #19: OBJ File with Vertex Normal Data
+//
+// Vertex normal data should be correctly imported from an OBJ file.
+//
+void test_obj_data_with_vertex_normals()
+{
+  // Arrange
+  const char* data = "\
+    v 0 1 0\n\
+    v -1 0 0\n\
+    v 1 0 0\n\
+    vn -1 0 0\n\
+    vn 1 0 0\n\
+    vn 0 1 0";
 
-  // std::vector<Vector3D> test;
+  Polygon3D polygon;
 
-  // test.push_back(v);
-  // test.push_back(v);
+  // Act
+  obj_load_polygon(data, polygon);
 
-  // auto d1 = &test[1];
-  // auto d2 = &test[1];
+  // Assert
+  assert(Vector3D(-1, 0, 0) == polygon.GetNormal(1));
+  assert(Vector3D(1, 0, 0) == polygon.GetNormal(2));
+  assert(Vector3D(0, 1, 0) == polygon.GetNormal(3));
+}
 
-  // std::cout << &polygon.GetVertex(1) << std::endl;
-  // std::cout << &polygon.GetVertex(1) << std::endl;
-  
-  // Vector3D v2(2,2,2);
+// Test #20: Faces with Normal Vectors
+//
+//Vertex normal data should be correctly associated with face data from an OBJ file.
+//
+void test_obj_faces_with_vertex_normals()
+{
+  // Arrange
+  const char* data = "\
+    v 0 1 0\n\
+    v -1 0 0\n\
+    v 1 0 0\n\
+    \n\
+    vn -1 0 0\n\
+    vn 1 0 0\n\
+    vn 0 1 0\n\
+    \n\
+    f 1//3 2//1 3//2\n\
+    f 1/0/3 2/102/1 3/14/2";
 
-  // test.push_back(v2);
-  // test.push_back(v2);
+  Polygon3D polygon;
+
+  // Act
+  obj_load_polygon(data, polygon);
+
+  auto g1 = polygon.GetGroup(1);
+
+  auto t1 = g1.GetShape(0);
+  auto t2 = g1.GetShape(1);
+
+  // Assert
+  assert(*t2 == *t1);
 }
 
 void run_obj_tests()
@@ -196,4 +232,8 @@ void run_obj_tests()
   test_parser_triangulates();
 
   test_obj_groups();
+
+  test_obj_data_with_vertex_normals();
+
+  test_obj_faces_with_vertex_normals();
 }

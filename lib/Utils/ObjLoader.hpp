@@ -55,24 +55,30 @@ void obj_load_polygon(const char* data, Polygon3D& result)
     else if (tokens[0] == "f") 
     {
       std::vector<int> face_indexes;
+      std::vector<int> normal_indexes;
 
       for (auto i=1; i<tokens.size(); i++) 
       {
-        face_indexes.push_back(std::stoi(tokens[i]));
+        auto d = split(tokens[i], "/");
+
+        if (d.size() == 3) {
+          face_indexes.push_back(std::stoi(d[0]));
+          normal_indexes.push_back(std::stoi(d[2]));
+        }
+        else 
+        {
+          face_indexes.push_back(std::stoi(tokens[i]));
+        }        
       }
-      result.AddFace(face_indexes);
+      result.AddFace(face_indexes, normal_indexes);
     }
     else if (tokens[0] == "g") 
     {
-        result.AddGroup(tokens[1].c_str());
+      result.AddGroup(tokens[1].c_str());
     }
     else if (tokens[0] == "vn") 
     {
-
+      result.AddNormal(std::stof(tokens[1]), std::stof(tokens[2]), std::stof(tokens[3]));
     }
   }
-
-  // std::cout << "obj_load_polygon: Size of int: " << sizeof(int) << "B" << std::endl;
-  // std::cout << "obj_load_polygon: Size of void*: " << sizeof(void*) << "B" << std::endl;
-  // std::cout << "obj_load_polygon: Loaded data size: " << sizeof(result) << "B" << std::endl;
 }

@@ -9,37 +9,38 @@
 #include "MatrixOps.hpp"
 #include "Ray3D.h"
 #include "Shape3D.h"
+#include "TriangleShape3D.h"
 
-#include "TTriangle3D.h"
-
-class SmoothTriangle3D : virtual public TSmoothTriangle3D<Point3D&>
-{
-};
-
-class RefTriangle3D : virtual public TTriangle3D<Point3D&>
+class SmoothTriangle3D : virtual public TriangleShape3D
 {
   public:
-	  RefTriangle3D(const RefTriangle3D& point);
 
-	  RefTriangle3D(Point3D& p1, Point3D& p2, Point3D& p3);
+	  SmoothTriangle3D(const SmoothTriangle3D& t);
 
-    const Vector3D Normal;
+	  SmoothTriangle3D(
+      const Point3D& p1, const Point3D& p2, const Point3D& p3, 
+      const Vector3D& n1, const Vector3D& n2, const Vector3D& n3);
+
+    bool operator==(const SmoothTriangle3D& other) const;
+
+    const Vector3D& N1;
+    const Vector3D& N2;
+    const Vector3D& N3;
     
   protected:
-	  const Vector3D LocalNormalAt(const Point3D& point) const;
-    const Vector3D ComputeNormal() const;    
+    const Vector3D LocalNormalAt(const Point3D& point) const;
 };
 
-class Triangle3D : virtual public TTriangle3D<Point3D>
+class Triangle3D : virtual public TriangleShape3D
 {
-public:
-  Triangle3D(const Triangle3D& point);
+  public:
+    Triangle3D(const Triangle3D& point);
 
-	Triangle3D(const Point3D p1, const Point3D p2, const Point3D p3);
+    Triangle3D(const Point3D& p1, const Point3D& p2, const Point3D& p3);
 
-  const Vector3D Normal;
+    const Vector3D Normal;
 
-protected:
-	const Vector3D LocalNormalAt(const Point3D& point) const;
-  const Vector3D ComputeNormal() const;
+  protected:
+    const Vector3D LocalNormalAt(const Point3D& point) const;
+    const Vector3D ComputeNormal() const;
 };

@@ -11,14 +11,14 @@
 class Polygon3D
 {
 	public:
-		Polygon3D() : vertices({}), normals({}), triangles({}), groups({})
+		Polygon3D() : vertices({}), normals({}), smooth_triangles({}), triangles({}), all_triangles({}), groups({})
 		{}
 
 		const Point3D& GetVertex(const int index) const;
 
-		const RefTriangle3D& GetTriangle(const int index) const;
+		const Triangle3D& GetTriangle(const int index) const;
 
-		const Group3D* GetGroup(const int index) const;
+		const Group3D& GetGroup(const int index) const;
 
 		const Vector3D& GetNormal(const int index) const;
 
@@ -27,7 +27,7 @@ class Polygon3D
 
 		void AddNormal(double p1, double p2, double p3);
 
-		void AddFace(std::vector<int>& indexes);
+		void AddFace(std::vector<int>& face_indexes, std::vector<int>& normal_indexes);
 
 		void AddGroup(const char* name);
 
@@ -39,7 +39,11 @@ class Polygon3D
 
 		std::deque<Vector3D> normals;
 
-		std::deque<RefTriangle3D> triangles;
+		std::deque<SmoothTriangle3D> smooth_triangles;
+
+		std::deque<Triangle3D> triangles;
+
+		std::deque<TriangleShape3D*> all_triangles;
 
 		std::deque<Group3D> groups;
 

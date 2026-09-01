@@ -12,17 +12,17 @@ const Vector3D& Polygon3D::GetNormal(const int index) const
   return normals[(index-1)];
 }
 
-const RefTriangle3D& Polygon3D::GetTriangle(const int index) const
+const Triangle3D& Polygon3D::GetTriangle(const int index) const
 {
   assert(index <= triangles.size());
   return triangles[(index-1)];
 }
 
-const Group3D* Polygon3D::GetGroup(const int index) const
+const Group3D& Polygon3D::GetGroup(const int index) const
 {
   assert(index <= groups.size());
 
-  return &groups[(index-1)];
+  return groups[(index-1)];
 }
 
 void Polygon3D::AddVertex(double p1, double p2, double p3)
@@ -44,9 +44,9 @@ void Polygon3D::AddGroup(const char* name)
   default_group_index++;
 }
 
-void Polygon3D::AddFace(std::vector<int>& indexes)
+void Polygon3D::AddFace(std::vector<int>& face_indexes, std::vector<int>& normal_indexes)
 {
-  auto count = indexes.size();
+  auto count = face_indexes.size();
 
   assert(count > 2);
 
@@ -57,10 +57,11 @@ void Polygon3D::AddFace(std::vector<int>& indexes)
   if (count == 3) 
   {
     triangles.emplace_back(
-      vertices[(indexes[0]-1)], // X
-      vertices[(indexes[1]-1)], // Y
-      vertices[(indexes[2]-1)]  // Z
+      vertices[(face_indexes[0]-1)], // X
+      vertices[(face_indexes[1]-1)], // Y
+      vertices[(face_indexes[2]-1)]  // Z
     );
+    all_triangles.emplace_back(&triangles.back());
     
     groups[default_group_index].AddShape(&triangles.back());
 
@@ -70,11 +71,12 @@ void Polygon3D::AddFace(std::vector<int>& indexes)
   {
     for (auto i = 1; i < count - 1; i++) {
       triangles.emplace_back(
-        vertices[(indexes[0]-1)],      // X
-        vertices[(indexes[i]-1)],      // Y
-        vertices[(indexes[i + 1]-1)]   // Z
+        vertices[(face_indexes[0]-1)],    // X
+        vertices[(face_indexes[i]-1)],    // Y
+        vertices[(face_indexes[i+1]-1)]   // Z
       );
 
+      all_triangles.emplace_back(&triangles.back());
       groups[default_group_index].AddShape(&triangles.back());
 
       // std::cout << "->> AddFace " << groups[default_group_index].ShapesCount() << std::endl;
