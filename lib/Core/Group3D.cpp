@@ -66,7 +66,7 @@ std::vector<Intersection> Group3D::LocalIntersect(const Ray3D& ray) const
     return std::vector<Intersection>(results.begin(), results.end());
 }
 
-const Vector3D Group3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Group3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
     throw std::logic_error("Group3D does not implement LocalNormalAt");
 }

@@ -20,10 +20,10 @@ bool Shape3D::operator==(const Shape3D& other) const
 	return Object3D::operator==(other) && Material == other.Material;
 }
 
-const Vector3D Shape3D::NormalAt(const Point3D& point) const
+const Vector3D Shape3D::NormalAt(const Point3D& point, const Intersection* hit) const
 {
 	auto local_point = WorldToObject(*this, point);
-	auto local_normal = LocalNormalAt(local_point);
+	auto local_normal = LocalNormalAt(local_point, hit);
 	auto world_normal = NormalToWorld(*this, local_normal);
 
 	return world_normal;

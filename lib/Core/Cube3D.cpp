@@ -28,7 +28,7 @@ bool Cube3D::operator==(const Cube3D& other) const
     return Shape3D::operator==(other);
 }
 
-const Vector3D Cube3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Cube3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
     auto abx_x = abs(point.X());
     auto abx_y = abs(point.Y());

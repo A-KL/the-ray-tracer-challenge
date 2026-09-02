@@ -36,5 +36,5 @@ public:
 private:
   std::vector<Shape3D*> _shapes;
 
-  const Vector3D LocalNormalAt(const Point3D& point) const;
+  const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
 };

@@ -26,7 +26,7 @@ public:
 	bool operator==(const Sphere3D& other) const;
 
 protected:
-	const Vector3D LocalNormalAt(const Point3D& point) const;
+	const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
 
 	std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 };

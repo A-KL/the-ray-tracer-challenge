@@ -164,6 +164,28 @@ void test_obj_groups()
   assert (t2->P3 == polygon.GetVertex(4));
 }
 
+// Test #16: Populate u and v on Triangle Intersections
+//
+// When intersecting triangles, preserve the u and v values in the resulting inter-section.
+//
+void test_obj_interception_with_u_and_v()
+{
+  // Arrange
+  auto t = Triangle3D(
+    Point3D(0, 1, 0), Point3D(-1, 0, 0), Point3D(1, 0, 0));
+
+  auto ray = Ray3D(
+    Point3D(-0.2, 0.3, -2), Vector3D(0, 0, 1));
+
+  // Act
+  auto xs = t.LocalIntersect(ray);
+
+  // Assert
+  assert(1 == xs.size());
+  assert(Mathf<double>::Approximately(0.45, xs[0].U));
+  assert(Mathf<double>::Approximately(0.25, xs[0].V));
+}
+
 // Test #19: OBJ File with Vertex Normal Data
 //
 // Vertex normal data should be correctly imported from an OBJ file.
@@ -238,6 +260,8 @@ void run_obj_tests()
   test_parser_loads_vertex_and_face_data();
 
   test_parser_triangulates();
+
+  test_obj_interception_with_u_and_v();
 
   test_obj_groups();
 

@@ -33,8 +33,7 @@ public:
 
 	std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 
-	const Vector3D LocalNormalAt(const Point3D& point) const;
-
+	const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
 private:
 
 	bool CheckCap(const Ray3D& ray, const double t) const;

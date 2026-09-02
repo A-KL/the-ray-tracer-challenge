@@ -6,6 +6,9 @@
 class Object3D
 {
 public:
+
+	Object3D(const Object3D& object);
+
 	Object3D(const Point3D& position);
 
 	Object3D(const Point3D& position, const Matrix4d& transform);

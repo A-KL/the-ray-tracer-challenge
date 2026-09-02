@@ -28,7 +28,7 @@ class SmoothTriangle3D : virtual public TriangleShape3D
     const Vector3D& N3;
     
   protected:
-    const Vector3D LocalNormalAt(const Point3D& point) const;
+    const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
 };
 
 class Triangle3D : virtual public TriangleShape3D
@@ -41,6 +41,6 @@ class Triangle3D : virtual public TriangleShape3D
     const Vector3D Normal;
 
   protected:
-    const Vector3D LocalNormalAt(const Point3D& point) const;
+    const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
     const Vector3D ComputeNormal() const;
 };

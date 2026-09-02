@@ -19,9 +19,14 @@ bool SmoothTriangle3D::operator==(const SmoothTriangle3D& other) const
     N3 == other.N3;
 }
 
-const Vector3D SmoothTriangle3D::LocalNormalAt(const Point3D& point) const
+const Vector3D SmoothTriangle3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
-  return Vector3D(1,1,1);
+	if (!hit)
+	{
+		throw std::invalid_argument("Intersection is null");
+	}
+
+	return Vector3D(N2 * hit->U + N3 * hit->V + N1 * (1 - hit->U - hit->V));
 }
 
 /* Triangle3D */
@@ -35,7 +40,7 @@ Triangle3D::Triangle3D(
   : Shape3D(Material3D::Default), TriangleShape3D(p1, p2, p3), Normal(ComputeNormal())
 { }
 
-const Vector3D Triangle3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Triangle3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
 	return Normal;
 }

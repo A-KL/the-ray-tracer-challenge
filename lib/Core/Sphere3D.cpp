@@ -25,7 +25,7 @@ bool Sphere3D::Sphere3D::operator==(const Sphere3D& other) const
 	return Shape3D::operator==(other);
 }
 
-const Vector3D Sphere3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Sphere3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
 	auto object_normal = point - Position;
 

@@ -69,7 +69,7 @@ class TriangleShape3D : virtual public Shape3D
 
       auto t = f * E2.Dot(origin_cross_e1);
 
-      result.push_back(Intersection(t, this));
+      result.push_back(Intersection(t, this, u, v));
 
       return result;
     }

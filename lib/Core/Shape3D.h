@@ -25,14 +25,14 @@ public:
 
 	Shape3D* Parent = nullptr;
 
-	const Vector3D NormalAt(const Point3D& point) const;
+	const Vector3D NormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
 
 	std::vector<Intersection> Intersect(const Ray3D& ray) const;
 	
 	bool operator==(const Shape3D& other) const;
 
 protected:
-	virtual const Vector3D LocalNormalAt(const Point3D& point) const = 0;
+	virtual const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const = 0;
 
 	virtual std::vector<Intersection> LocalIntersect(const Ray3D& ray) const = 0;
 

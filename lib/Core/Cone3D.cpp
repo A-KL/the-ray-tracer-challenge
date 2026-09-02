@@ -32,7 +32,7 @@ bool Cone3D::operator==(const Cone3D& other) const
         Closed == other.Closed;
 }
 
-const Vector3D Cone3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Cone3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
     auto dist = point.X() * point.X() + point.Z() * point.Z();
 
