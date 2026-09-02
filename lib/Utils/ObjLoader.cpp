@@ -4,7 +4,7 @@
 
 #include "../lib/Core/Polygon3D.h"
 
-#include "ObjLoader.hpp"
+#include "ObjLoader.h"
 
 inline void ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(), [](unsigned char ch) {
@@ -25,8 +25,10 @@ std::vector<std::string> split(std::string s, const std::string& delimiter) {
     size_t pos = 0;
     std::string token;
     while ((pos = s.find(delimiter)) != std::string::npos) {
+        // if (pos > 0) {
         token = s.substr(0, pos);
         tokens.push_back(token);
+      //  }
         s.erase(0, pos + delimiter.length());
     }
     tokens.push_back(s);
@@ -46,6 +48,7 @@ void obj_parse_line(std::string line, Polygon3D& result)
 
   if (tokens[0] == "v") 
   {
+    // std::cout << "Vertex: " << tokens[1] << ", " << tokens[2] << ", " << tokens[3] << std::endl;
     result.AddVertex(std::stof(tokens[1]), std::stof(tokens[2]), std::stof(tokens[3]));
   } 
   else if (tokens[0] == "f") 

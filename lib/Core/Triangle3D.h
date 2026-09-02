@@ -6,7 +6,7 @@
 #include "Vector3D.h"
 #include "Intersection.h"
 #include "Material3D.h"
-#include "MatrixOps.hpp"
+#include "MatrixOps.h"
 #include "Ray3D.h"
 #include "Shape3D.h"
 #include "TriangleShape3D.h"

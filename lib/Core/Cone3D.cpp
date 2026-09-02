@@ -1,4 +1,4 @@
-#include "Cone3D.hpp"
+#include "Cone3D.h"
 
 #include <math.h>
 #include "Mathf.h"

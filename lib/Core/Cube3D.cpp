@@ -1,4 +1,4 @@
-#include "Cube3D.hpp"
+#include "Cube3D.h"
 
 #include <math.h>
 #include "Mathf.h"

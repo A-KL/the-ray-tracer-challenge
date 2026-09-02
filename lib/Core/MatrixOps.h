@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Matrix.hpp"
-#include "MatrixTransform.hpp"
+#include "Matrix.h"
+#include "MatrixTransform.h"
 
 template<typename  TItem, unsigned TSizeX, unsigned TSizeY>
 bool matrix_inverse(

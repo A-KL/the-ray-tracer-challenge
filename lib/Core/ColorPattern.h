@@ -4,7 +4,7 @@
 
 #include "Color3D.h"
 #include "Point3D.h"
-#include "MatrixOps.hpp"
+#include "MatrixOps.h"
 
 class Shape3D;
 

@@ -1,7 +1,7 @@
 #include <math.h>
 
 #include "Mathf.h"
-#include "Group3D.hpp"
+#include "Group3D.h"
 
 Group3D::Group3D() :
     Group3D(Matrix4d::Identity())

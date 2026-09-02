@@ -9,12 +9,12 @@
 #include "../lib/Core/Vector3D.h"
 #include "../lib/Core/Point3D.h"
 
-#include "../lib/Core/Matrix.hpp"
-#include "../lib/Core/MatrixOps.hpp"
-#include "../lib/Core/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.h"
+#include "../lib/Core/MatrixOps.h"
+#include "../lib/Core/MatrixTransform.h"
 
 #include "../lib/Core/Sphere3D.h"
-#include "../lib/Core/Cone3D.hpp"
+#include "../lib/Core/Cone3D.h"
 
 #include "../lib/Core/Camera.h"
 #include "../lib/Core/InMemoryCanvas.h"

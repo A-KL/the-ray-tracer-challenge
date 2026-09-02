@@ -4,7 +4,7 @@
 
 #include "Point3D.h"
 #include "Vector3D.h"
-#include "MatrixOps.hpp"
+#include "MatrixOps.h"
 #include "Shape3D.h"
 #include "Intersection.h"
 

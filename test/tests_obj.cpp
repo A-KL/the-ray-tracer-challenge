@@ -8,15 +8,17 @@
 #include "../lib/Core/Vector3D.h"
 #include "../lib/Core/Point3D.h"
 
-#include "../lib/Core/Matrix.hpp"
-#include "../lib/Core/MatrixOps.hpp"
-#include "../lib/Core/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.h"
+#include "../lib/Core/MatrixOps.h"
+#include "../lib/Core/MatrixTransform.h"
 
 #include "../lib/Core/Material3D.h"
 #include "../lib/Core/Sphere3D.h"
 #include "../lib/Core/Polygon3D.h"
+#include "../lib/Core/Triangle3D.h"
 
-#include "../lib/Utils/ObjLoader.hpp"
+#include "../lib/Core/Computation.h"
+#include "../lib/Utils/ObjLoader.h"
 
 #include "tests.h"
 
@@ -186,6 +188,31 @@ void test_obj_interception_with_u_and_v()
   assert(Mathf<double>::Approximately(0.25, xs[0].V));
 }
 
+// Test #18: Pass the Hit to the normal_at Function
+//
+// The prepare_computations() function should pass the hit itself to the call to normal_at().
+//
+void test_obj_preparing_normal_smooth_triangle()
+{
+  // Arrange
+  auto t = SmoothTriangle3D(
+    Point3D(0, 1, 0), Point3D(-1, 0, 0), Point3D(1, 0, 0),
+    Vector3D(0, 1, 0), Vector3D(-1, 0, 0), Vector3D(1, 0, 0));
+
+  auto i = Intersection(
+    1.0, &t, 0.45, 0.25);
+
+  auto ray = Ray3D(
+    Point3D(-0.2, 0.3, -2), Vector3D(0, 0, 1));
+
+  auto xs = std::vector<Intersection> { i };
+
+  // Act
+  auto comps = Computation::Prepare(i, ray, xs);
+
+  // Assert
+  assert(comps.Normal == Vector3D(-0.5547, 0.83205, 0));
+}
 // Test #19: OBJ File with Vertex Normal Data
 //
 // Vertex normal data should be correctly imported from an OBJ file.
@@ -266,6 +293,8 @@ void run_obj_tests()
   test_obj_groups();
 
   test_obj_data_with_vertex_normals();
+
+  test_obj_preparing_normal_smooth_triangle();
 
   test_obj_faces_with_vertex_normals();
 }

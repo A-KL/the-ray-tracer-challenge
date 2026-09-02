@@ -5,7 +5,7 @@
 #include <vector>
 
 #include "Point3D.h"
-#include "Group3D.hpp"
+#include "Group3D.h"
 #include "Triangle3D.h"
 
 class Polygon3D

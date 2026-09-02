@@ -14,9 +14,9 @@
 #include "../lib/Core/Vector3D.h"
 #include "../lib/Core/Point3D.h"
 
-#include "../lib/Core/Matrix.hpp"
-#include "../lib/Core/MatrixOps.hpp"
-#include "../lib/Core/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.h"
+#include "../lib/Core/MatrixOps.h"
+#include "../lib/Core/MatrixTransform.h"
 
 #include "../lib/Core/Environment.h"
 #include "../lib/Core/Projectile.h"
@@ -25,10 +25,10 @@
 #include "../lib/Core/Object3D.h"
 #include "../lib/Core/Shape3D.h"
 #include "../lib/Core/Sphere3D.h"
-#include "../lib/Core/Cylinder3D.hpp"
-#include "../lib/Core/Group3D.hpp"
-#include "../lib/Core/Cone3D.hpp"
-#include "../lib/Core/Plane3D.hpp"
+#include "../lib/Core/Cylinder3D.h"
+#include "../lib/Core/Group3D.h"
+#include "../lib/Core/Cone3D.h"
+#include "../lib/Core/Plane3D.h"
 #include "../lib/Core/Polygon3D.h"
 #include "../lib/Core/Intersection.h"
 #include "../lib/Core/Ray3D.h"
@@ -38,7 +38,7 @@
 #include "../lib/Core/Scene3D.h"
 #include "../lib/Core/Camera.h"
 
-#include "../lib/Utils/ObjLoader.hpp"
+#include "../lib/Utils/ObjLoader.h"
 
 #include "examples.h"
 
@@ -820,13 +820,14 @@ void run_obj_demo(Canvas& canvas)
 	Polygon3D polygon;
 	
 	while (getline(file, line)) {
-			std::cout << line << std::endl;
 			obj_parse_line(line, polygon);
 	}
 
 	file.close();
 
 	auto g1 = polygon.GetGroup(1);
+
+	std::cout << "Loaded " << polygon.GroupsCount() << " groups from OBJ file." << std::endl;
 
 	// Render
 	
@@ -836,5 +837,10 @@ void run_obj_demo(Canvas& canvas)
 	scene.Shapes.push_back(&floor);
 	scene.Shapes.push_back(&g1);
 
+	// for (int i = 1; i <= polygon.GroupsCount(); i++) {
+	// 	auto group = polygon.GetGroup(i);
+	// 	scene.Shapes.push_back(&group);
+	// 	std::cout << "Adding group #" << i << std::endl;
+	// }
 	main_camera.Render(scene, canvas);
 }

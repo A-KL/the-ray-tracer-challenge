@@ -6,7 +6,7 @@
 #include "Intersection.h"
 #include "Vector3D.h"
 #include "Ray3D.h"
-#include "MatrixOps.hpp"
+#include "MatrixOps.h"
 
 class Cube3D
 	: virtual public Shape3D
