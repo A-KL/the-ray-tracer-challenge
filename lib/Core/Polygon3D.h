@@ -16,7 +16,7 @@ class Polygon3D
 
 		const Point3D& GetVertex(const int index) const;
 
-		const Triangle3D& GetTriangle(const int index) const;
+		const TriangleShape3D* GetTriangle(const int index) const;
 
 		const Group3D& GetGroup(const int index) const;
 

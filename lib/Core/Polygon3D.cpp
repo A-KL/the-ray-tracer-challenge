@@ -12,10 +12,10 @@ const Vector3D& Polygon3D::GetNormal(const int index) const
   return normals[(index-1)];
 }
 
-const Triangle3D& Polygon3D::GetTriangle(const int index) const
+const TriangleShape3D* Polygon3D::GetTriangle(const int index) const
 {
-  assert(index <= triangles.size());
-  return triangles[(index-1)];
+  assert(index <= all_triangles.size());
+  return all_triangles[(index-1)];
 }
 
 const Group3D& Polygon3D::GetGroup(const int index) const

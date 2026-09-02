@@ -25,3 +25,5 @@ void run_hexagon_demo(Canvas& canvas);
 void run_reflection_demo(Canvas& canvas);
 
 void run_cylinders_demo(Canvas& canvas);
+
+void run_obj_demo(Canvas& canvas);

@@ -2,6 +2,9 @@
 #include <list>
 #include <cassert>
 
+#include <fstream>
+#include <string>
+
 #include "../lib/Core/Mathf.h"
 
 #include "../lib/Core/Color3D.h"
@@ -26,6 +29,7 @@
 #include "../lib/Core/Group3D.hpp"
 #include "../lib/Core/Cone3D.hpp"
 #include "../lib/Core/Plane3D.hpp"
+#include "../lib/Core/Polygon3D.h"
 #include "../lib/Core/Intersection.h"
 #include "../lib/Core/Ray3D.h"
 #include "../lib/Core/Light3D.h"
@@ -33,6 +37,8 @@
 #include "../lib/Core/RayTracer.h"
 #include "../lib/Core/Scene3D.h"
 #include "../lib/Core/Camera.h"
+
+#include "../lib/Utils/ObjLoader.hpp"
 
 #include "examples.h"
 
@@ -775,6 +781,60 @@ void run_cylinders_demo(Canvas& canvas)
 	scene.Shapes.push_back(&c8);
 	scene.Shapes.push_back(&c9);
 	scene.Shapes.push_back(&glass_c);
+
+	main_camera.Render(scene, canvas);
+}
+
+void run_obj_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+			Camera(w, h, M_PI / 10, Point3D(8, 3.5, -9), Point3D(0, 0.3, 0), Vector3D(0, 1, 0));
+
+	auto main_light = Light3D(
+		Point3D(-10, 10, -10), Color3D::White);
+
+	// Floor
+	auto floor_pattern = CheckersColor3D(
+		Color3D(0.75, 0.75, 0.75), Color3D(0.5, 0.5, 0.5), Matrix4d::RotateY(0.3) * Matrix4d::Scale(0.25));
+
+	auto floor_material = Material3D(
+		floor_pattern, 0.2, 0.9, 0);
+
+	auto floor = Plane3D(
+		Matrix4d::Translate(0, -0.5, 0),
+		floor_material);
+
+	// OBJ
+
+	std::ifstream file("obj/cube.obj");
+
+	if (!file.is_open()) {
+		std::cerr << "Failed to open file " << std::endl;
+		return;
+	}
+
+	std::string line;
+	Polygon3D polygon;
+	
+	while (getline(file, line)) {
+			std::cout << line << std::endl;
+			obj_parse_line(line, polygon);
+	}
+
+	file.close();
+
+	auto g1 = polygon.GetGroup(1);
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+	scene.Shapes.push_back(&floor);
+	scene.Shapes.push_back(&g1);
 
 	main_camera.Render(scene, canvas);
 }
