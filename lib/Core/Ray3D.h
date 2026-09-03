@@ -21,5 +21,5 @@ public:
 
 	Ray3D Transform(const Matrix4d& transformation) const;
 
-	std::vector<Intersection> Intersect(const std::vector<Shape3D*>& objects) const;
+	std::vector<Intersection> Intersect(const std::vector<const Shape3D*>& objects) const;
 };

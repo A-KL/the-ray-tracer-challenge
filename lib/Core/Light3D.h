@@ -24,7 +24,7 @@ public:
 
 	Color3D Compute(const Shape3D& shape, const Point3D& position, const Vector3D& camera, const Vector3D& normal, bool shadow = false) const;
 
-	bool InShadow(const Point3D& point, const std::vector<Shape3D*>& shapes) const;
+	bool InShadow(const Point3D& point, const std::vector<const Shape3D*>& shapes) const;
 
 	// double IntensityAt(const Point3D& point, const Scene3D& scene) const;
 };

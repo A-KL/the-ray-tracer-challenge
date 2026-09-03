@@ -820,12 +820,10 @@ void run_obj_demo(Canvas& canvas)
 	Polygon3D polygon;
 	
 	while (getline(file, line)) {
-			obj_parse_line(line, polygon);
+		obj_parse_line(line, polygon);
 	}
 
 	file.close();
-
-	auto g1 = polygon.GetGroup(1);
 
 	std::cout << "Loaded " << polygon.GroupsCount() << " groups from OBJ file." << std::endl;
 
@@ -835,12 +833,11 @@ void run_obj_demo(Canvas& canvas)
 
 	scene.Lights.push_back(&main_light);
 	scene.Shapes.push_back(&floor);
-	scene.Shapes.push_back(&g1);
 
-	// for (int i = 1; i <= polygon.GroupsCount(); i++) {
-	// 	auto group = polygon.GetGroup(i);
-	// 	scene.Shapes.push_back(&group);
-	// 	std::cout << "Adding group #" << i << std::endl;
-	// }
+	for (int i = 1; i <= polygon.GroupsCount(); i++) {
+		auto group = polygon.GetGroup(i);
+		scene.Shapes.push_back(group);
+		std::cout << "Adding group #" << i << std::endl;
+	}
 	main_camera.Render(scene, canvas);
 }

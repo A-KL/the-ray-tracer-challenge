@@ -151,8 +151,8 @@ void test_obj_groups()
   auto g1 = polygon.GetGroup(1);
   auto g2 = polygon.GetGroup(2);
 
-  auto t1 = dynamic_cast<const Triangle3D*>(g1.GetShape(0));
-  auto t2 = dynamic_cast<const Triangle3D*>(g2.GetShape(0));
+  auto t1 = dynamic_cast<const Triangle3D*>(g1->GetShape(0));
+  auto t2 = dynamic_cast<const Triangle3D*>(g2->GetShape(0));
 
   // // Assert
   assert(2 == polygon.GroupsCount());
@@ -265,17 +265,17 @@ void test_obj_faces_with_vertex_normals()
 
   auto g1 = polygon.GetGroup(1);
 
-  auto t1 = dynamic_cast<const Triangle3D*>(g1.GetShape(0));
-  auto t2 = dynamic_cast<const Triangle3D*>(g1.GetShape(1));
+  auto t1 = dynamic_cast<const SmoothTriangle3D*>(g1->GetShape(0));
+  auto t2 = dynamic_cast<const SmoothTriangle3D*>(g1->GetShape(1));
 
   // Assert
   assert (t1->P1 == polygon.GetVertex(1));
   assert (t1->P2 == polygon.GetVertex(2));
   assert (t1->P3 == polygon.GetVertex(3));
 
-  // assert (t1->N1 == polygon.GetNormal(3));
-  // assert (t1->N2 == polygon.GetNormal(1));
-  // assert (t1->N3 == polygon.GetNormal(2));
+  assert (t1->N1 == polygon.GetNormal(3));
+  assert (t1->N2 == polygon.GetNormal(1));
+  assert (t1->N3 == polygon.GetNormal(2));
   
   assert(*t2 == *t1);
 }

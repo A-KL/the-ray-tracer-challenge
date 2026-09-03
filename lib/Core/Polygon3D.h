@@ -18,7 +18,7 @@ class Polygon3D
 
 		const TriangleShape3D* GetTriangle(const int index) const;
 
-		const Group3D& GetGroup(const int index) const;
+		const Group3D* GetGroup(const int index) const;
 
 		const Vector3D& GetNormal(const int index) const;
 
@@ -48,4 +48,9 @@ class Polygon3D
 		std::deque<Group3D> groups;
 
 		int default_group_index = -1;
+
+		void AddFaceWithIndex(
+			int index_a, int index_b, int index_c,
+			std::vector<int>& face_indexes, 
+			std::vector<int>& normal_indexes);
 };

@@ -13,7 +13,7 @@ class Scene3D
 public:
 	std::vector<Light3D*> Lights;
 
-	std::vector<Shape3D*> Shapes;
+	std::vector<const Shape3D*> Shapes;
 
 	Color3D ColorAt(const Ray3D& ray, int remaining = 4) const;
 
