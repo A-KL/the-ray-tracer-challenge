@@ -16,12 +16,11 @@ class Polygon3D
 
 		const Point3D& GetVertex(const int index) const;
 
+		const Vector3D& GetNormal(const int index) const;
+
 		const TriangleShape3D* GetTriangle(const int index) const;
 
 		const Group3D* GetGroup(const int index) const;
-
-		const Vector3D& GetNormal(const int index) const;
-
 
 		void AddVertex(double p1, double p2, double p3);
 
@@ -30,7 +29,6 @@ class Polygon3D
 		void AddFace(std::vector<int>& face_indexes, std::vector<int>& normal_indexes);
 
 		void AddGroup(const char* name);
-
 
 		int GroupsCount();
 
