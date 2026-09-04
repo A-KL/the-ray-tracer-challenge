@@ -12,7 +12,6 @@ def define_material(yaml_data, cpp_data):
     name = yaml_data.get('define', 'default_material').replace("-", "_")
     value = yaml_data.get('value', None)
     
-
     default_material = {
         'color': [1, 1, 1],
         'ambient': 0.1,
@@ -55,15 +54,52 @@ def define_material(yaml_data, cpp_data):
     
     print(f"Material3D parameters: color={color}, ambient={ambient}, diffuse={diffuse}, specular={specular}, shininess={shininess}")
 
+
+def define_transform_items(transformations, cpp_data):
+    for transform in transformations:
+
+      if isinstance(transform, str):
+          shared_transform_name = transform.replace("-", "_")
+          transforms = cpp_data['shared_defines'][shared_transform_name]
+          define_transform_items(transforms, cpp_data)
+          continue
+      
+      t, x, y, z = transform
+      if t == 'translate':
+          cpp_data['lines'].append(f"   Matrix4d::Translate({x}, {y}, {z}) *")
+      elif t == 'scale':
+          cpp_data['lines'].append(f"   Matrix4d::Scale({x}, {y}, {z}) *")
+      elif t == 'rotate-x':
+          cpp_data['lines'].append(f"   Matrix4d::RotateX({x}) *")
+      elif t == 'rotate-y':
+          cpp_data['lines'].append(f"   Matrix4d::RotateY({x}) *")
+      elif t == 'rotate-z':
+          cpp_data['lines'].append(f"   Matrix4d::RotateZ({x}) *")
+
 def define_transform(yaml_data, cpp_data):
-    # Placeholder for transform definition
-    # You can implement the logic to define transformations based on the YAML data
-    pass
+    name = yaml_data.get('define', 'default_transform').replace("-", "_")
+    value = yaml_data.get('value', None)
+
+    if "Matrix" not in cpp_data['includes']:
+      cpp_data['includes'].append("Matrix")
+    if "MatrixOps" not in cpp_data['includes']:
+      cpp_data['includes'].append("MatrixOps")
+    if "MatrixTransform" not in cpp_data['includes']:
+      cpp_data['includes'].append("MatrixTransform")
+
+    cpp_data['shared_defines'][name] = value
+
+    cpp_data['lines'].append(f"auto {name} = ")
+
+    define_transform_items(value, cpp_data)
+
+    cpp_data['lines'][-1] = cpp_data['lines'][-1].rstrip(' *') + ";\n"
 
 def define_object(yaml_data, cpp_data):
     if "material" in yaml_data['define']:
         define_material(yaml_data, cpp_data)   
-    if "transform" in yaml_data['define']:
+    else:
+    # if "transform" in yaml_data['define']:
         define_transform(yaml_data, cpp_data)
 
 def add_camera(yaml_data, cpp_data):
