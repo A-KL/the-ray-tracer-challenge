@@ -1,4 +1,4 @@
-#include "Plane3D.hpp"
+#include "Plane3D.h"
 
 #include <math.h>
 #include "Mathf.h"
@@ -28,7 +28,7 @@ bool Plane3D::Plane3D::operator==(const Plane3D& other) const
 	return Shape3D::operator==(other);
 }
 
-const Vector3D Plane3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Plane3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
 	return Vector3D(0, 1, 0);
 }

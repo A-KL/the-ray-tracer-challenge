@@ -6,7 +6,7 @@
 #include "Vector3D.h"
 #include "Intersection.h"
 #include "Material3D.h"
-#include "MatrixOps.hpp"
+#include "MatrixOps.h"
 #include "Ray3D.h"
 #include "Shape3D.h"
 
@@ -26,7 +26,7 @@ public:
 	bool operator==(const Sphere3D& other) const;
 
 protected:
-	const Vector3D LocalNormalAt(const Point3D& point) const;
+	const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
 
 	std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 };

@@ -1,4 +1,4 @@
-#include "Cylinder3D.hpp"
+#include "Cylinder3D.h"
 
 #include <math.h>
 #include "Mathf.h"
@@ -31,7 +31,7 @@ bool Cylinder3D::Cylinder3D::operator==(const Cylinder3D& other) const
         Closed == other.Closed;
 }
 
-const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Cylinder3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
     auto dist = point.X() * point.X() + point.Z() * point.Z();
 

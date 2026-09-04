@@ -22,7 +22,7 @@ Ray3D Ray3D::Transform(const Matrix4d& transformation) const
 	return Ray3D(pos, dir);
 }
 
-std::vector<Intersection> Ray3D::Intersect(const std::vector<Shape3D*>& objects) const
+std::vector<Intersection> Ray3D::Intersect(const std::vector<const Shape3D*>& objects) const
 {
 	std::list<Intersection> result;
 

@@ -56,7 +56,7 @@ const double Computation::SchlickValue() const
 const Computation Computation::Prepare(const Intersection& intersection, const Ray3D& ray, const std::vector<Intersection>& intersections)
 {
 	auto position = ray.Position(intersection.Value);
-	auto normal = intersection.Shape->NormalAt(position);
+	auto normal = intersection.Shape->NormalAt(position, &intersection);
 	auto camera = -ray.Direction;
 	auto inside = Vector3D::Dot(normal, camera) < 0;
 	normal = inside ? -normal : normal;

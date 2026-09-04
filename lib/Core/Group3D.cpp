@@ -1,11 +1,17 @@
 #include <math.h>
 
 #include "Mathf.h"
-#include "Group3D.hpp"
+#include "Group3D.h"
 
 Group3D::Group3D() :
     Group3D(Matrix4d::Identity())
 { }
+
+Group3D::Group3D(const Group3D& group)
+    : Group3D(group.Position, group.Transformation)
+{ 
+    _shapes = group._shapes;
+}
 
 Group3D::Group3D(const Matrix4d& transform) :
     Group3D(Point3D::Origin, transform)
@@ -25,6 +31,17 @@ Group3D* Group3D::AddShape(Shape3D* shape)
     shape->Parent = this;
     _shapes.push_back(shape);
     return this;
+}
+
+const Shape3D* Group3D::GetShape(int index) const
+{
+    assert(index < _shapes.size());
+    return _shapes[index];
+}
+
+int Group3D::ShapesCount() const
+{
+    return _shapes.size();
 }
 
 bool Group3D::operator==(const Group3D& other) const 
@@ -49,7 +66,7 @@ std::vector<Intersection> Group3D::LocalIntersect(const Ray3D& ray) const
     return std::vector<Intersection>(results.begin(), results.end());
 }
 
-const Vector3D Group3D::LocalNormalAt(const Point3D& point) const
+const Vector3D Group3D::LocalNormalAt(const Point3D& point, const Intersection* hit) const
 {
     throw std::logic_error("Group3D does not implement LocalNormalAt");
 }

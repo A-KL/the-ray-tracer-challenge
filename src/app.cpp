@@ -46,5 +46,6 @@ void loop(void)
 	// run_hexagon_demo(canvas);
 
 	// run_reflection_demo(canvas);
-	run_cylinders_demo(canvas);
+	// run_cylinders_demo(canvas);
+	run_obj_demo(canvas);
 }

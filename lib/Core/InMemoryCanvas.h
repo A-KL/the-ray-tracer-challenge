@@ -10,8 +10,8 @@
 #include "Vector3D.h"
 #include "Point3D.h"
 
-#include "Matrix.hpp"
-#include "MatrixOps.hpp"
+#include "Matrix.h"
+#include "MatrixOps.h"
 
 #include "InMemoryCanvas.h"
 

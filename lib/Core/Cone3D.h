@@ -7,7 +7,7 @@
 #include "Intersection.h"
 #include "Vector3D.h"
 #include "Ray3D.h"
-#include "MatrixOps.hpp"
+#include "MatrixOps.h"
 
 class Cone3D
 	: virtual public Shape3D
@@ -33,8 +33,7 @@ public:
 
 	std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;
 
-	const Vector3D LocalNormalAt(const Point3D& point) const;
-
+	const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const;
 private:
 
 	bool CheckCap(const Ray3D& ray, const double t) const;

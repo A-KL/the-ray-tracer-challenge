@@ -10,9 +10,9 @@
 #include "../lib/Core/Vector3D.h"
 #include "../lib/Core/Point3D.h"
 
-#include "../lib/Core/Matrix.hpp"
-#include "../lib/Core/MatrixOps.hpp"
-#include "../lib/Core/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.h"
+#include "../lib/Core/MatrixOps.h"
+#include "../lib/Core/MatrixTransform.h"
 
 #include "../lib/Core/Material3D.h"
 #include "../lib/Core/Shape3D.h"

@@ -4,7 +4,7 @@
 
 #include "Point3D.h"
 #include "Vector3D.h"
-#include "MatrixOps.hpp"
+#include "MatrixOps.h"
 #include "Shape3D.h"
 #include "Intersection.h"
 
@@ -21,5 +21,5 @@ public:
 
 	Ray3D Transform(const Matrix4d& transformation) const;
 
-	std::vector<Intersection> Intersect(const std::vector<Shape3D*>& objects) const;
+	std::vector<Intersection> Intersect(const std::vector<const Shape3D*>& objects) const;
 };

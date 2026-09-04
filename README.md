@@ -25,3 +25,4 @@ Cross-platform ray tracer based on the book: [The Ray Tracer Challenge - A Test-
 | №11  | ![Chapter 11](/img/ray_trace_reflections_fresnel.png)  | ![Chapter 11](/img/ray_trace_reflections_fresnel_esp32.png)  |
 | №13  | ![Chapter 13](/img/ray_trace_cylinders.png)  | ![Chapter 13](/img/ray_trace_cylinders_esp32.png)  |
 | №14  | ![Chapter 14](/img/ray_trace_groups_hexagon.png)  | ![Chapter 14](/img/ray_trace_groups_hexagon_esp32.png)  |
+| №15  | ![Chapter 15](/img/ray_trace_obj.png)  | ![Chapter 15](/img/ray_trace_obj_esp32.png)  |

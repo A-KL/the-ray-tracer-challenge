@@ -1,5 +1,9 @@
 #include "Object3D.h"
 
+Object3D::Object3D(const Object3D& object) :
+	Object3D(object.Position, object.Transformation)
+{ }
+
 Object3D::Object3D(const Point3D& position) :
 	Object3D(position, matrix_identity_4d)
 { }

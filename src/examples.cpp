@@ -2,6 +2,9 @@
 #include <list>
 #include <cassert>
 
+#include <fstream>
+#include <string>
+
 #include "../lib/Core/Mathf.h"
 
 #include "../lib/Core/Color3D.h"
@@ -11,9 +14,9 @@
 #include "../lib/Core/Vector3D.h"
 #include "../lib/Core/Point3D.h"
 
-#include "../lib/Core/Matrix.hpp"
-#include "../lib/Core/MatrixOps.hpp"
-#include "../lib/Core/MatrixTransform.hpp"
+#include "../lib/Core/Matrix.h"
+#include "../lib/Core/MatrixOps.h"
+#include "../lib/Core/MatrixTransform.h"
 
 #include "../lib/Core/Environment.h"
 #include "../lib/Core/Projectile.h"
@@ -22,10 +25,11 @@
 #include "../lib/Core/Object3D.h"
 #include "../lib/Core/Shape3D.h"
 #include "../lib/Core/Sphere3D.h"
-#include "../lib/Core/Cylinder3D.hpp"
-#include "../lib/Core/Group3D.hpp"
-#include "../lib/Core/Cone3D.hpp"
-#include "../lib/Core/Plane3D.hpp"
+#include "../lib/Core/Cylinder3D.h"
+#include "../lib/Core/Group3D.h"
+#include "../lib/Core/Cone3D.h"
+#include "../lib/Core/Plane3D.h"
+#include "../lib/Core/Polygon3D.h"
 #include "../lib/Core/Intersection.h"
 #include "../lib/Core/Ray3D.h"
 #include "../lib/Core/Light3D.h"
@@ -33,6 +37,8 @@
 #include "../lib/Core/RayTracer.h"
 #include "../lib/Core/Scene3D.h"
 #include "../lib/Core/Camera.h"
+
+#include "../lib/Utils/ObjLoader.h"
 
 #include "examples.h"
 
@@ -776,5 +782,62 @@ void run_cylinders_demo(Canvas& canvas)
 	scene.Shapes.push_back(&c9);
 	scene.Shapes.push_back(&glass_c);
 
+	main_camera.Render(scene, canvas);
+}
+
+void run_obj_demo(Canvas& canvas)
+{
+	const int w = canvas.Width();
+	const int h = canvas.Height();
+
+	auto main_camera = 
+			Camera(w, h, M_PI / 10, Point3D(8, 3.5, -9), Point3D(0, 0.3, 0), Vector3D(0, 1, 0));
+
+	auto main_light = Light3D(
+		Point3D(-10, 10, -10), Color3D::White);
+
+	// Floor
+	auto floor_pattern = CheckersColor3D(
+		Color3D(0.75, 0.75, 0.75), Color3D(0.5, 0.5, 0.5), Matrix4d::RotateY(0.3) * Matrix4d::Scale(0.25));
+
+	auto floor_material = Material3D(
+		floor_pattern, 0.2, 0.9, 0);
+
+	auto floor = Plane3D(
+		Matrix4d::Translate(0, -0.5, 0),
+		floor_material);
+
+	// OBJ
+
+	std::ifstream file("obj/cube.obj");
+
+	if (!file.is_open()) {
+		std::cerr << "Failed to open file " << std::endl;
+		return;
+	}
+
+	std::string line;
+	Polygon3D polygon;
+	
+	while (getline(file, line)) {
+		obj_parse_line(line, polygon);
+	}
+
+	file.close();
+
+	std::cout << "Loaded " << polygon.GroupsCount() << " groups from OBJ file." << std::endl;
+
+	// Render
+	
+	Scene3D scene;
+
+	scene.Lights.push_back(&main_light);
+	scene.Shapes.push_back(&floor);
+
+	for (int i = 1; i <= polygon.GroupsCount(); i++) {
+		auto group = polygon.GetGroup(i);
+		scene.Shapes.push_back(group);
+		std::cout << "Adding group #" << i << std::endl;
+	}
 	main_camera.Render(scene, canvas);
 }
