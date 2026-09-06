@@ -2,6 +2,14 @@
 
 const Point3D Point3D::Origin(0, 0, 0);
 
+Point3D::Point3D(const Point3D& point)
+	: Point3D(point.X(), point.Y(), point.Z())
+{ }
+
+Point3D::Point3D(double x, double y, double z)
+	: Primitive3D<double>(x, y, z, 1)
+{ }
+
 Vector3D Point3D::operator-(const Point3D& other) const
 {
 	return Vector3D(X() - other.X(), Y() - other.Y(), Z() - other.Z());

@@ -31,6 +31,8 @@ public:
 	
 	bool operator==(const Shape3D& other) const;
 
+	const virtual bool Contains(const Shape3D* shape) const;
+
 protected:
 	virtual const Vector3D LocalNormalAt(const Point3D& point, const Intersection* hit = nullptr) const = 0;
 

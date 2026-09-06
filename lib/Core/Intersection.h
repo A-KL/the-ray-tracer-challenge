@@ -5,6 +5,8 @@ class Shape3D;
 class Intersection
 {
 public:
+	Intersection(const Intersection& intersection);
+
 	Intersection(double t, const Shape3D& object);
 
 	Intersection(double t, const Shape3D* object);

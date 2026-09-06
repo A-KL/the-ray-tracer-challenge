@@ -1,5 +1,9 @@
 #include "Intersection.h"
 
+Intersection::Intersection(const Intersection& intersection) 
+	: Intersection(intersection.Value, intersection.Shape, intersection.U, intersection.V)
+{ }
+
 Intersection::Intersection(double t, const Shape3D& object)
 	: Value(t), Shape(&object), U(0), V(0)
 { }

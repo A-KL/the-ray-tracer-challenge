@@ -29,6 +29,8 @@ public:
 
   bool operator==(const Group3D& other) const;
 
+  const bool Contains(const Shape3D* shape) const;
+
   int ShapesCount() const;
 
   std::vector<Intersection> LocalIntersect(const Ray3D& ray) const;

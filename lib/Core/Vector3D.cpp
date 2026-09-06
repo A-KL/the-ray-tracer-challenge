@@ -1,5 +1,17 @@
 #include "Vector3D.h"
 
+Vector3D::Vector3D(const Vector3D& vector)
+	: Vector3D(vector.X(), vector.Y(), vector.Z())
+{ }
+
+Vector3D::Vector3D(double x, double y, double z)
+	: Vector3D(x, y, z, 0)
+{ }
+
+Vector3D::Vector3D(double x, double y, double z, double w)
+	: Primitive3D(x, y, z, w)
+{ }
+
 Vector3D Vector3D::operator+(const Vector3D& other) const
 {
 	return Vector3D(X() + other.X(), Y() + other.Y(), Z() + other.Z());
