@@ -69,4 +69,6 @@ void run_tests()
 	run_triangle_tests();
 
 	run_obj_tests();
+
+	run_csg_tests();
 }
