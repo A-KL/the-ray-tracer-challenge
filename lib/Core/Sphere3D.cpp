@@ -44,7 +44,7 @@ std::vector<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
 	
 	double d = b * b - 4.0 * a * c;
 	
-	std::list<Intersection> result;
+	std::vector<Intersection> result;
 	
 	if (d >= 0)
 	{
@@ -56,9 +56,8 @@ std::vector<Intersection> Sphere3D::LocalIntersect(const Ray3D& ray) const
 		result.push_back(Intersection(t1, this));
 		result.push_back(Intersection(t2, this));
 
-	//	std::sort(result.begin(), result.end());//, IntersectionComparator());
-		result.sort();
+		std::sort(result.begin(), result.end());
 	}
 	
-	return std::vector<Intersection>(result.begin(), result.end());
+	return result;
 }

@@ -24,7 +24,7 @@ Ray3D Ray3D::Transform(const Matrix4d& transformation) const
 
 std::vector<Intersection> Ray3D::Intersect(const std::vector<const Shape3D*>& objects) const
 {
-	std::list<Intersection> result;
+	std::vector<Intersection> result;
 
 	for (auto const& object : objects)
 	{
@@ -36,8 +36,7 @@ std::vector<Intersection> Ray3D::Intersect(const std::vector<const Shape3D*>& ob
 		}
 	}
 
-	// std::list<Intersection>::sort(result.begin(), result.end());
-	result.sort();
+	sort(result.begin(), result.end());
 
-	return std::vector<Intersection>(result.begin(), result.end());
+	return result;
 }

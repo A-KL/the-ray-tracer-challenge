@@ -39,10 +39,10 @@ const static std::vector<Intersection> EmptyList;
 
 std::vector<Intersection> ray_hit(const std::vector<Intersection>& intersections)
 {
-	std::list<Intersection> sorted(intersections.begin(), intersections.end());
+	std::vector<Intersection> sorted(intersections.begin(), intersections.end());
 
-	// std::sort(sorted.begin(), sorted.end()); //, IntersectionComparator()
-	sorted.sort();
+	std::sort(sorted.begin(), sorted.end());
+	// sorted.sort();
 
 	for (auto& intersection : sorted)
 	{

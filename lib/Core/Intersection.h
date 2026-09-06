@@ -5,7 +5,7 @@ class Shape3D;
 class Intersection
 {
 public:
-	Intersection(const Intersection& intersection);
+	Intersection(const Intersection& intersection) = default;
 
 	Intersection(double t, const Shape3D& object);
 
@@ -15,13 +15,13 @@ public:
 
 	Intersection(double t, const Shape3D* object, double u, double v);
 
-	const double Value;
+	double Value;
 
 	const Shape3D* Shape;
 
-	const double U; // Used for smooth triangles
+	double U; // Used for smooth triangles
 
-	const double V; // Used for smooth triangles
+	double V; // Used for smooth triangles
 
 	bool operator==(const Intersection& other) const;
 

@@ -27,28 +27,40 @@
 void test_csg_filter()
 {
     // Setup
-    Cube3D cube;
     Sphere3D sphere;
-
-    CSG csg(&sphere, &cube); //<UnionRule>
+    Cube3D cube;
+    
+    CSG csg_uni(UnionRule, &sphere, &cube);
+    CSG csg_int(IntersectRule, &sphere, &cube);
+    CSG csg_dif(DifferenceRule, &sphere, &cube);
 
     auto xs = std::vector<Intersection> { 
-      Intersection(1.0, &cube),
-      Intersection(2.0, &sphere),
-      Intersection(3.0, &cube),
-      Intersection(4.0, &sphere)
+      Intersection(1.0, &sphere),
+      Intersection(2.0, &cube),
+      Intersection(3.0, &sphere),
+      Intersection(4.0, &cube)
      };
 
     // Act
-    auto results = FilterIntersections(UnionRule, csg, xs);
+    auto results_union = csg_uni.FilterIntersections(xs);
+    auto results_intersection = csg_int.FilterIntersections(xs);
+    auto results_difference = csg_dif.FilterIntersections(xs);
     
     //Assert
-    assert(2 == results.size());
-    assert(xs[0] == results[0]);
-    assert(xs[1] == results[1]);
+    assert(2 == results_union.size());
+    assert(xs[0] == results_union[0]);
+    assert(xs[3] == results_union[1]);
+
+    assert(2 == results_intersection.size());
+    assert(xs[1] == results_intersection[0]);
+    assert(xs[2] == results_intersection[1]);
+
+    assert(2 == results_difference.size());
+    assert(xs[0] == results_difference[0]);
+    assert(xs[1] == results_difference[1]);
 }
 
-// Tests #6 and 7: Intersecting a Ray with a CSG Object
+// Tests #6: Intersecting a Ray with a CSG Object
 //
 // A ray should intersect a CSG object if it intersects any of its children.
 //
@@ -58,7 +70,7 @@ void test_csg_ray_misses()
     Cube3D cube;
     Sphere3D sphere;
 
-    CSG csg(&sphere, &cube); //<UnionRule>
+    CSG csg(UnionRule, &sphere, &cube); //<UnionRule>
 
     auto ray = Ray3D(Point3D(0, 2, -5), Vector3D(0, 0, 1));
 
@@ -69,8 +81,34 @@ void test_csg_ray_misses()
     assert(0 == xs.size());
 }
 
+// Tests #7: Intersecting a Ray with a CSG Object
+//
+// A ray should intersect a CSG object if it intersects any of its children.
+//
+void test_csg_ray_hits()
+{
+    // Setup
+    Sphere3D s1;
+    Sphere3D s2(Matrix4d::Translate(0, 0, 0.5));
+
+    CSG csg(UnionRule, &s1, &s2);
+
+    auto ray = Ray3D(Point3D(0, 0, -5), Vector3D(0, 0, 1));
+
+    // Act
+    auto xs = csg.LocalIntersect(ray);
+
+    //Assert
+    assert(2   == xs.size());
+    assert(4   == xs[0].Value);
+    assert(&s1 == xs[0].Shape);
+    assert(6.5 == xs[1].Value);
+    assert(&s2 == xs[1].Shape);
+}
+
 void run_csg_tests()
 {
   test_csg_filter();
   test_csg_ray_misses();
+  test_csg_ray_hits();
 }
