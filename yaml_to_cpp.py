@@ -54,14 +54,25 @@ def define_material(yaml_data, cpp_data):
     
     print(f"Material3D parameters: color={color}, ambient={ambient}, diffuse={diffuse}, specular={specular}, shininess={shininess}")
 
+def define_transform(yaml_data, cpp_data):
+    name = yaml_data.get('define', 'default_transform').replace("-", "_")
+    value = yaml_data.get('value', None)
 
-def define_transform_items(transformations, cpp_data):
-    for transform in transformations:
+    if "Matrix" not in cpp_data['includes']:
+      cpp_data['includes'].append("Matrix")
+    if "MatrixOps" not in cpp_data['includes']:
+      cpp_data['includes'].append("MatrixOps")
+    if "MatrixTransform" not in cpp_data['includes']:
+      cpp_data['includes'].append("MatrixTransform")
 
+    # cpp_data['shared_defines'][name] = value
+
+    cpp_data['lines'].append(f"auto {name} = ")
+
+    for transform in value:
       if isinstance(transform, str):
           shared_transform_name = transform.replace("-", "_")
-          transforms = cpp_data['shared_defines'][shared_transform_name]
-          define_transform_items(transforms, cpp_data)
+          cpp_data['lines'].append(f"   {shared_transform_name} *")
           continue
       
       t, x, y, z = transform
@@ -75,23 +86,6 @@ def define_transform_items(transformations, cpp_data):
           cpp_data['lines'].append(f"   Matrix4d::RotateY({x}) *")
       elif t == 'rotate-z':
           cpp_data['lines'].append(f"   Matrix4d::RotateZ({x}) *")
-
-def define_transform(yaml_data, cpp_data):
-    name = yaml_data.get('define', 'default_transform').replace("-", "_")
-    value = yaml_data.get('value', None)
-
-    if "Matrix" not in cpp_data['includes']:
-      cpp_data['includes'].append("Matrix")
-    if "MatrixOps" not in cpp_data['includes']:
-      cpp_data['includes'].append("MatrixOps")
-    if "MatrixTransform" not in cpp_data['includes']:
-      cpp_data['includes'].append("MatrixTransform")
-
-    cpp_data['shared_defines'][name] = value
-
-    cpp_data['lines'].append(f"auto {name} = ")
-
-    define_transform_items(value, cpp_data)
 
     cpp_data['lines'][-1] = cpp_data['lines'][-1].rstrip(' *') + ";\n"
 
@@ -116,7 +110,7 @@ def add_camera(yaml_data, cpp_data):
     name = get_cpp_var_name("camera", cpp_data)
 
     cpp_data['lines'].append(f"auto {name} = ");
-    cpp_data['lines'].append(f"   Camera({width}, {height}, {field_of_view}, Point3D({from_point[0]}, {from_point[1]}, {from_point[2]}), Point3D({to_point[0]}, {to_point[1]}, {to_point[2]}), Vector3D({up_vector[0]}, {up_vector[1]}, {up_vector[2]}));\n")
+    cpp_data['lines'].append(f"   Camera(w, h, {field_of_view}, Point3D({from_point[0]}, {from_point[1]}, {from_point[2]}), Point3D({to_point[0]}, {to_point[1]}, {to_point[2]}), Vector3D({up_vector[0]}, {up_vector[1]}, {up_vector[2]}));\n")
                              
     print(f"Camera parameters: width={width}, height={height}, field_of_view={field_of_view}, from={from_point}, to={to_point}, up={up_vector}")
 
@@ -140,17 +134,110 @@ def add_light(yaml_data, cpp_data):
     
     print(f"Light parameters: at={at}, intensity={intensity}")
 
-def main():
+def get_object_material(yaml_data, cpp_data):
+    default_material = {
+        'color': [1, 1, 1],
+        'ambient': 0.1,
+        'diffuse': 0.9,
+        'specular': 0.9,
+        'shininess': 200,
+        'reflective': 0.0,
+        'transparency': 0.0,
+    }
+    material = yaml_data.get('material', default_material)
 
+    if isinstance(material, str):
+        return material.replace("-", "_")
+
+    color = material.get('color', default_material['color'])
+    ambient = material.get('ambient', default_material['ambient'])
+    diffuse = material.get('diffuse', default_material['diffuse'])
+    specular = material.get('specular', default_material['specular'])
+    shininess = material.get('shininess', default_material['shininess'])
+    reflective = material.get('reflective', default_material['reflective'])
+    transparency = material.get('transparency', default_material['transparency'])
+
+    return f"Material3D(SolidColor3D(Color3D({color[0]}, {color[1]}, {color[2]})), {ambient}, {diffuse}, {specular}, {shininess}, {reflective}, {transparency})"
+
+def get_object_transform(yaml_data, cpp_data):
+    transforms = yaml_data.get('transform', None)
+    result = ''
+
+    for transform in transforms:
+
+      if isinstance(transform, str):
+          shared_transform_name = transform.replace("-", "_")
+          result += f"{shared_transform_name} * "
+          continue
+      
+      t, x, *yz = transform
+
+      if t == 'translate':
+          result += f"Matrix4d::Translate({x}, {yz[0]}, {yz[1]}) *"
+      elif t == 'scale':
+          result += f"Matrix4d::Scale({x}, {yz[0]}, {yz[1]}) *"
+      elif t == 'rotate-x':
+          result += f"Matrix4d::RotateX({x}) *"
+      elif t == 'rotate-y':
+          result += f"Matrix4d::RotateY({x}) *"
+      elif t == 'rotate-z':
+          result += f"Matrix4d::RotateZ({x}) *"
+
+    return result.rstrip(' *')
+
+def add_object_transform(yaml_data, cpp_data):
+    transforms = yaml_data.get('transform', None)
+
+    for transform in transforms:
+      
+      if isinstance(transform, str):
+          shared_transform_name = transform.replace("-", "_")
+          cpp_data['lines'].append(f"   {shared_transform_name} *")
+          continue
+      
+      t, x, y, z = transform
+      if t == 'translate':
+          cpp_data['lines'].append(f"   Matrix4d::Translate({x}, {y}, {z}) *")
+      elif t == 'scale':
+          cpp_data['lines'].append(f"   Matrix4d::Scale({x}, {y}, {z}) *")
+      elif t == 'rotate-x':
+          cpp_data['lines'].append(f"   Matrix4d::RotateX({x}) *")
+      elif t == 'rotate-y':
+          cpp_data['lines'].append(f"   Matrix4d::RotateY({x}) *")
+      elif t == 'rotate-z':
+          cpp_data['lines'].append(f"   Matrix4d::RotateZ({x}) *")
+
+    cpp_data['lines'][-1] = cpp_data['lines'][-1].rstrip(' *') + ";\n"
+
+def add_object(yaml_data, cpp_data):
+    object_map = {
+      "plane": "Plane3D",
+      "cylinder": "Cylinder3D",
+      "sphere": "Sphere3D",
+      "cube": "Cube3D",
+    }
+
+    add_type = yaml_data.get('add', None)
+    cpp_type = object_map.get(add_type)
+    name = get_cpp_var_name(add_type, cpp_data)
+
+    if cpp_type and cpp_type not in cpp_data['includes']:
+      cpp_data['includes'].append(cpp_type)
+
+    cpp_data['lines'].append(f"auto {name} = {cpp_type}(")
+    cpp_data['lines'].append(f"     {get_object_transform(yaml_data, cpp_data)},")
+    cpp_data['lines'].append(f"     {get_object_material(yaml_data, cpp_data)});\n")
+    cpp_data['lines'].append(f"{cpp_data['scene_name']}.Shapes.push_back(&{name});\n")
+
+def main():
   types_map = {
     "camera": add_camera,
     "light": add_light,
     "define": define_object,
-
-    # "plane": "Plane3D",
-    # "cylinder": "Cylinder3D",
-    # "sphere": "Sphere3D",
-    # "cube": "Cube3D",
+    "plane": add_object,
+    "cylinder": add_object,
+    "sphere": add_object,
+    "cube": add_object,
   }
 
   cpp_data = {
@@ -201,7 +288,6 @@ def main():
 
               # The function definition
               output_file.write("\nvoid run_cover_demo(Canvas& canvas) {\n")
-
               output_file.write("\n    const int w = canvas.Width();")
               output_file.write("\n    const int h = canvas.Height();\n")
               output_file.write("\n    Scene3D scene;\n\n")

@@ -11,17 +11,17 @@
 class Scene3D
 {
 public:
-	std::vector<Light3D*> Lights;
+	std::vector<const Light3D*> Lights;
 
 	std::vector<const Shape3D*> Shapes;
 
-	Color3D ColorAt(const Ray3D& ray, int remaining = 4) const;
+	Color3D ColorAt(const Ray3D& ray, const int remaining = 4) const;
 
-	Color3D ReflectedAt(const Computation& comp, int remaining = 4) const;
+	Color3D ShadeHit(const Computation& computation, const int remaining = 4) const;
 
-	Color3D RefractedAt(const Computation& comp, const int remaining) const;
+	Color3D ReflectedAt(const Computation& computation, const int remaining = 4) const;
 
-	Color3D ShadeHit(const Computation& computation, int remaining = 4) const;
+	Color3D RefractedAt(const Computation& computation, const int remaining = 4) const;
 
 	bool InShadow(const Point3D& location, const Point3D& light_position) const;
 };

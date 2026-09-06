@@ -1,8 +1,7 @@
 #include "Scene3D.h"
-
 #include "RayTracer.h"
 
-Color3D Scene3D::ColorAt(const Ray3D& ray, int remaining) const
+Color3D Scene3D::ColorAt(const Ray3D& ray, const int remaining) const
 {
     auto intersects = ray.Intersect(Shapes);
 
@@ -18,7 +17,7 @@ Color3D Scene3D::ColorAt(const Ray3D& ray, int remaining) const
     return ShadeHit(computation, remaining);
 }
 
-Color3D Scene3D::ShadeHit(const Computation& computation, int remaining) const
+Color3D Scene3D::ShadeHit(const Computation& computation, const int remaining) const
 {
     auto result = Color3D::Black;
     auto count = 0;
@@ -63,6 +62,51 @@ Color3D Scene3D::ShadeHit(const Computation& computation, int remaining) const
     return result + reflected + refracted;
 }
 
+Color3D Scene3D::ReflectedAt(const Computation& computation, const int remaining) const
+{
+    if (remaining <= 0)
+    {
+        return Color3D::Black;
+    }
+
+    if (Mathf<double>::IsZero(computation.Intersect.Shape->Material.Reflective))
+    {
+        return Color3D::Black;
+    }
+
+    auto reflected_ray = Ray3D(computation.OverPosition, computation.Reflection);
+    auto color = ColorAt(reflected_ray, remaining - 1);
+
+    return color * computation.Intersect.Shape->Material.Reflective;
+}
+
+Color3D Scene3D::RefractedAt(const Computation& computation, const int remaining) const
+{
+    if (computation.Intersect.Shape->Material.Transparency <= Mathf<double>::Epsilon() || remaining == 0) 
+    {
+        return Color3D::Black;
+    }
+    // Find the ratio of first index of refraction to the second.
+    // (Yup, this is inverted from the definition of Snell's Law.)
+    auto n_ratio = computation.N1 / computation.N2;
+    // cos(theta_i) is the same as the dot product of the two vectors
+    auto cos_i = Vector3D::Dot(computation.Camera, computation.Normal);
+    // Find sin(theta_t)^2 via trigonometric identity
+    auto sin2_t = n_ratio * n_ratio * (1 - cos_i * cos_i);
+
+    if (sin2_t > 1) 
+    {
+        return Color3D::Black;
+    }
+
+    // Find cos(theta_t) via trigonometric identity
+    auto cos_t = sqrt(1.0 - sin2_t);
+    auto direction = computation.Normal * (n_ratio * cos_i - cos_t) - computation.Camera * n_ratio;
+    auto refracted_ray = Ray3D(computation.UnderPosition, direction);
+
+    return ColorAt(refracted_ray, remaining - 1) * computation.Intersect.Shape->Material.Transparency;
+}
+
 bool Scene3D::InShadow(const Point3D& location, const Point3D& light_position) const
 {
 	auto v = light_position - location;
@@ -76,49 +120,4 @@ bool Scene3D::InShadow(const Point3D& location, const Point3D& light_position) c
 	auto h = ray_hit(intersections);
 
 	return !h.empty() && (h.begin()->Value < distance);
-}
-
-Color3D Scene3D::ReflectedAt(const Computation& comp, int remaining) const
-{
-    if (remaining <= 0)
-    {
-        return Color3D::Black;
-    }
-
-    if (Mathf<double>::IsZero(comp.Intersect.Shape->Material.Reflective))
-    {
-        return Color3D::Black;
-    }
-
-    auto reflected_ray = Ray3D(comp.OverPosition, comp.Reflection);
-    auto color = ColorAt(reflected_ray, remaining - 1);
-
-    return color * comp.Intersect.Shape->Material.Reflective;
-}
-
-Color3D Scene3D::RefractedAt(const Computation& comp, const int remaining = 5) const
-{
-    if (comp.Intersect.Shape->Material.Transparency <= Mathf<double>::Epsilon() || remaining == 0) 
-    {
-        return Color3D::Black;
-    }
-    // Find the ratio of first index of refraction to the second.
-    // (Yup, this is inverted from the definition of Snell's Law.)
-    auto n_ratio = comp.N1 / comp.N2;
-    // cos(theta_i) is the same as the dot product of the two vectors
-    auto cos_i = Vector3D::Dot(comp.Camera, comp.Normal);
-    // Find sin(theta_t)^2 via trigonometric identity
-    auto sin2_t = n_ratio * n_ratio * (1 - cos_i * cos_i);
-
-    if (sin2_t > 1) 
-    {
-        return Color3D::Black;
-    }
-
-    // Find cos(theta_t) via trigonometric identity
-    auto cos_t = sqrt(1.0 - sin2_t);
-    auto direction = comp.Normal * (n_ratio * cos_i - cos_t) - comp.Camera * n_ratio;
-    auto refracted_ray = Ray3D(comp.UnderPosition, direction);
-
-    return ColorAt(refracted_ray, remaining - 1) * comp.Intersect.Shape->Material.Transparency;
 }
