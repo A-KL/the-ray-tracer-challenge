@@ -49,6 +49,16 @@ bool Group3D::operator==(const Group3D& other) const
     return ((Object3D)*this) == other && _shapes == other._shapes;
 }
 
+const bool Group3D::Contains(const Shape3D* shape) const
+{
+    for (auto s : _shapes) {
+        if( s == shape) {
+            return true;
+        }
+    }
+	return false;
+}
+
 std::vector<Intersection> Group3D::LocalIntersect(const Ray3D& ray) const
 {
     std::list<Intersection> results;

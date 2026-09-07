@@ -37,3 +37,5 @@ void run_group_tests();
 void run_triangle_tests();
 
 void run_obj_tests();
+
+void run_csg_tests();

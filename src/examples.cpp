@@ -39,6 +39,8 @@
 #include "../lib/Core/Scene3D.h"
 #include "../lib/Core/Camera.h"
 
+#include "../lib/Core/CSG.h"
+
 #include "../lib/Utils/ObjLoader.h"
 
 #include "examples.h"
@@ -988,6 +990,67 @@ void run_cover_demo(Canvas& canvas) {
          white_material);
 
     scene.Shapes.push_back(&cube17);
+
+    camera.Render(scene, canvas);
+}
+
+void run_csg_demo(Canvas& canvas) 
+{
+    const int w = canvas.Width();
+    const int h = canvas.Height();
+
+    auto camera = Camera(w, h, M_PI/3, Point3D(-1.5, 2, 5), Point3D::Origin, Vector3D(0, 1, 0));
+
+    auto light = Light3D(Point3D(10, 10, 10), Color3D::White);
+
+		// Floor
+
+		auto floor_pattern = 
+			CheckersColor3D(Color3D::White, Color3D::Black);
+
+		auto floor_material = 
+			Material3D(floor_pattern, 0.1, 0.9, 0);
+
+		auto floor = 
+			Plane3D(Matrix4d::Translate(0, -1, 0), floor_material);
+
+		// Left wall
+
+		auto left_wall = Plane3D(
+				Matrix4d::Translate(0, 0, -10) * Matrix4d::RotateY(-M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
+				floor_material);
+
+		// Right wall
+
+		// auto right_wall = Plane3D(
+		// 		Matrix4d::Translate(0, 0, 10) * Matrix4d::RotateY(M_PI / 4) * Matrix4d::RotateX(M_PI / 2), 
+		// 		floor_material);
+
+    // CSG
+
+		auto yellow_material = 
+       Material3D(SolidColor3D(Color3D::Yellow), 0.1, 0.7, 0.0, 200, 0.1, 0.0);
+
+		auto red_material = 
+       Material3D(SolidColor3D(Color3D::Red), 0.1, 0.7, 0.0, 200, 0.1, 0.0);
+
+		auto cube = Cube3D(yellow_material);
+		auto sphere = Sphere3D(Matrix4d::Translate(-0.5, 0.5, 0.5), red_material);
+
+		auto csg = CSG(DifferenceRule, &cube, &sphere);
+
+		// Scene
+
+		Scene3D scene;
+
+    scene.Lights.push_back(&light);
+
+		scene.Shapes.push_back(&left_wall);
+		scene.Shapes.push_back(&floor);
+
+		// scene.Shapes.push_back(&cube);
+		// scene.Shapes.push_back(&sphere);
+		scene.Shapes.push_back(&csg);
 
     camera.Render(scene, canvas);
 }

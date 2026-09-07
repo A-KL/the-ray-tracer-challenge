@@ -88,8 +88,6 @@ std::vector<Intersection> Cylinder3D::LocalIntersect(const Ray3D& ray) const
         results.push_back(Intersection(t1, this));
     }
 
-    // std::cout << "t0: " << t0 << " t1: " << t1 << std::endl;
-
     return results;
 }
 

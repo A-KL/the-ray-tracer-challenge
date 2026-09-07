@@ -78,6 +78,11 @@ const Vector3D Shape3D::NormalToWorld(const Shape3D& shape, const Vector3D& norm
     return world_normal;
 }
 
+const bool Shape3D::Contains(const Shape3D* shape) const
+{
+	return (this == shape);
+}
+
 //std::list<Intersection> Shape3D::Intersect(const Ray3D& ray) const
 //{
 //	Ray3D final_ray = ray.Transform(Transformation.Inverse());

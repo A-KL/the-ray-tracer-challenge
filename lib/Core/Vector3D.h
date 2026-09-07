@@ -6,20 +6,12 @@
 #include "Mathf.h"
 #include "Primitive3D.h"
 
-class Vector3D :
-	public Primitive3D<double>
+class Vector3D : public Primitive3D<double>
 {
 public:
-	Vector3D(const Vector3D& point)
-		: Vector3D(point.X(), point.Y(), point.Z())
-	{ }
+	Vector3D(const Vector3D& vector);
 
-	Vector3D(double x, double y, double z)
-		: Vector3D(x, y, z, 0)
-	{ }
-
-	~Vector3D()
-	{}
+	Vector3D(double x, double y, double z);
 
 	double Magnitude() const;
 
@@ -46,8 +38,6 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, const Vector3D& p);
 
 protected:
-	Vector3D(double x, double y, double z, double w)
-		: Primitive3D(x, y, z, w)
-	{ }
+	Vector3D(double x, double y, double z, double w);
 };
 
