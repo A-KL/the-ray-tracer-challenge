@@ -47,5 +47,7 @@ void loop(void)
 
 	// run_reflection_demo(canvas);
 	// run_cylinders_demo(canvas);
-	run_obj_demo(canvas);
+	// run_obj_demo(canvas);
+	// run_cover_demo(canvas);
+	run_csg_demo(canvas);
 }
