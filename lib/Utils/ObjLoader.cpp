@@ -1,8 +1,9 @@
 #include <vector>
 #include <sstream>
 #include <iostream>
+#include <algorithm>
 
-#include "../lib/Core/Polygon3D.h"
+#include "../Core/Polygon3D.h"
 
 #include "ObjLoader.h"
 

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <algorithm>
 
 #include "Shape3D.h"
 #include "Intersection.h"
@@ -58,7 +59,7 @@ public:
 
     copy(right_xs.begin(), right_xs.end(), back_inserter(left_xs));
 
-    sort(left_xs.begin(), left_xs.end());
+    std::sort(left_xs.begin(), left_xs.end());
      
     return FilterIntersections(left_xs);
   }

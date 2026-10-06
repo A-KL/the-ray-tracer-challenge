@@ -1,8 +1,8 @@
-#include "Ray3D.h"
-
-#include "RayTracer.h"
-
 #include <list>
+#include <algorithm>
+
+#include "Ray3D.h"
+#include "RayTracer.h"
 
 Ray3D::Ray3D(const Point3D& position, const Vector3D& direction)
 	: Location(position), Direction(direction)
@@ -36,7 +36,7 @@ std::vector<Intersection> Ray3D::Intersect(const std::vector<const Shape3D*>& ob
 		}
 	}
 
-	sort(result.begin(), result.end());
+	std::sort(result.begin(), result.end());
 
 	return result;
 }

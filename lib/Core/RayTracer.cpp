@@ -1,8 +1,8 @@
-#include "RayTracer.h"
+#include <vector>
+#include <algorithm>
 
 #include "Vector3D.h"
-
-#include <list>
+#include "RayTracer.h"
 
 const static std::vector<Intersection> EmptyList;
 

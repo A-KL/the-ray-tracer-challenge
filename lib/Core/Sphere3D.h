@@ -1,7 +1,5 @@
 #pragma once
 
-#include <list>
-
 #include "Point3D.h"
 #include "Vector3D.h"
 #include "Intersection.h"
