@@ -1,10 +1,13 @@
 #ifdef LGFX_AUTODETECT
-#include <LovyanGFX.h>
-#include <LGFX_AUTODETECT.hpp>
+	#include <LovyanGFX.h>
+	#include <LGFX_AUTODETECT.hpp>
+#elif LGFX_ESP32
+	#include "LGFX_ESP32_LCD.hpp"
+	#include <LGFX_TFT_eSPI.h>
 #else
-#include <TFT_eSPI.h>
-#include <TFT_eSPI_GFX.h>
-using LGFX = TFT_eSPI_GFX;
+	#include <TFT_eSPI.h>
+	#include <TFT_eSPI_GFX.h>
+	using LGFX = TFT_eSPI_GFX;
 #endif
 
 #include "Canvas.h"
@@ -22,14 +25,13 @@ LovyanGFXCanvas canvas(lcd);
 
 void setup(void)
 {
-  lcd.init();
-  lcd.fillScreen(TFT_BLUE);
+	canvas.Init(TFT_BLUE);
 }
 
 void loop(void)
 {
 #ifdef _DEBUG
-	// run_tests();
+	run_tests();
 #endif
 	// run_projectile_demo(canvas);
 	// run_clock_demo(canvas);

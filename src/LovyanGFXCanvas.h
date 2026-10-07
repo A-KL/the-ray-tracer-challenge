@@ -3,20 +3,20 @@
 #include "../lib/Core/Color3D.h"
 #include "../lib/Core/Canvas.h"
 
-class LovyanGFXCanvas :
-	public Canvas
+class LovyanGFXCanvas : public Canvas
 {
 public:
 	LovyanGFXCanvas(LGFX& display) :
 		_display(&display)
 	{ }
 
-	void Init(const Color3D& color = Color3D::Black)
+	bool Init(const Color3D& color = Color3D::Black)
 	{
 		_display->init();
 		_display->startWrite();
 		_display->fillScreen((unsigned short)color);
 
+	
 		if (_display->isEPD())
 		{
 			_display->setEpdMode(epd_mode_t::epd_fastest);
@@ -25,6 +25,12 @@ public:
 		{
 			_display->setRotation(_display->getRotation() ^ 1);
 		}
+
+		_display->fillScreen((unsigned short)color);
+
+		log_i("TFT OK");
+
+		return true;
 	}
 
 	void DrawPoint(int x, int y, const Color3D& color)
@@ -70,6 +76,5 @@ public:
 private:
 	LGFX* _display;
 
-	const Color3D _background = Color3D::Black;
+	Color3D _background = Color3D::Black;
 };
-
